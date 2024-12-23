@@ -1,0 +1,123 @@
+{
+  "originHash" : "988f93c3696f12c8a39c79cc653c7d119a009126807f39bba761abdc6598b02e",
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
+        "version" : "5.10.2"
+      }
+    },
+    {
+      "identity" : "colorkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Boris-Em/ColorKit",
+      "state" : {
+        "branch" : "master",
+        "revision" : "6e4375a6126eac0a29893c607ae318bdbe33310c"
+      }
+    },
+    {
+      "identity" : "devicekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/devicekit/DeviceKit.git",
+      "state" : {
+        "revision" : "7ff5331960151aec74fb422e1d45f54ef6cc086d",
+        "version" : "5.5.0"
+      }
+    },
+    {
+      "identity" : "ghosttypewriter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wibosco/GhostTypewriter",
+      "state" : {
+        "revision" : "878f4785c805b332454beedeaa145c524d059f64",
+        "version" : "2.1.0"
+      }
+    },
+    {
+      "identity" : "haptica",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/efremidze/Haptica",
+      "state" : {
+        "revision" : "e03932406d2f36f10beefd31717730b2c2fa9014",
+        "version" : "3.0.3"
+      }
+    },
+    {
+      "identity" : "hero",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HeroTransitions/Hero.git",
+      "state" : {
+        "revision" : "b307e2d48d582118e5101d04f5187c91595a1095",
+        "version" : "1.6.3"
+      }
+    },
+    {
+      "identity" : "imageviewer.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/michaelhenry/ImageViewer.swift",
+      "state" : {
+        "revision" : "3274b5f549b9e4cc8ab9f3e9734ee9fc6109e8e8",
+        "version" : "3.3.8"
+      }
+    },
+    {
+      "identity" : "iqkeyboardmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hackiftekhar/IQKeyboardManager.git",
+      "state" : {
+        "revision" : "c00b1ae9fa1ad8af4465bb6ca901f6943fc98eba",
+        "version" : "6.5.16"
+      }
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
+      "state" : {
+        "revision" : "fe4c6fe3a0aa66cdeb51d549623c82ca9704b9a5",
+        "version" : "4.5.0"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage",
+      "state" : {
+        "revision" : "10d06f6a33bafae8c164fbfd1f03391f6d4692b3",
+        "version" : "5.20.0"
+      }
+    },
+    {
+      "identity" : "skeletonview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Juanpe/SkeletonView.git",
+      "state" : {
+        "revision" : "2f5274827d310e32c09325dd3e0007120940988e",
+        "version" : "1.31.0"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "328b53b7e3d3d0f32d03adaf7c84297a7310cdf5",
+        "version" : "5.0.0"
+      }
+    },
+    {
+      "identity" : "swiftmessages",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftKickMobile/SwiftMessages",
+      "state" : {
+        "revision" : "c544df6ce316422b9d65a571f932e800213dd09c",
+        "version" : "10.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}
