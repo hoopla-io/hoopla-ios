@@ -9,9 +9,16 @@
 // MARK: - Onboarding
 firstOnboarding = "Добро пожаловать в Qahvazor. Наслаждайтесь свежим и ароматным кофе каждый день.";
 secondOnboarding = "Ваш кофе ждёт вас. Покажите QR-код и заберите свой напиток. Быстро и удобно";
+uzbek = "O'zbekcha";
+russian = "Русский";
+english = "English";
+chooseLanguage = "Tilni tanlang";
+continue = "Davom etish";
+skip = "O'tkazib yuborish";
+interestDetail = "Sizga qanday kofelar yoqadi?";
+start = "Boshlash";
 
 // MARK: - TabBar
 home    = "Home";
 catalog = "Catalog";
 profile = "Profile";
-

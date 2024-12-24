@@ -9,4 +9,6 @@ import Foundation
 
 enum AssetsColor: String {
     case mainBackground
+    case mainColor
+    case white
 }

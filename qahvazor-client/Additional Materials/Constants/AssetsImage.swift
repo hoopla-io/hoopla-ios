@@ -12,4 +12,7 @@ enum AssetsImage: String {
     // MARK: - Logo
     case logoGreen
     
+    // MARK: - Onboarding
+    case firstOnboarding
+    case secondOnboarding
 }

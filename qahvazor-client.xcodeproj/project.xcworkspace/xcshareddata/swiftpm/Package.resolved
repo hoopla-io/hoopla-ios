@@ -1,5 +1,5 @@
 {
-  "originHash" : "988f93c3696f12c8a39c79cc653c7d119a009126807f39bba761abdc6598b02e",
+  "originHash" : "a1f046b65ed2d76935a44f22501bbdc9d6fac632bd404ce7a52ccf3a6b92a4c6",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -80,6 +80,15 @@
       "state" : {
         "revision" : "fe4c6fe3a0aa66cdeb51d549623c82ca9704b9a5",
         "version" : "4.5.0"
+      }
+    },
+    {
+      "identity" : "magnetic",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jakhongir97/Magnetic",
+      "state" : {
+        "branch" : "master",
+        "revision" : "8f4556ae2799b7c2b1c9e692552278dc3a6921a7"
       }
     },
     {

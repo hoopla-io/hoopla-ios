@@ -41,24 +41,27 @@ extension UIViewController {
 
 extension UIViewController {
     func resetTabBar(_ index: Int? = nil) {
-//        if let window = UIApplication.shared.windows.first {
-////            let tabBar = /TabBarController()
-//
-//            if let currentTabIndex = self.tabBarController?.selectedIndex {
-//                tabBar.selectedIndex = currentTabIndex
-//            } else if let index = index {
-//                tabBar.selectedIndex = index
-//            }
-//
-//            window.rootViewController = tabBar
-//            window.makeKeyAndVisible()
-//            
-//            let transition = CATransition()
-//            transition.type = .fade
-//            transition.duration = 0.2
-//            window.layer.add(transition, forKey: kCATransition)
-//        }
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            
+            let tabBar = TabBarController()
+            
+            if let currentTabIndex = self.tabBarController?.selectedIndex {
+                tabBar.selectedIndex = currentTabIndex
+            } else if let index = index {
+                tabBar.selectedIndex = index
+            }
+            
+            window.rootViewController = tabBar
+            window.makeKeyAndVisible()
+            
+            let transition = CATransition()
+            transition.type = .fade
+            transition.duration = 0.2
+            window.layer.add(transition, forKey: kCATransition)
+        }
     }
+    
 }
 
 extension UIViewController {
