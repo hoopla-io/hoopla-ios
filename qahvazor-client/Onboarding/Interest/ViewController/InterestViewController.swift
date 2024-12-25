@@ -35,7 +35,7 @@ class InterestViewController: UIViewController, ViewSpecificController, AlertVie
 
     // MARK: - Actions
     @IBAction func nextButtonAction(_ sender: UIButton) {
-        UserDefaults.standard.saveAccessToken(token: "")
+        UserDefaults.standard.saveNotFirstLaunch(true)
         resetTabBar()
     }
     

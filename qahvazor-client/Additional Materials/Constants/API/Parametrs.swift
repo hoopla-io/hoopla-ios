@@ -11,4 +11,7 @@ enum Parameters: String {
     // MARK: - Meta
     case itemsPerPage = "itemsPerPage"
     case page = "page"
+    
+    // MARK: - Profile
+    case phoneNumber = "phoneNumber"
 }

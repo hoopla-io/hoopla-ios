@@ -18,6 +18,7 @@ class LaunchScreenViewController: UIViewController, ViewSpecificController, Aler
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+//        UserDefaults.standard.resetDefaults()
         appearanceSettings()
         next()
     }
@@ -47,7 +48,7 @@ extension LaunchScreenViewController {
     }
     
     private func next() {
-        UserDefaults.standard.isAuthed() ? resetTabBar() : showOnboarding()
+        UserDefaults.standard.isNotFirstLaunch() ? resetTabBar() : showOnboarding()
     }
 }
 

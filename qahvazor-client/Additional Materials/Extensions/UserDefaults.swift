@@ -17,6 +17,7 @@ enum UserDefaultsKeys: String {
     case localization
     case accessToken
     case refreshToken
+    case firstLaunch
 }
 
 extension UserDefaults {
@@ -57,10 +58,18 @@ extension UserDefaults {
         return accessToken() != nil ? true : false
     }
     
-//    func saveTokens(data: Tokens) {
-//        UserDefaults.standard.saveAccessToken(token: data.accessToken)
-//        UserDefaults.standard.saveRefreshToken(token: data.refreshToken)
-//    }
+    func saveNotFirstLaunch(_ value: Bool) {
+        set(value, forKey: UserDefaultsKeys.firstLaunch.rawValue)
+    }
+    
+    func isNotFirstLaunch() -> Bool {
+        return bool(forKey: UserDefaultsKeys.firstLaunch.rawValue)
+    }
+    
+    func saveTokens(data: Tokens) {
+        UserDefaults.standard.saveAccessToken(token: data.accessToken)
+        UserDefaults.standard.saveRefreshToken(token: data.refreshToken)
+    }
     
     func removeAccount() {
         removeAccessToken()

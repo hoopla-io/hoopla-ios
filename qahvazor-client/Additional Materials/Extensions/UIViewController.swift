@@ -107,28 +107,28 @@ extension UIViewController {
 }
 
 extension UIViewController {
-//    func handleStatusBar(scrollView: UIScrollView, topSpace: CGFloat) -> CGFloat {
-//        guard let statusBarHeight = UIApplication.shared.statusBarUIView?.frame.height else { return .zero }
-//        let offset = scrollView.contentOffset.y / (topSpace - statusBarHeight)
-//        let alpha = offset >= 1 ? 1.0 : 0.0
-//        handleStatusBar(alpha: alpha)
-//        return alpha
-//    }
-//    
-//    func handleStatusBar(alpha: CGFloat? = nil, clearDuration: Double = 0.0) {
-//        let alpha = alpha ?? 0.0
-//
-//        if alpha == 1.0 {
-//            UIView.animate(withDuration: 0.1) {
-//                UIApplication.shared.statusBarUIView?.backgroundColor = .appColor(.mainBackground)
-//            }
-//        }
-//        if alpha == 0.0 {
-//            UIView.animate(withDuration: clearDuration) {
-//                UIApplication.shared.statusBarUIView?.backgroundColor = .clear
-//            }
-//        }
-//    }
+    func handleStatusBar(scrollView: UIScrollView, topSpace: CGFloat) -> CGFloat {
+        guard let statusBarHeight = UIApplication.shared.statusBarUIView?.frame.height else { return .zero }
+        let offset = scrollView.contentOffset.y / (topSpace - statusBarHeight)
+        let alpha = offset >= 1 ? 1.0 : 0.0
+        handleStatusBar(alpha: alpha)
+        return alpha
+    }
+    
+    func handleStatusBar(alpha: CGFloat? = nil, clearDuration: Double = 0.0) {
+        let alpha = alpha ?? 0.0
+
+        if alpha == 1.0 {
+            UIView.animate(withDuration: 0.1) {
+                UIApplication.shared.statusBarUIView?.backgroundColor = .appColor(.mainBackground)
+            }
+        }
+        if alpha == 0.0 {
+            UIView.animate(withDuration: clearDuration) {
+                UIApplication.shared.statusBarUIView?.backgroundColor = .clear
+            }
+        }
+    }
 }
 
 extension UIViewController {

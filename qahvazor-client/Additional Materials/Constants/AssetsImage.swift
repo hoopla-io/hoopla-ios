@@ -15,4 +15,10 @@ enum AssetsImage: String {
     // MARK: - Onboarding
     case firstOnboarding
     case secondOnboarding
+    
+    // MARK: - Alert
+    case error
+    case infoAlert
+    case success
+    case warning
 }

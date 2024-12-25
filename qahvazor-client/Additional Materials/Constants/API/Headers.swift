@@ -13,5 +13,5 @@ enum Headers: String {
     case apple = "Apple"
     case phone = "mobile"
     case pad = "tablet"
-    
+    case AUTHORIZATION = "Authorization"
 }

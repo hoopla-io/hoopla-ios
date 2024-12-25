@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import SwiftMessages
+import SwiftMessages
 import DeviceKit
 
 protocol AlertViewController {
@@ -41,10 +41,9 @@ extension AlertViewController where Self: UIViewController {
 //            self.navigationController?.pushViewController(vc, animated: true)
         case .fromMessage, .serverError:
             guard let message = error.1 else { return }
-//            showErrorAlert(message: message)
+            showErrorAlert(message: message)
         default:
-            break
-//            showErrorAlert(message: AlertViewTexts.errorMSG.rawValue.localized)
+            showErrorAlert(message: AlertViewTexts.errorMSG.rawValue.localized)
         }
     }
     
@@ -103,64 +102,64 @@ extension AlertViewController where Self: UIViewController {
     }
     
 }
-//
-//extension AlertViewController where Self: UIViewController {
-//    @MainActor func showErrorAlert(message: String? = nil) {
-//        let view = MessageView.viewFromNib(layout: .cardView)
-//        view.configureContent(title: message, body: nil, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
-//        view.configureTheme(backgroundColor: UIColor.white, foregroundColor: UIColor.red, iconImage: .appImage(.logoGreen))
-//        view.accessibilityPrefix = "error"
-//        view.button?.isHidden = true
-//        view.titleLabel?.numberOfLines = 0
-//        view.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
-//        var config = SwiftMessages.defaultConfig
-//        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
-//        config.duration = .automatic
-//        SwiftMessages.show(config: config, view: view)
-//    }
-//    
-//    @MainActor func showWarningAlert(message: String? = nil, duration: SwiftMessages.Duration = .automatic, tapHandler : ((_ view: BaseView) -> Void)? = nil) {
-//        let view = MessageView.viewFromNib(layout: .cardView)
-//        view.configureContent(title: message, body: nil, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
-//        view.configureTheme(backgroundColor: UIColor.white, foregroundColor: UIColor.orange, iconImage: .appImage(.logoGreen))
-//        view.accessibilityPrefix = "warning"
-//        view.button?.isHidden = true
-//        view.titleLabel?.numberOfLines = 0
-//        view.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
-//        view.tapHandler = tapHandler
-//        var config = SwiftMessages.defaultConfig
-//        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
-//        config.duration = duration
-//        SwiftMessages.show(config: config, view: view)
-//    }
-//    
-//    @MainActor func showSuccessAlert(message: String? = nil) {
-//        let view = MessageView.viewFromNib(layout: .cardView)
-//        view.configureContent(title: message, body: nil, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
-//        view.configureTheme(backgroundColor: UIColor.white, foregroundColor: UIColor.green, iconImage: .appImage(.logoGreen))
-//        view.accessibilityPrefix = "success"
-//        view.button?.isHidden = true
-//        view.titleLabel?.numberOfLines = 0
-//        view.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
-//        var config = SwiftMessages.defaultConfig
-//        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
-//        config.duration = .automatic
-//        SwiftMessages.show(config: config, view: view)
-//    }
-//    
-//    @MainActor func showInfoAlert(title: String? = nil, message: String? = nil) {
-//        let view = MessageView.viewFromNib(layout: .cardView)
-//        view.configureContent(title: title, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
-//        view.configureTheme(backgroundColor: .white, foregroundColor: .blue, iconImage: .appImage(.logoGreen))
-//        view.accessibilityPrefix = "info"
-//        view.button?.isHidden = true
-//        view.titleLabel?.numberOfLines = 0
-//        view.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
-//        var config = SwiftMessages.defaultConfig
-//        config.dimMode = .blur(style: .dark, alpha: 1.0, interactive: true)
-//        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
-//        config.duration = .forever
-//        config.presentationStyle = .center
-//        SwiftMessages.show(config: config, view: view)
-//    }
-//}
+
+extension AlertViewController where Self: UIViewController {
+    @MainActor func showErrorAlert(message: String? = nil) {
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureContent(title: message, body: nil, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
+        view.configureTheme(backgroundColor: UIColor.appColor(.alertBackground), foregroundColor: UIColor.appColor(.red), iconImage: .appImage(.error))
+        view.accessibilityPrefix = "error"
+        view.button?.isHidden = true
+        view.titleLabel?.numberOfLines = 0
+        view.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        var config = SwiftMessages.defaultConfig
+        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
+        config.duration = .automatic
+        SwiftMessages.show(config: config, view: view)
+    }
+    
+    @MainActor func showWarningAlert(message: String? = nil, duration: SwiftMessages.Duration = .automatic, tapHandler : ((_ view: BaseView) -> Void)? = nil) {
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureContent(title: message, body: nil, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
+        view.configureTheme(backgroundColor: UIColor.appColor(.alertBackground), foregroundColor: UIColor.appColor(.orange), iconImage: .appImage(.warning))
+        view.accessibilityPrefix = "warning"
+        view.button?.isHidden = true
+        view.titleLabel?.numberOfLines = 0
+        view.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        view.tapHandler = tapHandler
+        var config = SwiftMessages.defaultConfig
+        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
+        config.duration = duration
+        SwiftMessages.show(config: config, view: view)
+    }
+    
+    @MainActor func showSuccessAlert(message: String? = nil) {
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureContent(title: message, body: nil, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
+        view.configureTheme(backgroundColor: UIColor.appColor(.alertBackground), foregroundColor: UIColor.appColor(.green), iconImage: .appImage(.success))
+        view.accessibilityPrefix = "success"
+        view.button?.isHidden = true
+        view.titleLabel?.numberOfLines = 0
+        view.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        var config = SwiftMessages.defaultConfig
+        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
+        config.duration = .automatic
+        SwiftMessages.show(config: config, view: view)
+    }
+    
+    @MainActor func showInfoAlert(title: String? = nil, message: String? = nil) {
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureContent(title: title, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
+        view.configureTheme(backgroundColor: UIColor.appColor(.alertBackground), foregroundColor: .systemBlue, iconImage: .appImage(.infoAlert))
+        view.accessibilityPrefix = "info"
+        view.button?.isHidden = true
+        view.titleLabel?.numberOfLines = 0
+        view.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        var config = SwiftMessages.defaultConfig
+        config.dimMode = .blur(style: .dark, alpha: 1.0, interactive: true)
+        config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
+        config.duration = .forever
+        config.presentationStyle = .center
+        SwiftMessages.show(config: config, view: view)
+    }
+}

@@ -12,6 +12,7 @@ enum MainConstants: String {
     case host = "1"
     case auth = "2"
     case salt = "3"
+    case path = ""
 }
 
 enum SocialPage: String {

@@ -22,3 +22,14 @@ start = "Boshlash";
 home    = "Home";
 catalog = "Catalog";
 profile = "Profile";
+
+// MARK: - Profile
+signIn = "Kirish";
+fillField = "Maydonni to'ldiring";
+confirmationCode = "Tasdiqlash kodi";
+sendToPhoneCodeAlert = "Telefon raqamingizga tasdiqlash kodi yuborildi";
+privacyInfo = "Davom etib, siz rozilik bildirasiz ";
+userAgreementAuth = "Foydalanuvchi shartnomasi";
+and = "va ";
+privacyAuth = "Maxfiylik siyosatiga";
+resendCode = "Qayta yuborish";

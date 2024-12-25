@@ -13,6 +13,6 @@ class MainViewController: UIViewController, ViewSpecificController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Qahvazor"
+        navigationItem.title = "Qahvazor"
     }
 }

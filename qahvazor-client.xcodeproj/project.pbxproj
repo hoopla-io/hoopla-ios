@@ -112,6 +112,15 @@
 		75DCE3772D1AD6E2003A59CD /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3762D1AD6E2003A59CD /* InterestViewController.swift */; };
 		75DCE37A2D1AD6EE003A59CD /* InterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3792D1AD6EE003A59CD /* InterestView.swift */; };
 		75DCE37B2D1AD6EE003A59CD /* InterestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE3782D1AD6EE003A59CD /* InterestView.xib */; };
+		75DCE3822D1C10B9003A59CD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3812D1C10B9003A59CD /* ProfileView.swift */; };
+		75DCE3842D1C10BE003A59CD /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE3832D1C10BE003A59CD /* ProfileView.xib */; };
+		75DCE3862D1C10C6003A59CD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3852D1C10C6003A59CD /* ProfileViewController.swift */; };
+		75DCE3892D1C28BF003A59CD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3882D1C28BF003A59CD /* ProfileViewModel.swift */; };
+		75DCE38C2D1C2A97003A59CD /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE38B2D1C2A97003A59CD /* SignIn.swift */; };
+		75DCE3932D1C3175003A59CD /* CodeConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3922D1C3175003A59CD /* CodeConfirmViewModel.swift */; };
+		75DCE3952D1C3186003A59CD /* CodeConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3942D1C3186003A59CD /* CodeConfirmView.swift */; };
+		75DCE3992D1C3195003A59CD /* CodeConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3982D1C3195003A59CD /* CodeConfirmViewController.swift */; };
+		75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE39A2D1C337D003A59CD /* CodeConfirmView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,6 +220,15 @@
 		75DCE3762D1AD6E2003A59CD /* InterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
 		75DCE3782D1AD6EE003A59CD /* InterestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InterestView.xib; sourceTree = "<group>"; };
 		75DCE3792D1AD6EE003A59CD /* InterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestView.swift; sourceTree = "<group>"; };
+		75DCE3812D1C10B9003A59CD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		75DCE3832D1C10BE003A59CD /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		75DCE3852D1C10C6003A59CD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		75DCE3882D1C28BF003A59CD /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		75DCE38B2D1C2A97003A59CD /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		75DCE3922D1C3175003A59CD /* CodeConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeConfirmViewModel.swift; sourceTree = "<group>"; };
+		75DCE3942D1C3186003A59CD /* CodeConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeConfirmView.swift; sourceTree = "<group>"; };
+		75DCE3982D1C3195003A59CD /* CodeConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeConfirmViewController.swift; sourceTree = "<group>"; };
+		75DCE39A2D1C337D003A59CD /* CodeConfirmView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CodeConfirmView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +301,7 @@
 		7523307F2D197B210090997E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				75DCE38A2D1C2A8B003A59CD /* Profile */,
 				75DCE36B2D1ABBED003A59CD /* Language.swift */,
 			);
 			path = Models;
@@ -434,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				752331362D198BA80090997E /* ProfileCoordinator.swift */,
+				75DCE37E2D1C109E003A59CD /* Profile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -451,8 +471,8 @@
 		752331392D198C970090997E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				752330C32D197B210090997E /* MainView.xib */,
 				752330C42D197B210090997E /* MainView.swift */,
+				752330C32D197B210090997E /* MainView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -468,9 +488,9 @@
 		7523313B2D198D940090997E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				752330702D197AE80090997E /* AppDelegate.swift */,
 				752330712D197AE80090997E /* Assets.xcassets */,
 				752330742D197AE80090997E /* LaunchScreen.storyboard */,
+				752330702D197AE80090997E /* AppDelegate.swift */,
 				752330752D197AE80090997E /* SceneDelegate.swift */,
 			);
 			path = Resources;
@@ -625,6 +645,93 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		75DCE37E2D1C109E003A59CD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE38D2D1C3105003A59CD /* Profile */,
+				75DCE38E2D1C3118003A59CD /* CodeConfirm */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		75DCE37F2D1C10A6003A59CD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE3812D1C10B9003A59CD /* ProfileView.swift */,
+				75DCE3832D1C10BE003A59CD /* ProfileView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75DCE3802D1C10AA003A59CD /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE3852D1C10C6003A59CD /* ProfileViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		75DCE3872D1C28AF003A59CD /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE3882D1C28BF003A59CD /* ProfileViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		75DCE38A2D1C2A8B003A59CD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE38B2D1C2A97003A59CD /* SignIn.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		75DCE38D2D1C3105003A59CD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE3802D1C10AA003A59CD /* View Controller */,
+				75DCE37F2D1C10A6003A59CD /* View */,
+				75DCE3872D1C28AF003A59CD /* View Model */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		75DCE38E2D1C3118003A59CD /* CodeConfirm */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE3912D1C315C003A59CD /* View Controller */,
+				75DCE3902D1C3155003A59CD /* View */,
+				75DCE38F2D1C314A003A59CD /* View Model */,
+			);
+			path = CodeConfirm;
+			sourceTree = "<group>";
+		};
+		75DCE38F2D1C314A003A59CD /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE3922D1C3175003A59CD /* CodeConfirmViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		75DCE3902D1C3155003A59CD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE3942D1C3186003A59CD /* CodeConfirmView.swift */,
+				75DCE39A2D1C337D003A59CD /* CodeConfirmView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75DCE3912D1C315C003A59CD /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				75DCE3982D1C3195003A59CD /* CodeConfirmViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -725,6 +832,8 @@
 				75DCE3612D1ABB33003A59CD /* LanguageView.xib in Resources */,
 				7523319B2D1A90B30090997E /* LaunchScreenView.xib in Resources */,
 				752331042D197B210090997E /* MainView.xib in Resources */,
+				75DCE3842D1C10BE003A59CD /* ProfileView.xib in Resources */,
+				75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */,
 				75DCE37B2D1AD6EE003A59CD /* InterestView.xib in Resources */,
 				752330792D197AE80090997E /* Assets.xcassets in Resources */,
 				7523307B2D197AE80090997E /* LaunchScreen.storyboard in Resources */,
@@ -740,10 +849,12 @@
 			files = (
 				7523319D2D1A90B90090997E /* LaunchScreenViewController.swift in Sources */,
 				752330772D197AE80090997E /* AppDelegate.swift in Sources */,
+				75DCE38C2D1C2A97003A59CD /* SignIn.swift in Sources */,
 				752330782D197AE80090997E /* SceneDelegate.swift in Sources */,
 				752330C62D197B210090997E /* UICollectionView.swift in Sources */,
 				752330C72D197B210090997E /* AssetsImage.swift in Sources */,
 				752331372D198BA80090997E /* ProfileCoordinator.swift in Sources */,
+				75DCE3892D1C28BF003A59CD /* ProfileViewModel.swift in Sources */,
 				752330C82D197B210090997E /* String.swift in Sources */,
 				752330C92D197B210090997E /* HTTPRequestMethods.swift in Sources */,
 				752330CA2D197B210090997E /* UIView.swift in Sources */,
@@ -754,6 +865,7 @@
 				752330CE2D197B210090997E /* Coordinator.swift in Sources */,
 				752331942D1A8EDC0090997E /* OnboardingCoordinator.swift in Sources */,
 				752330CF2D197B210090997E /* UILabel.swift in Sources */,
+				75DCE3992D1C3195003A59CD /* CodeConfirmViewController.swift in Sources */,
 				752331992D1A90AD0090997E /* LaunchScreenView.swift in Sources */,
 				752331902D1A8D440090997E /* FullOnboardingViewController.swift in Sources */,
 				752330D02D197B210090997E /* CustomSpinnerView.swift in Sources */,
@@ -776,12 +888,14 @@
 				752330DF2D197B210090997E /* UIColor.swift in Sources */,
 				752330E02D197B210090997E /* Bundle.swift in Sources */,
 				752330E12D197B210090997E /* PushNotification.swift in Sources */,
+				75DCE3932D1C3175003A59CD /* CodeConfirmViewModel.swift in Sources */,
 				752330E22D197B210090997E /* UINavigationBar.swift in Sources */,
 				752330E32D197B210090997E /* UIButton.swift in Sources */,
 				752330E42D197B210090997E /* UINavigationController.swift in Sources */,
 				752330E52D197B210090997E /* SKStoreReviewController.swift in Sources */,
 				752330E62D197B210090997E /* Headers.swift in Sources */,
 				752330E72D197B210090997E /* UIBarButtonItem.swift in Sources */,
+				75DCE3862D1C10C6003A59CD /* ProfileViewController.swift in Sources */,
 				752330E82D197B210090997E /* NotificationCenter.swift in Sources */,
 				75DCE3692D1ABBA3003A59CD /* LanguageCollectionViewCell.swift in Sources */,
 				752330E92D197B210090997E /* UIImage.swift in Sources */,
@@ -792,6 +906,7 @@
 				75DCE36F2D1ABC1D003A59CD /* LanguageDataProvider.swift in Sources */,
 				75DCE3772D1AD6E2003A59CD /* InterestViewController.swift in Sources */,
 				752330EE2D197B210090997E /* AlertViewController.swift in Sources */,
+				75DCE3822D1C10B9003A59CD /* ProfileView.swift in Sources */,
 				752330EF2D197B210090997E /* ResponseErrors.swift in Sources */,
 				752330F02D197B210090997E /* MainView.swift in Sources */,
 				752330F12D197B210090997E /* EndPoints.swift in Sources */,
@@ -818,6 +933,7 @@
 				75DCE37A2D1AD6EE003A59CD /* InterestView.swift in Sources */,
 				7523318C2D1A8D340090997E /* FullOnboardingView.swift in Sources */,
 				75DCE3632D1ABB3E003A59CD /* LanguageViewController.swift in Sources */,
+				75DCE3952D1C3186003A59CD /* CodeConfirmView.swift in Sources */,
 				752331032D197B210090997E /* UIImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -858,6 +974,7 @@
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Qahvazor;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -886,6 +1003,7 @@
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Qahvazor;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Haptica
 //import Haptica
 //import GoogleCast
 //import SwiftMessages
@@ -61,7 +62,7 @@ extension TabBarController {
     }
     
     private func appearanceSettings() {
-//        tabBar.setup()
+        tabBar.setup()
         self.delegate = self
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(astroButtonItemLongPressed(_:)))
@@ -94,7 +95,7 @@ extension TabBarController {
         propertyAnimator.addAnimations({ barItemView.transform = .identity }, delayFactor: CGFloat(timeInterval))
         propertyAnimator.startAnimation()
         
-//        Haptic.selection.generate()
+        Haptic.selection.generate()
     }
     
 }
@@ -105,4 +106,10 @@ extension TabBarController: UITabBarControllerDelegate {
         animationItem(item: item)
     }
     
+}
+
+extension UITabBar {
+    func setup() {
+        tintColor = UIColor.label
+    }
 }

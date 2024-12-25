@@ -9,18 +9,26 @@ import UIKit
 
 final class ProfileCoordinator: Coordinator {
     
-    internal var childCoordinators = [Coordinator]()
-    internal var navigationController: UINavigationController
+    var childCoordinators = [Coordinator]()
+    var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
-    internal func start() {
-        let vc = MainViewController()
-        vc.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
-        vc.tabBarItem.tag = 0
-//        vc.coordinator = self
+    func start() {
+        let vc = ProfileViewController()
+        vc.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
+        vc.tabBarItem.tag = 2
+        vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func pushToCodeConfirmVC(data: SignIn? = nil) {
+        let vc = CodeConfirmViewController()
+        vc.data = data
+        vc.coordinator = self
+        vc.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(vc, animated: true)
     }
 }

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CodeConfirmViewController" customModule="qahvazor_client" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="1HR-5u-EXh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CodeConfirmView" customModule="qahvazor_client" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="vOF-IK-63P">
+                    <rect key="frame" x="24" y="109.00000000000001" width="345" height="249.33333333333337"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="hvn-DV-Jya">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="167.33333333333334"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Glv-oj-jOb">
+                                    <rect key="frame" x="0.0" y="0.0" width="345" height="84.333333333333329"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Код подтверждения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKe-d3-mPo">
+                                            <rect key="frame" x="48" y="0.0" width="249" height="30"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="confirmationCode"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Код подтверждения отправлен на ваш номер телефона" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHu-kM-Klh">
+                                            <rect key="frame" x="24.333333333333343" y="46" width="296.33333333333326" height="38.333333333333343"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="sendToPhoneCodeAlert"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17j-D9-ios" customClass="KAPinField" customModule="qahvazor_client" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="108.33333333333334" width="345" height="59"/>
+                                    <color key="backgroundColor" name="mainBackground"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="59" id="7rI-Mk-fWn"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKA-55-X6a">
+                            <rect key="frame" x="0.0" y="219.33333333333331" width="345" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <color key="tintColor" name="white"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Отправить повторно через 30cек">
+                                <color key="titleColor" systemColor="secondaryLabelColor"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="resendCode"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="resendAction:" destination="-1" eventType="touchUpInside" id="dAE-6A-rmn"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kyn-A4-2qD">
+                    <rect key="frame" x="24" y="716.33333333333337" width="345" height="71.666666666666629"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Продолжая, я соглашаюсь с пользовательским" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htF-YR-qyD">
+                            <rect key="frame" x="23" y="0.0" width="299.33333333333331" height="15.666666666666666"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="privacyInfo"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u3k-iH-rWX">
+                            <rect key="frame" x="63" y="15.666666666666629" width="219" height="56"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="vqu-Hx-TsQ">
+                                    <rect key="frame" x="56" y="0.0" width="107" height="28"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="red-KG-J6B">
+                                            <rect key="frame" x="0.0" y="0.0" width="97" height="28"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                            <state key="normal" title="userAgreement">
+                                                <color key="titleColor" systemColor="labelColor"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="12"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="userAgreementAuth"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="secondaryButtonsAction:" destination="-1" eventType="touchUpInside" id="88Y-Gb-rNL"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="и" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4t4-Be-sxL">
+                                            <rect key="frame" x="99" y="0.0" width="8" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="and"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H36-kF-VbI">
+                                    <rect key="frame" x="0.0" y="28" width="219" height="28"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                    <state key="normal" title="Политикой конфиденциальности">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="12"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="privacyAuth"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="secondaryButtonsAction:" destination="-1" eventType="touchUpInside" id="lEh-A9-k4Z"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="vOF-IK-63P" secondAttribute="trailing" constant="24" id="CLz-AQ-t3f"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="kyn-A4-2qD" secondAttribute="bottom" constant="30" id="KkA-Xu-GRS"/>
+                <constraint firstItem="vOF-IK-63P" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="PRq-xu-mXU"/>
+                <constraint firstItem="kyn-A4-2qD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="Sot-re-vhx"/>
+                <constraint firstAttribute="trailing" secondItem="kyn-A4-2qD" secondAttribute="trailing" constant="24" id="Utx-Ox-EG1"/>
+                <constraint firstItem="vOF-IK-63P" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="50" id="X7W-AN-HDi"/>
+            </constraints>
+            <connections>
+                <outlet property="codeTextField" destination="17j-D9-ios" id="jXK-tA-Kur"/>
+                <outlet property="infoLabel" destination="gHu-kM-Klh" id="3gB-Sp-pAi"/>
+                <outlet property="labelBottomConstraint" destination="KkA-Xu-GRS" id="Ogu-qz-JhT"/>
+                <outlet property="privaceStackView" destination="kyn-A4-2qD" id="Mwb-Zd-Hf9"/>
+                <outlet property="privacyPolicyButton" destination="H36-kF-VbI" id="utX-l3-AcS"/>
+                <outlet property="resendButton" destination="oKA-55-X6a" id="6h7-kM-bv2"/>
+                <outlet property="termOfServicesButton" destination="red-KG-J6B" id="Cdl-wK-VwC"/>
+                <outlet property="titleLabel" destination="GKe-d3-mPo" id="Rbq-aG-TOI"/>
+                <outlet property="titleTopConstraint" destination="X7W-AN-HDi" id="ECW-R7-lZC"/>
+            </connections>
+            <point key="canvasLocation" x="-566" y="-13"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="mainBackground">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

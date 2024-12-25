@@ -10,5 +10,5 @@ import Foundation
 enum EndPoints: String {
     
     // MARK: - Auth
-    case signIn = "auth/via-email/sign-in"
+    case signIn = "auth/via-number/sign-in"
 }
