@@ -16,95 +16,19 @@ protocol ItemCount {
 }
 
 enum ItemType {
-    case card
-    case channel
-    case catalog
-    case radio
-    case stream
-    case actual
-    case file
-    case profile
-    case serial
-    case rent
-    case news
+    case company
+    case shops
 }
 
-struct ItemCountCard: ItemCount {
-    var padLandscape = 7
-    var padPortrait  = 5
-    var phone        = 3
-}
-
-struct ItemCountChannel: ItemCount {
-    var padLandscape = 7
-    var padPortrait  = 5
-    var phone        = 3
-}
-
-struct ItemCountCatalog: ItemCount {
-    var padLandscape = 6
-    var padPortrait  = 4
-    var phone        = 2
-}
-
-struct ItemCountRadio: ItemCount {
-    var padLandscape = 6
-    var padPortrait  = 4
-    var phone        = 2
-}
-
-struct ItemCountStream: ItemCount {
-    var padLandscape = 3
-    var padPortrait  = 2
-    var phone        = 1
-}
-
-struct ItemCountEpisode: ItemCount {
-    var padLandscape = 6
-    var padPortrait  = 4
-    var phone        = 2
-}
-
-struct ItemCountFile: ItemCount {
-    var padLandscape = 6
-    var padPortrait  = 4
-    var phone        = 2
-}
-
-struct ItemCountProfile: ItemCount {
-    var padLandscape = 3
-    var padPortrait  = 2
-    var phone        = 1
-}
-
-struct ItemCountSerial: ItemCount {
-    var padLandscape = 3
-    var padPortrait  = 2
-    var phone        = 1
-}
-
-struct ItemCountRent: ItemCount {
-    var padLandscape = 2
-    var padPortrait  = 2
-    var phone        = 1
-}
-
-struct ItemCountNews: ItemCount {
+struct ItemCountCompany: ItemCount {
     var padLandscape = 3
     var padPortrait  = 2
     var phone        = 1
 }
 
 enum ItemRatio: CGFloat {
-    case card    = 1.43
-    case channel = 1.0
-    case catalog = 0.41
-    case stream  = 0.56
-    case news    = 0.465
-    case person  = 0.46
-    case actual  = 0.79
-    case serial  = 0.21
-    case rent    = 0.36
+    case company    = 0.7
+    case shops      = 0.21
 }
 
 enum ItemSpacing: CGFloat {
@@ -115,11 +39,7 @@ enum ItemSpacing: CGFloat {
 }
 
 enum ItemAdditionalHeight: CGFloat {
-    case card    = 50.0
-    case channel = 0.0
-    case catalog = 36.0
-    case stream  = 32.0
-    case actual  = 31.0
+    case company    = 0
 }
 
 enum ItemLayout {
@@ -130,26 +50,10 @@ enum ItemLayout {
 extension UICollectionView {
     func itemSize(type: ItemType, layout: ItemLayout = .vertical) -> CGSize {
         switch type {
-        case .card:
-            return itemSize(itemType: .card, layout: layout, ratio: .card, spacing: .card, additionalHeight: .card)
-        case .channel:
-            return itemSize(itemType: .channel, layout: layout, ratio: .channel, spacing: .custom, additionalHeight: .channel)
-        case .catalog:
-            return itemSize(itemType: .catalog, layout: layout, ratio: .catalog, spacing: .standard, additionalHeight: .channel)
-        case .radio:
-            return itemSize(itemType: .radio, layout: layout, ratio: .channel, spacing: .standard, additionalHeight: .card)
-        case .stream:
-            return itemSize(itemType: .stream, layout: layout, ratio: .stream, spacing: .standard, additionalHeight: .stream)
-        case .actual:
-            return itemSize(itemType: .actual, layout: layout, ratio: .actual, spacing: .standard, additionalHeight: .channel)
-        case .file:
-            return itemSize(itemType: .file, layout: layout, ratio: .stream, spacing: .standard, additionalHeight: .channel)
-        case .serial:
-            return itemSize(itemType: .serial, layout: layout, ratio: .serial, spacing: .zero, additionalHeight: .channel)
-        case .rent:
-            return itemSize(itemType: .rent, layout: layout, ratio: .rent, spacing: .standard, additionalHeight: .channel)
-        case .news:
-            return itemSize(itemType: .news, layout: layout, ratio: .news, spacing: .standard, additionalHeight: .channel)
+        case .company:
+            return itemSize(itemType: .company, layout: layout, ratio: .company, spacing: .standard, additionalHeight: .company)
+        case .shops:
+            return itemSize(itemType: .company, layout: layout, ratio: .shops, spacing: .standard, additionalHeight: .company)
         default:
             return CGSize.zero
         }
@@ -157,28 +61,10 @@ extension UICollectionView {
                     
     func numberInRow(type: ItemType) -> Int {
         switch type {
-        case .card:
-            return numberInRow(type: ItemCountCard())
-        case .channel:
-            return numberInRow(type: ItemCountChannel())
-        case .catalog:
-            return numberInRow(type: ItemCountCatalog())
-        case .radio:
-            return numberInRow(type: ItemCountRadio())
-        case .stream:
-            return numberInRow(type: ItemCountStream())
-        case .actual:
-            return numberInRow(type: ItemCountEpisode())
-        case .file:
-            return numberInRow(type: ItemCountFile())
-        case .profile:
-            return numberInRow(type: ItemCountProfile())
-        case .serial:
-            return numberInRow(type: ItemCountSerial())
-        case .rent:
-            return numberInRow(type: ItemCountRent())
-        case .news:
-            return numberInRow(type: ItemCountNews())
+        case .company:
+            return numberInRow(type: ItemCountCompany())
+        case .shops:
+            return numberInRow(type: ItemCountCompany())
         }
     }
     
@@ -200,7 +86,7 @@ extension UICollectionView {
     }
     
     func itemSize(additionalHeight: CGFloat, additionalSpace: CGFloat? = nil, firstText: String? = nil, firstFont: UIFont? = nil, secondAdditionalHeight: CGFloat = 0, secondText: String? = nil, secondFont: UIFont? = nil, ratio: CGFloat? = nil) -> CGSize {
-        let numberInRow = self.numberInRow(type: .profile)
+        let numberInRow = self.numberInRow(type: .company)
         let spacing = ItemSpacing.standard.rawValue
         let additionalHeight = additionalHeight
         let additionalWidth = spacing * CGFloat(numberInRow + 1)

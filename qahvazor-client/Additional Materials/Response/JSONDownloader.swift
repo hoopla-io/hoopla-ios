@@ -59,13 +59,13 @@ class JSONDownloader {
     
     var isRetrying = false
     
-    func jsonTask(baseUrl: MainConstants = .host, path: MainConstants = .path, url: String, query: String? = nil, requestMethod: HTTPMethod, parameters: [String : Any]? = nil, completionHandler completion: @escaping JSONTaskCompletionHandler) {
+    func jsonTask(baseUrl: MainConstants = .host, api: MainConstants = .api , path: MainConstants = .path1, url: String, query: String? = nil, requestMethod: HTTPMethod, parameters: [String : Any]? = nil, completionHandler completion: @escaping JSONTaskCompletionHandler) {
         
         // Set Components
         var components = URLComponents()
         components.scheme = MainConstants.scheme.rawValue
         components.host   = baseUrl.rawValue
-        components.path   = url
+        components.path   = api.rawValue + path.rawValue + url
         if let query {
             components.query = query
         }
@@ -121,7 +121,7 @@ class JSONDownloader {
                     case StatusCode.success200.rawValue, StatusCode.success202.rawValue:
                         completion(.Success(data))
                     case StatusCode.notAuthorized.rawValue:
-                        UserDefaults.standard.removeAccount()
+//                        UserDefaults.standard.removeAccount()
                         completion(.Error(.notAuthorized))
                     case StatusCode.notSubscription.rawValue, StatusCode.maxDevice.rawValue:
                         completion(.Success(data))

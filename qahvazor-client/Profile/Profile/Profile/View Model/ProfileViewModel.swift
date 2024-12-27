@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import DeviceKit
 
 protocol ProfileViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: SignIn)
@@ -24,7 +23,7 @@ final class ProfileViewModel {
         ]
         
         delegate?.showActivityIndicator()
-        JSONDownloader.shared.jsonTask(baseUrl: .auth, url: EndPoints.signIn.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
+        JSONDownloader.shared.jsonTask(url: EndPoints.signIn.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
             guard let self = self else { return }
             switch result {
             case .Error(let error, let message):

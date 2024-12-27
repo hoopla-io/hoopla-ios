@@ -31,7 +31,6 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
-        checkForVpn()
         wasAuthed = UserDefaults.standard.isAuthed()
     }
     
@@ -79,21 +78,13 @@ extension ProfileViewController {
     
     private func checkAuth() {
         if UserDefaults.standard.isAuthed() {
-            
+            view().loginStack.isHidden = true
+            view().profileStack.isHidden = false
         } else {
+            view().loginStack.isHidden = false
+            view().profileStack.isHidden = true
             setupTextFields(textFields: [view().textField], button: view().loginButton)
         }
-    }
-    
-    private func checkForVpn() {
-//        guard UserDefaults.standard.isVpn() else { return }
-//        view().balanceLabel.isHidden = true
-//        view().balanceTitleLabel.isHidden = true
-//        view().mainButtons.filter { $0.tag == 9 }.first?.isHidden = true
-//        view().mainButtons.filter { $0.tag == 6 }.first?.isHidden = true
-//        view().mainButtons.filter { $0.tag == 4 }.first?.isHidden = true
-//        view().mainButtons.filter { $0.tag == 5 }.first?.isHidden = true
-//        view().mainButtons.filter { $0.tag == 10 }.first?.isHidden = true
     }
     
     //Authorization
@@ -105,7 +96,6 @@ extension ProfileViewController {
     override func next() {
         switch status() {
         case .active:
-            coordinator?.pushToCodeConfirmVC()
             guard let text = view().textField.text, text.originPhone().count == 12 else { return showWarningAlert(message: "fillField".localized) }
             viewModel.numberSignIn(number: text.originPhone())
         case .passive:

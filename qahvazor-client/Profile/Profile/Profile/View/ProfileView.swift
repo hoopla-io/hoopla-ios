@@ -11,4 +11,6 @@ final class ProfileView: CustomView {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginStack: UIStackView!
+    @IBOutlet weak var profileStack: UIStackView!
 }

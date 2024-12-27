@@ -9,10 +9,11 @@ import Foundation
 
 enum MainConstants: String {
     case scheme = "https"
-    case host = "1"
+    case host = "192.168.31.72:8000"
     case auth = "2"
     case salt = "3"
-    case path = ""
+    case api  = "/api"
+    case path1 = "/v1/"
 }
 
 enum SocialPage: String {

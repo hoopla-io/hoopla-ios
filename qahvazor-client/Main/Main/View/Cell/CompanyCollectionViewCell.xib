@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CompanyCollectionViewCell" customModule="qahvazor_client" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="332" height="222"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="332" height="222"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NsS-hU-rw2">
+                        <rect key="frame" x="0.0" y="0.0" width="332" height="222"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Caffelito-Coffee-logo" translatesAutoresizingMaskIntoConstraints="NO" id="bao-ja-Zn6">
+                                <rect key="frame" x="0.0" y="0.0" width="332" height="161"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bao-ja-Zn6" secondAttribute="height" multiplier="332:161" id="G7T-mp-Aub"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TA4-4O-34K">
+                                <rect key="frame" x="0.0" y="176" width="332" height="46"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Safia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDV-9F-LFr">
+                                        <rect key="frame" x="0.0" y="0.0" width="332" height="28.666666666666668"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="749" text="Safia coffee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJU-eR-NkS">
+                                        <rect key="frame" x="0.0" y="33.666666666666657" width="332" height="12.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="NsS-hU-rw2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AnY-cy-BkU"/>
+                <constraint firstItem="NsS-hU-rw2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SuK-uW-RqX"/>
+                <constraint firstAttribute="trailing" secondItem="NsS-hU-rw2" secondAttribute="trailing" id="hqz-7K-ED1"/>
+                <constraint firstAttribute="bottom" secondItem="NsS-hU-rw2" secondAttribute="bottom" id="qCN-oh-2TM"/>
+            </constraints>
+            <size key="customSize" width="332" height="222"/>
+            <point key="canvasLocation" x="63" y="-204"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Caffelito-Coffee-logo" width="1000" height="1000"/>
+    </resources>
+</document>

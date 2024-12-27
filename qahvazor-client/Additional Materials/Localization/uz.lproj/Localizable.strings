@@ -19,7 +19,7 @@ interestDetail = "Sizga qanday kofelar yoqadi?";
 start = "Boshlash";
 
 // MARK: - TabBar
-home    = "Home";
+home    = "Asosiy";
 catalog = "Catalog";
 profile = "Profile";
 
@@ -33,3 +33,6 @@ userAgreementAuth = "Foydalanuvchi shartnomasi";
 and = "va ";
 privacyAuth = "Maxfiylik siyosatiga";
 resendCode = "Qayta yuborish";
+
+// MARK: - Main
+coffeeShops = "Qahvaxonalar";

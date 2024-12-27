@@ -10,12 +10,12 @@ import UIKit
 extension UINavigationBar {
     
     func setup() {
-//        tintColor = UIColor.appColor(.white)
-//        titleTextAttributes = [.foregroundColor: UIColor.appColor(.white)]
-//        largeTitleTextAttributes = [.foregroundColor: UIColor.appColor(.white)]
-//        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
-//        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .highlighted)
-//        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: UIColor.appColor(.white)], for: .normal)
+        tintColor = UIColor.label
+        titleTextAttributes = [.foregroundColor: UIColor.label]
+        largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .highlighted)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: UIColor.label], for: .normal)
     }
     
     func clear() {

@@ -16,11 +16,23 @@ final class MainCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
-    internal func start() {
+    func start() {
         let vc = MainViewController()
         vc.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         vc.tabBarItem.tag = 0
-//        vc.coordinator = self
+        vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func pushToShopsListVC() {
+        let vc = ShopsListViewController()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func pushToShopsDetailVC() {
+        let vc = ShopDetailViewController()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
     }
 }
