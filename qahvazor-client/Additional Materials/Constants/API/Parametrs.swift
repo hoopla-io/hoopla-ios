@@ -14,4 +14,6 @@ enum Parameters: String {
     
     // MARK: - Profile
     case phoneNumber = "phoneNumber"
+    case sessionId = "sessionId"
+    case code = "code"
 }

@@ -8,8 +8,8 @@
 import Foundation
 
 enum MainConstants: String {
-    case scheme = "https"
-    case host = "192.168.31.72:8000"
+    case scheme = "http"
+    case host = "api.qahvazor.uz"
     case auth = "2"
     case salt = "3"
     case api  = "/api"

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Alamofire
 protocol ProfileViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: SignIn)
 }

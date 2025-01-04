@@ -121,7 +121,7 @@ class JSONDownloader {
                     case StatusCode.success200.rawValue, StatusCode.success202.rawValue:
                         completion(.Success(data))
                     case StatusCode.notAuthorized.rawValue:
-//                        UserDefaults.standard.removeAccount()
+                        UserDefaults.standard.removeAccount()
                         completion(.Error(.notAuthorized))
                     case StatusCode.notSubscription.rawValue, StatusCode.maxDevice.rawValue:
                         completion(.Success(data))

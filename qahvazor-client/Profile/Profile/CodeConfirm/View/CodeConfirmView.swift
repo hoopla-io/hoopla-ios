@@ -42,7 +42,11 @@ final class CodeConfirmView: CustomView {
     @IBOutlet weak var titleTopConstraint: NSLayoutConstraint!
     
     // MARK: - Attribute
-    var phoneNumber = String()
+    var phoneNumber = String() {
+        didSet {
+            infoLabel.text! += "\n\(phoneNumber.displayPhone())"
+        }
+    }
 }
 
 

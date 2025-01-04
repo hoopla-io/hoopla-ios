@@ -58,6 +58,11 @@
                 <constraint firstAttribute="bottom" secondItem="NsS-hU-rw2" secondAttribute="bottom" id="qCN-oh-2TM"/>
             </constraints>
             <size key="customSize" width="332" height="222"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="lJU-eR-NkS" id="qVy-yE-l9y"/>
+                <outlet property="imageView" destination="bao-ja-Zn6" id="Ka9-wK-u6z"/>
+                <outlet property="nameLabel" destination="mDV-9F-LFr" id="R8n-LB-xEa"/>
+            </connections>
             <point key="canvasLocation" x="63" y="-204"/>
         </collectionViewCell>
     </objects>

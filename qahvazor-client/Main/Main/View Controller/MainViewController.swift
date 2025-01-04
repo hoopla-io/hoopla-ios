@@ -24,14 +24,14 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
-        
+        viewModel.getList()
     }
     
 }
 // MARK: - Networking
 extension MainViewController: MainViewModelProtocol {
-    func didFinishFetch(data: Company) {
-        
+    func didFinishFetch(data: [Company]) {
+        dataProvide?.items = data
     }
 }
 
@@ -41,11 +41,22 @@ extension MainViewController {
         viewModel.delegate = self
         navigationItem.title = "coffeeShops".localized
         navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationItem.largeTitleDisplayMode = .automatic
         
         let dataProvider = MainDataProvider(viewController: self)
         dataProvider.collectionView = view().collectionView
         self.dataProvide = dataProvider
+        
+        let refershControl = UIRefreshControl()
+        refershControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        view().collectionView.refreshControl = refershControl
+    }
+    
+    @objc func refresh(sender: UIRefreshControl? = nil) {
+        viewModel.getList()
+        
+        DispatchQueue.main.async {
+            sender?.endRefreshing()
+        }
     }
 }
 

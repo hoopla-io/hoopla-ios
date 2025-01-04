@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(data: Company)
+    func didFinishFetch(data: [Company])
 }
 
 final class MainViewModel {
@@ -25,7 +25,7 @@ final class MainViewModel {
                 self.delegate?.showAlertClosure(error: (error,message))
             case .Success(let json):
                 do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<Company>.self, from: json)
+                    let fetchedData = try CustomDecoder().decode(JSONData<[Company]>.self, from: json)
                     guard let data = fetchedData.data else { return }
                     self.delegate?.didFinishFetch(data: data)
                 } catch {

@@ -35,28 +35,12 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
 
     // MARK: - Data Source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CompanyCollectionViewCell else { return UICollectionViewCell() }
-//        cell.titleLabel.text = items[indexPath.row].notificationTitle
-//        cell.detailLabel.text = items[indexPath.row].notificationDescription
-//        cell.timeButton.setTitle(items[indexPath.row].createdAt, for: .normal)
-//        
-//        if let isRead = items[indexPath.row].params?.isRead {
-//            cell.redView.isHidden = isRead
-//        }
-//        
-//        if let imageUrl = items[indexPath.row].files?.imageUrl {
-//            cell.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage())
-//        }
-//        if let notificationId = items[indexPath.row].notificationId {
-//            cell.imageView.hero.id = HeroType.imageView.rawValue + String(notificationId)
-//            cell.titleLabel.hero.id = HeroType.title.rawValue + String(notificationId)
-//            cell.detailLabel.hero.id = HeroType.subTitle.rawValue + String(notificationId)
-//            cell.hero.id = HeroType.view.rawValue + String(notificationId)
-//        }
+        
         return cell
     }
     
