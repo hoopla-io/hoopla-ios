@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="vOF-IK-63P">
-                    <rect key="frame" x="24" y="109.00000000000001" width="345" height="249.33333333333337"/>
+                    <rect key="frame" x="24" y="109.00000000000001" width="345" height="167.33333333333337"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="hvn-DV-Jya">
                             <rect key="frame" x="0.0" y="0.0" width="345" height="167.33333333333334"/>
@@ -57,27 +57,27 @@
                                 </view>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKA-55-X6a">
-                            <rect key="frame" x="0.0" y="219.33333333333331" width="345" height="30"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                            <color key="tintColor" name="white"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Отправить повторно через 30cек">
-                                <color key="titleColor" systemColor="secondaryLabelColor"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="12"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="resendCode"/>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="resendAction:" destination="-1" eventType="touchUpInside" id="dAE-6A-rmn"/>
-                            </connections>
-                        </button>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKA-55-X6a">
+                    <rect key="frame" x="24" y="328.33333333333331" width="345" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <color key="tintColor" name="white"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Отправить повторно через 30cек">
+                        <color key="titleColor" systemColor="secondaryLabelColor"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="resendCode"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="resendAction:" destination="-1" eventType="touchUpInside" id="dAE-6A-rmn"/>
+                    </connections>
+                </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kyn-A4-2qD">
                     <rect key="frame" x="24" y="716.33333333333337" width="345" height="71.666666666666629"/>
                     <subviews>
@@ -149,12 +149,16 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="kyn-A4-2qD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="oKA-55-X6a" secondAttribute="bottom" id="513-5f-jqk"/>
                 <constraint firstAttribute="trailing" secondItem="vOF-IK-63P" secondAttribute="trailing" constant="24" id="CLz-AQ-t3f"/>
+                <constraint firstItem="oKA-55-X6a" firstAttribute="top" secondItem="vOF-IK-63P" secondAttribute="bottom" constant="52" id="F6w-Cj-BJH"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="kyn-A4-2qD" secondAttribute="bottom" constant="30" id="KkA-Xu-GRS"/>
                 <constraint firstItem="vOF-IK-63P" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="PRq-xu-mXU"/>
                 <constraint firstItem="kyn-A4-2qD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="Sot-re-vhx"/>
                 <constraint firstAttribute="trailing" secondItem="kyn-A4-2qD" secondAttribute="trailing" constant="24" id="Utx-Ox-EG1"/>
                 <constraint firstItem="vOF-IK-63P" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="50" id="X7W-AN-HDi"/>
+                <constraint firstItem="oKA-55-X6a" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="plc-ma-RIA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oKA-55-X6a" secondAttribute="trailing" constant="24" id="yYI-zz-e5G"/>
             </constraints>
             <connections>
                 <outlet property="codeTextField" destination="17j-D9-ios" id="jXK-tA-Kur"/>
@@ -181,7 +185,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

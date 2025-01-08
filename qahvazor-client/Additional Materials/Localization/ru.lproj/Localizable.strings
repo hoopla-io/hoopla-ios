@@ -36,3 +36,22 @@ resendCode = "Qayta yuborish";
 
 // MARK: - Main
 coffeeShops = "Кафейны";
+
+
+// MARK: - Alert
+success = "Успешно";
+warning = "Внимание";
+error = "Ошибка";
+emptyDetail = "К сожалению, информации здесь не найдено";
+noInternetConnection = "Нет подключения к Интернету";
+noInternetConnectionDetail = "Проверьте подключение к интернету и повторите попытку";
+errorMSG = "Произошла ошибка";
+laterMessage= "Повторите попытку позже";
+noAuthorizationTitle = "Ошибка авторизации";
+noAuthorizationMessage = "Авторизуйтесь и повторите попытку";
+authorization = "Авторизация";
+authorizationDetail = "Для того что бы пользоваться данным разделом\nВам необходимо войти";
+serverError = "Ошибка сервера";
+serverErrorDetail = "Видимо что-то пошло не так\nпопробуйте снова";
+retry = "Повторить попытку";
+emptySearch = "По вашему запросу ничего не найдено";

@@ -111,9 +111,16 @@
 		757F362C2D1E747900EFA728 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F362B2D1E747900EFA728 /* ShopDetailViewController.swift */; };
 		75955BCF2D1D6D9600F4DD80 /* CompanyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75955BCD2D1D6D9600F4DD80 /* CompanyCollectionViewCell.swift */; };
 		75955BD02D1D6D9600F4DD80 /* CompanyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75955BCE2D1D6D9600F4DD80 /* CompanyCollectionViewCell.xib */; };
+		759624D62D2CF66B00F52EE9 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759624D52D2CF66B00F52EE9 /* Shop.swift */; };
 		7596B51B2D1D697D0070A5BB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596B51A2D1D697D0070A5BB /* MainViewModel.swift */; };
 		7596B5202D1D6A180070A5BB /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596B51F2D1D6A180070A5BB /* Company.swift */; };
 		7596B5222D1D6B310070A5BB /* MainDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596B5212D1D6B310070A5BB /* MainDataProvider.swift */; };
+		75A04A652D2E83340082D342 /* SocialDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A642D2E83340082D342 /* SocialDataProvider.swift */; };
+		75A04A682D2E86E50082D342 /* SocialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */; };
+		75A04A692D2E86E50082D342 /* SocialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */; };
+		75A04A6B2D2E92380082D342 /* ShopsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */; };
+		75C9B52E2D2CF16A006901E6 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9B52C2D2CF16A006901E6 /* ShopCollectionViewCell.swift */; };
+		75C9B52F2D2CF16A006901E6 /* ShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75C9B52D2D2CF16A006901E6 /* ShopCollectionViewCell.xib */; };
 		75DCE3552D1A9B26003A59CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE3532D1A9B26003A59CD /* Localizable.strings */; };
 		75DCE35F2D1ABB2B003A59CD /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE35E2D1ABB2B003A59CD /* LanguageView.swift */; };
 		75DCE3612D1ABB33003A59CD /* LanguageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE3602D1ABB33003A59CD /* LanguageView.xib */; };
@@ -135,6 +142,9 @@
 		75DCE3952D1C3186003A59CD /* CodeConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3942D1C3186003A59CD /* CodeConfirmView.swift */; };
 		75DCE3992D1C3195003A59CD /* CodeConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3982D1C3195003A59CD /* CodeConfirmViewController.swift */; };
 		75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE39A2D1C337D003A59CD /* CodeConfirmView.xib */; };
+		75F6CFC82D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */; };
+		75F6CFC92D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */; };
+		75F6CFCC2D2BEBD200BDF947 /* CoffeeListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -230,9 +240,16 @@
 		757F362B2D1E747900EFA728 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		75955BCD2D1D6D9600F4DD80 /* CompanyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCollectionViewCell.swift; sourceTree = "<group>"; };
 		75955BCE2D1D6D9600F4DD80 /* CompanyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyCollectionViewCell.xib; sourceTree = "<group>"; };
+		759624D52D2CF66B00F52EE9 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		7596B51A2D1D697D0070A5BB /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7596B51F2D1D6A180070A5BB /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		7596B5212D1D6B310070A5BB /* MainDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataProvider.swift; sourceTree = "<group>"; };
+		75A04A642D2E83340082D342 /* SocialDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDataProvider.swift; sourceTree = "<group>"; };
+		75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCollectionViewCell.swift; sourceTree = "<group>"; };
+		75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialCollectionViewCell.xib; sourceTree = "<group>"; };
+		75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsDataProvider.swift; sourceTree = "<group>"; };
+		75C9B52C2D2CF16A006901E6 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
+		75C9B52D2D2CF16A006901E6 /* ShopCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopCollectionViewCell.xib; sourceTree = "<group>"; };
 		75DCE3542D1A9B26003A59CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		75DCE3562D1A9B34003A59CD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		75DCE3572D1A9B34003A59CD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -257,6 +274,9 @@
 		75DCE3942D1C3186003A59CD /* CodeConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeConfirmView.swift; sourceTree = "<group>"; };
 		75DCE3982D1C3195003A59CD /* CodeConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeConfirmViewController.swift; sourceTree = "<group>"; };
 		75DCE39A2D1C337D003A59CD /* CodeConfirmView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CodeConfirmView.xib; sourceTree = "<group>"; };
+		75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeCollectionViewCell.swift; sourceTree = "<group>"; };
+		75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoffeeCollectionViewCell.xib; sourceTree = "<group>"; };
+		75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeListDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -621,8 +641,8 @@
 		7552C2F32D1D836500F2DF78 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7552C2F52D1D837F00F2DF78 /* ShopsListView.swift */,
-				7552C2F72D1D838500F2DF78 /* ShopsListView.xib */,
+				75C9B52A2D2CF14D006901E6 /* Root View */,
+				75C9B52B2D2CF158006901E6 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -646,6 +666,7 @@
 		757F36212D1E742900EFA728 /* Shop Detail */ = {
 			isa = PBXGroup;
 			children = (
+				75F6CFCA2D2BEBB400BDF947 /* Data Provider */,
 				757F36242D1E744400EFA728 /* View Controller */,
 				757F36232D1E744000EFA728 /* View */,
 				757F36222D1E743B00EFA728 /* View Model */,
@@ -664,8 +685,8 @@
 		757F36232D1E744000EFA728 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				757F36272D1E746C00EFA728 /* ShopDetailView.swift */,
-				757F36292D1E747200EFA728 /* ShopDetailView.xib */,
+				75F6CFC42D2BEB0F00BDF947 /* Root View */,
+				75F6CFC52D2BEB1500BDF947 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -708,8 +729,27 @@
 			isa = PBXGroup;
 			children = (
 				7596B51F2D1D6A180070A5BB /* Company.swift */,
+				759624D52D2CF66B00F52EE9 /* Shop.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		75C9B52A2D2CF14D006901E6 /* Root View */ = {
+			isa = PBXGroup;
+			children = (
+				7552C2F52D1D837F00F2DF78 /* ShopsListView.swift */,
+				7552C2F72D1D838500F2DF78 /* ShopsListView.xib */,
+			);
+			path = "Root View";
+			sourceTree = "<group>";
+		};
+		75C9B52B2D2CF158006901E6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				75C9B52C2D2CF16A006901E6 /* ShopCollectionViewCell.swift */,
+				75C9B52D2D2CF16A006901E6 /* ShopCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		75DCE35A2D1ABB05003A59CD /* Language */ = {
@@ -878,6 +918,36 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
+		75F6CFC42D2BEB0F00BDF947 /* Root View */ = {
+			isa = PBXGroup;
+			children = (
+				757F36272D1E746C00EFA728 /* ShopDetailView.swift */,
+				757F36292D1E747200EFA728 /* ShopDetailView.xib */,
+			);
+			path = "Root View";
+			sourceTree = "<group>";
+		};
+		75F6CFC52D2BEB1500BDF947 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */,
+				75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */,
+				75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */,
+				75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		75F6CFCA2D2BEBB400BDF947 /* Data Provider */ = {
+			isa = PBXGroup;
+			children = (
+				75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */,
+				75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */,
+				75A04A642D2E83340082D342 /* SocialDataProvider.swift */,
+			);
+			path = "Data Provider";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -984,6 +1054,9 @@
 				75DCE3842D1C10BE003A59CD /* ProfileView.xib in Resources */,
 				75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */,
 				75DCE37B2D1AD6EE003A59CD /* InterestView.xib in Resources */,
+				75A04A682D2E86E50082D342 /* SocialCollectionViewCell.xib in Resources */,
+				75C9B52F2D2CF16A006901E6 /* ShopCollectionViewCell.xib in Resources */,
+				75F6CFC82D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib in Resources */,
 				752330792D197AE80090997E /* Assets.xcassets in Resources */,
 				7523307B2D197AE80090997E /* LaunchScreen.storyboard in Resources */,
 			);
@@ -999,6 +1072,8 @@
 				7523319D2D1A90B90090997E /* LaunchScreenViewController.swift in Sources */,
 				752330772D197AE80090997E /* AppDelegate.swift in Sources */,
 				75DCE38C2D1C2A97003A59CD /* SignIn.swift in Sources */,
+				75A04A652D2E83340082D342 /* SocialDataProvider.swift in Sources */,
+				75A04A6B2D2E92380082D342 /* ShopsDataProvider.swift in Sources */,
 				752330782D197AE80090997E /* SceneDelegate.swift in Sources */,
 				7552C2FF2D1D843800F2DF78 /* ShopsListDataProvider.swift in Sources */,
 				752330C62D197B210090997E /* UICollectionView.swift in Sources */,
@@ -1008,10 +1083,12 @@
 				7552C2FA2D1D838F00F2DF78 /* ShopsListViewController.swift in Sources */,
 				752330C82D197B210090997E /* String.swift in Sources */,
 				752330C92D197B210090997E /* HTTPRequestMethods.swift in Sources */,
+				75F6CFC92D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift in Sources */,
 				752330CA2D197B210090997E /* UIView.swift in Sources */,
 				752331352D198B9E0090997E /* QRCoordinator.swift in Sources */,
 				752330CB2D197B210090997E /* UITableView.swift in Sources */,
 				752330CC2D197B210090997E /* Cosmos.swift in Sources */,
+				75F6CFCC2D2BEBD200BDF947 /* CoffeeListDataProvider.swift in Sources */,
 				752330CD2D197B210090997E /* UIApplication.swift in Sources */,
 				752330CE2D197B210090997E /* Coordinator.swift in Sources */,
 				752331942D1A8EDC0090997E /* OnboardingCoordinator.swift in Sources */,
@@ -1050,12 +1127,14 @@
 				752330E72D197B210090997E /* UIBarButtonItem.swift in Sources */,
 				7552C2F62D1D837F00F2DF78 /* ShopsListView.swift in Sources */,
 				75DCE3862D1C10C6003A59CD /* ProfileViewController.swift in Sources */,
+				75A04A692D2E86E50082D342 /* SocialCollectionViewCell.swift in Sources */,
 				752330E82D197B210090997E /* NotificationCenter.swift in Sources */,
 				75DCE3692D1ABBA3003A59CD /* LanguageCollectionViewCell.swift in Sources */,
 				752330E92D197B210090997E /* UIImage.swift in Sources */,
 				752330EA2D197B210090997E /* DateFormatter.swift in Sources */,
 				752330EB2D197B210090997E /* Bool.swift in Sources */,
 				752330EC2D197B210090997E /* AssetsColor.swift in Sources */,
+				759624D62D2CF66B00F52EE9 /* Shop.swift in Sources */,
 				7552C2FC2D1D83D700F2DF78 /* ShopsListViewModel.swift in Sources */,
 				752330ED2D197B210090997E /* Symbols.swift in Sources */,
 				75DCE36F2D1ABC1D003A59CD /* LanguageDataProvider.swift in Sources */,
@@ -1090,6 +1169,7 @@
 				7596B5202D1D6A180070A5BB /* Company.swift in Sources */,
 				757F362C2D1E747900EFA728 /* ShopDetailViewController.swift in Sources */,
 				752331022D197B210090997E /* Formatter.swift in Sources */,
+				75C9B52E2D2CF16A006901E6 /* ShopCollectionViewCell.swift in Sources */,
 				75DCE37A2D1AD6EE003A59CD /* InterestView.swift in Sources */,
 				7523318C2D1A8D340090997E /* FullOnboardingView.swift in Sources */,
 				75DCE3632D1ABB3E003A59CD /* LanguageViewController.swift in Sources */,

@@ -1,14 +1,14 @@
 //
-//  MainDataProvider.swift
+//  CoffeeListDataProvider.swift
 //  qahvazor-client
 //
-//  Created by Alphazet on 26/12/24.
+//  Created by Alphazet on 06/01/25.
 //
 
 import UIKit
 import SkeletonView
 
-final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     // MARK: - Outlets
     weak var collectionView: UICollectionView! {
@@ -24,7 +24,6 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
     
     var items = [Company]() {
         didSet {
-            self.collectionView.hideSkeleton()
             self.collectionView.reloadData()
         }
     }
@@ -36,41 +35,30 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
 
     // MARK: - Data Source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return 10
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CompanyCollectionViewCell else { return UICollectionViewCell() }
-        cell.item = items[indexPath.row]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CoffeeCollectionViewCell else { return UICollectionViewCell() }
+        
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let vc = viewController as? MainViewController else { return }
-//        if indexPath.row == items.count - 1 && vc.totalItems > items.count {
-//            vc.currentPage += 1
-//            vc.viewModel.notificationsList(page: vc.currentPage)
-//        }
     }
 
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.itemSize(type: .company)
+        return collectionView.itemSize(width: 100, additionalHeight: 0, ratio: .coffee)
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vc = viewController as? MainViewController else { return }
-        vc.coordinator?.pushToShopsDetailVC(id: items[indexPath.row].id)
-    }
 }
 
 // MARK: - SkeletonCollectionViewDataSource
-extension MainDataProvider: SkeletonCollectionViewDataSource {
+extension CoffeeListDataProvider: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return CompanyCollectionViewCell.defaultReuseIdentifier
+        return CoffeeCollectionViewCell.defaultReuseIdentifier
     }
     
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
 }
+

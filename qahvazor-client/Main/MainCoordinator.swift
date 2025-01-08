@@ -24,14 +24,16 @@ final class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func pushToShopsListVC() {
+    func pushToShopsListVC(id: Int?) {
         let vc = ShopsListViewController()
+        vc.partnerId = id
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func pushToShopsDetailVC() {
+    func pushToShopsDetailVC(id: Int?) {
         let vc = ShopDetailViewController()
+        vc.partnerId = id
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }

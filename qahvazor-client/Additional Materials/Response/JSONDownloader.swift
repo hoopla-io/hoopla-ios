@@ -148,7 +148,7 @@ extension JSONDownloader: RequestRetrier, RequestAdapter, RequestInterceptor {
     func retry(_ request: Alamofire.Request, for session: Alamofire.Session, dueTo error: Error, completion: @escaping (Alamofire.RetryResult) -> Void) {
         let response = request.task?.response as? HTTPURLResponse
         if NetworkReachabilityManager()?.isReachable ?? false {//refresh token
-            if request.retryCount < self.retryLimit{//, KeychainAccessCheck.isAuthed() {
+            if request.retryCount < self.retryLimit, UserDefaults.standard.isAuthed() {
                 if let statusCode = response?.statusCode, statusCode == StatusCode.tokenError.rawValue, !isRetrying {
                     self.isRetrying = true
                     self.determineError(error: error, completion: completion)
@@ -159,11 +159,7 @@ extension JSONDownloader: RequestRetrier, RequestAdapter, RequestInterceptor {
                 completion(.doNotRetry)
             }
         } else {//no internet
-            if request.retryCount < self.retryLimit {
-                completion(.retryWithDelay(self.retryDelay))
-            } else {
-                completion(.doNotRetry)
-            }
+            completion(.retryWithDelay(self.retryDelay))
         }
     }
     
@@ -195,7 +191,21 @@ extension JSONDownloader: RequestRetrier, RequestAdapter, RequestInterceptor {
         case .unacceptableStatusCode(let code):
             switch code {
             case StatusCode.tokenError.rawValue:
-                break
+                refreshToken { [weak self] statusCode in
+                    guard let self else { return }
+                    if statusCode == StatusCode.success200.rawValue {
+                        self.isRetrying = false
+                        completion(.retryWithDelay(self.retryDelay))
+                    } else if statusCode == StatusCode.notAuthorized.rawValue {
+                        self.isRetrying = false
+                        UserDefaults.standard.removeAccount()
+                        UIViewController().resetTabBar(4)
+                        completion(.doNotRetry)
+                    } else {
+                        self.isRetrying = false
+                        completion(.retryWithDelay(self.retryDelay))
+                    }
+                }
             default:
                 self.isRetrying = false
                 completion(.doNotRetry)
@@ -204,6 +214,73 @@ extension JSONDownloader: RequestRetrier, RequestAdapter, RequestInterceptor {
             self.isRetrying = false
             completion(.retryWithDelay(self.retryDelay))
         }
+    }
+    
+    func refreshToken(completion: @escaping (_ StatusCode: Int) -> Void) {
+        let url = EndPoints.refreshToken.rawValue
+        let refreshToken = Parameters.refreshToken.rawValue + Symbols.equal.rawValue + (UserDefaults.standard.refreshToken() ?? "")
+//        let firebaseToken = Parameters.firebaseToken.rawValue + Symbols.equal.rawValue + (UserDefaults.standard.firebaseToken() ?? "")
+        let query = refreshToken// + Symbols.and.rawValue + firebaseToken
+        
+        // Set Components
+        var components = URLComponents()
+        components.scheme = MainConstants.scheme.rawValue
+        components.host   = MainConstants.host.rawValue
+        components.path   = MainConstants.api.rawValue + MainConstants.path1.rawValue + url
+        components.query = query
+        
+        guard let URL = components.url else { return }
+        
+        var headers: HTTPHeaders = []
+        // Set Headers
+        headers.add(name: Headers.contentType.rawValue, value: Headers.applicationJson.rawValue)
+        headers.add(name: Headers.AUTHORIZATION.rawValue, value: "Bearer " + (UserDefaults.standard.accessToken() ?? ""))
+        
+        AF.request(URL, method: .patch, encoding: JSONEncoding.default, headers: headers).response(completionHandler: { result in
+            DispatchQueue.main.async {
+                guard let httpResponse = result.response else {
+                    completion(StatusCode.serverError.rawValue)
+                    return
+                }
+                
+                guard let data = result.data else {
+                    completion(StatusCode.serverError.rawValue)
+                    return
+                }
+                
+                if self.isDebug {
+                    print("\n--- Start debug ---")
+                    print("URL: \(URL)")
+                    print("Headers: \(String(describing: headers.dictionary))")
+                    print("Status Code: \(httpResponse.statusCode)")
+                }
+                
+                do {
+                    let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
+                    if self.isDebug {
+                        print("Result: \(String(describing: jsonResult))")
+                    }
+                    
+                    switch httpResponse.statusCode {
+                    case StatusCode.success200.rawValue, StatusCode.success202.rawValue:
+                        let fetchedData = try CustomDecoder().decode(JSONData<Tokens>.self, from: data)
+                        guard let data = fetchedData.data else { return }
+                        UserDefaults.standard.saveTokens(data: data)
+                        completion(StatusCode.success200.rawValue)
+                    case StatusCode.notAuthorized.rawValue:
+                        completion(StatusCode.notAuthorized.rawValue)
+                    default:
+                        completion(StatusCode.serverError.rawValue)
+                    }
+                } catch {
+                    completion(StatusCode.serverError.rawValue)
+                }
+                
+                if self.isDebug {
+                    print("--- End debug ---\n")
+                }
+            }
+        })
     }
     
 }
@@ -227,4 +304,3 @@ extension DataRequest {
     }
     
 }
-

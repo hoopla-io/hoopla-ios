@@ -7,10 +7,6 @@
 
 import UIKit
 import Haptica
-//import Haptica
-//import GoogleCast
-//import SwiftMessages
-//import DeviceKit
 
 protocol TabBarReselectHandling {
     func handleReselect()
@@ -22,6 +18,7 @@ final class TabBarController: UITabBarController {
     internal let mainCoordinator = MainCoordinator(navigationController: UINavigationController())
     internal var qrCoordinator = QRCoordinator(navigationController: UINavigationController())
     internal var profileCoordinator = ProfileCoordinator(navigationController: UINavigationController())
+    var lastViewController: UIViewController?
     
     // MARK: - Lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -106,7 +103,17 @@ extension TabBarController: UITabBarControllerDelegate {
         animationItem(item: item)
     }
     
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let navigationController = viewController as? UINavigationController else { return true }
+        guard navigationController.viewControllers.count <= 1, let handler = navigationController.viewControllers.first as? TabBarReselectHandling else { return true }
+        if lastViewController == navigationController.viewControllers.first {
+            handler.handleReselect()
+        }
+        lastViewController = navigationController.viewControllers.first
+        return true
+    }
 }
+
 
 extension UITabBar {
     func setup() {

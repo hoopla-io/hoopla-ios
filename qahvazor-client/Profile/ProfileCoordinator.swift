@@ -24,7 +24,7 @@ final class ProfileCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func pushToCodeConfirmVC(data: SignIn? = nil) {
+    func pushToCodeConfirmVC(data: Auth? = nil) {
         let vc = CodeConfirmViewController()
         vc.data = data
         vc.coordinator = self

@@ -18,7 +18,7 @@ final class MainViewModel {
     // MARK: - Network call
     func getList() {
         
-        JSONDownloader.shared.jsonTask(url: EndPoints.companyList.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
+        JSONDownloader.shared.jsonTask(url: EndPoints.partners.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
             guard let self = self else { return }
             switch result {
             case .Error(let error, let message):

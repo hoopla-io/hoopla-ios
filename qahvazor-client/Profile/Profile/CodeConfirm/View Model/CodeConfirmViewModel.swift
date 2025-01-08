@@ -8,8 +8,8 @@
 import Foundation
 
 protocol CodeConfirmViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(data: Tokens)
-    func didFinishFetchResend(data: SignIn)
+    func didFinishFetch(data: SignIn)
+    func didFinishFetchResend(data: Auth)
 }
 
 final class CodeConfirmViewModel {
@@ -32,7 +32,7 @@ final class CodeConfirmViewModel {
                 self.delegate?.showAlertClosure(error: (error,message))
             case .Success(let json):
                 do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<Tokens>.self, from: json)
+                    let fetchedData = try CustomDecoder().decode(JSONData<SignIn>.self, from: json)
                     guard let data = fetchedData.data else { return }
                     self.delegate?.didFinishFetch(data: data)
                 } catch {
@@ -57,7 +57,7 @@ final class CodeConfirmViewModel {
                 self.delegate?.showAlertClosure(error: (error,message))
             case .Success(let json):
                 do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<SignIn>.self, from: json)
+                    let fetchedData = try CustomDecoder().decode(JSONData<Auth>.self, from: json)
                     guard let data = fetchedData.data else { return }
                     self.delegate?.didFinishFetchResend(data: data)
                 } catch {

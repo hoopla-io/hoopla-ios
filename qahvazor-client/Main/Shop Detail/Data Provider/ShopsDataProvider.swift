@@ -1,14 +1,14 @@
 //
-//  ShopsListDataProvider.swift
+//  ShopsDataProvider.swift
 //  qahvazor-client
 //
-//  Created by Alphazet on 26/12/24.
+//  Created by Alphazet on 08/01/25.
 //
 
 import UIKit
 import SkeletonView
 
-final class ShopsListDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class ShopsDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     // MARK: - Outlets
     weak var collectionView: UICollectionView! {
@@ -43,8 +43,6 @@ final class ShopsListDataProvider: NSObject, UICollectionViewDataSource, UIColle
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShopCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? ShopCollectionViewCell else { return UICollectionViewCell() }
         cell.viewController = viewController
         cell.item = items[indexPath.row]
-        cell.buttonsStackView.isHidden = false
-        cell.imageView.isHidden = true
         return cell
     }
     
@@ -58,22 +56,11 @@ final class ShopsListDataProvider: NSObject, UICollectionViewDataSource, UIColle
 
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.itemSize(type: .shops)
+        return collectionView.itemSize(width: 150, additionalHeight: 0, ratio: .coffee)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = viewController as? ShopsListViewController else { return }
 //        vc.coordinator?.pushToShopsDetailVC()
-    }
-}
-
-// MARK: - SkeletonCollectionViewDataSource
-extension ShopsListDataProvider: SkeletonCollectionViewDataSource {
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return ShopCollectionViewCell.defaultReuseIdentifier
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
     }
 }

@@ -39,7 +39,7 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
         navigationController?.navigationBar.clear()
         
         if UserDefaults.standard.isAuthed() {
-//            viewModel.getMe()
+            viewModel.getMe()
         } else if wasAuthed {
 //            didFinishFetchLogOut()
         }
@@ -63,8 +63,12 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
 }
 // MARK: - Networking
 extension ProfileViewController: ProfileViewModelProtocol {
-    func didFinishFetch(data: SignIn) {
+    func didFinishFetch(data: Auth) {
         coordinator?.pushToCodeConfirmVC(data: data)
+    }
+    
+    func didFinishFetch(data: SignIn) {
+        
     }
 }
 
@@ -121,7 +125,7 @@ extension ProfileViewController: UIScrollViewDelegate {
 //MARK: - Scroll to up
 extension ProfileViewController: TabBarReselectHandling {
     func handleReselect() {
-//        view().scrollView.setContentOffset(CGPoint(x: 0, y: -90), animated: true)
+        view().scrollView.setContentOffset(CGPoint(x: 0, y: -90), animated: true)
     }
 }
 

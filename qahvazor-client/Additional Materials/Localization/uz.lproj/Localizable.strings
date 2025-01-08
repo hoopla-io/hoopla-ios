@@ -36,3 +36,28 @@ resendCode = "Qayta yuborish";
 
 // MARK: - Main
 coffeeShops = "Qahvaxonalar";
+filials = "Do'konlar";
+phoneNumber = "Telefon raqam";
+cancel = "Bekor qilish";
+maps = "Xaritalar";
+address = "Manzil";
+call = "Qo'ng'iroq";
+
+// MARK: - Alert
+success = "Muvaffaqiyatli";
+warning = "Diqqat";
+error = "Xato";
+emptyDetail = "Kechirasiz, bu yerda hech qanday ma'lumot topilmadi.";
+noInternetConnection = "Internetga ulanish yo'q";
+noInternetConnectionDetail = "Internetga ulanishni tekshiring va qayta urining";
+errorMSG = "Xatolik ro'y berdi";
+laterMessage= "Iltimos keyinroq qayta urinib ko'ring";
+noAuthorizationTitle = "Avtorizatsiya xatosi";
+noAuthorizationMessage = "Tizimga kiring va qaytadan urining";
+authorization = "Avtorizatsiya";
+authorizationDetail = "Ushbu bo'limdan foydalanish uchun\nSiz tizimga kirgan bo'lishingiz kerak.";
+serverError = "Server xatosi";
+serverErrorDetail = "Xato ro'y berdi\nqayta urinib ko‘ring";
+retry = "Qayta urinish";
+emptySearch = "So'rovingiz bo'yicha hech narsa topilmadi";
+

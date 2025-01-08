@@ -36,3 +36,21 @@ resendCode = "Qayta yuborish";
 
 // MARK: - Main
 coffeeShops = "Coffee shops";
+
+// MARK: - Alert
+success = "Successful";
+warning = "Attention";
+error = "Error";
+emptyDetail = "Sorry, no information found here.";
+noInternetConnection = "No internet connection";
+noInternetConnectionDetail = "Check your internet connection and try again";
+errorMSG = "An error has occurred";
+laterMessage= "Please try again later";
+noAuthorizationTitle = "Authorisation Error";
+noAuthorizationMessage = "Log in and try again";
+authorization = "Authorization";
+authorizationDetail = "In order to use this section\nYou must be logged in.";
+serverError = "Server Error";
+serverErrorDetail = "Looks like something went wrong\ntry again";
+retry = "Try Again";
+emptySearch = "Nothing found for your request";

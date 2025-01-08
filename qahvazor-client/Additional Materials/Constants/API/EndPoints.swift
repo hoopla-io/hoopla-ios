@@ -15,5 +15,11 @@ enum EndPoints: String {
     case confirmSms = "auth/confirm-sms"
     
     // MARK: - Main
-    case companyList = "company/list"
+    case partners = "partners"
+    case partner = "partners/partner"
+    case partnerShops = "shops/partner-shops"
+    
+    // MARK: - Profile
+    case getMe = "user/get-me"
+    case refreshToken = "user/refresh-token"
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SignIn: Codable {
+struct Auth: Codable {
     let phoneNumber: String?
     let sessionId: String?
     let sessionExpiresAt: Int?
@@ -17,6 +17,9 @@ struct Tokens: Codable {
     let accessToken: String?
     let refreshToken: String?
     let expireAt: Int?
-    let phoneNumber: String?
 }
 
+struct SignIn: Codable {
+    let jwt: Tokens?
+    let userId: Int?
+}

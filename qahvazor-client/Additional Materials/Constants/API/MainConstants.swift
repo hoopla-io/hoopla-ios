@@ -10,8 +10,6 @@ import Foundation
 enum MainConstants: String {
     case scheme = "http"
     case host = "api.qahvazor.uz"
-    case auth = "2"
-    case salt = "3"
     case api  = "/api"
     case path1 = "/v1/"
 }

@@ -12,8 +12,13 @@ enum Parameters: String {
     case itemsPerPage = "itemsPerPage"
     case page = "page"
     
+    // MARK: - Main
+    case id = "id"
+    case partnerId = "partnerId"
+    
     // MARK: - Profile
     case phoneNumber = "phoneNumber"
     case sessionId = "sessionId"
     case code = "code"
+    case refreshToken = "refreshToken"
 }

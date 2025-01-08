@@ -11,7 +11,7 @@ final class ShopsListView: CustomView {
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
-            collectionView.register(UINib(nibName: CompanyCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier)
+            collectionView.register(UINib(nibName: ShopCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: ShopCollectionViewCell.defaultReuseIdentifier)
         }
     }
 }

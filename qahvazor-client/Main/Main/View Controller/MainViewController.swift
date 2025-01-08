@@ -18,7 +18,7 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     let viewModel = MainViewModel()
     
     // MARK: - Attributes
-    var dataProvide: MainDataProvider?
+    var dataProvider: MainDataProvider?
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
 // MARK: - Networking
 extension MainViewController: MainViewModelProtocol {
     func didFinishFetch(data: [Company]) {
-        dataProvide?.items = data
+        dataProvider?.items = data
     }
 }
 
@@ -44,7 +44,7 @@ extension MainViewController {
         
         let dataProvider = MainDataProvider(viewController: self)
         dataProvider.collectionView = view().collectionView
-        self.dataProvide = dataProvider
+        self.dataProvider = dataProvider
         
         let refershControl = UIRefreshControl()
         refershControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -63,7 +63,8 @@ extension MainViewController {
 //MARK: - Scroll to up
 extension MainViewController: TabBarReselectHandling {
     func handleReselect() {
-//        view().scrollView.setContentOffset(CGPoint(x: 0, y: -90), animated: true)
+        guard let items = dataProvider?.items, !items.isEmpty else { return }
+        view().collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
 }
 

@@ -39,7 +39,7 @@ class CodeConfirmViewController: TextFieldViewController, ViewSpecificController
     }
     private var timeInterval: Double = 1
     var sessionId: String?
-    var data: SignIn? {
+    var data: Auth? {
         didSet {
             guard let data = data else { return }
             view().phoneNumber = data.phoneNumber ?? ""
@@ -92,14 +92,14 @@ class CodeConfirmViewController: TextFieldViewController, ViewSpecificController
 
 // MARK: - Networking
 extension CodeConfirmViewController: CodeConfirmViewModelProtocol {
-    func didFinishFetch(data: Tokens) {
-        if let _ = data.accessToken {
-            UserDefaults.standard.saveTokens(data: data)
+    func didFinishFetch(data: SignIn) {
+        if let tokens = data.jwt {
+            UserDefaults.standard.saveTokens(data: tokens)
             resetTabBar()
         }
     }
     
-    func didFinishFetchResend(data: SignIn) {
+    func didFinishFetchResend(data: Auth) {
         duration = 90
         setupProgressTimer()
     }

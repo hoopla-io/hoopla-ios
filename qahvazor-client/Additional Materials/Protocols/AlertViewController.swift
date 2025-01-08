@@ -19,26 +19,12 @@ extension AlertViewController where Self: UIViewController {
     @MainActor func addErrorAlertView(error: (APIError, String?), completion: (() -> ())? = nil) {
         switch error.0 {
         case .requestFailed:
-            break
-//            if ((self.navigationController?.topViewController as? TVPlayerViewController) != nil) ||  ((self.navigationController?.topViewController as? VideoPlayerViewController) != nil) || ((self.navigationController?.topViewController as? DownloadListViewController) != nil) {
-//                AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
-//                self.navigationController?.dismiss(animated: true)
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                    self.showWarningAlert(message: AlertViewTexts.noInternetConnection.rawValue.localized)
-//                }
-//            } else {
-//                guard let _ = self.navigationController?.topViewController as? ErrorViewController else {
-//                    let vc = ErrorViewController()
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//                    return
-//                }
-//            }
+            showWarningAlert(message: AlertViewTexts.noInternetConnection.rawValue.localized)
         case .notAuthorized:
-            break
-//            guard let navigationController = self.navigationController else { return }
-//            let vc = ProfileViewController()
-//            vc.coordinator = ProfileCoordinator(navigationController: navigationController)
-//            self.navigationController?.pushViewController(vc, animated: true)
+            guard let navigationController = self.navigationController else { return }
+            let vc = ProfileViewController()
+            vc.coordinator = ProfileCoordinator(navigationController: navigationController)
+            self.navigationController?.pushViewController(vc, animated: true)
         case .fromMessage, .serverError:
             guard let message = error.1 else { return }
             showErrorAlert(message: message)
@@ -96,6 +82,23 @@ extension AlertViewController where Self: UIViewController {
         alert.addAction(UIAlertAction(title: buttonTitle, style: .destructive, handler: { _ in
             buttonAction?()
         }))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showCallPhoneActionSheet(items: [PhoneNumber], preferredStyle: UIAlertController.Style = .actionSheet, completion: @escaping ((_ text: String?) -> Void)) {
+        var preferredStyle = preferredStyle
+        if (UIDevice.current.userInterfaceIdiom == .pad) { preferredStyle = UIAlertController.Style.alert }
+        
+        let alert = UIAlertController(title: "", message: "phoneNumber".localized, preferredStyle: preferredStyle)
+        items.indices.forEach { index in
+            alert.addAction(UIAlertAction(title: items[index].phoneNumber, style: .default, handler: { _ in
+                completion(items[index].phoneNumber)
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil))
+        
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }

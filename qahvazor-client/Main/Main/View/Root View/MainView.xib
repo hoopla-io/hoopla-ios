@@ -28,6 +28,9 @@
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="16" minY="20" maxX="16" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

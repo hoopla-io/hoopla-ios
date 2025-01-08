@@ -26,9 +26,16 @@ struct ItemCountCompany: ItemCount {
     var phone        = 1
 }
 
+struct ItemCountShops: ItemCount {
+    var padLandscape = 3
+    var padPortrait  = 2
+    var phone        = 1
+}
+
 enum ItemRatio: CGFloat {
-    case company    = 0.7
-    case shops      = 0.21
+    case company    = 0.6
+    case shops      = 0.3
+    case coffee     = 1.0
 }
 
 enum ItemSpacing: CGFloat {
@@ -39,7 +46,7 @@ enum ItemSpacing: CGFloat {
 }
 
 enum ItemAdditionalHeight: CGFloat {
-    case company    = 0
+    case company = 0
 }
 
 enum ItemLayout {
@@ -53,7 +60,7 @@ extension UICollectionView {
         case .company:
             return itemSize(itemType: .company, layout: layout, ratio: .company, spacing: .standard, additionalHeight: .company)
         case .shops:
-            return itemSize(itemType: .company, layout: layout, ratio: .shops, spacing: .standard, additionalHeight: .company)
+            return itemSize(itemType: .shops, layout: layout, ratio: .shops, spacing: .standard, additionalHeight: .company)
         default:
             return CGSize.zero
         }
@@ -64,7 +71,7 @@ extension UICollectionView {
         case .company:
             return numberInRow(type: ItemCountCompany())
         case .shops:
-            return numberInRow(type: ItemCountCompany())
+            return numberInRow(type: ItemCountShops())
         }
     }
     
