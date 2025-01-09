@@ -18,6 +18,7 @@ enum EndPoints: String {
     case partners = "partners"
     case partner = "partners/partner"
     case partnerShops = "shops/partner-shops"
+    case shop = "shops/shop"
     
     // MARK: - Profile
     case getMe = "user/get-me"

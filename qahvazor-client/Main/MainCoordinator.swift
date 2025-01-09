@@ -37,4 +37,14 @@ final class MainCoordinator: Coordinator {
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func pushToShopDetail(id: Int) {
+        let vc = ShopDetailViewController()
+        vc.shopId = id
+        if let presentationController = vc.presentationController as? UISheetPresentationController {
+            presentationController.detents = [.medium(), .large()]
+            presentationController.preferredCornerRadius = 16
+        }
+        navigationController.present(vc, animated: true)
+    }
 }

@@ -41,35 +41,12 @@ extension ShopsListViewController: ShopsListViewModelProtocol {
 extension ShopsListViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "filials".localized
         
         let dataProvider = ShopsListDataProvider(viewController: self)
         dataProvider.collectionView = view().collectionView
         self.dataProvider = dataProvider
     }
     
-    func openMaps(latitude: Double, longitude: Double, title: String?) {
-        let application = UIApplication.shared
-        let coordinate = "\(latitude),\(longitude)"
-        let handlers = [
-            ("Yandex Maps", "yandexmaps://maps.yandex.ru/?pt=\(longitude),\(latitude)"),
-            ("Apple Maps", "http://maps.apple.com/?q=&ll=\(coordinate)"),
-            ("Yandex Navigator", "yandexnavi://build_route_on_map?lat_to=\(latitude)&lon_to=\(longitude)"),
-            ("2gis Map", "dgis://2gis.ru/routeSearch/rsType/car/to/\(longitude),\(latitude)")
-        ]
-        
-            .compactMap { (name, address) in URL(string: address).map { (name, $0) } }
-            .filter { (_, url) in application.canOpenURL(url) }
-
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet)
-            handlers.forEach { (name, url) in
-                alert.addAction(UIAlertAction(title: name, style: .default) { _ in
-                    application.open(url, options: [:])
-                })
-            }
-        alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-    }
 }
 

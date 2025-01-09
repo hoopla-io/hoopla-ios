@@ -13,6 +13,8 @@ struct Shop: Codable {
     let location: Location?
     let phoneNumbers: [PhoneNumber]?
     let pictureUrl: String?
+    let pictures: [Pictures]?
+    let workingHours: [WorkHour]?
 }
 
 struct Location: Codable {
@@ -22,4 +24,14 @@ struct Location: Codable {
 
 struct PhoneNumber: Codable {
     let phoneNumber: String?
+}
+
+struct Pictures: Codable {
+    let pictureUrl: String?
+}
+
+struct WorkHour: Codable {
+    let closeAt: String?
+    let openAt: String?
+    let weekDay: String?
 }

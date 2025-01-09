@@ -128,7 +128,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <connections>
-                                                                <action selector="filialsAction:" destination="-1" eventType="touchUpInside" id="Cvn-QH-6gO"/>
+                                                                <action selector="filialsAction:" destination="-1" eventType="touchUpInside" id="u4x-x0-iPk"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -145,7 +145,7 @@
                                                 </view>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CII-rY-yUo">
                                                     <rect key="frame" x="0.0" y="34" width="393" height="150"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="150" id="sb6-QX-Lne"/>
                                                     </constraints>
@@ -175,7 +175,7 @@
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kzS-3A-iQB">
                                                     <rect key="frame" x="0.0" y="34" width="393" height="60"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="AvY-vy-1ZE"/>
                                                     </constraints>

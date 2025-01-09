@@ -43,8 +43,6 @@ final class ShopsListDataProvider: NSObject, UICollectionViewDataSource, UIColle
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShopCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? ShopCollectionViewCell else { return UICollectionViewCell() }
         cell.viewController = viewController
         cell.item = items[indexPath.row]
-        cell.buttonsStackView.isHidden = false
-        cell.imageView.isHidden = true
         return cell
     }
     
@@ -58,12 +56,13 @@ final class ShopsListDataProvider: NSObject, UICollectionViewDataSource, UIColle
 
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.itemSize(type: .shops)
+        return collectionView.itemSize(type: .company)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = viewController as? ShopsListViewController else { return }
-//        vc.coordinator?.pushToShopsDetailVC()
+        guard let id = items[indexPath.row].shopId else { return }
+        vc.coordinator?.pushToShopDetail(id: id)
     }
 }
 

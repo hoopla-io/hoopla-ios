@@ -106,6 +106,13 @@
 		7552C2FC2D1D83D700F2DF78 /* ShopsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7552C2FB2D1D83D700F2DF78 /* ShopsListViewModel.swift */; };
 		7552C2FF2D1D843800F2DF78 /* ShopsListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7552C2FE2D1D843800F2DF78 /* ShopsListDataProvider.swift */; };
 		75705CDB2D2FA28900DA3AA4 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75705CDA2D2FA28800DA3AA4 /* Account.swift */; };
+		75705CE12D2FD9EB00DA3AA4 /* ShopDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75705CE02D2FD9EB00DA3AA4 /* ShopDetailViewModel.swift */; };
+		75705CE32D2FD9F600DA3AA4 /* ShopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75705CE22D2FD9F600DA3AA4 /* ShopDetailView.swift */; };
+		75705CE52D2FD9FB00DA3AA4 /* ShopDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75705CE42D2FD9FB00DA3AA4 /* ShopDetailView.xib */; };
+		75705CE72D2FDA0300DA3AA4 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75705CE62D2FDA0300DA3AA4 /* ShopDetailViewController.swift */; };
+		75705CEA2D2FFD5500DA3AA4 /* PhotoDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75705CE92D2FFD5500DA3AA4 /* PhotoDataProvider.swift */; };
+		75705CEF2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75705CED2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.swift */; };
+		75705CF02D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75705CEE2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib */; };
 		757F36262D1E746500EFA728 /* PartnerDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F36252D1E746500EFA728 /* PartnerDetailViewModel.swift */; };
 		757F36282D1E746C00EFA728 /* PartnerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F36272D1E746C00EFA728 /* PartnerDetailView.swift */; };
 		757F362A2D1E747200EFA728 /* PartnerDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 757F36292D1E747200EFA728 /* PartnerDetailView.xib */; };
@@ -120,6 +127,7 @@
 		75A04A682D2E86E50082D342 /* SocialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */; };
 		75A04A692D2E86E50082D342 /* SocialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */; };
 		75A04A6B2D2E92380082D342 /* ShopsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */; };
+		75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */; };
 		75C9B52E2D2CF16A006901E6 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9B52C2D2CF16A006901E6 /* ShopCollectionViewCell.swift */; };
 		75C9B52F2D2CF16A006901E6 /* ShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75C9B52D2D2CF16A006901E6 /* ShopCollectionViewCell.xib */; };
 		75DCE3552D1A9B26003A59CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE3532D1A9B26003A59CD /* Localizable.strings */; };
@@ -236,6 +244,13 @@
 		7552C2FB2D1D83D700F2DF78 /* ShopsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsListViewModel.swift; sourceTree = "<group>"; };
 		7552C2FE2D1D843800F2DF78 /* ShopsListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsListDataProvider.swift; sourceTree = "<group>"; };
 		75705CDA2D2FA28800DA3AA4 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		75705CE02D2FD9EB00DA3AA4 /* ShopDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewModel.swift; sourceTree = "<group>"; };
+		75705CE22D2FD9F600DA3AA4 /* ShopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailView.swift; sourceTree = "<group>"; };
+		75705CE42D2FD9FB00DA3AA4 /* ShopDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopDetailView.xib; sourceTree = "<group>"; };
+		75705CE62D2FDA0300DA3AA4 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		75705CE92D2FFD5500DA3AA4 /* PhotoDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDataProvider.swift; sourceTree = "<group>"; };
+		75705CED2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		75705CEE2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		757F36252D1E746500EFA728 /* PartnerDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerDetailViewModel.swift; sourceTree = "<group>"; };
 		757F36272D1E746C00EFA728 /* PartnerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerDetailView.swift; sourceTree = "<group>"; };
 		757F36292D1E747200EFA728 /* PartnerDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartnerDetailView.xib; sourceTree = "<group>"; };
@@ -250,6 +265,7 @@
 		75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCollectionViewCell.swift; sourceTree = "<group>"; };
 		75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialCollectionViewCell.xib; sourceTree = "<group>"; };
 		75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsDataProvider.swift; sourceTree = "<group>"; };
+		75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeDataProvider.swift; sourceTree = "<group>"; };
 		75C9B52C2D2CF16A006901E6 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
 		75C9B52D2D2CF16A006901E6 /* ShopCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopCollectionViewCell.xib; sourceTree = "<group>"; };
 		75DCE3542D1A9B26003A59CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -677,9 +693,65 @@
 			path = "Partner Detail";
 			sourceTree = "<group>";
 		};
+		75705CDD2D2FD9CC00DA3AA4 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				75705CE02D2FD9EB00DA3AA4 /* ShopDetailViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		75705CDE2D2FD9D500DA3AA4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75705CEC2D2FFDE200DA3AA4 /* Root View */,
+				75705CEB2D2FFDD800DA3AA4 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75705CDF2D2FD9D900DA3AA4 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				75705CE62D2FDA0300DA3AA4 /* ShopDetailViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		75705CE82D2FFD2200DA3AA4 /* Data Provider */ = {
+			isa = PBXGroup;
+			children = (
+				75705CE92D2FFD5500DA3AA4 /* PhotoDataProvider.swift */,
+				75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */,
+			);
+			path = "Data Provider";
+			sourceTree = "<group>";
+		};
+		75705CEB2D2FFDD800DA3AA4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				75705CED2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.swift */,
+				75705CEE2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		75705CEC2D2FFDE200DA3AA4 /* Root View */ = {
+			isa = PBXGroup;
+			children = (
+				75705CE22D2FD9F600DA3AA4 /* ShopDetailView.swift */,
+				75705CE42D2FD9FB00DA3AA4 /* ShopDetailView.xib */,
+			);
+			path = "Root View";
+			sourceTree = "<group>";
+		};
 		757F36212D1E742900EFA728 /* Shop Detail */ = {
 			isa = PBXGroup;
 			children = (
+				75705CE82D2FFD2200DA3AA4 /* Data Provider */,
+				75705CDF2D2FD9D900DA3AA4 /* View Controller */,
+				75705CDE2D2FD9D500DA3AA4 /* View */,
+				75705CDD2D2FD9CC00DA3AA4 /* View Model */,
 			);
 			path = "Shop Detail";
 			sourceTree = "<group>";
@@ -1060,10 +1132,12 @@
 				7552C2F82D1D838500F2DF78 /* ShopsListView.xib in Resources */,
 				75DCE36A2D1ABBA3003A59CD /* LanguageCollectionViewCell.xib in Resources */,
 				75DCE3612D1ABB33003A59CD /* LanguageView.xib in Resources */,
+				75705CE52D2FD9FB00DA3AA4 /* ShopDetailView.xib in Resources */,
 				7523319B2D1A90B30090997E /* LaunchScreenView.xib in Resources */,
 				752331042D197B210090997E /* MainView.xib in Resources */,
 				75DCE3842D1C10BE003A59CD /* ProfileView.xib in Resources */,
 				75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */,
+				75705CF02D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib in Resources */,
 				75DCE37B2D1AD6EE003A59CD /* InterestView.xib in Resources */,
 				75A04A682D2E86E50082D342 /* SocialCollectionViewCell.xib in Resources */,
 				75C9B52F2D2CF16A006901E6 /* ShopCollectionViewCell.xib in Resources */,
@@ -1090,6 +1164,7 @@
 				752330C62D197B210090997E /* UICollectionView.swift in Sources */,
 				752330C72D197B210090997E /* AssetsImage.swift in Sources */,
 				752331372D198BA80090997E /* ProfileCoordinator.swift in Sources */,
+				75705CEA2D2FFD5500DA3AA4 /* PhotoDataProvider.swift in Sources */,
 				75DCE3892D1C28BF003A59CD /* ProfileViewModel.swift in Sources */,
 				7552C2FA2D1D838F00F2DF78 /* ShopsListViewController.swift in Sources */,
 				752330C82D197B210090997E /* String.swift in Sources */,
@@ -1100,8 +1175,11 @@
 				752330CB2D197B210090997E /* UITableView.swift in Sources */,
 				752330CC2D197B210090997E /* Cosmos.swift in Sources */,
 				75F6CFCC2D2BEBD200BDF947 /* CoffeeListDataProvider.swift in Sources */,
+				75705CE32D2FD9F600DA3AA4 /* ShopDetailView.swift in Sources */,
 				752330CD2D197B210090997E /* UIApplication.swift in Sources */,
+				75705CE12D2FD9EB00DA3AA4 /* ShopDetailViewModel.swift in Sources */,
 				752330CE2D197B210090997E /* Coordinator.swift in Sources */,
+				75705CEF2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.swift in Sources */,
 				752331942D1A8EDC0090997E /* OnboardingCoordinator.swift in Sources */,
 				752330CF2D197B210090997E /* UILabel.swift in Sources */,
 				75DCE3992D1C3195003A59CD /* CodeConfirmViewController.swift in Sources */,
@@ -1150,6 +1228,7 @@
 				752330ED2D197B210090997E /* Symbols.swift in Sources */,
 				75DCE36F2D1ABC1D003A59CD /* LanguageDataProvider.swift in Sources */,
 				75DCE3772D1AD6E2003A59CD /* InterestViewController.swift in Sources */,
+				75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */,
 				752330EE2D197B210090997E /* AlertViewController.swift in Sources */,
 				75DCE3822D1C10B9003A59CD /* ProfileView.swift in Sources */,
 				752330EF2D197B210090997E /* ResponseErrors.swift in Sources */,
@@ -1181,6 +1260,7 @@
 				757F362C2D1E747900EFA728 /* PartnerDetailViewController.swift in Sources */,
 				752331022D197B210090997E /* Formatter.swift in Sources */,
 				75705CDB2D2FA28900DA3AA4 /* Account.swift in Sources */,
+				75705CE72D2FDA0300DA3AA4 /* ShopDetailViewController.swift in Sources */,
 				75C9B52E2D2CF16A006901E6 /* ShopCollectionViewCell.swift in Sources */,
 				75DCE37A2D1AD6EE003A59CD /* InterestView.swift in Sources */,
 				7523318C2D1A8D340090997E /* FullOnboardingView.swift in Sources */,
@@ -1222,7 +1302,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -1251,7 +1331,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";

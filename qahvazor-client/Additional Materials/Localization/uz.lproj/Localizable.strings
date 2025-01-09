@@ -46,6 +46,7 @@ cancel = "Bekor qilish";
 maps = "Xaritalar";
 address = "Manzil";
 call = "Qo'ng'iroq";
+workTime = "Ish vaqti:";
 
 // MARK: - Alert
 success = "Muvaffaqiyatli";

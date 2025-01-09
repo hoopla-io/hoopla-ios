@@ -96,8 +96,6 @@ extension PartnerDetailViewController {
         if let url = URL(string: "tel://+\(phoneNumber)") {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
-            } else {
-                print("Phone call not supported on this device")
             }
         }
     }
