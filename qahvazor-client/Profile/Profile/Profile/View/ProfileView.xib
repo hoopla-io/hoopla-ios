@@ -24,10 +24,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mn-xR-odC">
-                            <rect key="frame" x="16" y="0.0" width="361" height="957.33333333333337"/>
+                            <rect key="frame" x="16" y="0.0" width="361" height="888.66666666666663"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9MK-Zt-Af1">
-                                    <rect key="frame" x="0.0" y="50" width="361" height="807.33333333333337"/>
+                                    <rect key="frame" x="0.0" y="50" width="361" height="738.66666666666663"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TIB-Wu-UUA">
                                             <rect key="frame" x="0.0" y="0.0" width="361" height="250.66666666666666"/>
@@ -69,10 +69,9 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </textField>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYX-5R-ox2">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYX-5R-ox2">
                                                             <rect key="frame" x="0.0" y="71" width="361" height="56"/>
                                                             <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="continue">
                                                                 <color key="titleColor" systemColor="systemGray2Color"/>
@@ -96,36 +95,36 @@
                                             </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gM2-gf-V3h">
-                                            <rect key="frame" x="0.0" y="270.66666666666669" width="361" height="536.66666666666652"/>
+                                            <rect key="frame" x="0.0" y="270.66666666666669" width="361" height="468.00000000000006"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ozm-7R-ryj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="173.66666666666666"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="215"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fZu-ed-PBw">
-                                                            <rect key="frame" x="16" y="16" width="329" height="141.66666666666666"/>
+                                                            <rect key="frame" x="16" y="16" width="329" height="183"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wJw-kj-7rm">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="66.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="108"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qahvazor user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5P-HX-sTA">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="39.333333333333336"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5P-HX-sTA">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0u1-LL-o9M">
-                                                                            <rect key="frame" x="0.0" y="47.333333333333314" width="147.66666666666666" height="19.333333333333329"/>
+                                                                            <rect key="frame" x="0.0" y="58" width="152.33333333333334" height="50"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Лицевой счет:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNX-sM-WD6">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="96.333333333333329" height="19.333333333333332"/>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phoneNumber" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNX-sM-WD6">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="50"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                     <userDefinedRuntimeAttributes>
-                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="accountNumber"/>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="phoneNumber"/>
                                                                                     </userDefinedRuntimeAttributes>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIG-tu-Bhy">
-                                                                                    <rect key="frame" x="106.33333333333334" y="0.0" width="41.333333333333343" height="19.333333333333332"/>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIG-tu-Bhy">
+                                                                                    <rect key="frame" x="102.33333333333334" y="0.0" width="50" height="50"/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -134,7 +133,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNI-q4-vgE">
-                                                                    <rect key="frame" x="0.0" y="86.666666666666629" width="329" height="55"/>
+                                                                    <rect key="frame" x="0.0" y="128" width="329" height="55"/>
                                                                     <color key="backgroundColor" name="mainColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="55" id="UGv-Ib-gvk"/>
@@ -174,7 +173,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rxN-LH-ma1">
-                                                    <rect key="frame" x="0.0" y="193.66666666666669" width="361" height="215"/>
+                                                    <rect key="frame" x="0.0" y="234.99999999999994" width="361" height="105"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foE-w2-z3R">
                                                             <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
@@ -186,14 +185,14 @@
                                                             <color key="tintColor" systemColor="labelColor"/>
                                                             <inset key="titleEdgeInsets" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                            <state key="normal" title="Аккаунт" image="person.crop.circle.fill" catalog="system">
+                                                            <state key="normal" title="settings" image="gearshape.fill" catalog="system">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="12"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="account"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hz-hv-42c">
@@ -206,73 +205,33 @@
                                                             <color key="tintColor" systemColor="labelColor"/>
                                                             <inset key="titleEdgeInsets" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                            <state key="normal" title="Аккаунт" image="person.crop.circle.fill" catalog="system">
+                                                            <state key="normal" title="privacyPolicy" image="lock.fill" catalog="system">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="12"/>
                                                                 </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="account"/>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZW-yT-9lq">
-                                                            <rect key="frame" x="0.0" y="110" width="361" height="50"/>
-                                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="IBz-We-veE"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                            <color key="tintColor" systemColor="labelColor"/>
-                                                            <inset key="titleEdgeInsets" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                            <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                            <state key="normal" title="Аккаунт" image="person.crop.circle.fill" catalog="system">
-                                                                <color key="titleColor" systemColor="labelColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="12"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="account"/>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oW8-Sm-Uvs">
-                                                            <rect key="frame" x="0.0" y="165" width="361" height="50"/>
-                                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="szq-vR-ZcJ"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                            <color key="tintColor" systemColor="labelColor"/>
-                                                            <inset key="titleEdgeInsets" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                            <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                            <state key="normal" title="Аккаунт" image="person.crop.circle.fill" catalog="system">
-                                                                <color key="titleColor" systemColor="labelColor"/>
-                                                            </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="12"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="account"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="privacyPolicy"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGp-IW-a2Z">
-                                                    <rect key="frame" x="0.0" y="428.66666666666669" width="361" height="1"/>
+                                                    <rect key="frame" x="0.0" y="359.99999999999994" width="361" height="1"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="621-Ic-Cgv"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Версия" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1H-7R-oOO">
-                                                    <rect key="frame" x="0.0" y="449.66666666666669" width="361" height="17"/>
+                                                    <rect key="frame" x="0.0" y="380.99999999999994" width="361" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcO-9p-6AJ">
-                                                    <rect key="frame" x="0.0" y="486.66666666666669" width="361" height="50.000000000000057"/>
+                                                    <rect key="frame" x="0.0" y="417.99999999999994" width="361" height="50"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="HSm-Nm-fda"/>
@@ -280,7 +239,7 @@
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <color key="tintColor" systemColor="labelColor"/>
                                                     <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="Выйти" image="figure.run" catalog="system">
+                                                    <state key="normal" title="logout" image="iphone.and.arrow.forward.inward" catalog="system">
                                                         <color key="titleColor" systemColor="labelColor"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
@@ -324,19 +283,25 @@
                 <constraint firstItem="9mn-xR-odC" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" constant="-32" id="wSn-TZ-fwD"/>
             </constraints>
             <connections>
+                <outlet property="accounNumberLabel" destination="kIG-tu-Bhy" id="1G0-8l-u1a"/>
                 <outlet property="loginButton" destination="zYX-5R-ox2" id="oUx-C3-50J"/>
                 <outlet property="loginStack" destination="TIB-Wu-UUA" id="FBI-5Y-fGe"/>
+                <outlet property="nameLabel" destination="T5P-HX-sTA" id="GSO-si-4sI"/>
                 <outlet property="profileStack" destination="gM2-gf-V3h" id="Ji5-XQ-0MK"/>
                 <outlet property="scrollView" destination="nI6-gP-fXl" id="VgO-h7-IS3"/>
                 <outlet property="textField" destination="9Qf-2R-xFC" id="RDS-C6-19Z"/>
+                <outlet property="versionLabel" destination="f1H-7R-oOO" id="aw4-YK-O4n"/>
+                <outletCollection property="buttons" destination="2hz-hv-42c" collectionClass="NSMutableArray" id="pPM-l6-IIv"/>
+                <outletCollection property="buttons" destination="foE-w2-z3R" collectionClass="NSMutableArray" id="AJx-xw-YCw"/>
             </connections>
             <point key="canvasLocation" x="109" y="7"/>
         </view>
     </objects>
     <resources>
-        <image name="figure.run" catalog="system" width="115" height="128"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="iphone.and.arrow.forward.inward" catalog="system" width="112" height="128"/>
+        <image name="lock.fill" catalog="system" width="111" height="128"/>
         <image name="logo" width="782" height="782"/>
-        <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="green">
             <color red="0.32156862745098042" green="0.69019607843137254" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -353,19 +318,19 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -67,8 +67,9 @@ extension ProfileViewController: ProfileViewModelProtocol {
         coordinator?.pushToCodeConfirmVC(data: data)
     }
     
-    func didFinishFetch(data: SignIn) {
-        
+    func didFinishFetch(data: Account) {
+        view().nameLabel.text = data.name
+        view().accounNumberLabel.text = data.phoneNumber
     }
 }
 
@@ -77,6 +78,9 @@ extension ProfileViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
         
+        if let releaseVersionNumber = Bundle.main.releaseVersionNumber {
+            view().versionLabel.text = "version".localized + Symbols.space.rawValue + releaseVersionNumber
+        }
         checkAuth()
     }
     

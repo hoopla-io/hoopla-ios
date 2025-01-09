@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 protocol ProfileViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: Auth)
-    func didFinishFetch(data: SignIn)
+    func didFinishFetch(data: Account)
 }
 
 final class ProfileViewModel {
@@ -51,7 +51,7 @@ final class ProfileViewModel {
                 self.delegate?.showAlertClosure(error: (error,message))
             case .Success(let json):
                 do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<SignIn>.self, from: json)
+                    let fetchedData = try CustomDecoder().decode(JSONData<Account>.self, from: json)
                     guard let data = fetchedData.data else { return }
                     self.delegate?.didFinishFetch(data: data)
                 } catch {

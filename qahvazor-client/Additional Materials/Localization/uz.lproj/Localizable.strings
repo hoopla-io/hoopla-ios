@@ -33,6 +33,10 @@ userAgreementAuth = "Foydalanuvchi shartnomasi";
 and = "va ";
 privacyAuth = "Maxfiylik siyosatiga";
 resendCode = "Qayta yuborish";
+privacyPolicy = "";
+licenceAgreement = "Litsenziya Shartnomasi";
+privacyPolicy = "Maxfiylik siyosati";
+logout = "Chiqish";
 
 // MARK: - Main
 coffeeShops = "Qahvaxonalar";

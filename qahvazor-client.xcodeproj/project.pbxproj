@@ -105,6 +105,7 @@
 		7552C2FA2D1D838F00F2DF78 /* ShopsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7552C2F92D1D838F00F2DF78 /* ShopsListViewController.swift */; };
 		7552C2FC2D1D83D700F2DF78 /* ShopsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7552C2FB2D1D83D700F2DF78 /* ShopsListViewModel.swift */; };
 		7552C2FF2D1D843800F2DF78 /* ShopsListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7552C2FE2D1D843800F2DF78 /* ShopsListDataProvider.swift */; };
+		75705CDB2D2FA28900DA3AA4 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75705CDA2D2FA28800DA3AA4 /* Account.swift */; };
 		757F36262D1E746500EFA728 /* ShopDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F36252D1E746500EFA728 /* ShopDetailViewModel.swift */; };
 		757F36282D1E746C00EFA728 /* ShopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F36272D1E746C00EFA728 /* ShopDetailView.swift */; };
 		757F362A2D1E747200EFA728 /* ShopDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 757F36292D1E747200EFA728 /* ShopDetailView.xib */; };
@@ -234,6 +235,7 @@
 		7552C2F92D1D838F00F2DF78 /* ShopsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsListViewController.swift; sourceTree = "<group>"; };
 		7552C2FB2D1D83D700F2DF78 /* ShopsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsListViewModel.swift; sourceTree = "<group>"; };
 		7552C2FE2D1D843800F2DF78 /* ShopsListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsListDataProvider.swift; sourceTree = "<group>"; };
+		75705CDA2D2FA28800DA3AA4 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		757F36252D1E746500EFA728 /* ShopDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewModel.swift; sourceTree = "<group>"; };
 		757F36272D1E746C00EFA728 /* ShopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailView.swift; sourceTree = "<group>"; };
 		757F36292D1E747200EFA728 /* ShopDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopDetailView.xib; sourceTree = "<group>"; };
@@ -869,6 +871,7 @@
 			isa = PBXGroup;
 			children = (
 				75DCE38B2D1C2A97003A59CD /* SignIn.swift */,
+				75705CDA2D2FA28800DA3AA4 /* Account.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1169,6 +1172,7 @@
 				7596B5202D1D6A180070A5BB /* Company.swift in Sources */,
 				757F362C2D1E747900EFA728 /* ShopDetailViewController.swift in Sources */,
 				752331022D197B210090997E /* Formatter.swift in Sources */,
+				75705CDB2D2FA28900DA3AA4 /* Account.swift in Sources */,
 				75C9B52E2D2CF16A006901E6 /* ShopCollectionViewCell.swift in Sources */,
 				75DCE37A2D1AD6EE003A59CD /* InterestView.swift in Sources */,
 				7523318C2D1A8D340090997E /* FullOnboardingView.swift in Sources */,
@@ -1210,7 +1214,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -1239,7 +1243,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";

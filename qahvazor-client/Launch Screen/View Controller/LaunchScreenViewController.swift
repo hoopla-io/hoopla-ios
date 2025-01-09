@@ -12,13 +12,12 @@ class LaunchScreenViewController: UIViewController, ViewSpecificController, Aler
     typealias RootView = LaunchScreenView
 
     // MARK: - Services
-    internal var customSpinnerView = CustomSpinnerView()
-    internal var isLoading = false
+    var customSpinnerView = CustomSpinnerView()
+    var isLoading = false
 
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        UserDefaults.standard.resetDefaults()
         appearanceSettings()
         next()
     }

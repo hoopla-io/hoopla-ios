@@ -10,6 +10,7 @@ import UIKit
 final class ShopDetailView: CustomView {
     @IBOutlet weak var titleImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var coffeeListCollectionView: UICollectionView! {
         didSet {
             coffeeListCollectionView.register(UINib(nibName: CoffeeCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier)

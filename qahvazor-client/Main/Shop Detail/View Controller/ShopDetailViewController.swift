@@ -60,6 +60,7 @@ extension ShopDetailViewController: ShopsListViewModelProtocol {
             view().titleImage.setImage(with: imageUrl)
         }
         view().titleLabel.text = data.name
+        view().descriptionLabel.text = data.description
         
         if let phone = data.phoneNumbers?.first {
             let item = SocialMedia(url: phone.phoneNumber, urlType: SocialUrlType.phone.rawValue)
