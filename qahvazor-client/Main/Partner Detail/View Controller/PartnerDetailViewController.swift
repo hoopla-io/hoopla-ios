@@ -1,5 +1,5 @@
 //
-//  ShopDetailViewController.swift
+//  PartnerDetailViewController.swift
 //  qahvazor-client
 //
 //  Created by Alphazet on 27/12/24.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-class ShopDetailViewController: UIViewController, ViewSpecificController, AlertViewController {
+class PartnerDetailViewController: UIViewController, ViewSpecificController, AlertViewController {
     // MARK: - Root View
-    typealias RootView = ShopDetailView
+    typealias RootView = PartnerDetailView
 
     // MARK: - Services
     var customSpinnerView = CustomSpinnerView()
     var isLoading = false
     var coordinator: MainCoordinator?
-    let viewModel = ShopsListViewModel()
+    let viewModel = PartnerDetailViewModel()
     
     // MARK: - Attributes
     var coffeeDataProvider: CoffeeListDataProvider?
@@ -49,7 +49,7 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     
 }
 // MARK: - Networking
-extension ShopDetailViewController: ShopsListViewModelProtocol {
+extension PartnerDetailViewController: PartnerDetailViewModelProtocol {
     func didFinishFetch(data: [Shop]) {
         shopsDataProvider?.items = data
     }
@@ -74,7 +74,7 @@ extension ShopDetailViewController: ShopsListViewModelProtocol {
 }
 
 // MARK: - Other funcs
-extension ShopDetailViewController {
+extension PartnerDetailViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
         

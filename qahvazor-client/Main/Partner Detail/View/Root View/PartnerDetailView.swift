@@ -1,5 +1,5 @@
 //
-//  ShopDetailView.swift
+//  PartnerDetailView.swift
 //  qahvazor-client
 //
 //  Created by Alphazet on 27/12/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ShopDetailView: CustomView {
+final class PartnerDetailView: CustomView {
     @IBOutlet weak var titleImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!

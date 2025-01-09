@@ -31,8 +31,8 @@ final class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func pushToShopsDetailVC(id: Int?) {
-        let vc = ShopDetailViewController()
+    func pushToPartnerDetailVC(id: Int?) {
+        let vc = PartnerDetailViewController()
         vc.partnerId = id
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)

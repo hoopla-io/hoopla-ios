@@ -26,7 +26,6 @@ class ShopsListViewController: UIViewController, ViewSpecificController, AlertVi
         super.viewDidLoad()
         appearanceSettings()
         guard let partnerId else { return }
-        viewModel.getPartnerInfo(id: partnerId)
         viewModel.getFilialsList(partnerId: partnerId)
     }
     
@@ -35,10 +34,6 @@ class ShopsListViewController: UIViewController, ViewSpecificController, AlertVi
 extension ShopsListViewController: ShopsListViewModelProtocol {
     func didFinishFetch(data: [Shop]) {
         dataProvider?.items = data
-    }
-    
-    func didFinishFetch(data: Company) {
-        navigationItem.title = data.name
     }
 }
 
