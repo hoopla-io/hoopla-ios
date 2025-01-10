@@ -17,10 +17,10 @@ final class QRCoordinator: Coordinator {
     }
     
     internal func start() {
-        let vc = MainViewController()
+        let vc = QRViewController()
         vc.tabBarItem = UITabBarItem(title: "QR", image: UIImage(systemName: "qrcode.viewfinder"), selectedImage: UIImage(systemName: "qrcode.viewfinder"))
         vc.tabBarItem.tag = 1
-//        vc.coordinator = self
+        vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
 }

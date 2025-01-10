@@ -14,9 +14,16 @@ struct Company: Codable {
     let logoUrl: String?
     let phoneNumbers: [PhoneNumber]?
     let urls: [SocialMedia]?
+    let drinks: [Drinks]?
 }
 
 struct SocialMedia: Codable {
     let url: String?
     let urlType: String?
+}
+
+struct Drinks: Codable {
+    let id: Int?
+    let name: String?
+    let pictureUrl: String?
 }

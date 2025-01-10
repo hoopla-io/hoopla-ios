@@ -8,6 +8,7 @@
 import UIKit
 
 final class PartnerDetailView: CustomView {
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -28,4 +29,5 @@ final class PartnerDetailView: CustomView {
             socialListCollectionView.register(UINib(nibName: SocialCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: SocialCollectionViewCell.defaultReuseIdentifier)
         }
     }
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
 }

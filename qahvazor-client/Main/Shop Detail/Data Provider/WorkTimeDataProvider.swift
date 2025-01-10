@@ -40,7 +40,7 @@ final class WorkTimeDataProvider: NSObject, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ??
                     UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = "\(items[indexPath.row].weekDay ?? ""): \(items[indexPath.row].openAt ?? "") - \(items[indexPath.row].closeAt ?? "")"
+        cell.textLabel?.text = "\(items[indexPath.row].openAt ?? "") - \(items[indexPath.row].closeAt ?? "") \(items[indexPath.row].weekDay ?? "")"
         cell.backgroundColor = .clear
         return cell
     }

@@ -132,7 +132,7 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNI-q4-vgE">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNI-q4-vgE">
                                                                     <rect key="frame" x="0.0" y="128" width="329" height="55"/>
                                                                     <color key="backgroundColor" name="mainColor"/>
                                                                     <constraints>
@@ -155,11 +155,14 @@
                                                                             <color key="value" name="greenHighlight"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="mainButtonActions:" destination="-1" eventType="touchUpInside" id="DrE-GP-bxW"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                     <constraints>
                                                         <constraint firstItem="fZu-ed-PBw" firstAttribute="leading" secondItem="Ozm-7R-ryj" secondAttribute="leading" constant="16" id="6yL-eu-peI"/>
                                                         <constraint firstAttribute="trailing" secondItem="fZu-ed-PBw" secondAttribute="trailing" constant="16" id="9pI-sb-6uN"/>
@@ -175,13 +178,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rxN-LH-ma1">
                                                     <rect key="frame" x="0.0" y="234.99999999999994" width="361" height="105"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foE-w2-z3R">
+                                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foE-w2-z3R">
                                                             <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
-                                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                            <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="vU1-bH-s3B"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                             <color key="tintColor" systemColor="labelColor"/>
                                                             <inset key="titleEdgeInsets" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -194,14 +197,17 @@
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="settings"/>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="mainButtonActions:" destination="-1" eventType="touchUpInside" id="9vf-4s-b6l"/>
+                                                            </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hz-hv-42c">
+                                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hz-hv-42c">
                                                             <rect key="frame" x="0.0" y="55" width="361" height="50"/>
-                                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                            <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="IRJ-nu-aTD"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                             <color key="tintColor" systemColor="labelColor"/>
                                                             <inset key="titleEdgeInsets" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -214,6 +220,9 @@
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="privacyPolicy"/>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="mainButtonActions:" destination="-1" eventType="touchUpInside" id="pjH-xn-LiX"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -232,14 +241,14 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcO-9p-6AJ">
                                                     <rect key="frame" x="0.0" y="417.99999999999994" width="361" height="50"/>
-                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="HSm-Nm-fda"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <color key="tintColor" systemColor="labelColor"/>
-                                                    <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="logout" image="iphone.and.arrow.forward.inward" catalog="system">
+                                                    <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="logout" image="door.left.hand.open" catalog="system">
                                                         <color key="titleColor" systemColor="labelColor"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
@@ -248,6 +257,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="logout"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="logoutAction:" destination="-1" eventType="touchUpInside" id="7eY-kA-gpQ"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -298,8 +310,8 @@
         </view>
     </objects>
     <resources>
+        <image name="door.left.hand.open" catalog="system" width="108" height="128"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
-        <image name="iphone.and.arrow.forward.inward" catalog="system" width="112" height="128"/>
         <image name="lock.fill" catalog="system" width="111" height="128"/>
         <image name="logo" width="782" height="782"/>
         <namedColor name="green">

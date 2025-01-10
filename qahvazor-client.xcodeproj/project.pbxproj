@@ -128,6 +128,11 @@
 		75A04A692D2E86E50082D342 /* SocialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */; };
 		75A04A6B2D2E92380082D342 /* ShopsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */; };
 		75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */; };
+		75BB447C2D30F6DB0000C64A /* QRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447B2D30F6DB0000C64A /* QRViewModel.swift */; };
+		75BB447E2D30F6EB0000C64A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447D2D30F6EB0000C64A /* QRView.swift */; };
+		75BB44802D30F6F90000C64A /* QRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BB447F2D30F6F90000C64A /* QRView.xib */; };
+		75BB44822D30F7000000C64A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44812D30F7000000C64A /* QRViewController.swift */; };
+		75BB44852D31296F0000C64A /* QR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44842D31296F0000C64A /* QR.swift */; };
 		75C9B52E2D2CF16A006901E6 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9B52C2D2CF16A006901E6 /* ShopCollectionViewCell.swift */; };
 		75C9B52F2D2CF16A006901E6 /* ShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75C9B52D2D2CF16A006901E6 /* ShopCollectionViewCell.xib */; };
 		75DCE3552D1A9B26003A59CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE3532D1A9B26003A59CD /* Localizable.strings */; };
@@ -266,6 +271,11 @@
 		75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialCollectionViewCell.xib; sourceTree = "<group>"; };
 		75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsDataProvider.swift; sourceTree = "<group>"; };
 		75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeDataProvider.swift; sourceTree = "<group>"; };
+		75BB447B2D30F6DB0000C64A /* QRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewModel.swift; sourceTree = "<group>"; };
+		75BB447D2D30F6EB0000C64A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
+		75BB447F2D30F6F90000C64A /* QRView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRView.xib; sourceTree = "<group>"; };
+		75BB44812D30F7000000C64A /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		75BB44842D31296F0000C64A /* QR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QR.swift; sourceTree = "<group>"; };
 		75C9B52C2D2CF16A006901E6 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
 		75C9B52D2D2CF16A006901E6 /* ShopCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopCollectionViewCell.xib; sourceTree = "<group>"; };
 		75DCE3542D1A9B26003A59CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -368,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				7596B51C2D1D6A040070A5BB /* Main */,
+				75BB44832D3129650000C64A /* QR */,
 				75DCE38A2D1C2A8B003A59CD /* Profile */,
 				75DCE36B2D1ABBED003A59CD /* Language.swift */,
 			);
@@ -515,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				752331342D198B9E0090997E /* QRCoordinator.swift */,
+				75BB44772D30F6B00000C64A /* QR */,
 			);
 			path = QR;
 			sourceTree = "<group>";
@@ -814,6 +826,49 @@
 				759624D52D2CF66B00F52EE9 /* Shop.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		75BB44772D30F6B00000C64A /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				75BB447A2D30F6C20000C64A /* View Controller */,
+				75BB44792D30F6BE0000C64A /* View */,
+				75BB44782D30F6B60000C64A /* View Model */,
+			);
+			path = QR;
+			sourceTree = "<group>";
+		};
+		75BB44782D30F6B60000C64A /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				75BB447B2D30F6DB0000C64A /* QRViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		75BB44792D30F6BE0000C64A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75BB447D2D30F6EB0000C64A /* QRView.swift */,
+				75BB447F2D30F6F90000C64A /* QRView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75BB447A2D30F6C20000C64A /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				75BB44812D30F7000000C64A /* QRViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		75BB44832D3129650000C64A /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				75BB44842D31296F0000C64A /* QR.swift */,
+			);
+			path = QR;
 			sourceTree = "<group>";
 		};
 		75C9B52A2D2CF14D006901E6 /* Root View */ = {
@@ -1130,6 +1185,7 @@
 				75DCE3552D1A9B26003A59CD /* Localizable.strings in Resources */,
 				757F362A2D1E747200EFA728 /* PartnerDetailView.xib in Resources */,
 				7552C2F82D1D838500F2DF78 /* ShopsListView.xib in Resources */,
+				75BB44802D30F6F90000C64A /* QRView.xib in Resources */,
 				75DCE36A2D1ABBA3003A59CD /* LanguageCollectionViewCell.xib in Resources */,
 				75DCE3612D1ABB33003A59CD /* LanguageView.xib in Resources */,
 				75705CE52D2FD9FB00DA3AA4 /* ShopDetailView.xib in Resources */,
@@ -1201,6 +1257,7 @@
 				752330D92D197B210090997E /* AlertViewTexts.swift in Sources */,
 				752330DA2D197B210090997E /* MainConstants.swift in Sources */,
 				752330DB2D197B210090997E /* ReusableView.swift in Sources */,
+				75BB44822D30F7000000C64A /* QRViewController.swift in Sources */,
 				752330DC2D197B210090997E /* UIViewController.swift in Sources */,
 				752330DD2D197B210090997E /* PaddingLabel.swift in Sources */,
 				752330DE2D197B210090997E /* Parametrs.swift in Sources */,
@@ -1236,16 +1293,19 @@
 				752330F12D197B210090997E /* EndPoints.swift in Sources */,
 				752330F22D197B210090997E /* ViewModelProtocol.swift in Sources */,
 				752330F32D197B210090997E /* JSONDownloader.swift in Sources */,
+				75BB44852D31296F0000C64A /* QR.swift in Sources */,
 				752330F42D197B210090997E /* LocalizationManager.swift in Sources */,
 				75955BCF2D1D6D9600F4DD80 /* CompanyCollectionViewCell.swift in Sources */,
 				752331332D198B930090997E /* MainCoordinator.swift in Sources */,
 				757F36262D1E746500EFA728 /* PartnerDetailViewModel.swift in Sources */,
 				757F36282D1E746C00EFA728 /* PartnerDetailView.swift in Sources */,
+				75BB447C2D30F6DB0000C64A /* QRViewModel.swift in Sources */,
 				752330F52D197B210090997E /* AppUtility.swift in Sources */,
 				752331922D1A8E800090997E /* CircularProgressBar.swift in Sources */,
 				752330F62D197B210090997E /* CustomTextField.swift in Sources */,
 				752330F72D197B210090997E /* KAPinField.swift in Sources */,
 				752330F82D197B210090997E /* BaseView.swift in Sources */,
+				75BB447E2D30F6EB0000C64A /* QRView.swift in Sources */,
 				752331312D19834B0090997E /* TabBarController.swift in Sources */,
 				752330F92D197B210090997E /* ViewSpecificController.swift in Sources */,
 				752330FA2D197B210090997E /* UIShowHideTextField.swift in Sources */,
@@ -1302,7 +1362,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -1331,7 +1391,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";

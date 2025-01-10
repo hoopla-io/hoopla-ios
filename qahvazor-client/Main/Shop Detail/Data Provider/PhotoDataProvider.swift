@@ -47,7 +47,7 @@ final class PhotoDataProvider: NSObject, UICollectionViewDataSource, UICollectio
         }
         
         if let vc = viewController as? ShopDetailViewController {
-            cell.photoImageView.setupImageViewer(urls: imageUrls, initialIndex: indexPath.row, options: [.theme(.dark)], from: vc)
+            cell.photoImageView.setupImageViewer(urls: imageUrls, initialIndex: indexPath.row, options: [.theme(.dark), .closeIcon(.appImage(.closeCircle))], from: vc)
         }
         return cell
     }

@@ -19,7 +19,6 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
     let viewModel = ProfileViewModel()
     
     // MARK: - Attributes
-    var wasAuthed = false
     private var alphaStatusBar: CGFloat?
     
     // MARK: - Actions
@@ -27,22 +26,34 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
         next()
     }
     
+    @IBAction func mainButtonActions(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            break
+        case 1:
+            coordinator?.pushToLanguageVC(viewController: self)
+        default: break
+        }
+    }
+    
+    @IBAction func logoutAction(_ sender: UIButton) {
+        showAlertDestructive(message: "logoutAlert".localized, buttonTitle: "logout".localized) {
+            self.viewModel.logOut()
+        }
+    }
+    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
-        wasAuthed = UserDefaults.standard.isAuthed()
+        if UserDefaults.standard.isAuthed() {
+            viewModel.getMe()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.clear()
-        
-        if UserDefaults.standard.isAuthed() {
-            viewModel.getMe()
-        } else if wasAuthed {
-//            didFinishFetchLogOut()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,7 +80,13 @@ extension ProfileViewController: ProfileViewModelProtocol {
     
     func didFinishFetch(data: Account) {
         view().nameLabel.text = data.name
-        view().accounNumberLabel.text = data.phoneNumber
+        view().accounNumberLabel.text = data.phoneNumber?.displayPhone()
+    }
+    
+    func didFinishFetchLogout() {
+        UserDefaults.standard.removeAccount()
+        resetTabBar()
+        checkAuth()
     }
 }
 
@@ -115,16 +132,16 @@ extension ProfileViewController {
 // MARK: - UIScrollViewDelegate
 extension ProfileViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        alphaStatusBar = handleStatusBar(scrollView: scrollView, topSpace: view().imageHeightConstraint.constant)
+        alphaStatusBar = handleStatusBar(scrollView: scrollView, topSpace: 50)
     }
 }
 
 // MARK: - SettingsViewControllerDelegate
-//extension ProfileViewController: SettingsViewControllerDelegate {
-//    func didSelectLanguage() {
-//        resetTabBar()
-//    }
-//}
+extension ProfileViewController: LanguageViewControllerDelegate {
+    func didSelectLanguage() {
+        resetTabBar()
+    }
+}
 
 //MARK: - Scroll to up
 extension ProfileViewController: TabBarReselectHandling {

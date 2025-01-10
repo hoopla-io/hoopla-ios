@@ -241,9 +241,11 @@
                 <outlet property="coffeeListCollectionView" destination="z9K-0t-u6v" id="ANM-Rn-wSy"/>
                 <outlet property="descriptionLabel" destination="frv-Xc-fkL" id="JFp-6k-eRL"/>
                 <outlet property="filialsListCollectionView" destination="CII-rY-yUo" id="fbh-yz-mcc"/>
+                <outlet property="scrollView" destination="8Vv-3o-hpo" id="8v3-tM-4Rz"/>
                 <outlet property="socialListCollectionView" destination="kzS-3A-iQB" id="9BE-vh-lCi"/>
                 <outlet property="titleImage" destination="2aZ-iO-6xv" id="Rzt-Am-bQp"/>
                 <outlet property="titleLabel" destination="kk7-Zh-G3e" id="h42-V7-kn5"/>
+                <outlet property="topConstraint" destination="jAd-cg-pXS" id="w4l-x5-vWX"/>
             </connections>
             <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>

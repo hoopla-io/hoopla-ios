@@ -18,6 +18,7 @@ class PartnerDetailViewController: UIViewController, ViewSpecificController, Ale
     let viewModel = PartnerDetailViewModel()
     
     // MARK: - Attributes
+    private var alphaStatusBar: CGFloat?
     var coffeeDataProvider: CoffeeListDataProvider?
     var shopsDataProvider: ShopsDataProvider?
     var socialDataProvider: SocialDataProvider?
@@ -42,6 +43,16 @@ class PartnerDetailViewController: UIViewController, ViewSpecificController, Ale
         navigationController?.navigationBar.clear()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        handleStatusBar(alpha: alphaStatusBar)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        handleStatusBar()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.reset()
@@ -62,6 +73,9 @@ extension PartnerDetailViewController: PartnerDetailViewModelProtocol {
         view().titleLabel.text = data.name
         view().descriptionLabel.text = data.description
         
+        if let drinks = data.drinks {
+            coffeeDataProvider?.items = drinks
+        }
         if let phone = data.phoneNumbers?.first {
             let item = SocialMedia(url: phone.phoneNumber, urlType: SocialUrlType.phone.rawValue)
             socialsData.append(item)
@@ -77,6 +91,7 @@ extension PartnerDetailViewController: PartnerDetailViewModelProtocol {
 extension PartnerDetailViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
+        view().scrollView.delegate = self
         
         let coffeeDataProvider = CoffeeListDataProvider()
         coffeeDataProvider.collectionView = view().coffeeListCollectionView
@@ -101,3 +116,9 @@ extension PartnerDetailViewController {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension PartnerDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        alphaStatusBar = handleStatusBar(scrollView: scrollView, topSpace: view().topConstraint.constant)
+    }
+}

@@ -31,4 +31,13 @@ final class ProfileCoordinator: Coordinator {
         vc.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func pushToLanguageVC(viewController: UIViewController) {
+        let vc = LanguageViewController()
+        vc.fromSettings = true
+        if let viewController = viewController as? ProfileViewController {
+            vc.delegate = viewController
+        }
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

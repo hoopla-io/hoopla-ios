@@ -10,6 +10,7 @@ import Alamofire
 protocol ProfileViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: Auth)
     func didFinishFetch(data: Account)
+    func didFinishFetchLogout()
 }
 
 final class ProfileViewModel {
@@ -57,6 +58,20 @@ final class ProfileViewModel {
                 } catch {
                     self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                 }
+            }
+            self.delegate?.hideActivityIndicator()
+        })
+    }
+    
+    func logOut() {
+        delegate?.showActivityIndicator()
+        JSONDownloader.shared.jsonTask(url: EndPoints.logout.rawValue, requestMethod: .post, completionHandler: { [weak self]  (result) in
+            guard let self = self else { return }
+            switch result {
+            case .Error(let error, let message):
+                self.delegate?.showAlertClosure(error: (error,message))
+            case .Success(let json):
+                self.delegate?.didFinishFetchLogout()
             }
             self.delegate?.hideActivityIndicator()
         })

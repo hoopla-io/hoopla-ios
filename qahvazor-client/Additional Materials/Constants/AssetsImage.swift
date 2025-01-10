@@ -21,4 +21,7 @@ enum AssetsImage: String {
     case infoAlert
     case success
     case warning
+    
+    // MARK: - Main
+    case closeCircle
 }

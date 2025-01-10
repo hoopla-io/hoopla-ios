@@ -22,7 +22,7 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
     // MARK: - Attributes
     weak var viewController: UIViewController?
     
-    var items = [Company]() {
+    var items = [Drinks]() {
         didSet {
             self.collectionView.reloadData()
         }
@@ -35,12 +35,15 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
 
     // MARK: - Data Source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CoffeeCollectionViewCell else { return UICollectionViewCell() }
-        
+        cell.titleLabel.text = items[indexPath.row].name
+        if let imageURL = items[indexPath.row].pictureUrl {
+            cell.imageView.setImage(with: imageURL)
+        }
         return cell
     }
 
