@@ -18,6 +18,7 @@ protocol ItemCount {
 enum ItemType {
     case company
     case shops
+    case subscription
 }
 
 struct ItemCountCompany: ItemCount {
@@ -37,6 +38,7 @@ enum ItemRatio: CGFloat {
     case shops      = 0.5
     case coffee     = 1.0
     case photo      = 0.56
+    case subscription = 0.7
 }
 
 enum ItemSpacing: CGFloat {
@@ -62,6 +64,8 @@ extension UICollectionView {
             return itemSize(itemType: .company, layout: layout, ratio: .company, spacing: .standard, additionalHeight: .company)
         case .shops:
             return itemSize(itemType: .shops, layout: layout, ratio: .shops, spacing: .standard, additionalHeight: .company)
+        case .subscription:
+            return itemSize(itemType: .company, layout: layout, ratio: .subscription, spacing: .standard, additionalHeight: .company)
         default:
             return CGSize.zero
         }
@@ -73,6 +77,8 @@ extension UICollectionView {
             return numberInRow(type: ItemCountCompany())
         case .shops:
             return numberInRow(type: ItemCountShops())
+        case .subscription:
+            return numberInRow(type: ItemCountCompany())
         }
     }
     

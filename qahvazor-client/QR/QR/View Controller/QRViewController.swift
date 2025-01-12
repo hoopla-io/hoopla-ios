@@ -20,7 +20,7 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
     let viewModel = QRViewModel()
     
     // MARK: - Attributes
-    var dataProvider: MainDataProvider?
+    var dataProvider: HistoryDataProvider?
     private var progressTimer: Timer?
     private var duration: Double = 20.0 {
         didSet {
@@ -28,13 +28,12 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
                 duration = 0.0
                 progressTimer?.invalidate()
                 view().reloadButton.isHidden = false
-                view().timerLabel.isHidden = true
+                view().timerLabel.text = "00:00"
                 dismiss(animated: true)
                 return
             }
             view().reloadButton.isHidden = true
-            view().timerLabel.isHidden = false
-            view().timerLabel.text = "\(Int(duration))"
+            view().timerLabel.text = duration.convertToTime(calendarType: [.minute, .second])
         }
     }
     private var timeInterval: Double = 1
@@ -50,7 +49,14 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
             duration = Double(expireTime - Int(Date().timeIntervalSince1970))
         }
     }
+    var appDeactiveTime = Double()
+    var durationInDeactive = Double()
+    
     // MARK: - Actions
+    @IBAction func authAction() {
+        tabBarController?.selectedIndex = 2
+    }
+    
     @IBAction func reloadAction() {
         viewModel.getQRCode()
         Haptic.impact(.heavy).generate()
@@ -60,7 +66,10 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
-        viewModel.getQRCode()
+        if UserDefaults.standard.isAuthed() {
+            viewModel.getQRCode()
+//            viewModel.getOrderHistoryList()
+        }
     }
     
 }
@@ -70,6 +79,10 @@ extension QRViewController: QRViewModelProtocol {
         self.data = data
         setupProgressTimer()
     }
+    
+    func didFinishFetch(data: [OrderHistory]) {
+        dataProvider?.items = data
+    }
 }
 
 // MARK: - Other funcs
@@ -78,14 +91,55 @@ extension QRViewController {
         viewModel.delegate = self
         navigationItem.title = "QR".localized
         
+        let dataProvider = HistoryDataProvider()
+        dataProvider.tableView = view().tableView
+        self.dataProvider = dataProvider
+        
+        view().authContainerView.isHidden = UserDefaults.standard.isAuthed()
+        setupObserver()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+        view().tableView.refreshControl = refreshControl
+        
+        let data: [OrderHistory] = [OrderHistory(id: 1, partnerName: "Aroma", shopName: "Aroma Toshkent City Mall", purchasedAtUnix: 1736671295),
+                                    OrderHistory(id: 1, partnerName: "Safia", shopName: "Safia Toshkent City", purchasedAtUnix: 1736670295)]
+        dataProvider.items = data
+    }
+    
+    @objc func handleRefreshControl(sender: UIRefreshControl? = nil) {
+//        viewModel.getOrderHistoryList()
+        
+        DispatchQueue.main.async {
+            sender?.endRefreshing()
+        }
     }
     
     private func setupProgressTimer() {
         progressTimer?.invalidate()
-        progressTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(progressAction), userInfo: nil, repeats: true)
+        progressTimer = Timer.scheduledTimer(timeInterval: TimeInterval(timeInterval), target: self, selector: #selector(progressAction), userInfo: nil, repeats: true)
     }
     
     @objc func progressAction() {
         duration -= timeInterval
+    }
+    
+    @objc func appBecomeActive() {
+        let currentTime = Double(Date().timeIntervalSince1970)
+        let difference = currentTime - appDeactiveTime
+        let differenceDuration = abs(duration - durationInDeactive)
+        
+        duration -= abs(difference - differenceDuration)
+    }
+    
+    @objc func appBecomeDeactive() {
+        appDeactiveTime = Double(Date().timeIntervalSince1970)
+        durationInDeactive = duration
+    }
+    
+    private func setupObserver() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appBecomeDeactive), name: UIApplication.willResignActiveNotification, object: nil)
     }
 }

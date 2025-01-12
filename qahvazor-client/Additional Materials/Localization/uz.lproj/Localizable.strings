@@ -37,6 +37,7 @@ privacyPolicy = "";
 licenceAgreement = "Litsenziya Shartnomasi";
 privacyPolicy = "Maxfiylik siyosati";
 logout = "Chiqish";
+subscriptions = "Obunalar";
 
 // MARK: - Main
 coffeeShops = "Qahvaxonalar";
@@ -47,6 +48,17 @@ maps = "Xaritalar";
 address = "Manzil";
 call = "Qo'ng'iroq";
 workTime = "Ish vaqti:";
+monday = "Dushanba";
+tuesday = "Seshanba";
+wednesday = "Chorshanba";
+thursday = "Payshanba";
+friday = "Juma";
+saturday = "Shanba";
+sunday = "Yakshanba";
+
+// MARK: - QR
+history = "Tarix";
+auth = "Ro'yhatdan o'tish";
 
 // MARK: - Alert
 success = "Muvaffaqiyatli";

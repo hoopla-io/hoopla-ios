@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Haptica
 
 class PartnerDetailViewController: UIViewController, ViewSpecificController, AlertViewController {
     // MARK: - Root View
@@ -23,6 +24,8 @@ class PartnerDetailViewController: UIViewController, ViewSpecificController, Ale
     var shopsDataProvider: ShopsDataProvider?
     var socialDataProvider: SocialDataProvider?
     var partnerId: Int?
+    var isExpanded = false
+    var maxLineLimit = 3
     
     // MARK: - Actions
     @IBAction func filialsAction(_ sender: Any) {
@@ -72,6 +75,7 @@ extension PartnerDetailViewController: PartnerDetailViewModelProtocol {
         }
         view().titleLabel.text = data.name
         view().descriptionLabel.text = data.description
+        checkNumberOfLines(for: view().descriptionLabel)
         
         if let drinks = data.drinks {
             coffeeDataProvider?.items = drinks
@@ -104,6 +108,48 @@ extension PartnerDetailViewController {
         let socialDataProvider = SocialDataProvider(viewController: self)
         socialDataProvider.collectionView = view().socialListCollectionView
         self.socialDataProvider = socialDataProvider
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleLabel))
+        
+        view().descriptionLabel.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func toggleLabel() {
+        isExpanded.toggle()
+        if isExpanded {
+            Haptic.impact(.soft).generate()
+        } else {
+            Haptic.impact(.light).generate()
+        }
+        
+        view().descriptionLabel.numberOfLines = isExpanded ? 0 : maxLineLimit
+        self.view().descriptionLabel.alpha = 0
+        UIView.animate(withDuration: isExpanded ? 0.3 : 0.2) {
+            self.view().layoutIfNeeded()
+            self.view().descriptionLabel.alpha = 1
+        }
+    }
+    
+    private func checkNumberOfLines(for label: UILabel) {
+        guard let text = label.text, let font = label.font else { return }
+        
+        let labelWidth = label.frame.width
+        let maxSize = CGSize(width: labelWidth, height: CGFloat.greatestFiniteMagnitude)
+        
+        // Calculate the bounding rect for the text
+        let textBoundingRect = text.boundingRect(
+            with: maxSize,
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            attributes: [.font: font],
+            context: nil
+        )
+        
+        // Calculate the actual number of lines required
+        let lineHeight = font.lineHeight
+        let numberOfLines = Int(ceil(textBoundingRect.height / lineHeight))
+        
+        // Hide the label if the number of lines exceeds the maximum
+        view().descriptionLabel.isUserInteractionEnabled = numberOfLines > maxLineLimit
     }
     
     func callAction(phoneNumber: String?) {

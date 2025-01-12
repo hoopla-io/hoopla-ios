@@ -1,14 +1,14 @@
 //
-//  CoffeeListDataProvider.swift
+//  SubscriptionDataProvider.swift
 //  qahvazor-client
 //
-//  Created by Alphazet on 06/01/25.
+//  Created by Alphazet on 11/01/25.
 //
 
 import UIKit
 import SkeletonView
 
-final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class SubscriptionDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     // MARK: - Outlets
     weak var collectionView: UICollectionView! {
@@ -22,8 +22,9 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
     // MARK: - Attributes
     weak var viewController: UIViewController?
     
-    var items = [Drinks]() {
+    var items = [Subscription]() {
         didSet {
+            self.collectionView.hideSkeleton()
             self.collectionView.reloadData()
         }
     }
@@ -39,25 +40,34 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CoffeeCollectionViewCell else { return UICollectionViewCell() }
-        cell.titleLabel.text = items[indexPath.row].name
-        if let imageURL = items[indexPath.row].pictureUrl {
-            cell.imageView.setImage(with: imageURL, placeholder: .appImage(.placeholder))
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SubscriptionCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? SubscriptionCollectionViewCell else { return UICollectionViewCell() }
+        cell.item = items[indexPath.row]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let vc = viewController as? MainViewController else { return }
+//        if indexPath.row == items.count - 1 && vc.totalItems > items.count {
+//            vc.currentPage += 1
+//            vc.viewModel.notificationsList(page: vc.currentPage)
+//        }
     }
 
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.itemSize(width: 100, additionalHeight: 0, ratio: .coffee)
+        return collectionView.itemSize(type: .subscription)
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let vc = viewController as? MainViewController else { return }
+        vc.coordinator?.pushToPartnerDetailVC(id: items[indexPath.row].id)
+    }
 }
 
 // MARK: - SkeletonCollectionViewDataSource
-extension CoffeeListDataProvider: SkeletonCollectionViewDataSource {
+extension SubscriptionDataProvider: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return CoffeeCollectionViewCell.defaultReuseIdentifier
+        return SubscriptionCollectionViewCell.defaultReuseIdentifier
     }
     
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

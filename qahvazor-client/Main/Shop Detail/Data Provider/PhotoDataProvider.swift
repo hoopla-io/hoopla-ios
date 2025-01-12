@@ -42,8 +42,7 @@ final class PhotoDataProvider: NSObject, UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? PhotoCollectionViewCell else { return UICollectionViewCell() }
         if let imageUrl = items[indexPath.row].pictureUrl {
-            cell.photoImageView.setImage(with: imageUrl)
-            print(imageUrl, indexPath.item)
+            cell.photoImageView.setImage(with: imageUrl, placeholder: .appImage(.placeholder))
         }
         
         if let vc = viewController as? ShopDetailViewController {

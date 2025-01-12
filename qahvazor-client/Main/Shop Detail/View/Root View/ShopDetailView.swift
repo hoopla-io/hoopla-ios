@@ -15,5 +15,9 @@ class ShopDetailView: CustomView {
         }
     }
     @IBOutlet weak var pageControll: UIPageControl!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+//            tableView.contentInset.left = -10
+        }
+    }
 }

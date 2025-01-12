@@ -25,7 +25,7 @@ class ShopCollectionViewCell: CustomCollectionViewCell {
             titleLabel.text = item.name
             
             if let imageUrl = item.pictureUrl {
-                imageView.setImage(with: imageUrl)
+                imageView.setImage(with: imageUrl, placeholder: .appImage(.placeholder))
             }
         }
     }

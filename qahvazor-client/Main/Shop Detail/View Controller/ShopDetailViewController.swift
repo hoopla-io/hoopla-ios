@@ -91,9 +91,10 @@ extension ShopDetailViewController {
     func openMaps(latitude: Double, longitude: Double, title: String?) {
         let application = UIApplication.shared
         let coordinate = "\(latitude),\(longitude)"
+        let encodedTitle = title?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let handlers = [
             ("Yandex Maps", "yandexmaps://maps.yandex.ru/?pt=\(longitude),\(latitude)"),
-            ("Apple Maps", "http://maps.apple.com/?q=&ll=\(coordinate)"),
+            ("Apple Maps".localized, "http://maps.apple.com/?q=\(encodedTitle)&ll=\(coordinate)"),
             ("Yandex Navigator", "yandexnavi://build_route_on_map?lat_to=\(latitude)&lon_to=\(longitude)"),
             ("2gis Map", "dgis://2gis.ru/routeSearch/rsType/car/to/\(longitude),\(latitude)")
         ]
