@@ -16,6 +16,8 @@ enum Parameters: String {
     case id = "id"
     case partnerId = "partnerId"
     case shopId = "shopId"
+    case long = "long"
+    case lat = "lat"
     
     // MARK: - Profile
     case phoneNumber = "phoneNumber"

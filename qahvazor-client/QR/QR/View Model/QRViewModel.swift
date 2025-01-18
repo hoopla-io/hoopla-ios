@@ -38,7 +38,7 @@ final class QRViewModel {
     
     func getOrderHistoryList() {
         
-        JSONDownloader.shared.jsonTask(url: EndPoints.orderHistory.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
+        JSONDownloader.shared.jsonTask(url: EndPoints.orders.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
             guard let self = self else { return }
             switch result {
             case .Error(let error, let message):

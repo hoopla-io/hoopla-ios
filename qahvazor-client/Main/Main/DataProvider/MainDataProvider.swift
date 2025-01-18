@@ -22,7 +22,7 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
     // MARK: - Attributes
     weak var viewController: UIViewController?
     
-    var items = [Company]() {
+    var items = [Shop]() {
         didSet {
             self.collectionView.hideSkeleton()
             self.collectionView.reloadData()
@@ -60,7 +60,8 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = viewController as? MainViewController else { return }
-        vc.coordinator?.pushToPartnerDetailVC(id: items[indexPath.row].id)
+        guard let id = items[indexPath.row].shopId else { return }
+        vc.coordinator?.pushToShopDetail(id: id, name: items[indexPath.row].name)
     }
 }
 

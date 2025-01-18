@@ -21,12 +21,12 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
     
     // MARK: - Attributes
     var dataProvider: HistoryDataProvider?
-    private var progressTimer: Timer?
+    private var progressTimer = Timer()
     private var duration: Double = 20.0 {
         didSet {
             guard duration >= 0.0 else {
                 duration = 0.0
-                progressTimer?.invalidate()
+                progressTimer.invalidate()
                 view().reloadButton.isHidden = false
                 view().timerLabel.text = "00:00"
                 dismiss(animated: true)
@@ -68,7 +68,7 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
         appearanceSettings()
         if UserDefaults.standard.isAuthed() {
             viewModel.getQRCode()
-//            viewModel.getOrderHistoryList()
+            viewModel.getOrderHistoryList()
         }
     }
     
@@ -101,14 +101,10 @@ extension QRViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
         view().tableView.refreshControl = refreshControl
-        
-        let data: [OrderHistory] = [OrderHistory(id: 1, partnerName: "Aroma", shopName: "Aroma Toshkent City Mall", purchasedAtUnix: 1736671295),
-                                    OrderHistory(id: 1, partnerName: "Safia", shopName: "Safia Toshkent City", purchasedAtUnix: 1736670295)]
-        dataProvider.items = data
     }
     
     @objc func handleRefreshControl(sender: UIRefreshControl? = nil) {
-//        viewModel.getOrderHistoryList()
+        viewModel.getOrderHistoryList()
         
         DispatchQueue.main.async {
             sender?.endRefreshing()
@@ -116,8 +112,9 @@ extension QRViewController {
     }
     
     private func setupProgressTimer() {
-        progressTimer?.invalidate()
+        progressTimer.invalidate()
         progressTimer = Timer.scheduledTimer(timeInterval: TimeInterval(timeInterval), target: self, selector: #selector(progressAction), userInfo: nil, repeats: true)
+        RunLoop.main.add(progressTimer, forMode: RunLoop.Mode.common)
     }
     
     @objc func progressAction() {

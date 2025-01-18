@@ -100,6 +100,7 @@
 		752331992D1A90AD0090997E /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331982D1A90AD0090997E /* LaunchScreenView.swift */; };
 		7523319B2D1A90B30090997E /* LaunchScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7523319A2D1A90B30090997E /* LaunchScreenView.xib */; };
 		7523319D2D1A90B90090997E /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7523319C2D1A90B90090997E /* LaunchScreenViewController.swift */; };
+		7535D11C2D3B8C620016C489 /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535D11B2D3B8C620016C489 /* UISearchBar.swift */; };
 		75422B022D33AB4F00B83C42 /* HistoryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75422B012D33AB4F00B83C42 /* HistoryDataProvider.swift */; };
 		75422B072D33AC1200B83C42 /* OrderHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75422B052D33AC1200B83C42 /* OrderHistoryTableViewCell.swift */; };
 		75422B082D33AC1200B83C42 /* OrderHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75422B062D33AC1200B83C42 /* OrderHistoryTableViewCell.xib */; };
@@ -171,6 +172,8 @@
 		75DCE3952D1C3186003A59CD /* CodeConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3942D1C3186003A59CD /* CodeConfirmView.swift */; };
 		75DCE3992D1C3195003A59CD /* CodeConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCE3982D1C3195003A59CD /* CodeConfirmViewController.swift */; };
 		75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DCE39A2D1C337D003A59CD /* CodeConfirmView.xib */; };
+		75F3B0DC2D3787FF003E37B9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F3B0DB2D3787FF003E37B9 /* LocationManager.swift */; };
+		75F3B0DE2D3789C7003E37B9 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F3B0DD2D3789C7003E37B9 /* Coordinate.swift */; };
 		75F6CFC82D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */; };
 		75F6CFC92D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */; };
 		75F6CFCC2D2BEBD200BDF947 /* CoffeeListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */; };
@@ -258,6 +261,7 @@
 		752331982D1A90AD0090997E /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		7523319A2D1A90B30090997E /* LaunchScreenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreenView.xib; sourceTree = "<group>"; };
 		7523319C2D1A90B90090997E /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		7535D11B2D3B8C620016C489 /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		75422B012D33AB4F00B83C42 /* HistoryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDataProvider.swift; sourceTree = "<group>"; };
 		75422B052D33AC1200B83C42 /* OrderHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		75422B062D33AC1200B83C42 /* OrderHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -332,6 +336,8 @@
 		75DCE3942D1C3186003A59CD /* CodeConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeConfirmView.swift; sourceTree = "<group>"; };
 		75DCE3982D1C3195003A59CD /* CodeConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeConfirmViewController.swift; sourceTree = "<group>"; };
 		75DCE39A2D1C337D003A59CD /* CodeConfirmView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CodeConfirmView.xib; sourceTree = "<group>"; };
+		75F3B0DB2D3787FF003E37B9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		75F3B0DD2D3789C7003E37B9 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeCollectionViewCell.swift; sourceTree = "<group>"; };
 		75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoffeeCollectionViewCell.xib; sourceTree = "<group>"; };
 		75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeListDataProvider.swift; sourceTree = "<group>"; };
@@ -471,6 +477,7 @@
 				7523309F2D197B210090997E /* CustomSpinnerView.swift */,
 				752331912D1A8E800090997E /* CircularProgressBar.swift */,
 				752330A02D197B210090997E /* PaddingLabel.swift */,
+				75F3B0DB2D3787FF003E37B9 /* LocationManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -506,6 +513,7 @@
 				752330BB2D197B210090997E /* Double.swift */,
 				752330BC2D197B210090997E /* NotificationCenter.swift */,
 				752330BD2D197B210090997E /* UIWindow.swift */,
+				7535D11B2D3B8C620016C489 /* UISearchBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -947,6 +955,7 @@
 			children = (
 				7596B51F2D1D6A180070A5BB /* Company.swift */,
 				759624D52D2CF66B00F52EE9 /* Shop.swift */,
+				75F3B0DD2D3789C7003E37B9 /* Coordinate.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1340,6 +1349,7 @@
 				7582AD7A2D32836500FF1ECF /* SubscriptionViewController.swift in Sources */,
 				7552C2FF2D1D843800F2DF78 /* ShopsListDataProvider.swift in Sources */,
 				752330C62D197B210090997E /* UICollectionView.swift in Sources */,
+				75F3B0DE2D3789C7003E37B9 /* Coordinate.swift in Sources */,
 				752330C72D197B210090997E /* AssetsImage.swift in Sources */,
 				752331372D198BA80090997E /* ProfileCoordinator.swift in Sources */,
 				75705CEA2D2FFD5500DA3AA4 /* PhotoDataProvider.swift in Sources */,
@@ -1362,6 +1372,7 @@
 				752331942D1A8EDC0090997E /* OnboardingCoordinator.swift in Sources */,
 				752330CF2D197B210090997E /* UILabel.swift in Sources */,
 				75DCE3992D1C3195003A59CD /* CodeConfirmViewController.swift in Sources */,
+				7535D11C2D3B8C620016C489 /* UISearchBar.swift in Sources */,
 				752331992D1A90AD0090997E /* LaunchScreenView.swift in Sources */,
 				752331902D1A8D440090997E /* FullOnboardingViewController.swift in Sources */,
 				752330D02D197B210090997E /* CustomSpinnerView.swift in Sources */,
@@ -1420,6 +1431,7 @@
 				75422B102D33B09F00B83C42 /* SubscriptionFeatureDataProvider.swift in Sources */,
 				752330F12D197B210090997E /* EndPoints.swift in Sources */,
 				752330F22D197B210090997E /* ViewModelProtocol.swift in Sources */,
+				75F3B0DC2D3787FF003E37B9 /* LocationManager.swift in Sources */,
 				752330F32D197B210090997E /* JSONDownloader.swift in Sources */,
 				75BB44852D31296F0000C64A /* QR.swift in Sources */,
 				752330F42D197B210090997E /* LocalizationManager.swift in Sources */,
@@ -1494,11 +1506,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Qahvazor;
+				INFOPLIST_KEY_CFBundleDisplayName = Hoopla;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1523,11 +1535,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Qahvazor;
+				INFOPLIST_KEY_CFBundleDisplayName = Hoopla;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

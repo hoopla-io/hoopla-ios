@@ -6,11 +6,22 @@
 //
 
 import UIKit
+import SkeletonView
 
 class OrderHistoryTableViewCell: UITableViewCell {
     //MARK: - Outlets
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.lastLineFillPercent = 100
+            titleLabel.linesCornerRadius = 5
+        }
+    }
+    @IBOutlet weak var subTitleLabel: UILabel! {
+        didSet {
+            subTitleLabel.lastLineFillPercent = 100
+            subTitleLabel.linesCornerRadius = 5
+        }
+    }
     @IBOutlet weak var timeLabel: UILabel!
     //MARK: - Attributes
     var item: OrderHistory? {

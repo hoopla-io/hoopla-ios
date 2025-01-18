@@ -15,9 +15,15 @@ class ShopDetailView: CustomView {
         }
     }
     @IBOutlet weak var pageControll: UIPageControl!
-    @IBOutlet weak var tableView: UITableView! {
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var coffeeListCollectionView: UICollectionView! {
         didSet {
-//            tableView.contentInset.left = -10
+            coffeeListCollectionView.register(UINib(nibName: CoffeeCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier)
+        }
+    }
+    @IBOutlet weak var socialListCollectionView: UICollectionView! {
+        didSet {
+            socialListCollectionView.register(UINib(nibName: SocialCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: SocialCollectionViewCell.defaultReuseIdentifier)
         }
     }
 }

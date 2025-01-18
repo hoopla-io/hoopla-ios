@@ -32,5 +32,7 @@
 	</dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Ilovadan to&apos;liq foydalanish uchun sizning joylashgan joy lokatsiyasi zarur</string>
 </dict>
 </plist>

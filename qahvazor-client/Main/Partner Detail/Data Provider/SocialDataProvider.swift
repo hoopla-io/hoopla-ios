@@ -59,7 +59,7 @@ final class SocialDataProvider: NSObject, UICollectionViewDataSource, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vc = viewController as? PartnerDetailViewController else { return }
+        guard let vc = viewController as? ShopDetailViewController else { return }
         guard let urlString = items[indexPath.row].url else { return }
         if items[indexPath.row].urlType == SocialUrlType.phone.rawValue {
             vc.callAction(phoneNumber: urlString)

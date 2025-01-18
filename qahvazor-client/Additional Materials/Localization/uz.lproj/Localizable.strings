@@ -7,7 +7,7 @@
 */
 
 // MARK: - Onboarding
-firstOnboarding = "Добро пожаловать в Qahvazor. Наслаждайтесь свежим и ароматным кофе каждый день.";
+firstOnboarding = "Добро пожаловать в Hoopla. Наслаждайтесь свежим и ароматным кофе каждый день.";
 secondOnboarding = "Ваш кофе ждёт вас. Покажите QR-код и заберите свой напиток. Быстро и удобно";
 uzbek = "O'zbekcha";
 russian = "Русский";
@@ -55,6 +55,10 @@ thursday = "Payshanba";
 friday = "Juma";
 saturday = "Shanba";
 sunday = "Yakshanba";
+km = "km";
+placeholderSearch = "Izlash";
+askAccessLocation = "Ilovadan to'liq foydalanish uchun iltimos joylashuvni olishga ruxsat bering";
+askAccess = "ruxsat bering";
 
 // MARK: - QR
 history = "Tarix";

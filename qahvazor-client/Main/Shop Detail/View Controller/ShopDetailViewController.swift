@@ -20,6 +20,8 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     // MARK: - Attributes
     var pictureDataProvider: PhotoDataProvider?
     var workTimeDataProvider: WorkTimeDataProvider?
+    var coffeeDataProvider: CoffeeListDataProvider?
+    var socialDataProvider: SocialDataProvider?
     var shopId: Int?
     var data: Shop?
     
@@ -57,6 +59,19 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
             pictureDataProvider?.items = pictures
             view().pageControll.numberOfPages = pictures.count
         }
+        var socialsData: [SocialMedia] = []
+        
+        if let drinks = data.drinks {
+            coffeeDataProvider?.items = drinks
+        }
+        if let phone = data.phoneNumbers?.first {
+            let item = SocialMedia(url: phone.phoneNumber, urlType: SocialUrlType.phone.rawValue)
+            socialsData.append(item)
+        }
+        if let socials = data.urls {
+            socialsData += socials
+        }
+        socialDataProvider?.items = socialsData
         if let workingHours = data.workingHours {
             workTimeDataProvider?.items = workingHours
         }
@@ -67,10 +82,19 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
 extension ShopDetailViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
+//        navigationController?.navigationBar.prefersLargeTitles = false
         
         let pictureDataProvider = PhotoDataProvider(viewController: self)
         pictureDataProvider.collectionView = view().collectionView
         self.pictureDataProvider = pictureDataProvider
+        
+        let coffeeDataProvider = CoffeeListDataProvider()
+        coffeeDataProvider.collectionView = view().coffeeListCollectionView
+        self.coffeeDataProvider = coffeeDataProvider
+        
+        let socialDataProvider = SocialDataProvider(viewController: self)
+        socialDataProvider.collectionView = view().socialListCollectionView
+        self.socialDataProvider = socialDataProvider
         
         let workTimeDataProvider = WorkTimeDataProvider()
         workTimeDataProvider.tableView = view().tableView
@@ -113,6 +137,7 @@ extension ShopDetailViewController {
     }
     
     func didScrollPicture(offset: CGFloat) {
+        guard !offset.isNaN else { return }
         view().pageControll.currentPage = Int(offset)
     }
 }

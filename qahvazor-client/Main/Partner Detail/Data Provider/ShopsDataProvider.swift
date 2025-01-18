@@ -62,6 +62,6 @@ final class ShopsDataProvider: NSObject, UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = viewController as? PartnerDetailViewController else { return }
         guard let id = items[indexPath.row].shopId else { return }
-        vc.coordinator?.pushToShopDetail(id: id)
+//        vc.coordinator?.pushToShopDetail(id: id)
     }
 }

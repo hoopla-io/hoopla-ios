@@ -10,7 +10,7 @@ import Foundation
 struct Subscription: Codable {
     let id: Int?
     let name: String?
-    let price: Int?
+    let price: Double?
     let currency: String?
     let days: Int?
     let features: [SubscriptionFeature]?

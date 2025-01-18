@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 final class HistoryDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate {
     
@@ -14,6 +15,7 @@ final class HistoryDataProvider: NSObject, UITableViewDataSource, UITableViewDel
         didSet {
             tableView.dataSource = self
             tableView.delegate = self
+            tableView.showAnimatedSkeleton()
         }
     }
     
@@ -22,6 +24,7 @@ final class HistoryDataProvider: NSObject, UITableViewDataSource, UITableViewDel
     
     internal var items = [OrderHistory]() {
         didSet {
+            self.tableView.hideSkeleton()
             self.tableView.reloadData()
         }
     }
@@ -54,3 +57,13 @@ final class HistoryDataProvider: NSObject, UITableViewDataSource, UITableViewDel
     }
 }
 
+//MARK: - SkeletonTableViewDataDource
+extension HistoryDataProvider: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return OrderHistoryTableViewCell.defaultReuseIdentifier
+    }
+}

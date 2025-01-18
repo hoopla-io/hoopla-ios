@@ -10,11 +10,14 @@ import Foundation
 struct Shop: Codable {
     let shopId: Int?
     let name: String?
+    let distance: Double?
     let location: Location?
     let phoneNumbers: [PhoneNumber]?
     let pictureUrl: String?
     let pictures: [Pictures]?
     let workingHours: [WorkHour]?
+    let urls: [SocialMedia]?
+    let drinks: [Drinks]?
 }
 
 struct Location: Codable {

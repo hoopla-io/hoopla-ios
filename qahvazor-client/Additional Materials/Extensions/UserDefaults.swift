@@ -18,6 +18,8 @@ enum UserDefaultsKeys: String {
     case accessToken
     case refreshToken
     case firstLaunch
+    case latitude
+    case longitude
 }
 
 extension UserDefaults {
@@ -69,6 +71,22 @@ extension UserDefaults {
     func saveTokens(data: Tokens) {
         UserDefaults.standard.saveAccessToken(token: data.accessToken)
         UserDefaults.standard.saveRefreshToken(token: data.refreshToken)
+    }
+    
+    func saveLongitude(_ longitude: Double) {
+        set(longitude, forKey: UserDefaultsKeys.longitude.rawValue)
+    }
+    
+    func getLongitude() -> Double {
+        return double(forKey: UserDefaultsKeys.longitude.rawValue)
+    }
+    
+    func saveLatitude(_ longitude: Double) {
+        set(longitude, forKey: UserDefaultsKeys.latitude.rawValue)
+    }
+    
+    func getLatitude() -> Double {
+        return double(forKey: UserDefaultsKeys.latitude.rawValue)
     }
     
     func removeAccount() {
