@@ -43,10 +43,10 @@ extension DateFormatter {
         return formatter
     }()
     
-    static let weekDays: DateFormatter = {
+    static let weekDay: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEE"
-        formatter.locale = Locale(identifier: UserDefaults.standard.getLocalization())
+        formatter.dateFormat = "eeee"
+        formatter.locale = Locale(identifier: AppLanguage.en.rawValue)
         return formatter
     }()
     

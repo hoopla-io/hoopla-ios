@@ -16,6 +16,8 @@ class ShopDetailView: CustomView {
     }
     @IBOutlet weak var pageControll: UIPageControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var showMoreButton: UIButton!
     @IBOutlet weak var coffeeListCollectionView: UICollectionView! {
         didSet {
             coffeeListCollectionView.register(UINib(nibName: CoffeeCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier)

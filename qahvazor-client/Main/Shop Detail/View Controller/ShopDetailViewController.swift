@@ -24,6 +24,12 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     var socialDataProvider: SocialDataProvider?
     var shopId: Int?
     var data: Shop?
+    var isExpanded: Bool = false
+    var workTimeData: [WorkHour]? {
+        didSet {
+            showWorkTime()
+        }
+    }
     
     // MARK: - Actions
     @IBAction func addressButtonAction(_ sender: Any) {
@@ -31,6 +37,14 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
         openMaps(latitude: lat, longitude: lng, title: "maps".localized)
     }
 
+    @IBAction func showHoursAction(_ sender: Any) {
+        isExpanded.toggle()
+        showWorkTime()
+        view().tableViewHeight.constant = isExpanded ? 210 : 30
+        view().showMoreButton.setTitle(isExpanded ? "showLess".localized : "showMore".localized, for: .normal)
+        view().layoutIfNeeded()
+    }
+    
     @IBAction func callButtonAction(_ sender: Any) {
         guard let phoneNumbers = data?.phoneNumbers else { return }
         if phoneNumbers.count == 1 {
@@ -72,9 +86,7 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
             socialsData += socials
         }
         socialDataProvider?.items = socialsData
-        if let workingHours = data.workingHours {
-            workTimeDataProvider?.items = workingHours
-        }
+        self.workTimeData = data.workingHours
     }
 }
 
@@ -99,6 +111,21 @@ extension ShopDetailViewController {
         let workTimeDataProvider = WorkTimeDataProvider()
         workTimeDataProvider.tableView = view().tableView
         self.workTimeDataProvider = workTimeDataProvider
+    }
+    
+    private func showWorkTime() {
+        guard let workTimeData else { return }
+        let currentWeekDay = DateFormatter.string(formatter: .weekDay).lowercased()
+        if isExpanded {
+            workTimeDataProvider?.items = workTimeData
+        } else {
+            for i in workTimeData {
+                if i.weekDay?.lowercased() == currentWeekDay {
+                    workTimeDataProvider?.items = [i]
+                    break
+                }
+            }
+        }
     }
     
     func callAction(phoneNumber: String?) {

@@ -59,6 +59,8 @@ km = "km";
 placeholderSearch = "Izlash";
 askAccessLocation = "Ilovadan to'liq foydalanish uchun iltimos joylashuvni olishga ruxsat bering";
 askAccess = "ruxsat bering";
+showMore = "Ko'proq";
+showLess = "Kamroq";
 
 // MARK: - QR
 history = "Tarix";
