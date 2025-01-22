@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7503929C2D40BA040010646F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503929B2D40BA040010646F /* SearchView.swift */; };
+		7503929E2D40BA090010646F /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7503929D2D40BA090010646F /* SearchView.xib */; };
+		750392A02D40BA100010646F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503929F2D40BA100010646F /* SearchViewController.swift */; };
+		750392A32D40C0960010646F /* SearchDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750392A22D40C0960010646F /* SearchDataProvider.swift */; };
+		750392A62D40C1A80010646F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750392A52D40C1A80010646F /* EmptyView.swift */; };
+		750392A82D40C1AD0010646F /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750392A72D40C1AD0010646F /* EmptyView.xib */; };
+		750392AB2D40C51F0010646F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750392AA2D40C51F0010646F /* SearchViewModel.swift */; };
 		752330772D197AE80090997E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330702D197AE80090997E /* AppDelegate.swift */; };
 		752330782D197AE80090997E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330752D197AE80090997E /* SceneDelegate.swift */; };
 		752330792D197AE80090997E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 752330712D197AE80090997E /* Assets.xcassets */; };
@@ -180,6 +187,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7503929B2D40BA040010646F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		7503929D2D40BA090010646F /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
+		7503929F2D40BA100010646F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		750392A22D40C0960010646F /* SearchDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataProvider.swift; sourceTree = "<group>"; };
+		750392A52D40C1A80010646F /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		750392A72D40C1AD0010646F /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
+		750392AA2D40C51F0010646F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		752330582D19789C0090997E /* qahvazor-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "qahvazor-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		752330702D197AE80090997E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		752330712D197AE80090997E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -369,6 +383,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		750392982D40B9CB0010646F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				750392A12D40C0810010646F /* Data Provider */,
+				7503929A2D40B9F70010646F /* View Controller */,
+				750392992D40B9F20010646F /* View */,
+				750392A92D40C50E0010646F /* View Model */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		750392992D40B9F20010646F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7503929B2D40BA040010646F /* SearchView.swift */,
+				7503929D2D40BA090010646F /* SearchView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7503929A2D40B9F70010646F /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7503929F2D40BA100010646F /* SearchViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		750392A12D40C0810010646F /* Data Provider */ = {
+			isa = PBXGroup;
+			children = (
+				750392A22D40C0960010646F /* SearchDataProvider.swift */,
+			);
+			path = "Data Provider";
+			sourceTree = "<group>";
+		};
+		750392A42D40C1930010646F /* Empty View */ = {
+			isa = PBXGroup;
+			children = (
+				750392A52D40C1A80010646F /* EmptyView.swift */,
+				750392A72D40C1AD0010646F /* EmptyView.xib */,
+			);
+			path = "Empty View";
+			sourceTree = "<group>";
+		};
+		750392A92D40C50E0010646F /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				750392AA2D40C51F0010646F /* SearchViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		7523304F2D19789C0090997E = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +530,7 @@
 		752330A12D197B210090997E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				750392A42D40C1930010646F /* Empty View */,
 				752330942D197B210090997E /* KAPinField.swift */,
 				752330952D197B210090997E /* CustomCollectionViewCell.swift */,
 				752330962D197B210090997E /* HighlightButton.swift */,
@@ -553,6 +621,7 @@
 			children = (
 				752331322D198B930090997E /* MainCoordinator.swift */,
 				752331382D198C930090997E /* Main */,
+				750392982D40B9CB0010646F /* Search */,
 				75705CDC2D2FD62C00DA3AA4 /* Partner Detail */,
 				7552C2F12D1D833000F2DF78 /* Shops List */,
 				757F36212D1E742900EFA728 /* Shop Detail */,
@@ -1312,6 +1381,7 @@
 				75DCE3552D1A9B26003A59CD /* Localizable.strings in Resources */,
 				757F362A2D1E747200EFA728 /* PartnerDetailView.xib in Resources */,
 				7552C2F82D1D838500F2DF78 /* ShopsListView.xib in Resources */,
+				7503929E2D40BA090010646F /* SearchView.xib in Resources */,
 				75BB44802D30F6F90000C64A /* QRView.xib in Resources */,
 				75DCE36A2D1ABBA3003A59CD /* LanguageCollectionViewCell.xib in Resources */,
 				75DCE3612D1ABB33003A59CD /* LanguageView.xib in Resources */,
@@ -1327,6 +1397,7 @@
 				7582AD782D32835E00FF1ECF /* SubscriptionView.xib in Resources */,
 				75C9B52F2D2CF16A006901E6 /* ShopCollectionViewCell.xib in Resources */,
 				75F6CFC82D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib in Resources */,
+				750392A82D40C1AD0010646F /* EmptyView.xib in Resources */,
 				7582AD852D32860700FF1ECF /* SubscriptionCollectionViewCell.xib in Resources */,
 				752330792D197AE80090997E /* Assets.xcassets in Resources */,
 				7523307B2D197AE80090997E /* LaunchScreen.storyboard in Resources */,
@@ -1416,11 +1487,13 @@
 				75DCE3692D1ABBA3003A59CD /* LanguageCollectionViewCell.swift in Sources */,
 				752330E92D197B210090997E /* UIImage.swift in Sources */,
 				752330EA2D197B210090997E /* DateFormatter.swift in Sources */,
+				7503929C2D40BA040010646F /* SearchView.swift in Sources */,
 				752330EB2D197B210090997E /* Bool.swift in Sources */,
 				752330EC2D197B210090997E /* AssetsColor.swift in Sources */,
 				759624D62D2CF66B00F52EE9 /* Shop.swift in Sources */,
 				7552C2FC2D1D83D700F2DF78 /* ShopsListViewModel.swift in Sources */,
 				752330ED2D197B210090997E /* Symbols.swift in Sources */,
+				750392AB2D40C51F0010646F /* SearchViewModel.swift in Sources */,
 				75DCE36F2D1ABC1D003A59CD /* LanguageDataProvider.swift in Sources */,
 				75DCE3772D1AD6E2003A59CD /* InterestViewController.swift in Sources */,
 				75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */,
@@ -1430,6 +1503,7 @@
 				752330F02D197B210090997E /* MainView.swift in Sources */,
 				75422B102D33B09F00B83C42 /* SubscriptionFeatureDataProvider.swift in Sources */,
 				752330F12D197B210090997E /* EndPoints.swift in Sources */,
+				750392A62D40C1A80010646F /* EmptyView.swift in Sources */,
 				752330F22D197B210090997E /* ViewModelProtocol.swift in Sources */,
 				75F3B0DC2D3787FF003E37B9 /* LocationManager.swift in Sources */,
 				752330F32D197B210090997E /* JSONDownloader.swift in Sources */,
@@ -1438,6 +1512,8 @@
 				75955BCF2D1D6D9600F4DD80 /* CompanyCollectionViewCell.swift in Sources */,
 				752331332D198B930090997E /* MainCoordinator.swift in Sources */,
 				757F36262D1E746500EFA728 /* PartnerDetailViewModel.swift in Sources */,
+				750392A02D40BA100010646F /* SearchViewController.swift in Sources */,
+				750392A32D40C0960010646F /* SearchDataProvider.swift in Sources */,
 				757F36282D1E746C00EFA728 /* PartnerDetailView.swift in Sources */,
 				75BB447C2D30F6DB0000C64A /* QRViewModel.swift in Sources */,
 				752330F52D197B210090997E /* AppUtility.swift in Sources */,
@@ -1506,7 +1582,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -1535,7 +1611,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";

@@ -12,31 +12,61 @@ secondOnboarding = "Ваш кофе ждёт вас. Покажите QR-код 
 uzbek = "O'zbekcha";
 russian = "Русский";
 english = "English";
-chooseLanguage = "Tilni tanlang";
-continue = "Davom etish";
-skip = "O'tkazib yuborish";
-interestDetail = "Sizga qanday kofelar yoqadi?";
-start = "Boshlash";
+chooseLanguage = "Выберите язык";
+continue = "Продолжать";
+skip = "Пропускать";
+interestDetail = "Какой кофе ты любишь?";
+start = "Начинать";
 
 // MARK: - TabBar
-home    = "Main";
-catalog = "Catalog";
-profile = "Profile";
+home    = "Главная";
+profile = "Профиль";
 
 // MARK: - Profile
-signIn = "Kirish";
-fillField = "Maydonni to'ldiring";
-confirmationCode = "Tasdiqlash kodi";
-sendToPhoneCodeAlert = "Telefon raqamingizga tasdiqlash kodi yuborildi";
-privacyInfo = "Davom etib, siz rozilik bildirasiz ";
-userAgreementAuth = "Foydalanuvchi shartnomasi";
-and = "va ";
-privacyAuth = "Maxfiylik siyosatiga";
-resendCode = "Qayta yuborish";
+signIn = "Войти";
+fillField = "Заполните поле";
+confirmationCode = "Код подтверждения";
+sendToPhoneCodeAlert = "На ваш номер телефона был отправлен код подтверждения";
+privacyInfo = "Продолжая, вы соглашаетесь с ";
+userAgreementAuth = "Пользовательским соглашением";
+and = "и ";
+privacyAuth = "Политикой конфиденциальности";
+resendCode = "Отправить повторно";
+privacyPolicy = "";
+licenceAgreement = "Лицензионное соглашение";
+privacyPolicy = "Политика конфиденциальности";
+logout = "Выйти";
+subscriptions = "Подписки";
+settings = "Настройки";
+days = "дней";
 
 // MARK: - Main
 coffeeShops = "Кафейны";
+filials = "Магазины";
+phoneNumber = "Ваш номер телефона";
+cancel = "Отмена";
+maps = "Карты";
+address = "Адрес";
+call = "Позвонить";
+workTime = "Время работы";
+monday = "Понедельник";
+tuesday = "Вторник";
+wednesday = "Среда";
+thursday = "Четверг";
+friday = "Пятница";
+saturday = "Суббота";
+sunday = "Воскресенье";
+km = "км";
+m = "м";
+placeholderSearch = "Искать";
+askAccessLocation = "Чтобы полноценно использовать приложение, включите определение местоположения.";
+askAccess = "включите определение местоположения";
+showMore = "Еще";
+showLess = "Меньше";
 
+// MARK: - QR
+history = "История";
+auth = "Регистрация";
 
 // MARK: - Alert
 success = "Успешно";

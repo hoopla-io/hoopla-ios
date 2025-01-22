@@ -24,6 +24,12 @@ final class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
+    func startSearch() {
+        let vc = SearchViewController()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
     func pushToShopsListVC(id: Int?) {
         let vc = ShopsListViewController()
         vc.partnerId = id

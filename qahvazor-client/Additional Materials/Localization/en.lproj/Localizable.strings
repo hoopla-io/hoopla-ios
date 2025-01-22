@@ -7,35 +7,66 @@
 */
 
 // MARK: - Onboarding
-firstOnboarding = "Добро пожаловать в Hoopla. Наслаждайтесь свежим и ароматным кофе каждый день.";
-secondOnboarding = "Ваш кофе ждёт вас. Покажите QR-код и заберите свой напиток. Быстро и удобно";
+firstOnboarding = "Welcome to Hoopla. Enjoy fresh and aromatic coffee every day.";
+secondOnboarding = "Your coffee is waiting for you. Show the QR code and pick up your drink. Fast and convenient";
 uzbek = "O'zbekcha";
 russian = "Русский";
 english = "English";
-chooseLanguage = "Tilni tanlang";
-continue = "Davom etish";
-skip = "O'tkazib yuborish";
-interestDetail = "Sizga qanday kofelar yoqadi?";
-start = "Boshlash";
+chooseLanguage = "Choose a language";
+continue = "Continue";
+skip = "Skip";
+interestDetail = "What kind of coffees do you like?";
+start = "Start";
 
 // MARK: - TabBar
 home    = "Main";
-catalog = "Catalog";
 profile = "Profile";
 
 // MARK: - Profile
-signIn = "Kirish";
-fillField = "Maydonni to'ldiring";
-confirmationCode = "Tasdiqlash kodi";
-sendToPhoneCodeAlert = "Telefon raqamingizga tasdiqlash kodi yuborildi";
-privacyInfo = "Davom etib, siz rozilik bildirasiz ";
-userAgreementAuth = "Foydalanuvchi shartnomasi";
-and = "va ";
-privacyAuth = "Maxfiylik siyosatiga";
-resendCode = "Qayta yuborish";
+signIn = "Login";
+fillField = "Fill in the field";
+confirmationCode = "Confirmation code";
+sendToPhoneCodeAlert = "A verification code has been sent to your phone number";
+privacyInfo = "By continuing, you agree to the ";
+userAgreementAuth = "User Agreement";
+and = "and ";
+privacyAuth = "Privacy Policy";
+resendCode = "Resend";
+privacyPolicy = "";
+licenceAgreement = "Licence Agreement";
+privacyPolicy = "Privacy Policy";
+logout = "Logout";
+subscriptions = "Subscriptions";
+settings = "Settings";
+days = "days";
 
 // MARK: - Main
 coffeeShops = "Coffee shops";
+filials = "Shops";
+phoneNumber = "Phone number";
+cancel = "Cancel";
+maps = "Maps";
+address = "Address";
+call = "Call";
+workTime = "Working time";
+monday = "Monday";
+tuesday = "Tuesday";
+wednesday = "Wednesday";
+thursday = "Thursday";
+friday = "Friday";
+saturday = "Saturday";
+sunday = "Sunday";
+km = "km";
+m = "m";
+placeholderSearch = "Search";
+askAccessLocation = "To fully use the app, please enable location acquisition";
+askAccess = "enable location acquisition";
+showMore = "More";
+showLess = "Less";
+
+// MARK: - QR
+history = "History";
+auth = "Registration";
 
 // MARK: - Alert
 success = "Successful";

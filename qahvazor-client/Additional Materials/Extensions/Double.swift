@@ -32,4 +32,12 @@ extension Double {
         let formattedString = formatter.string(from: TimeInterval(self))
         return formattedString ?? ""
     }
+    
+    func formatDistance() -> String {
+        if self < 1 {
+            return "\(Int(self * 1000)) " + "m".localized
+        } else {
+            return String(format: "%.1f " + "km".localized, self)
+        }
+    }
 }

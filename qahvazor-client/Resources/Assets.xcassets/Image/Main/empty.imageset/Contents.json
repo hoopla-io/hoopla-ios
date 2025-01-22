@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Бежевый_шрифт_лого_на_красном_фоне_1х1.png",
+      "filename" : "not-found-illustration.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "not-found-illustration@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "not-found-illustration@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -17,5 +19,8 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }

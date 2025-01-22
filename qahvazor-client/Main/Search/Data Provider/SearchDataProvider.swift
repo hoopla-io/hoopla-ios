@@ -1,21 +1,20 @@
 //
-//  MainDataProvider.swift
+//  SearchDataProvider.swift
 //  qahvazor-client
 //
-//  Created by Alphazet on 26/12/24.
+//  Created by Alphazet on 22/01/25.
 //
 
 import UIKit
 import SkeletonView
 
-final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class SearchDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     // MARK: - Outlets
     weak var collectionView: UICollectionView! {
         didSet {
             collectionView.dataSource = self
             collectionView.delegate = self
-            collectionView.showAnimatedSkeleton()
         }
     }
 
@@ -24,7 +23,6 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
     
     var items = [Shop]() {
         didSet {
-            self.collectionView.hideSkeleton()
             self.collectionView.reloadData()
         }
     }
@@ -41,7 +39,6 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CompanyCollectionViewCell else { return UICollectionViewCell() }
-        cell.prepareForReuse()
         cell.item = items[indexPath.row]
         return cell
     }
@@ -60,14 +57,14 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vc = viewController as? MainViewController else { return }
+        guard let vc = viewController as? SearchViewController else { return }
         guard let id = items[indexPath.row].shopId else { return }
         vc.coordinator?.pushToShopDetail(id: id, name: items[indexPath.row].name)
     }
 }
 
 // MARK: - SkeletonCollectionViewDataSource
-extension MainDataProvider: SkeletonCollectionViewDataSource {
+extension SearchDataProvider: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return CompanyCollectionViewCell.defaultReuseIdentifier
     }

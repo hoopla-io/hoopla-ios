@@ -27,7 +27,7 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
-        viewModel.getList(long: Coordinate.longitude, lat: Coordinate.latitude)
+        viewModel.getList()
         checkAccessLocation()
     }
     
@@ -57,7 +57,7 @@ extension MainViewController {
     }
     
     @objc func refresh(sender: UIRefreshControl? = nil) {
-        viewModel.getList(long: Coordinate.longitude, lat: Coordinate.latitude)
+        viewModel.getList()
         
         DispatchQueue.main.async {
             sender?.endRefreshing()
@@ -92,7 +92,7 @@ extension MainViewController {
 // MARK: - Delegate
 extension MainViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-//        coordinator?.startSearch()
+        coordinator?.startSearch()
         return true
     }
 }

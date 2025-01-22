@@ -25,4 +25,5 @@ enum AssetsImage: String {
     // MARK: - Main
     case closeCircle
     case placeholder
+    case empty
 }

@@ -18,6 +18,7 @@ struct Shop: Codable {
     let workingHours: [WorkHour]?
     let urls: [SocialMedia]?
     let drinks: [Drinks]?
+    let modules: [Module]?
 }
 
 struct Location: Codable {
@@ -38,3 +39,10 @@ struct WorkHour: Codable {
     let openAt: String?
     let weekDay: String?
 }
+
+struct Module: Codable {
+    let colour: String?
+    let moduleId: Int?
+    let name: String?
+}
+

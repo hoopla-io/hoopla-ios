@@ -166,18 +166,18 @@ extension UICollectionView {
 
 extension UICollectionView {
     
-//    func checkEmpty(items: [Any]?, type: Empty = .all) {
-//        guard let items = items else { return }
-//        items.isEmpty ? self.setEmptyView(type: type) : self.restore()
-//        self.hideSkeleton()
-//    }
-//    
-//    func setEmptyView(type: Empty) {
-//        let emptyView = EmptyView.fromNib()
-//        emptyView.type = type
-//        emptyView.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
-//        self.backgroundView = emptyView
-//    }
+    func checkEmpty(items: [Any]?, type: Empty = .all) {
+        guard let items = items else { return }
+        items.isEmpty ? self.setEmptyView(type: type) : self.restore()
+        self.hideSkeleton()
+    }
+    
+    func setEmptyView(type: Empty) {
+        let emptyView = EmptyView.fromNib()
+        emptyView.type = type
+        emptyView.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
+        self.backgroundView = emptyView
+    }
     
     func setEmptyMessage(_ message: String) {
         let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
