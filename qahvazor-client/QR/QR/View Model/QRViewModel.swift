@@ -9,7 +9,7 @@ import UIKit
 
 protocol QRViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: QR)
-    func didFinishFetch(data: [OrderHistory])
+    func didFinishFetch(data: [OrderHistory]?)
 }
 
 final class QRViewModel {
@@ -46,8 +46,7 @@ final class QRViewModel {
             case .Success(let json):
                 do {
                     let fetchedData = try CustomDecoder().decode(JSONData<[OrderHistory]>.self, from: json)
-                    guard let data = fetchedData.data else { return }
-                    self.delegate?.didFinishFetch(data: data)
+                    self.delegate?.didFinishFetch(data: fetchedData.data)
                 } catch {
                     self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                 }

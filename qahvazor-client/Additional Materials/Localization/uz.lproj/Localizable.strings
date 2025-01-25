@@ -63,6 +63,8 @@ askAccessLocation = "Ilovadan to'liq foydalanish uchun iltimos joylashuvni olish
 askAccess = "ruxsat bering";
 showMore = "Ko'proq";
 showLess = "Kamroq";
+drinkType = "Ichimlik turlari";
+communication = "Aloqa";
 
 // MARK: - QR
 history = "Tarix";
@@ -86,3 +88,4 @@ serverErrorDetail = "Xato ro'y berdi\nqayta urinib ko‘ring";
 retry = "Qayta urinish";
 emptySearch = "So'rovingiz bo'yicha hech narsa topilmadi";
 logoutAlert = "Akkauntdan aniq chiqmoqchimisiz?";
+emptyHistory = "Siz hali QR koddan foydalanmadingiz";

@@ -63,12 +63,15 @@ askAccessLocation = "To fully use the app, please enable location acquisition";
 askAccess = "enable location acquisition";
 showMore = "More";
 showLess = "Less";
+drinkType = "Drinks type";
+communication = "Communication";
 
 // MARK: - QR
 history = "History";
 auth = "Registration";
 
 // MARK: - Alert
+logoutAlert = "Do you really want to sign out?";
 success = "Successful";
 warning = "Attention";
 error = "Error";
@@ -85,3 +88,4 @@ serverError = "Server Error";
 serverErrorDetail = "Looks like something went wrong\ntry again";
 retry = "Try Again";
 emptySearch = "Nothing found for your request";
+emptyHistory = "emptyHistory";

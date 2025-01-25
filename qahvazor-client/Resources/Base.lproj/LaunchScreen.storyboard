@@ -16,8 +16,17 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Akb-fW-Bc9">
+                                <rect key="frame" x="92" y="321.66666666666669" width="209" height="209.00000000000006"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="mainColor"/>
+                        <constraints>
+                            <constraint firstItem="Akb-fW-Bc9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fkQ-3Y-71I"/>
+                            <constraint firstItem="Akb-fW-Bc9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="h5P-Xv-Gid"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -26,6 +35,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logo" width="209" height="209"/>
         <namedColor name="mainColor">
             <color red="0.52549019607843139" green="0.14901960784313725" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

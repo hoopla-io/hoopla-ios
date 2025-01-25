@@ -14,7 +14,7 @@ russian = "Русский";
 english = "English";
 chooseLanguage = "Выберите язык";
 continue = "Продолжать";
-skip = "Пропускать";
+skip = "Пропустить";
 interestDetail = "Какой кофе ты любишь?";
 start = "Начинать";
 
@@ -41,7 +41,7 @@ settings = "Настройки";
 days = "дней";
 
 // MARK: - Main
-coffeeShops = "Кафейны";
+coffeeShops = "Кофейни";
 filials = "Магазины";
 phoneNumber = "Ваш номер телефона";
 cancel = "Отмена";
@@ -63,12 +63,15 @@ askAccessLocation = "Чтобы полноценно использовать п
 askAccess = "включите определение местоположения";
 showMore = "Еще";
 showLess = "Меньше";
+drinkType = "Тип напитки";
+communication = "Коммуникация";
 
 // MARK: - QR
 history = "История";
 auth = "Регистрация";
 
 // MARK: - Alert
+logoutAlert = "Вы действительно хотите выйти из аккаунта?";
 success = "Успешно";
 warning = "Внимание";
 error = "Ошибка";
@@ -85,3 +88,4 @@ serverError = "Ошибка сервера";
 serverErrorDetail = "Видимо что-то пошло не так\nпопробуйте снова";
 retry = "Повторить попытку";
 emptySearch = "По вашему запросу ничего не найдено";
+emptyHistory = "emptyHistory";

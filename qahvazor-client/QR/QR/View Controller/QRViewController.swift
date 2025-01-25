@@ -8,6 +8,7 @@
 import UIKit
 import ImageViewer_swift
 import Haptica
+import SkeletonView
 
 class QRViewController: UIViewController, ViewSpecificController, AlertViewController {
     // MARK: - Root View
@@ -80,8 +81,13 @@ extension QRViewController: QRViewModelProtocol {
         setupProgressTimer()
     }
     
-    func didFinishFetch(data: [OrderHistory]) {
-        dataProvider?.items = data
+    func didFinishFetch(data: [OrderHistory]?) {
+        if let data {
+            dataProvider?.items = data
+        } else {
+            dataProvider?.items.removeAll()
+        }
+        view().tableView.checkEmpty(items: dataProvider?.items, type: .history)
     }
 }
 

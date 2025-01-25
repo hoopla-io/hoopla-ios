@@ -11,6 +11,7 @@ enum Empty {
     case all
     case search
     case activeSubscription
+    case history
 }
 
 final class EmptyView: CustomView {
@@ -23,16 +24,16 @@ final class EmptyView: CustomView {
     internal var type: Empty? {
         didSet {
             guard let type = type else { return }
+            imageView.image = UIImage.appImage(.empty)
             switch type {
             case .all:
-                imageView.image = UIImage.appImage(.empty)
                 titleLabel.text = "emptyDetail".localized
             case .search:
-                imageView.image = UIImage.appImage(.empty)
                 titleLabel.text = "emptySearch".localized
             case .activeSubscription:
-                imageView.image = UIImage.appImage(.empty)
                 titleLabel.text = "notActivSubs".localized
+            case .history:
+                titleLabel.text = "emptyHistory".localized
             }
         }
     }
