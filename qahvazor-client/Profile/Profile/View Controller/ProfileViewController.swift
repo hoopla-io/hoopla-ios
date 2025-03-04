@@ -46,14 +46,14 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
-        if UserDefaults.standard.isAuthed() {
-            viewModel.getMe()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.clear()
+        if UserDefaults.standard.isAuthed() {
+            viewModel.getMe()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,6 +81,8 @@ extension ProfileViewController: ProfileViewModelProtocol {
     func didFinishFetch(data: Account) {
         view().nameLabel.text = data.name
         view().accounNumberLabel.text = data.phoneNumber?.displayPhone()
+        view().balanceLabel.text = data.balanceInfo
+        view().subscription = data.subscription
     }
     
     func didFinishFetchLogout() {

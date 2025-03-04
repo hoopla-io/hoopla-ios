@@ -39,11 +39,14 @@ logout = "Logout";
 subscriptions = "Subscriptions";
 settings = "Settings";
 days = "days";
+phoneNumber = "Phone number:";
+balance = "Balance:";
+mySubscription = "My subscription:";
+endDatePayment = "Subscription expiration time:";
 
 // MARK: - Main
 coffeeShops = "Coffee shops";
 filials = "Shops";
-phoneNumber = "Phone number";
 cancel = "Cancel";
 maps = "Maps";
 address = "Address";
@@ -89,3 +92,6 @@ serverErrorDetail = "Looks like something went wrong\ntry again";
 retry = "Try Again";
 emptySearch = "Nothing found for your request";
 emptyHistory = "emptyHistory";
+infoBuySubscription = "Are you sure you want to buy this subscription?";
+yes = "Yes";
+successBoughtSubscriptionAlert = "You have successfully purchased a subscription!";

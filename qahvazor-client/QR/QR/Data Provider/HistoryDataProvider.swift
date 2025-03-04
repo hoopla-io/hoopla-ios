@@ -22,10 +22,12 @@ final class HistoryDataProvider: NSObject, UITableViewDataSource, UITableViewDel
     // MARK: - Attributes
     weak var viewController: UIViewController?
     
-    internal var items = [OrderHistory]() {
+    var items = [OrderHistory]() {
         didSet {
-            self.tableView.hideSkeleton()
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.hideSkeleton()
+                self.tableView.reloadData()
+            }
         }
     }
     

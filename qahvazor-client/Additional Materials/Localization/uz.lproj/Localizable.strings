@@ -39,11 +39,14 @@ logout = "Chiqish";
 subscriptions = "Obunalar";
 settings = "Sozlamalar";
 days = "kun";
+phoneNumber = "Telefon raqam:";
+balance = "Balans:";
+mySubscription = "Mening obunam:";
+endDatePayment = "Obuna tugash vaqti:";
 
 // MARK: - Main
 coffeeShops = "Qahvaxonalar";
 filials = "Do'konlar";
-phoneNumber = "Telefon raqam";
 cancel = "Bekor qilish";
 maps = "Xaritalar";
 address = "Manzil";
@@ -89,3 +92,6 @@ retry = "Qayta urinish";
 emptySearch = "So'rovingiz bo'yicha hech narsa topilmadi";
 logoutAlert = "Akkauntdan aniq chiqmoqchimisiz?";
 emptyHistory = "Siz hali QR koddan foydalanmadingiz";
+infoBuySubscription = "Siz ushbu obunani sotib olmoqchimisiz?";
+yes = "Ha";
+successBoughtSubscriptionAlert = "Siz obunani muvaffaqiyatli sotib oldingiz!";

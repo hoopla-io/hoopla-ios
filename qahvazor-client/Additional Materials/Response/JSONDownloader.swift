@@ -23,20 +23,13 @@ enum StatusCode: Int {
     case tokenError = 412
 }
 
-protocol SessionProtocol {
-    func dataTask(with urlRequest: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
-}
 typealias JSONTaskCompletionHandler = (Result<Data>) -> ()
-
-extension URLSession: SessionProtocol {}
 
 class JSONDownloader {
     
     private init() {}
     
     static let shared = JSONDownloader()
-    
-    internal var session: SessionProtocol = URLSession.shared
     
     private let iDevice = UIDevice.current.identifierForVendor?.uuidString ?? ""
     private let iVersion = Bundle.main.releaseVersionNumber ?? "0"

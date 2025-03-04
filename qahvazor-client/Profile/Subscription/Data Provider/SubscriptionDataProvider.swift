@@ -59,8 +59,9 @@ final class SubscriptionDataProvider: NSObject, UICollectionViewDataSource, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vc = viewController as? MainViewController else { return }
-        vc.coordinator?.pushToPartnerDetailVC(id: items[indexPath.row].id)
+        guard let vc = viewController as? SubscriptionViewController else { return }
+        guard let id = items[indexPath.row].id else { return }
+        vc.showBuyAlert(id: id)
     }
 }
 
@@ -71,7 +72,7 @@ extension SubscriptionDataProvider: SkeletonCollectionViewDataSource {
     }
     
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 2
     }
 }
 

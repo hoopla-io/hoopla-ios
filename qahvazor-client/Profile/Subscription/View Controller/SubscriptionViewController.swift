@@ -33,6 +33,11 @@ extension SubscriptionViewController: SubscriptionViewModelProtocol {
     func didFinishFetch(data: [Subscription]) {
         dataProvider?.items = data
     }
+    
+    func didFinishFetchSuccessBought() {
+        showSuccessAlert(message: "successBuySubscription".localized)
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: - Other funcs
@@ -45,5 +50,17 @@ extension SubscriptionViewController {
         dataProvider.collectionView = view().collectionView
         self.dataProvider = dataProvider
         
+    }
+    
+    func showBuyAlert(id: Int) {
+        let alert = UIAlertController(title: "infoBuySubscription".localized, message: "", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "yes".localized, style: UIAlertAction.Style.cancel, handler: { [weak self] _ in
+            self?.viewModel.subscriptionBuy(id: id)
+        }))
+        alert.addAction(UIAlertAction(title: "cancel".localized, style: UIAlertAction.Style.default))
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

@@ -39,11 +39,14 @@ logout = "Выйти";
 subscriptions = "Подписки";
 settings = "Настройки";
 days = "дней";
+phoneNumber = "Ваш номер телефона:";
+balance = "Баланс:";
+mySubscription = "Моя подписка:";
+endDatePayment = "Срок действия подписки:";
 
 // MARK: - Main
 coffeeShops = "Кофейни";
 filials = "Магазины";
-phoneNumber = "Ваш номер телефона";
 cancel = "Отмена";
 maps = "Карты";
 address = "Адрес";
@@ -89,3 +92,6 @@ serverErrorDetail = "Видимо что-то пошло не так\nпопро
 retry = "Повторить попытку";
 emptySearch = "По вашему запросу ничего не найдено";
 emptyHistory = "emptyHistory";
+infoBuySubscription = "Вы действительно хотите приобрести эту подписку?";
+yes = "Да";
+successBoughtSubscriptionAlert = "Вы успешно приобрели подписку!";

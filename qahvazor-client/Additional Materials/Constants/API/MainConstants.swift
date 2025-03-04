@@ -8,7 +8,7 @@
 import Foundation
 
 enum MainConstants: String {
-    case scheme = "http"
+    case scheme = "https"
     case host = "api.hoopla.uz"
     case api  = "/api"
     case path1 = "/v1/"

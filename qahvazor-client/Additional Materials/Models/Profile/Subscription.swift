@@ -14,6 +14,7 @@ struct Subscription: Codable {
     let currency: String?
     let days: Int?
     let features: [SubscriptionFeature]?
+    let endDateUnix: Int?
     
     var descriptionPrice: String? {
         guard let days = days, let price = price, let currency = currency else {

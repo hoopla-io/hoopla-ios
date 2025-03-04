@@ -28,4 +28,5 @@ enum EndPoints: String {
     case refreshToken = "user/refresh-token"
     case logout = "user/logout"
     case subscriptions = "subscriptions"
+    case subscriptionsBuy = "subscriptions/buy"
 }
