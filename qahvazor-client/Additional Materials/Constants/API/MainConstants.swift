@@ -12,6 +12,9 @@ enum MainConstants: String {
     case host = "api.hoopla.uz"
     case api  = "/api"
     case path1 = "/v1/"
+    
+    case termsOfUse = "https://hoopla.uz/uz/terms-of-use"
+    case privacyPolicy = "https://hoopla.uz/uz/privacy-policy"
 }
 
 enum SocialPage: String {

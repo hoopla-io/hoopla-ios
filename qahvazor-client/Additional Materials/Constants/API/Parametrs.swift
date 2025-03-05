@@ -26,4 +26,6 @@ enum Parameters: String {
     case code = "code"
     case refreshToken = "refreshToken"
     case subscriptionId = "subscriptionId"
+    case amount = "amount"
+    
 }

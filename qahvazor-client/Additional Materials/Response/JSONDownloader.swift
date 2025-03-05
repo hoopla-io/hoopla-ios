@@ -17,10 +17,9 @@ enum StatusCode: Int {
     case success200 = 200
     case success202 = 202
     case notAuthorized = 401
-    case notSubscription = 402
-    case maxDevice = 409
     case serverError = 500
     case tokenError = 412
+    case notEnoughBalance = 428
 }
 
 typealias JSONTaskCompletionHandler = (Result<Data>) -> ()
@@ -69,7 +68,6 @@ class JSONDownloader {
         
         guard let URL = components.url else { return }
         
-        let unix = Date().timeIntervalSince1970
         var headers: HTTPHeaders = []
         // Set Headers
         headers.add(name: Headers.contentType.rawValue, value: Headers.applicationJson.rawValue)
@@ -116,7 +114,7 @@ class JSONDownloader {
                     case StatusCode.notAuthorized.rawValue:
                         UserDefaults.standard.removeAccount()
                         completion(.Error(.notAuthorized))
-                    case StatusCode.notSubscription.rawValue, StatusCode.maxDevice.rawValue:
+                    case StatusCode.notEnoughBalance.rawValue:
                         completion(.Success(data))
                     case StatusCode.serverError.rawValue:
                         completion(.Error(.serverError, jsonResult?["message"] as? String))

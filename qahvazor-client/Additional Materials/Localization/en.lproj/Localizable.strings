@@ -31,9 +31,8 @@ privacyInfo = "By continuing, you agree to the ";
 userAgreementAuth = "User Agreement";
 and = "and ";
 privacyAuth = "Privacy Policy";
+termsOfUse = "Terms of use";
 resendCode = "Resend";
-privacyPolicy = "";
-licenceAgreement = "Licence Agreement";
 privacyPolicy = "Privacy Policy";
 logout = "Logout";
 subscriptions = "Subscriptions";
@@ -43,6 +42,10 @@ phoneNumber = "Phone number:";
 balance = "Balance:";
 mySubscription = "My subscription:";
 endDatePayment = "Subscription expiration time:";
+deleteAccount = "Delete account";
+deleteAccountInfo = "Account deleting";
+deleteAccountDesc = "To delete your account, enter your personal account number";
+choosePayment = "Choose payment methods";
 
 // MARK: - Main
 coffeeShops = "Coffee shops";
@@ -95,3 +98,4 @@ emptyHistory = "emptyHistory";
 infoBuySubscription = "Are you sure you want to buy this subscription?";
 yes = "Yes";
 successBoughtSubscriptionAlert = "You have successfully purchased a subscription!";
+incorrect = "Incorrect";

@@ -29,4 +29,7 @@ enum EndPoints: String {
     case logout = "user/logout"
     case subscriptions = "subscriptions"
     case subscriptionsBuy = "subscriptions/buy"
+    case deleteUser = "user/deactivate"
+    case payServices = "user/pay/services"
+    case topUp = "user/pay/top-up"
 }

@@ -18,7 +18,6 @@ class LaunchScreenViewController: UIViewController, ViewSpecificController, Aler
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        appearanceSettings()
         next()
     }
     
@@ -36,9 +35,6 @@ class LaunchScreenViewController: UIViewController, ViewSpecificController, Aler
 
 // MARK: - Other funcs
 extension LaunchScreenViewController {
-    private func appearanceSettings() {
-        
-    }
     
     private func showOnboarding() {
         guard let navigationController = navigationController else { return }

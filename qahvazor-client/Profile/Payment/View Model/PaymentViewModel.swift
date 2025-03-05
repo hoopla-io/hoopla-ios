@@ -1,32 +1,33 @@
 //
-//  SubscriptionViewModel.swift
+//  PaymentViewModel.swift
 //  qahvazor-client
 //
-//  Created by Alphazet on 11/01/25.
+//  Created by Alphazet on 05/03/25.
 //
+
 
 import UIKit
 
-protocol SubscriptionViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(data: [Subscription])
-    func didFinishFetchBought(statusCode: Int)
+protocol PaymentViewModelProtocol: ViewModelProtocol {
+    func didFinishFetch(data: [PaymentService])
+    func didFinishFetch(data: PaymentCheckout)
 }
 
-final class SubscriptionViewModel {
+final class PaymentViewModel {
     // MARK: - Attributes
-    weak var delegate: SubscriptionViewModelProtocol?
+    weak var delegate: PaymentViewModelProtocol?
     
     // MARK: - Network call
-    func getList() {
+    func getListPayment() {
         
-        JSONDownloader.shared.jsonTask(url: EndPoints.subscriptions.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
+        JSONDownloader.shared.jsonTask(url: EndPoints.payServices.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
             guard let self = self else { return }
             switch result {
             case .Error(let error, let message):
                 self.delegate?.showAlertClosure(error: (error,message))
             case .Success(let json):
                 do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<[Subscription]>.self, from: json)
+                    let fetchedData = try CustomDecoder().decode(JSONData<[PaymentService]>.self, from: json)
                     guard let data = fetchedData.data else { return }
                     self.delegate?.didFinishFetch(data: data)
                 } catch {
@@ -36,21 +37,24 @@ final class SubscriptionViewModel {
         })
     }
     
-    func subscriptionBuy(id: Int) {
-        let param = [
-            Parameters.subscriptionId.rawValue: id
+    func topUp(serviceId: Int, amount: Double) {
+        
+        let params: [String : String] = [
+            Parameters.id.rawValue : String(serviceId),
+            Parameters.amount.rawValue : String(amount)
         ]
         
         delegate?.showActivityIndicator()
-        JSONDownloader.shared.jsonTask(url: EndPoints.subscriptionsBuy.rawValue, requestMethod: .post, parameters: param, completionHandler: { [weak self]  (result) in
+        JSONDownloader.shared.jsonTask(url: EndPoints.topUp.rawValue, requestMethod: .get, parameters: params, completionHandler: { [weak self]  (result) in
             guard let self = self else { return }
             switch result {
             case .Error(let error, let message):
                 self.delegate?.showAlertClosure(error: (error,message))
             case .Success(let json):
                 do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<Subscription>.self, from: json)
-                    self.delegate?.didFinishFetchBought(statusCode: fetchedData.code)
+                    let fetchedData = try CustomDecoder().decode(JSONData<PaymentCheckout>.self, from: json)
+                    guard let data = fetchedData.data else { return }
+                    self.delegate?.didFinishFetch(data: data)
                 } catch {
                     self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                 }
@@ -58,7 +62,5 @@ final class SubscriptionViewModel {
             self.delegate?.hideActivityIndicator()
         })
     }
-    
 }
-
 

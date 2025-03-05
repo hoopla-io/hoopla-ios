@@ -32,6 +32,10 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
             coordinator?.pushToSubscriptionVC()
         case 1:
             coordinator?.pushToLanguageVC(viewController: self)
+        case 2:
+            openURL(urlString: MainConstants.termsOfUse.rawValue)
+        case 3:
+            openURL(urlString: MainConstants.privacyPolicy.rawValue)
         default: break
         }
     }

@@ -56,14 +56,14 @@ class CodeConfirmViewController: TextFieldViewController, ViewSpecificController
     }
     
     @IBAction func secondaryButtonsAction(_ sender: UIButton) {
-//        switch sender.tag {
-//        case 0:
-//            coordinator?.pushWebViewVC(link: MainConstants.itvTermsOfUse.rawValue)
-//        case 1:
-//            coordinator?.pushWebViewVC(link: MainConstants.privacyPolicy.rawValue)
-//        default:
-//            break
-//        }
+        switch sender.tag {
+        case 0:
+            openURL(urlString: MainConstants.termsOfUse.rawValue)
+        case 1:
+            openURL(urlString: MainConstants.privacyPolicy.rawValue)
+        default:
+            break
+        }
     }
     
     @objc func progressAction() {

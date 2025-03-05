@@ -16,6 +16,12 @@ final class LanguageView: CustomView {
         }
     }
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var deleteAccountButton: UIButton! {
+        didSet {
+            deleteAccountButton.isHidden = true
+        }
+    }
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var centerConstraint: NSLayoutConstraint!
     
 }

@@ -32,8 +32,7 @@ userAgreementAuth = "Foydalanuvchi shartnomasi";
 and = "va ";
 privacyAuth = "Maxfiylik siyosatiga";
 resendCode = "Qayta yuborish";
-privacyPolicy = "";
-licenceAgreement = "Litsenziya Shartnomasi";
+termsOfUse = "Xizmat ko'rsatish shartlari";
 privacyPolicy = "Maxfiylik siyosati";
 logout = "Chiqish";
 subscriptions = "Obunalar";
@@ -43,6 +42,10 @@ phoneNumber = "Telefon raqam:";
 balance = "Balans:";
 mySubscription = "Mening obunam:";
 endDatePayment = "Obuna tugash vaqti:";
+deleteAccount = "Akkountni o'chirish";
+deleteAccountInfo = "Akkountni o'chirish";
+deleteAccountDesc = "Akkountni o'chirish uchun shaxsiy hisob raqamingizni kiriting";
+choosePayment = "To'lov usullarini tanlang";
 
 // MARK: - Main
 coffeeShops = "Qahvaxonalar";
@@ -95,3 +98,4 @@ emptyHistory = "Siz hali QR koddan foydalanmadingiz";
 infoBuySubscription = "Siz ushbu obunani sotib olmoqchimisiz?";
 yes = "Ha";
 successBoughtSubscriptionAlert = "Siz obunani muvaffaqiyatli sotib oldingiz!";
+incorrect = "Noto'g'ri";

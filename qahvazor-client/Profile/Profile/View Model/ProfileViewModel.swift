@@ -13,6 +13,12 @@ protocol ProfileViewModelProtocol: ViewModelProtocol {
     func didFinishFetchLogout()
 }
 
+extension ProfileViewModelProtocol {
+    func didFinishFetch(data: Auth) {}
+    func didFinishFetch(data: Account) {}
+    func didFinishFetchLogout() {}
+}
+
 final class ProfileViewModel {
     // MARK: - Attributes
     weak var delegate: ProfileViewModelProtocol?
@@ -70,7 +76,21 @@ final class ProfileViewModel {
             switch result {
             case .Error(let error, let message):
                 self.delegate?.showAlertClosure(error: (error,message))
-            case .Success(let json):
+            case .Success(_):
+                self.delegate?.didFinishFetchLogout()
+            }
+            self.delegate?.hideActivityIndicator()
+        })
+    }
+    
+    func deleteAccount() {
+        delegate?.showActivityIndicator()
+        JSONDownloader.shared.jsonTask(url: EndPoints.deleteUser.rawValue, requestMethod: .delete, completionHandler: { [weak self]  (result) in
+            guard let self = self else { return }
+            switch result {
+            case .Error(let error, let message):
+                self.delegate?.showAlertClosure(error: (error,message))
+            case .Success(_):
                 self.delegate?.didFinishFetchLogout()
             }
             self.delegate?.hideActivityIndicator()

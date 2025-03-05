@@ -19,6 +19,7 @@ enum ItemType {
     case company
     case shops
     case subscription
+    case payment
 }
 
 struct ItemCountCompany: ItemCount {
@@ -31,6 +32,12 @@ struct ItemCountShops: ItemCount {
     var padLandscape = 3
     var padPortrait  = 2
     var phone        = 1
+}
+
+struct ItemCountPayment: ItemCount {
+    var padLandscape = 5
+    var padPortrait  = 3
+    var phone        = 2
 }
 
 enum ItemRatio: CGFloat {
@@ -66,6 +73,8 @@ extension UICollectionView {
             return itemSize(itemType: .shops, layout: layout, ratio: .shops, spacing: .standard, additionalHeight: .company)
         case .subscription:
             return itemSize(itemType: .company, layout: layout, ratio: .subscription, spacing: .standard, additionalHeight: .company)
+        case .payment:
+            return itemSize(itemType: .payment, layout: layout, ratio: .coffee, spacing: .custom, additionalHeight: .company)
         default:
             return CGSize.zero
         }
@@ -79,6 +88,8 @@ extension UICollectionView {
             return numberInRow(type: ItemCountShops())
         case .subscription:
             return numberInRow(type: ItemCountCompany())
+        case .payment:
+            return numberInRow(type: ItemCountPayment())
         }
     }
     

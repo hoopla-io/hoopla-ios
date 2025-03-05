@@ -46,4 +46,11 @@ final class ProfileCoordinator: Coordinator {
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func pushToPaymentVC(amount: Double?) {
+        let vc = PaymentViewController()
+        vc.coordinator = self
+        vc.amount = amount
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

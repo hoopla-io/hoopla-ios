@@ -61,7 +61,9 @@ final class SubscriptionDataProvider: NSObject, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = viewController as? SubscriptionViewController else { return }
         guard let id = items[indexPath.row].id else { return }
+        guard let amount = items[indexPath.row].price else { return }
         vc.showBuyAlert(id: id)
+        vc.amount = amount
     }
 }
 

@@ -19,6 +19,7 @@ class SubscriptionViewController: UIViewController, ViewSpecificController, Aler
     
     // MARK: - Attributes
     var dataProvider: SubscriptionDataProvider?
+    var amount: Double?
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -34,9 +35,13 @@ extension SubscriptionViewController: SubscriptionViewModelProtocol {
         dataProvider?.items = data
     }
     
-    func didFinishFetchSuccessBought() {
-        showSuccessAlert(message: "successBuySubscription".localized)
-        navigationController?.popViewController(animated: true)
+    func didFinishFetchBought(statusCode: Int) {
+        if statusCode == StatusCode.success200.rawValue {
+            showSuccessAlert(message: "successBuySubscription".localized)
+            navigationController?.popViewController(animated: true)
+        } else {
+            coordinator?.pushToPaymentVC(amount: amount)
+        }
     }
 }
 
@@ -54,10 +59,10 @@ extension SubscriptionViewController {
     
     func showBuyAlert(id: Int) {
         let alert = UIAlertController(title: "infoBuySubscription".localized, message: "", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "yes".localized, style: UIAlertAction.Style.cancel, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "yes".localized, style: UIAlertAction.Style.default, handler: { [weak self] _ in
             self?.viewModel.subscriptionBuy(id: id)
         }))
-        alert.addAction(UIAlertAction(title: "cancel".localized, style: UIAlertAction.Style.default))
+        alert.addAction(UIAlertAction(title: "cancel".localized, style: UIAlertAction.Style.cancel))
         
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)

@@ -74,16 +74,42 @@
                         <constraint firstAttribute="trailing" secondItem="FPy-8w-1DR" secondAttribute="trailing" constant="16" id="sQb-r8-aLN"/>
                     </constraints>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXV-Xk-Fmw">
+                    <rect key="frame" x="16" y="596" width="361" height="56"/>
+                    <color key="backgroundColor" name="mainColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="wnM-I8-Cvs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="deleteAccount">
+                        <color key="titleColor" name="white"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="deleteAccount"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="deleteAccountAction:" destination="-1" eventType="touchUpInside" id="rHD-gm-wjF"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="WWO-qA-KCx" secondAttribute="trailing" id="3Fq-sB-Xxf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SXV-Xk-Fmw" secondAttribute="trailing" constant="16" id="4ei-lX-L8T"/>
+                <constraint firstItem="SXV-Xk-Fmw" firstAttribute="top" secondItem="WWO-qA-KCx" secondAttribute="bottom" constant="20" id="CQV-qm-E1d"/>
                 <constraint firstItem="WWO-qA-KCx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rtG-fU-HmY"/>
                 <constraint firstItem="WWO-qA-KCx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uG9-pY-9GM"/>
+                <constraint firstItem="SXV-Xk-Fmw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="udv-8b-yvr"/>
             </constraints>
             <connections>
+                <outlet property="centerConstraint" destination="uG9-pY-9GM" id="YiK-L5-OTm"/>
                 <outlet property="collectionView" destination="xbT-cV-BAY" id="C4X-IO-Fha"/>
+                <outlet property="deleteAccountButton" destination="SXV-Xk-Fmw" id="WNJ-bP-wzY"/>
                 <outlet property="nextButton" destination="FPy-8w-1DR" id="DDy-jG-eWY"/>
                 <outlet property="titleLabel" destination="YkW-bn-gdR" id="QG5-Mb-fz0"/>
             </connections>
