@@ -46,6 +46,7 @@ deleteAccount = "Akkountni o'chirish";
 deleteAccountInfo = "Akkountni o'chirish";
 deleteAccountDesc = "Akkountni o'chirish uchun shaxsiy hisob raqamingizni kiriting";
 choosePayment = "To'lov usullarini tanlang";
+support = "Qo'llab-quvvatlash";
 
 // MARK: - Main
 coffeeShops = "Qahvaxonalar";

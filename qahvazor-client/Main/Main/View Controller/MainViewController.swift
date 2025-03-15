@@ -31,6 +31,9 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
         checkAccessLocation()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        locationManager.requestLocationPermission()
+    }
 }
 // MARK: - Networking
 extension MainViewController: MainViewModelProtocol {

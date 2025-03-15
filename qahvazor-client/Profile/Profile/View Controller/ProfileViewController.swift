@@ -36,6 +36,8 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
             openURL(urlString: MainConstants.termsOfUse.rawValue)
         case 3:
             openURL(urlString: MainConstants.privacyPolicy.rawValue)
+        case 4:
+            openURL(urlString: MainConstants.support.rawValue)
         default: break
         }
     }

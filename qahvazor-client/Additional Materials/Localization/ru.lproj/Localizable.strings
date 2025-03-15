@@ -46,6 +46,7 @@ deleteAccount = "Удалить аккаунт";
 deleteAccountInfo = "Удаление аккаунта";
 deleteAccountDesc = "Для удаления вашего аккаунта, введите лицевой счёт";
 choosePayment = "Выберите способы оплаты";
+support = "Поддержка";
 
 // MARK: - Main
 coffeeShops = "Кофейни";

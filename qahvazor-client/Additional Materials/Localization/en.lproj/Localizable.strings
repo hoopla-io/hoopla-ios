@@ -46,6 +46,7 @@ deleteAccount = "Delete account";
 deleteAccountInfo = "Account deleting";
 deleteAccountDesc = "To delete your account, enter your personal account number";
 choosePayment = "Choose payment methods";
+support = "Support";
 
 // MARK: - Main
 coffeeShops = "Coffee shops";
