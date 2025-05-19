@@ -44,9 +44,11 @@ mySubscription = "Mening obunam:";
 endDatePayment = "Obuna tugash vaqti:";
 deleteAccount = "Akkountni o'chirish";
 deleteAccountInfo = "Akkountni o'chirish";
-deleteAccountDesc = "Akkountni o'chirish uchun shaxsiy hisob raqamingizni kiriting";
+deleteAccountDesc = "Akkountni o'chirish uchun telefon raqamingizni kiriting";
 choosePayment = "To'lov usullarini tanlang";
 support = "Qo'llab-quvvatlash";
+payment = "Balansni to'ldirish";
+enterAmount = "Miqdorni kiriting";
 
 // MARK: - Main
 coffeeShops = "Qahvaxonalar";

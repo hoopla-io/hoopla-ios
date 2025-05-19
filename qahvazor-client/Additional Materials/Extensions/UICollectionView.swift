@@ -45,7 +45,7 @@ enum ItemRatio: CGFloat {
     case shops      = 0.5
     case coffee     = 1.0
     case photo      = 0.56
-    case subscription = 0.7
+    case subscription = 0.9
 }
 
 enum ItemSpacing: CGFloat {

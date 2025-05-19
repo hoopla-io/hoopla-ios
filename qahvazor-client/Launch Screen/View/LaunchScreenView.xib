@@ -37,7 +37,7 @@
         </view>
     </objects>
     <resources>
-        <image name="logo" width="417" height="417"/>
+        <image name="logo" width="1000" height="1000"/>
         <namedColor name="mainColor">
             <color red="0.52549019607843139" green="0.14901960784313725" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

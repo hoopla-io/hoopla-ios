@@ -44,9 +44,11 @@ mySubscription = "My subscription:";
 endDatePayment = "Subscription expiration time:";
 deleteAccount = "Delete account";
 deleteAccountInfo = "Account deleting";
-deleteAccountDesc = "To delete your account, enter your personal account number";
+deleteAccountDesc = "To delete your account, enter your phone number";
 choosePayment = "Choose payment methods";
 support = "Support";
+payment = "Top up balance";
+enterAmount = "Enter the amount";
 
 // MARK: - Main
 coffeeShops = "Coffee shops";

@@ -64,9 +64,9 @@ extension PaymentViewController: PaymentViewModelProtocol {
 // MARK: - Networking
 extension PaymentViewController: ProfileViewModelProtocol {
     func didFinishFetch(data: Account) {
-//        guard data.balanceAmount ?? 0 != KeychainAccessCheck.balance() else {
-//            return
-//        }
+        guard data.balance ?? 0 != UserDefaults.standard.getBalance() else {
+            return
+        }
         showSuccessAlert(message: "success".localized)
         navigationController?.popViewController(animated: true)
     }
@@ -86,8 +86,14 @@ extension PaymentViewController {
     }
     
     func itemSelected(serviceId: Int) {
-        guard let amount else { return }
-        viewModel.topUp(serviceId: serviceId, amount: amount)
+        if let amount {
+            viewModel.topUp(serviceId: serviceId, amount: String(amount))
+        } else {
+            showAlertWithTextField(title: "payment".localized, message: "enterAmount".localized) { text in
+                guard let amount = text, !amount.isEmpty else { return }
+                self.viewModel.topUp(serviceId: serviceId, amount: amount)
+            }
+        }
     }
     
     private func setupObserver() {

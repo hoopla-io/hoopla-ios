@@ -20,6 +20,7 @@ enum UserDefaultsKeys: String {
     case firstLaunch
     case latitude
     case longitude
+    case balance
 }
 
 extension UserDefaults {
@@ -94,6 +95,13 @@ extension UserDefaults {
         removeRefreshToken()
     }
     
+    func saveBalance(_ amount: Double) {
+        set(amount, forKey: UserDefaultsKeys.balance.rawValue)
+    }
+    
+    func getBalance() -> Double {
+        return double(forKey: UserDefaultsKeys.balance.rawValue)
+    }
 }
 
 

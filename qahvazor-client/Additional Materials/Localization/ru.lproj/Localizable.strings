@@ -44,9 +44,11 @@ mySubscription = "Моя подписка:";
 endDatePayment = "Срок действия подписки:";
 deleteAccount = "Удалить аккаунт";
 deleteAccountInfo = "Удаление аккаунта";
-deleteAccountDesc = "Для удаления вашего аккаунта, введите лицевой счёт";
+deleteAccountDesc = "Для удаления вашего аккаунта, введите Ваш номер телефона";
 choosePayment = "Выберите способы оплаты";
 support = "Поддержка";
+payment = "Пополнить баланс";
+enterAmount = "Введите сумму";
 
 // MARK: - Main
 coffeeShops = "Кофейни";

@@ -38,6 +38,8 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
             openURL(urlString: MainConstants.privacyPolicy.rawValue)
         case 4:
             openURL(urlString: MainConstants.support.rawValue)
+        case 5:
+            coordinator?.pushToPaymentVC()
         default: break
         }
     }
@@ -89,6 +91,7 @@ extension ProfileViewController: ProfileViewModelProtocol {
         view().accounNumberLabel.text = data.phoneNumber?.displayPhone()
         view().balanceLabel.text = data.balanceInfo
         view().subscription = data.subscription
+        UserDefaults.standard.saveBalance(data.balance ?? 0)
     }
     
     func didFinishFetchLogout() {

@@ -50,7 +50,6 @@ final class ProfileViewModel {
     }
     
     func getMe() {
-        delegate?.showActivityIndicator()
         JSONDownloader.shared.jsonTask(url: EndPoints.getMe.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
             guard let self = self else { return }
             switch result {
@@ -65,7 +64,6 @@ final class ProfileViewModel {
                     self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                 }
             }
-            self.delegate?.hideActivityIndicator()
         })
     }
     

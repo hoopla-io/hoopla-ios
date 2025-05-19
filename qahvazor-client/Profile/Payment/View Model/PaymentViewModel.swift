@@ -37,11 +37,11 @@ final class PaymentViewModel {
         })
     }
     
-    func topUp(serviceId: Int, amount: Double) {
+    func topUp(serviceId: Int, amount: String) {
         
         let params: [String : String] = [
             Parameters.id.rawValue : String(serviceId),
-            Parameters.amount.rawValue : String(amount)
+            Parameters.amount.rawValue : amount
         ]
         
         delegate?.showActivityIndicator()

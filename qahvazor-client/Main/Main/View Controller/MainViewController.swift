@@ -61,6 +61,7 @@ extension MainViewController {
     
     @objc func refresh(sender: UIRefreshControl? = nil) {
         viewModel.getList()
+        locationManager.requestLocationPermission()
         
         DispatchQueue.main.async {
             sender?.endRefreshing()
