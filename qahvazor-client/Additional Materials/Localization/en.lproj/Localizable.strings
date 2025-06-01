@@ -49,6 +49,8 @@ choosePayment = "Choose payment methods";
 support = "Support";
 payment = "Top up balance";
 enterAmount = "Enter the amount";
+topUp = "Payment";
+chooseSubscription = "Select a subscription";
 
 // MARK: - Main
 coffeeShops = "Coffee shops";
@@ -78,6 +80,11 @@ communication = "Communication";
 // MARK: - QR
 history = "History";
 auth = "Registration";
+subscription = "Subscription:";
+activeTo = "Active until:";
+dailyLimit = "Daily limit:";
+available = "Available";
+used = "Used";
 
 // MARK: - Alert
 logoutAlert = "Do you really want to sign out?";
@@ -97,7 +104,7 @@ serverError = "Server Error";
 serverErrorDetail = "Looks like something went wrong\ntry again";
 retry = "Try Again";
 emptySearch = "Nothing found for your request";
-emptyHistory = "emptyHistory";
+emptyHistory = "You haven't used a QR code yet.";
 infoBuySubscription = "Are you sure you want to buy this subscription?";
 yes = "Yes";
 successBoughtSubscriptionAlert = "You have successfully purchased a subscription!";

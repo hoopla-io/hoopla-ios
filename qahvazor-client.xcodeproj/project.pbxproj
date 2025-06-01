@@ -107,6 +107,7 @@
 		752331992D1A90AD0090997E /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331982D1A90AD0090997E /* LaunchScreenView.swift */; };
 		7523319B2D1A90B30090997E /* LaunchScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7523319A2D1A90B30090997E /* LaunchScreenView.xib */; };
 		7523319D2D1A90B90090997E /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7523319C2D1A90B90090997E /* LaunchScreenViewController.swift */; };
+		753533FF2DE5BB6F00C45CDC /* Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753533FE2DE5BB6F00C45CDC /* Limit.swift */; };
 		7535D11C2D3B8C620016C489 /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535D11B2D3B8C620016C489 /* UISearchBar.swift */; };
 		75422B022D33AB4F00B83C42 /* HistoryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75422B012D33AB4F00B83C42 /* HistoryDataProvider.swift */; };
 		75422B072D33AC1200B83C42 /* OrderHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75422B052D33AC1200B83C42 /* OrderHistoryTableViewCell.swift */; };
@@ -283,6 +284,7 @@
 		752331982D1A90AD0090997E /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		7523319A2D1A90B30090997E /* LaunchScreenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreenView.xib; sourceTree = "<group>"; };
 		7523319C2D1A90B90090997E /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		753533FE2DE5BB6F00C45CDC /* Limit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Limit.swift; sourceTree = "<group>"; };
 		7535D11B2D3B8C620016C489 /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		75422B012D33AB4F00B83C42 /* HistoryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDataProvider.swift; sourceTree = "<group>"; };
 		75422B052D33AC1200B83C42 /* OrderHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -1087,6 +1089,7 @@
 			children = (
 				75BB44842D31296F0000C64A /* QR.swift */,
 				75422B092D33ACC400B83C42 /* OrderHistory.swift */,
+				753533FE2DE5BB6F00C45CDC /* Limit.swift */,
 			);
 			path = QR;
 			sourceTree = "<group>";
@@ -1497,6 +1500,7 @@
 				752330772D197AE80090997E /* AppDelegate.swift in Sources */,
 				75DCE38C2D1C2A97003A59CD /* SignIn.swift in Sources */,
 				75A04A652D2E83340082D342 /* SocialDataProvider.swift in Sources */,
+				753533FF2DE5BB6F00C45CDC /* Limit.swift in Sources */,
 				75A04A6B2D2E92380082D342 /* ShopsDataProvider.swift in Sources */,
 				752330782D197AE80090997E /* SceneDelegate.swift in Sources */,
 				7582AD7A2D32836500FF1ECF /* SubscriptionViewController.swift in Sources */,
@@ -1684,7 +1688,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1717,7 +1721,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

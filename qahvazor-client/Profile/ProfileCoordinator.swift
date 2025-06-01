@@ -28,7 +28,6 @@ final class ProfileCoordinator: Coordinator {
         let vc = CodeConfirmViewController()
         vc.data = data
         vc.coordinator = self
-        vc.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(vc, animated: true)
     }
     

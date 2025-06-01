@@ -49,6 +49,8 @@ choosePayment = "Выберите способы оплаты";
 support = "Поддержка";
 payment = "Пополнить баланс";
 enterAmount = "Введите сумму";
+topUp = "Пополнить";
+chooseSubscription = "Выбрать подписку";
 
 // MARK: - Main
 coffeeShops = "Кофейни";
@@ -78,6 +80,11 @@ communication = "Коммуникация";
 // MARK: - QR
 history = "История";
 auth = "Регистрация";
+subscription = "Подписка:";
+activeTo = "Действует до:";
+dailyLimit = "Дневной лимит:";
+available = "Доступно";
+used = "Использовано";
 
 // MARK: - Alert
 logoutAlert = "Вы действительно хотите выйти из аккаунта?";
@@ -97,7 +104,7 @@ serverError = "Ошибка сервера";
 serverErrorDetail = "Видимо что-то пошло не так\nпопробуйте снова";
 retry = "Повторить попытку";
 emptySearch = "По вашему запросу ничего не найдено";
-emptyHistory = "emptyHistory";
+emptyHistory = "Вы еще не использовали QR-код.";
 infoBuySubscription = "Вы действительно хотите приобрести эту подписку?";
 yes = "Да";
 successBoughtSubscriptionAlert = "Вы успешно приобрели подписку!";

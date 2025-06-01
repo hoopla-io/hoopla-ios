@@ -10,6 +10,7 @@ import UIKit
 protocol QRViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: QR)
     func didFinishFetch(data: [OrderHistory]?)
+    func didFinishFetch(data: Limit?)
 }
 
 final class QRViewModel {
@@ -46,6 +47,24 @@ final class QRViewModel {
             case .Success(let json):
                 do {
                     let fetchedData = try CustomDecoder().decode(JSONData<[OrderHistory]>.self, from: json)
+                    self.delegate?.didFinishFetch(data: fetchedData.data)
+                } catch {
+                    self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                }
+            }
+        })
+    }
+    
+    func getDrinksLimit() {
+        
+        JSONDownloader.shared.jsonTask(url: EndPoints.drinksLimit.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
+            guard let self = self else { return }
+            switch result {
+            case .Error(let error, let message):
+                self.delegate?.showAlertClosure(error: (error,message))
+            case .Success(let json):
+                do {
+                    let fetchedData = try CustomDecoder().decode(JSONData<Limit>.self, from: json)
                     self.delegate?.didFinishFetch(data: fetchedData.data)
                 } catch {
                     self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))

@@ -13,12 +13,12 @@ final class QRView: CustomView {
     @IBOutlet weak var authContainerView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var qrImageView: UIImageView!
-    @IBOutlet weak var reloadButton: UIButton! {
-        didSet {
-            reloadButton.isHidden = true
-        }
-    }
-    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var subscriptionLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var limitButton: UIButton!
+    @IBOutlet weak var availableLabel: UILabel!
+    @IBOutlet weak var usedLabel: UILabel!
+    @IBOutlet weak var progress: UIProgressView!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.register(UINib(nibName: OrderHistoryTableViewCell.defaultReuseIdentifier, bundle: nil), forCellReuseIdentifier: OrderHistoryTableViewCell.defaultReuseIdentifier)

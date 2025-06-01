@@ -38,10 +38,16 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
             openURL(urlString: MainConstants.privacyPolicy.rawValue)
         case 4:
             openURL(urlString: MainConstants.support.rawValue)
-        case 5:
-            coordinator?.pushToPaymentVC()
         default: break
         }
+    }
+    
+    @objc func subscriptionTapped() {
+        coordinator?.pushToSubscriptionVC()
+    }
+    
+    @objc func paymentTapped() {
+        coordinator?.pushToPaymentVC()
     }
     
     @IBAction func logoutAction(_ sender: UIButton) {
@@ -110,6 +116,12 @@ extension ProfileViewController {
             view().versionLabel.text = "version".localized + Symbols.space.rawValue + releaseVersionNumber
         }
         checkAuth()
+        
+        let subscriptionTap = UITapGestureRecognizer(target: self, action: #selector(subscriptionTapped))
+        view().subscriptionButton.addGestureRecognizer(subscriptionTap)
+        
+        let paymentTap = UITapGestureRecognizer(target: self, action: #selector(paymentTapped))
+        view().paymentView.addGestureRecognizer(paymentTap)
     }
     
     private func checkAuth() {

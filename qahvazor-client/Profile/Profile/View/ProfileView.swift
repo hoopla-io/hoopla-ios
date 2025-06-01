@@ -16,13 +16,23 @@ final class ProfileView: CustomView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var accounNumberLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var subscriptionInfoStackView: UIStackView! {
+    @IBOutlet weak var subscriptionTitleLabel: UILabel!
+    @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var subscriptionButton: UILabel!
+    @IBOutlet weak var paymentView: UIView! {
         didSet {
-            subscriptionInfoStackView.isHidden = true
+            paymentView.layer.cornerCurve = .continuous
+            paymentView.layer.borderWidth = 1.5
+            paymentView.layer.borderColor = UIColor.systemGray.cgColor
         }
     }
-    @IBOutlet weak var subscriptionLabel: UILabel!
-    @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var tariffContainerView: UIView! {
+        didSet {
+            tariffContainerView.layer.cornerCurve = .continuous
+            tariffContainerView.layer.borderWidth = 1.5
+        }
+    }
+    
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet var buttons: [UIButton]! {
         didSet {
@@ -33,23 +43,29 @@ final class ProfileView: CustomView {
     //MARK: - Attributes
     var subscription: Subscription? {
         didSet {
-            guard let subscription else { return subscriptionInfoStackView.isHidden = true }
-            showSubscriptionInfo()
-            subscriptionLabel.text = subscription.name
+            guard let subscription else {
+                tariffContainerView.layer.borderColor = UIColor.clear.cgColor
+                subscriptionButton.isHidden = false
+                return
+            }
+            subscriptionButton.isHidden = true
+//            showSubscriptionInfo()
+            subscriptionTitleLabel.text = subscription.name
             let date = DateFormatter.string(timestamp: subscription.endDateUnix ?? 0, formatter: .birthDate)
             endDateLabel.text = date
+            tariffContainerView.layer.borderColor = UIColor.systemGray.cgColor
         }
     }
     
-    func showSubscriptionInfo() {
-        guard subscriptionInfoStackView.isHidden else { return }
-        subscriptionInfoStackView.alpha = 0
-        UIView.transition(with: subscriptionInfoStackView, duration: 0.3) {
-            self.subscriptionInfoStackView.isHidden = false
-        }
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            guard let self else { return }
-            subscriptionInfoStackView.alpha = 1
-        }
-    }
+//    func showSubscriptionInfo() {
+//        guard subscriptionInfoStackView.isHidden else { return }
+//        subscriptionInfoStackView.alpha = 0
+//        UIView.transition(with: subscriptionInfoStackView, duration: 0.3) {
+//            self.subscriptionInfoStackView.isHidden = false
+//        }
+//        UIView.animate(withDuration: 0.5) { [weak self] in
+//            guard let self else { return }
+//            subscriptionInfoStackView.alpha = 1
+//        }
+//    }
 }

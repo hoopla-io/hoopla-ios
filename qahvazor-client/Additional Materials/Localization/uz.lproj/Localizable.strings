@@ -49,6 +49,8 @@ choosePayment = "To'lov usullarini tanlang";
 support = "Qo'llab-quvvatlash";
 payment = "Balansni to'ldirish";
 enterAmount = "Miqdorni kiriting";
+topUp = "To'ldirish";
+chooseSubscription = "Obuna tanlash";
 
 // MARK: - Main
 coffeeShops = "Qahvaxonalar";
@@ -78,6 +80,11 @@ communication = "Aloqa";
 // MARK: - QR
 history = "Tarix";
 auth = "Ro'yhatdan o'tish";
+subscription = "Obuna:";
+activeTo = "Aktiv:";
+dailyLimit = "Kunlik limit";
+available = "Mavjud";
+used = "Foydalanilgan";
 
 // MARK: - Alert
 success = "Muvaffaqiyatli";

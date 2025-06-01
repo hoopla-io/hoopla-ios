@@ -19,25 +19,10 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
     var isLoading = false
     var coordinator: QRCoordinator?
     let viewModel = QRViewModel()
+    let profileViewModel = ProfileViewModel()
     
     // MARK: - Attributes
     var dataProvider: HistoryDataProvider?
-    private var progressTimer = Timer()
-    private var duration: Double = 20.0 {
-        didSet {
-            guard duration >= 0.0 else {
-                duration = 0.0
-                progressTimer.invalidate()
-                view().reloadButton.isHidden = false
-                view().timerLabel.text = "00:00"
-                dismiss(animated: true)
-                return
-            }
-            view().reloadButton.isHidden = true
-            view().timerLabel.text = duration.convertToTime(calendarType: [.minute, .second])
-        }
-    }
-    private var timeInterval: Double = 1
     var data: QR? {
         didSet {
             guard let data else { return }
@@ -46,8 +31,6 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
                 view().containerView.hideSkeleton()
                 view().qrImageView.setupImageViewer(images: [view().qrImageView.image ?? UIImage()], options: [.theme(.dark), .closeIcon(.appImage(.closeCircle))], from: self)
             }
-            guard let expireTime = data.expireAt else { return }
-            duration = Double(expireTime - Int(Date().timeIntervalSince1970))
         }
     }
     var appDeactiveTime = Double()
@@ -58,11 +41,6 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
         tabBarController?.selectedIndex = 2
     }
     
-    @IBAction func reloadAction() {
-        viewModel.getQRCode()
-        Haptic.impact(.heavy).generate()
-    }
-    
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +48,8 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
         if UserDefaults.standard.isAuthed() {
             viewModel.getQRCode()
             viewModel.getOrderHistoryList()
+            profileViewModel.getMe()
+            viewModel.getDrinksLimit()
         }
     }
     
@@ -78,7 +58,6 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
 extension QRViewController: QRViewModelProtocol {
     func didFinishFetch(data: QR) {
         self.data = data
-        setupProgressTimer()
     }
     
     func didFinishFetch(data: [OrderHistory]?) {
@@ -89,12 +68,34 @@ extension QRViewController: QRViewModelProtocol {
         }
         view().tableView.checkEmpty(items: dataProvider?.items, type: .history)
     }
+    
+    func didFinishFetch(data: Limit?) {
+        let used = data?.used ?? 0
+        let aviailable = data?.available ?? 0
+//        let limit = "dailyLimit".localized + " \(aviailable)"
+//        view().limitButton.setTitle(limit, for: .normal)
+        view().usedLabel.text = "\("used".localized): \(used)"
+        view().availableLabel.text = "\("available".localized): \(aviailable)"
+        if used == 0 {
+            view().progress.progress = 0
+        } else {
+            view().progress.progress = Float(aviailable) / Float(used)
+        }
+    }
+}
+// MARK: - Networking
+extension QRViewController: ProfileViewModelProtocol {
+    func didFinishFetch(data: Account) {
+        view().subscriptionLabel.text = data.subscription?.name
+        view().phoneNumberLabel.text = data.phoneNumber?.displayPhone()
+    }
 }
 
 // MARK: - Other funcs
 extension QRViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
+        profileViewModel.delegate = self
         navigationItem.title = "QR".localized
         
         let dataProvider = HistoryDataProvider()
@@ -102,7 +103,6 @@ extension QRViewController {
         self.dataProvider = dataProvider
         
         view().authContainerView.isHidden = UserDefaults.standard.isAuthed()
-        setupObserver()
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
@@ -115,34 +115,5 @@ extension QRViewController {
         DispatchQueue.main.async {
             sender?.endRefreshing()
         }
-    }
-    
-    private func setupProgressTimer() {
-        progressTimer.invalidate()
-        progressTimer = Timer.scheduledTimer(timeInterval: TimeInterval(timeInterval), target: self, selector: #selector(progressAction), userInfo: nil, repeats: true)
-        RunLoop.main.add(progressTimer, forMode: RunLoop.Mode.common)
-    }
-    
-    @objc func progressAction() {
-        duration -= timeInterval
-    }
-    
-    @objc func appBecomeActive() {
-        let currentTime = Double(Date().timeIntervalSince1970)
-        let difference = currentTime - appDeactiveTime
-        let differenceDuration = abs(duration - durationInDeactive)
-        
-        duration -= abs(difference - differenceDuration)
-    }
-    
-    @objc func appBecomeDeactive() {
-        appDeactiveTime = Double(Date().timeIntervalSince1970)
-        durationInDeactive = duration
-    }
-    
-    private func setupObserver() {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(appBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(appBecomeDeactive), name: UIApplication.willResignActiveNotification, object: nil)
     }
 }

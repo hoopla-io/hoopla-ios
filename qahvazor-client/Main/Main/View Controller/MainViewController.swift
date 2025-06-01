@@ -104,8 +104,8 @@ extension MainViewController: UISearchBarDelegate {
 //MARK: - Scroll to up
 extension MainViewController: TabBarReselectHandling {
     func handleReselect() {
-        guard let items = dataProvider?.items, !items.isEmpty else { return }
-        view().collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+//        guard let items = dataProvider?.items, !items.isEmpty else { return }
+//        view().collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
 }
 
