@@ -23,6 +23,7 @@ class ShopDetailView: CustomView {
             coffeeListCollectionView.register(UINib(nibName: CoffeeCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier)
         }
     }
+    @IBOutlet weak var coffeeCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var socialListCollectionView: UICollectionView! {
         didSet {
             socialListCollectionView.register(UINib(nibName: SocialCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: SocialCollectionViewCell.defaultReuseIdentifier)

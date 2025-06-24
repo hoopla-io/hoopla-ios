@@ -151,6 +151,7 @@
 		75A04A682D2E86E50082D342 /* SocialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */; };
 		75A04A692D2E86E50082D342 /* SocialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */; };
 		75A04A6B2D2E92380082D342 /* ShopsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */; };
+		75BB17282E095C8500376246 /* UniversalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB17272E095C8500376246 /* UniversalLink.swift */; };
 		75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */; };
 		75BB447C2D30F6DB0000C64A /* QRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447B2D30F6DB0000C64A /* QRViewModel.swift */; };
 		75BB447E2D30F6EB0000C64A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447D2D30F6EB0000C64A /* QRView.swift */; };
@@ -328,6 +329,8 @@
 		75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCollectionViewCell.swift; sourceTree = "<group>"; };
 		75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialCollectionViewCell.xib; sourceTree = "<group>"; };
 		75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsDataProvider.swift; sourceTree = "<group>"; };
+		75BB17262E0955FB00376246 /* qahvazor-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "qahvazor-client.entitlements"; sourceTree = "<group>"; };
+		75BB17272E095C8500376246 /* UniversalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLink.swift; sourceTree = "<group>"; };
 		75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeDataProvider.swift; sourceTree = "<group>"; };
 		75BB447B2D30F6DB0000C64A /* QRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewModel.swift; sourceTree = "<group>"; };
 		75BB447D2D30F6EB0000C64A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
@@ -473,6 +476,7 @@
 		752330762D197AE80090997E /* qahvazor-client */ = {
 			isa = PBXGroup;
 			children = (
+				75BB17262E0955FB00376246 /* qahvazor-client.entitlements */,
 				752330C02D197B210090997E /* Additional Materials */,
 				752331952D1A90900090997E /* Launch Screen */,
 				752331872D1A8CD50090997E /* Onboarding */,
@@ -640,9 +644,9 @@
 				752331322D198B930090997E /* MainCoordinator.swift */,
 				752331382D198C930090997E /* Main */,
 				750392982D40B9CB0010646F /* Search */,
+				757F36212D1E742900EFA728 /* Shop Detail */,
 				75705CDC2D2FD62C00DA3AA4 /* Partner Detail */,
 				7552C2F12D1D833000F2DF78 /* Shops List */,
-				757F36212D1E742900EFA728 /* Shop Detail */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -887,6 +891,8 @@
 		75705CE82D2FFD2200DA3AA4 /* Data Provider */ = {
 			isa = PBXGroup;
 			children = (
+				75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */,
+				75A04A642D2E83340082D342 /* SocialDataProvider.swift */,
 				75705CE92D2FFD5500DA3AA4 /* PhotoDataProvider.swift */,
 				75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */,
 			);
@@ -896,8 +902,9 @@
 		75705CEB2D2FFDD800DA3AA4 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				75705CED2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.swift */,
-				75705CEE2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib */,
+				75BB172A2E0962C000376246 /* Coffee */,
+				75BB172B2E0962E700376246 /* Social */,
+				75BB17292E0962B600376246 /* Photo */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1044,8 +1051,36 @@
 				7596B51F2D1D6A180070A5BB /* Company.swift */,
 				759624D52D2CF66B00F52EE9 /* Shop.swift */,
 				75F3B0DD2D3789C7003E37B9 /* Coordinate.swift */,
+				75BB17272E095C8500376246 /* UniversalLink.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		75BB17292E0962B600376246 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				75705CED2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.swift */,
+				75705CEE2D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		75BB172A2E0962C000376246 /* Coffee */ = {
+			isa = PBXGroup;
+			children = (
+				75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */,
+				75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */,
+			);
+			path = Coffee;
+			sourceTree = "<group>";
+		};
+		75BB172B2E0962E700376246 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */,
+				75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */,
+			);
+			path = Social;
 			sourceTree = "<group>";
 		};
 		75BB44772D30F6B00000C64A /* QR */ = {
@@ -1346,10 +1381,6 @@
 		75F6CFC52D2BEB1500BDF947 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */,
-				75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */,
-				75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */,
-				75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1357,9 +1388,7 @@
 		75F6CFCA2D2BEBB400BDF947 /* Data Provider */ = {
 			isa = PBXGroup;
 			children = (
-				75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */,
 				75A04A6A2D2E92380082D342 /* ShopsDataProvider.swift */,
-				75A04A642D2E83340082D342 /* SocialDataProvider.swift */,
 			);
 			path = "Data Provider";
 			sourceTree = "<group>";
@@ -1565,6 +1594,7 @@
 				752330E22D197B210090997E /* UINavigationBar.swift in Sources */,
 				752330E32D197B210090997E /* UIButton.swift in Sources */,
 				752330E42D197B210090997E /* UINavigationController.swift in Sources */,
+				75BB17282E095C8500376246 /* UniversalLink.swift in Sources */,
 				752330E52D197B210090997E /* SKStoreReviewController.swift in Sources */,
 				752330E62D197B210090997E /* Headers.swift in Sources */,
 				752330E72D197B210090997E /* UIBarButtonItem.swift in Sources */,
@@ -1673,6 +1703,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
@@ -1706,6 +1737,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;

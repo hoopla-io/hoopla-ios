@@ -16,12 +16,12 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     var isLoading = false
     var coordinator: MainCoordinator?
     let viewModel = ShopDetailViewModel()
-    
-    // MARK: - Attributes
+    //MARK: - Data Providers
     var pictureDataProvider: PhotoDataProvider?
     var workTimeDataProvider: WorkTimeDataProvider?
     var coffeeDataProvider: CoffeeListDataProvider?
     var socialDataProvider: SocialDataProvider?
+    // MARK: - Attributes
     var shopId: Int?
     var data: Shop?
     var isExpanded: Bool = false
@@ -69,6 +69,8 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
 extension ShopDetailViewController: ShopDetailViewModelProtocol {
     func didFinishFetch(data: Shop) {
         self.data = data
+        
+        navigationItem.title = data.name
         if let pictures = data.pictures {
             pictureDataProvider?.items = pictures
             view().pageControll.numberOfPages = pictures.count
@@ -77,6 +79,8 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
         
         if let drinks = data.drinks {
             coffeeDataProvider?.items = drinks
+            view().coffeeCollectionHeight.constant = coffeeDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 100
+            view().coffeeListCollectionView.layoutIfNeeded()
         }
         if let phone = data.phoneNumbers?.first {
             let item = SocialMedia(url: phone.phoneNumber, urlType: SocialUrlType.phone.rawValue)

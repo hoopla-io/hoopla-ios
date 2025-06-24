@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iZi-rC-bxd">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="695"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1245"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyr-cL-L6t">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="221"/>
@@ -57,7 +57,7 @@
                                     </constraints>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="XVB-JQ-OTO">
-                                    <rect key="frame" x="0.0" y="241" width="393" height="454"/>
+                                    <rect key="frame" x="0.0" y="241" width="393" height="1004"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ztj-Ud-fXF">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="94"/>
@@ -114,40 +114,8 @@
                                                 <constraint firstItem="vUt-ki-9NJ" firstAttribute="leading" secondItem="ztj-Ud-fXF" secondAttribute="leading" id="ei5-fa-Hhg"/>
                                             </constraints>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sBP-Gb-2U3">
-                                            <rect key="frame" x="0.0" y="124" width="393" height="134"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qahva turlari" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFF-3x-plB">
-                                                    <rect key="frame" x="16" y="0.0" width="361" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="drinkType"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="gs6-6X-69X">
-                                                    <rect key="frame" x="0.0" y="34" width="393" height="100"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="eG0-fb-Vv6"/>
-                                                    </constraints>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rgC-x7-VKp">
-                                                        <size key="itemSize" width="128" height="128"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                </collectionView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gs6-6X-69X" firstAttribute="leading" secondItem="sBP-Gb-2U3" secondAttribute="leading" id="d2L-Mu-qIX"/>
-                                                <constraint firstAttribute="trailing" secondItem="gs6-6X-69X" secondAttribute="trailing" id="dFZ-g2-k3g"/>
-                                                <constraint firstItem="gFF-3x-plB" firstAttribute="leading" secondItem="sBP-Gb-2U3" secondAttribute="leading" constant="16" id="ea0-z8-xO9"/>
-                                            </constraints>
-                                        </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Psq-Nn-czN">
-                                            <rect key="frame" x="0.0" y="288" width="393" height="94"/>
+                                            <rect key="frame" x="0.0" y="124" width="393" height="94"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aloqa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh0-lP-LOR">
                                                     <rect key="frame" x="16" y="0.0" width="361" height="24"/>
@@ -179,7 +147,7 @@
                                             </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NiY-mt-ZlZ">
-                                            <rect key="frame" x="16" y="412" width="361" height="42"/>
+                                            <rect key="frame" x="16" y="248" width="361" height="42"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYQ-Na-Ygn">
                                                     <rect key="frame" x="0.0" y="0.0" width="119.66666666666667" height="42"/>
@@ -202,6 +170,38 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sBP-Gb-2U3">
+                                            <rect key="frame" x="0.0" y="320" width="393" height="684"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qahva turlari" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFF-3x-plB">
+                                                    <rect key="frame" x="16" y="0.0" width="361" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="drinkType"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="gs6-6X-69X">
+                                                    <rect key="frame" x="0.0" y="34" width="393" height="650"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="650" id="eG0-fb-Vv6"/>
+                                                    </constraints>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rgC-x7-VKp">
+                                                        <size key="itemSize" width="128" height="128"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="11" minY="0.0" maxX="11" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gs6-6X-69X" firstAttribute="leading" secondItem="sBP-Gb-2U3" secondAttribute="leading" id="d2L-Mu-qIX"/>
+                                                <constraint firstAttribute="trailing" secondItem="gs6-6X-69X" secondAttribute="trailing" id="dFZ-g2-k3g"/>
+                                                <constraint firstItem="gFF-3x-plB" firstAttribute="leading" secondItem="sBP-Gb-2U3" secondAttribute="leading" constant="16" id="ea0-z8-xO9"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -241,6 +241,7 @@
                 <constraint firstItem="iZi-rC-bxd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="raq-Zy-q80"/>
             </constraints>
             <connections>
+                <outlet property="coffeeCollectionHeight" destination="eG0-fb-Vv6" id="d72-m1-ZHh"/>
                 <outlet property="coffeeListCollectionView" destination="gs6-6X-69X" id="qtt-SX-VKd"/>
                 <outlet property="collectionView" destination="HxM-t0-0PF" id="uDJ-gV-mBy"/>
                 <outlet property="pageControll" destination="aH5-Gz-qWf" id="yXs-cY-Npa"/>

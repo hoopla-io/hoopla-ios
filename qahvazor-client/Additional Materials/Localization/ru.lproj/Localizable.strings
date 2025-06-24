@@ -76,13 +76,14 @@ showMore = "Еще";
 showLess = "Меньше";
 drinkType = "Тип напитки";
 communication = "Коммуникация";
+toOrder = "Заказать";
 
 // MARK: - QR
 history = "История";
 auth = "Регистрация";
 subscription = "Подписка:";
 activeTo = "Действует до:";
-dailyLimit = "Дневной лимит:";
+dailyLimit = "Дневной лимит";
 available = "Доступно";
 used = "Использовано";
 

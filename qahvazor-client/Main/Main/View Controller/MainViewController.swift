@@ -29,6 +29,7 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
         appearanceSettings()
         viewModel.getList()
         checkAccessLocation()
+        checkUniversalLink()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +58,20 @@ extension MainViewController {
         let refershControl = UIRefreshControl()
         refershControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         view().collectionView.refreshControl = refershControl
+        
+        addObservers()
+    }
+    
+    func addObservers() {
+        Notification.Name.universalLink.onPost { [weak self] notification in
+            guard let `self` = self else { return }
+            let shopId = notification.userInfo?[UserInfoName.shopId.rawValue] as? Int
+            actionDeepLink(shopId: shopId)
+        }
+    }
+    
+    func checkUniversalLink() {
+        actionDeepLink(shopId: UniversalLink.shopId)
     }
     
     @objc func refresh(sender: UIRefreshControl? = nil) {
@@ -91,6 +106,16 @@ extension MainViewController {
                 self.setupLocationAccessView()
             }
         }
+    }
+    
+    func actionDeepLink(shopId: Int?) {
+        if let shopId = shopId {
+            self.tabBarController?.selectedIndex = 0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.coordinator?.pushToShopDetail(id: shopId, name: "")
+            }
+        }
+        UniversalLink.clear()
     }
 }
 // MARK: - Delegate

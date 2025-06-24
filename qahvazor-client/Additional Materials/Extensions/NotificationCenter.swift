@@ -9,10 +9,12 @@ import Foundation
 
 enum UserInfoName: String {
     case subscriptions
+    case shopId
 }
 
 extension Notification.Name {
     static let timeshiftGuideChanged = Notification.Name("timeshiftGuideChanged")
+    static let universalLink = Notification.Name("universalLink")
     
     func post(object: Any? = nil, userInfo: [AnyHashable : Any]? = nil) {
         NotificationCenter.default.post(name: self, object: object, userInfo: userInfo)

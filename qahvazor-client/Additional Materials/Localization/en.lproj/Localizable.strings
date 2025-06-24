@@ -76,13 +76,14 @@ showMore = "More";
 showLess = "Less";
 drinkType = "Drinks type";
 communication = "Communication";
+toOrder = "Order";
 
 // MARK: - QR
 history = "History";
 auth = "Registration";
 subscription = "Subscription:";
 activeTo = "Active until:";
-dailyLimit = "Daily limit:";
+dailyLimit = "Daily limit";
 available = "Available";
 used = "Used";
 

@@ -49,7 +49,7 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
 
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.itemSize(width: 100, additionalHeight: 0, ratio: .coffee)
+        return collectionView.itemSize(type: .coffeeCard)
     }
 
 }

@@ -76,6 +76,7 @@ showMore = "Ko'proq";
 showLess = "Kamroq";
 drinkType = "Ichimlik turlari";
 communication = "Aloqa";
+toOrder = "Buyurtma berish";
 
 // MARK: - QR
 history = "Tarix";

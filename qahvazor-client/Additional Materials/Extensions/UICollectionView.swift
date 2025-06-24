@@ -20,6 +20,7 @@ enum ItemType {
     case shops
     case subscription
     case payment
+    case coffeeCard
 }
 
 struct ItemCountCompany: ItemCount {
@@ -40,12 +41,19 @@ struct ItemCountPayment: ItemCount {
     var phone        = 2
 }
 
+struct ItemCountCoffeeCard: ItemCount {
+    var padLandscape = 5
+    var padPortrait  = 3
+    var phone        = 2
+}
+
 enum ItemRatio: CGFloat {
     case company    = 0.71
     case shops      = 0.5
     case coffee     = 1.0
     case photo      = 0.56
     case subscription = 0.8
+    case coffeeCard = 1.43
 }
 
 enum ItemSpacing: CGFloat {
@@ -56,7 +64,7 @@ enum ItemSpacing: CGFloat {
 }
 
 enum ItemAdditionalHeight: CGFloat {
-    case company = 0
+    case zero = 0
 }
 
 enum ItemLayout {
@@ -68,13 +76,15 @@ extension UICollectionView {
     func itemSize(type: ItemType, layout: ItemLayout = .vertical) -> CGSize {
         switch type {
         case .company:
-            return itemSize(itemType: .company, layout: layout, ratio: .company, spacing: .standard, additionalHeight: .company)
+            return itemSize(itemType: .company, layout: layout, ratio: .company, spacing: .standard, additionalHeight: .zero)
         case .shops:
-            return itemSize(itemType: .shops, layout: layout, ratio: .shops, spacing: .standard, additionalHeight: .company)
+            return itemSize(itemType: .shops, layout: layout, ratio: .shops, spacing: .standard, additionalHeight: .zero)
         case .subscription:
-            return itemSize(itemType: .company, layout: layout, ratio: .subscription, spacing: .standard, additionalHeight: .company)
+            return itemSize(itemType: .company, layout: layout, ratio: .subscription, spacing: .standard, additionalHeight: .zero)
         case .payment:
-            return itemSize(itemType: .payment, layout: layout, ratio: .coffee, spacing: .custom, additionalHeight: .company)
+            return itemSize(itemType: .payment, layout: layout, ratio: .coffee, spacing: .custom, additionalHeight: .zero)
+        case .coffeeCard:
+            return itemSize(itemType: .coffeeCard, layout: layout, ratio: .coffeeCard, spacing: .card, additionalHeight: .zero)
         default:
             return CGSize.zero
         }
@@ -90,6 +100,8 @@ extension UICollectionView {
             return numberInRow(type: ItemCountCompany())
         case .payment:
             return numberInRow(type: ItemCountPayment())
+        case .coffeeCard:
+            return numberInRow(type: ItemCountCoffeeCard())
         }
     }
     

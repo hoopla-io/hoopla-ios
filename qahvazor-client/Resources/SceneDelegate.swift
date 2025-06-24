@@ -17,6 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         setupLaunch(scene, connectionOptions)
+        guard let url = connectionOptions.urlContexts.first?.url else { return }
+        fetchUniversalLinks(url, isAppActive: false)
     }
     
     func setupLaunch(_ scene: UIScene, _ connectionOptions: UIScene.ConnectionOptions) {
@@ -27,6 +29,47 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = UIColor.appColor(.mainBackground)
         window?.rootViewController = UINavigationController(rootViewController: LaunchScreenViewController())
         window?.makeKeyAndVisible()
+        
+        guard let activity: NSUserActivity = connectionOptions.userActivities.first,
+              activity.activityType == NSUserActivityTypeBrowsingWeb,
+              let incomingURL = activity.webpageURL else { return }
+        fetchUniversalLinks(incomingURL, isAppActive: false)
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        fetchUniversalLinks(url, isAppActive: true)
+    }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+              let incomingURL = userActivity.webpageURL else { return }
+        fetchUniversalLinks(incomingURL, isAppActive: true)
+    }
+    
+    private func fetchUniversalLinks(_ url: URL, isAppActive: Bool) {
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
+              let path = components.path else { return }
+        let second = path.components(separatedBy: Symbols.slash.rawValue)
+        second.forEach { string in
+            if string == UniversalLinksType.shop.rawValue {
+                if let id = path.extractID() {
+                    if isAppActive {
+                        Notification.Name.universalLink.post(userInfo: [UserInfoName.shopId.rawValue : id])
+                    } else {
+                        UniversalLink.shopId = id
+                    }
+                }
+//            } else if string == UniversalLinksType.channels.rawValue {
+//                if let id = path.extractID() {
+//                    if isAppActive {
+//                        Notification.Name.universalLink.post(userInfo: [UserInfoName.channelId.rawValue : id])
+//                    } else {
+//                        UniversalLink.channelId = id
+//                    }
+//                }
+            }
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
