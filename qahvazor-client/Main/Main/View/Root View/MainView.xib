@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,13 +33,37 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGI-9g-9sH">
+                    <rect key="frame" x="131.33333333333331" y="730" width="130.33333333333331" height="48"/>
+                    <color key="backgroundColor" name="mainColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="8i8-kZ-zjN"/>
+                    </constraints>
+                    <color key="tintColor" name="white"/>
+                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="30" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="-10" maxY="0.0"/>
+                    <state key="normal" title="Camera" image="camera.viewfinder" catalog="system">
+                        <color key="titleColor" name="white"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="24"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="camera"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="scannerAction:" destination="-1" eventType="touchUpInside" id="81J-Nw-Bae"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="qGI-9g-9sH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="39j-zh-wpT"/>
                 <constraint firstAttribute="bottom" secondItem="dgT-2d-K8b" secondAttribute="bottom" id="H9z-lN-jjd"/>
                 <constraint firstItem="dgT-2d-K8b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="K0N-Ix-3Si"/>
                 <constraint firstAttribute="trailing" secondItem="dgT-2d-K8b" secondAttribute="trailing" id="KH9-rn-SMv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qGI-9g-9sH" secondAttribute="bottom" constant="40" id="eO0-Eh-5pu"/>
                 <constraint firstItem="dgT-2d-K8b" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gX9-Px-dRo"/>
             </constraints>
             <connections>
@@ -48,6 +73,13 @@
         </view>
     </objects>
     <resources>
+        <image name="camera.viewfinder" catalog="system" width="128" height="115"/>
+        <namedColor name="mainColor">
+            <color red="0.52549019607843139" green="0.14901960784313725" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

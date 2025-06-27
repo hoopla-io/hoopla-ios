@@ -20,6 +20,7 @@ enum EndPoints: String {
     case partner = "partners/partner"
     case partnerShops = "shops/partner-shops"
     case shop = "shops/shop"
+    case createOrder = "user/orders/create"
     
     // MARK: - QR
     case qrCode = "user/generate-qr-code"

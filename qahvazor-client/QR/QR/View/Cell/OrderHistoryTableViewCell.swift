@@ -8,6 +8,11 @@
 import UIKit
 import SkeletonView
 
+enum OrderStatus: String {
+    case pending
+    case accepted
+}
+
 class OrderHistoryTableViewCell: UITableViewCell {
     //MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel! {
@@ -23,13 +28,17 @@ class OrderHistoryTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var orderStatusLabel: UILabel!
+    
     //MARK: - Attributes
     var item: OrderHistory? {
         didSet {
             guard let item else { return }
-            titleLabel.text = item.partnerName
+            titleLabel.text = "#\(item.id ?? 0), \(item.drinkName ?? "")"
             subTitleLabel.text = item.shopName
             timeLabel.text = DateFormatter.string(timestamp: item.purchasedAtUnix, formatter: .fullDate)
+            orderStatusLabel.text = item.orderStatus
+            orderStatusLabel.backgroundColor = item.orderStatus == OrderStatus.pending.rawValue ? .appColor(.orange) : .appColor(.green)
         }
     }
     

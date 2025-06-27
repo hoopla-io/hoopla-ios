@@ -51,6 +51,12 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.itemSize(type: .coffeeCard)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+        guard let vc = viewController as? ShopDetailViewController else { return }
+        vc.nextAction(item: item)
+    }
 
 }
 

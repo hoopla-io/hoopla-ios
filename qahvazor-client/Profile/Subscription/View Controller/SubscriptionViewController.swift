@@ -37,7 +37,7 @@ extension SubscriptionViewController: SubscriptionViewModelProtocol {
     
     func didFinishFetchBought(statusCode: Int) {
         if statusCode == StatusCode.success200.rawValue {
-            showSuccessAlert(message: "successBuySubscription".localized)
+            showSuccessAlert(message: "successBoughtSubscriptionAlert".localized)
             navigationController?.popViewController(animated: true)
         } else {
             coordinator?.pushToPaymentVC(amount: amount)

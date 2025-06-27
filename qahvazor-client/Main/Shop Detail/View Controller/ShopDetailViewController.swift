@@ -98,13 +98,12 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
 extension ShopDetailViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
-//        navigationController?.navigationBar.prefersLargeTitles = false
         
         let pictureDataProvider = PhotoDataProvider(viewController: self)
         pictureDataProvider.collectionView = view().collectionView
         self.pictureDataProvider = pictureDataProvider
         
-        let coffeeDataProvider = CoffeeListDataProvider()
+        let coffeeDataProvider = CoffeeListDataProvider(viewController: self)
         coffeeDataProvider.collectionView = view().coffeeListCollectionView
         self.coffeeDataProvider = coffeeDataProvider
         
@@ -117,6 +116,14 @@ extension ShopDetailViewController {
         self.workTimeDataProvider = workTimeDataProvider
     }
     
+    func nextAction(item: Drinks) {
+        guard UserDefaults.standard.isAuthed() else {
+            tabBarController?.selectedIndex = 2
+            return
+        }
+        coordinator?.pushToConfirmOrderVC(viewController: self, data: item, shop: data)
+    }
+    
     private func showWorkTime() {
         guard let workTimeData else { return }
         let currentWeekDay = DateFormatter.string(formatter: .weekDay).lowercased()
@@ -125,7 +132,7 @@ extension ShopDetailViewController {
         } else {
             for i in workTimeData {
                 if i.weekDay?.lowercased() == currentWeekDay {
-                    workTimeDataProvider?.items = [i]
+                    workTimeDataProvider?.items = [WorkHour(closeAt: "\(i.closeAt ?? "")", openAt: "\(i.openAt ?? "")", weekDay: "today".localized)]
                     break
                 }
             }

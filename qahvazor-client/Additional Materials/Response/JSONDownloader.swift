@@ -20,6 +20,7 @@ enum StatusCode: Int {
     case serverError = 500
     case tokenError = 412
     case notEnoughBalance = 428
+    case needSubscription = 402
 }
 
 typealias JSONTaskCompletionHandler = (Result<Data>) -> ()
@@ -96,7 +97,7 @@ class JSONDownloader {
                 if self.isDebug {
                     print("\n--- Start debug ---")
                     print("URL: \(URL)")
-                    print("Headers: \(String(describing: headers.dictionary))")
+//                    print("Headers: \(String(describing: headers.dictionary))")
                     print("Parameters: \(String(describing: parameters))")
                     print("HTTPMethod: \(String(describing: requestMethod.rawValue))")
                     print("Status Code: \(httpResponse.statusCode)")
@@ -114,7 +115,7 @@ class JSONDownloader {
                     case StatusCode.notAuthorized.rawValue:
                         UserDefaults.standard.removeAccount()
                         completion(.Error(.notAuthorized))
-                    case StatusCode.notEnoughBalance.rawValue:
+                    case StatusCode.notEnoughBalance.rawValue, StatusCode.needSubscription.rawValue:
                         completion(.Success(data))
                     case StatusCode.serverError.rawValue:
                         completion(.Error(.serverError, jsonResult?["message"] as? String))

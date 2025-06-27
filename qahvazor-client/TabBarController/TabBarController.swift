@@ -20,25 +20,6 @@ final class TabBarController: UITabBarController {
     private let profileCoordinator = ProfileCoordinator(navigationController: UINavigationController())
     var lastViewController: UIViewController?
 
-    // MARK: - Floating QR Button
-    private lazy var centerButton: UIButton = {
-        let btn = UIButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-//        btn.setImage(UIImage(systemName: "qrcode.viewfinder"), for: .normal)
-        let symbolConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .medium)
-        let qrImage = UIImage(systemName: "qrcode.viewfinder", withConfiguration: symbolConfig)
-        btn.setImage(qrImage, for: .normal)
-        btn.tintColor = .appColor(.white)
-        btn.backgroundColor = .appColor(.mainColor)
-        btn.layer.cornerRadius = 32
-        btn.layer.shadowColor = UIColor.black.cgColor
-        btn.layer.shadowOpacity = 0.2
-        btn.layer.shadowRadius = 5
-        btn.layer.shadowOffset = CGSize(width: 0, height: 5)
-        btn.addTarget(self, action: #selector(didTapCenter), for: .touchUpInside)
-        return btn
-    }()
-
     // MARK: - Lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -77,7 +58,6 @@ private extension TabBarController {
         let homeNav    = mainCoordinator.navigationController
         let qrNav      = qrCoordinator.navigationController
         let profileNav = profileCoordinator.navigationController
-        qrNav.tabBarItem.isEnabled = false
         
         viewControllers = [homeNav, qrNav, profileNav]
     }
@@ -85,33 +65,12 @@ private extension TabBarController {
     private func appearanceSettings() {
         tabBar.setup()
         delegate = self
-
-        // instead of tabBar.addSubview(centerButton) …
-        view.addSubview(centerButton)
-        NSLayoutConstraint.activate([
-          centerButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
-          centerButton.centerYAnchor.constraint(equalTo: tabBar.topAnchor),
-          centerButton.widthAnchor.constraint(equalToConstant: 64),
-          centerButton.heightAnchor.constraint(equalToConstant: 64),
-        ])
-
-        // ensure it sits above the tabBar
-        view.bringSubviewToFront(centerButton)
-
-//        let longPress = UILongPressGestureRecognizer(target: self,
-//                                                     action: #selector(astroButtonItemLongPressed(_:)))
-//        tabBar.addGestureRecognizer(longPress)
     }
 
 }
 
 // MARK: - Actions
 private extension TabBarController {
-
-    @objc func didTapCenter() {
-        // Switch to the QR controller
-        selectedIndex = 1
-    }
 
     @objc func astroButtonItemLongPressed(_ recognizer: UILongPressGestureRecognizer) {
         guard recognizer.state == .began,

@@ -29,5 +29,7 @@
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Ilovadan to&apos;liq foydalanish uchun sizning joylashgan joy lokatsiyasi zarur</string>
+	<key>NSCameraUsageDescription</key>
+	<string>QR kodlarini skanerlash uchun kamerangizdan foydalanish kerak.</string>
 </dict>
 </plist>

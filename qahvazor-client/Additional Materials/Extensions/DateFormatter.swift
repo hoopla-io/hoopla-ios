@@ -8,31 +8,38 @@
 import Foundation
 
 extension DateFormatter {
+    static let orderedDate: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm, d MMMM"
+        formatter.locale = Locale(identifier: UserDefaults.standard.getLocalization())
+        return formatter
+    }()
+    
     static let fullDate: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm, dd.MM.yyyy"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.locale = Locale(identifier: UserDefaults.standard.getLocalization())
         return formatter
     }()
     
     static let birthDate: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.locale = Locale(identifier: UserDefaults.standard.getLocalization())
         return formatter
     }()
     
     static let streamDate: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMMM, HH:mm"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.locale = Locale(identifier: UserDefaults.standard.getLocalization())
         return formatter
     }()
     
     static let timeInHour: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.locale = Locale(identifier: UserDefaults.standard.getLocalization())
         return formatter
     }()
     
@@ -53,7 +60,7 @@ extension DateFormatter {
     static let historyDate: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, yyyy"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.locale = Locale(identifier: UserDefaults.standard.getLocalization())
         return formatter
     }()
 }

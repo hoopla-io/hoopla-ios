@@ -77,6 +77,16 @@ showLess = "Меньше";
 drinkType = "Тип напитки";
 communication = "Коммуникация";
 toOrder = "Заказать";
+paymentMethod = "Способ оплаты";
+dateOrdered = "Время заказа";
+orderSummary = "Подробности заказа";
+shop = "Магазин";
+drink = "Напиток";
+invoice = "Счет";
+confirm = "Заказать";
+today = "Сегодня";
+scan = "Сканируйте QR-код";
+camera = "Камера";
 
 // MARK: - QR
 history = "История";
@@ -86,6 +96,7 @@ activeTo = "Действует до:";
 dailyLimit = "Дневной лимит";
 available = "Доступно";
 used = "Использовано";
+total = "Общее";
 
 // MARK: - Alert
 logoutAlert = "Вы действительно хотите выйти из аккаунта?";

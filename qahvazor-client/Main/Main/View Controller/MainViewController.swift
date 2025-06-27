@@ -23,6 +23,10 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     var dataProvider: MainDataProvider?
     let locationAccessContainerView = UIView()
     
+    //MARK: - Actions
+    @IBAction func scannerAction(_ sender: Any) {
+        coordinator?.pushToScannerVC(viewController: self)
+    }
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,6 +195,20 @@ extension MainViewController {
     @objc func closeAction() {
         UIView.animate(withDuration: 0.2) {
             self.locationAccessContainerView.alpha = 0
+        }
+    }
+}
+
+//MARK: - Scanner
+extension MainViewController: ScannerViewControllerDelegate {
+    func didFoundCode(code: String) {
+        let separated = code.components(separatedBy: Symbols.slash.rawValue)
+        separated.forEach { string in
+            if string == UniversalLinksType.shop.rawValue {
+                if let id = code.extractID() {
+                    self.actionDeepLink(shopId: id)
+                }
+            }
         }
     }
 }

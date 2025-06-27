@@ -77,6 +77,16 @@ showLess = "Kamroq";
 drinkType = "Ichimlik turlari";
 communication = "Aloqa";
 toOrder = "Buyurtma berish";
+paymentMethod = "To'lov turi";
+dateOrdered = "Buyurtma vaqti";
+orderSummary = "Buyurtma tavsilotlari";
+shop = "Do'kon";
+drink = "Ichimlik";
+invoice = "Hisob";
+confirm = "Buyurtma berish";
+today = "Bugun";
+scan = "QR kodni skanerlang";
+camera = "Kamera";
 
 // MARK: - QR
 history = "Tarix";
@@ -86,6 +96,7 @@ activeTo = "Aktiv:";
 dailyLimit = "Kunlik limit";
 available = "Mavjud";
 used = "Foydalanilgan";
+total = "Jami";
 
 // MARK: - Alert
 success = "Muvaffaqiyatli";

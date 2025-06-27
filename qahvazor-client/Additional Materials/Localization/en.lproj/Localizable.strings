@@ -77,6 +77,16 @@ showLess = "Less";
 drinkType = "Drinks type";
 communication = "Communication";
 toOrder = "Order";
+paymentMethod = "Payment method";
+dateOrdered = "Date ordered";
+orderSummary = "Order summary";
+shop = "Shop";
+drink = "Drink";
+invoice = "Invoice";
+confirm = "Ordering";
+today = "Today";
+scan = "Scan the QR code";
+camera = "Camera";
 
 // MARK: - QR
 history = "History";
@@ -86,6 +96,7 @@ activeTo = "Active until:";
 dailyLimit = "Daily limit";
 available = "Available";
 used = "Used";
+total = "Total";
 
 // MARK: - Alert
 logoutAlert = "Do you really want to sign out?";

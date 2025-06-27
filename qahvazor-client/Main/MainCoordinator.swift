@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftMessages
 
 final class MainCoordinator: Coordinator {
     
@@ -35,6 +36,29 @@ final class MainCoordinator: Coordinator {
         vc.shopId = id
         vc.coordinator = self
         vc.navigationItem.title = name
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func pushToConfirmOrderVC(viewController: UIViewController, data: Drinks, shop: Shop?) {
+        let vc = ConfirmOrderViewController()
+        vc.data = data
+        vc.shopData = shop
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func pushToSubscriptionVC() {
+        let vc = SubscriptionViewController()
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
+        vc.coordinator = profileCoordinator
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func pushToScannerVC(viewController: UIViewController) {
+        let vc = ScannerViewController()
+        if let viewController = viewController as? MainViewController {
+            vc.delegate = viewController
+        }
         navigationController.pushViewController(vc, animated: true)
     }
 }

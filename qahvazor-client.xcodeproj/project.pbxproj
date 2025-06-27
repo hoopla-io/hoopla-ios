@@ -138,10 +138,18 @@
 		7596B51B2D1D697D0070A5BB /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596B51A2D1D697D0070A5BB /* MainViewModel.swift */; };
 		7596B5202D1D6A180070A5BB /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596B51F2D1D6A180070A5BB /* Company.swift */; };
 		7596B5222D1D6B310070A5BB /* MainDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596B5212D1D6B310070A5BB /* MainDataProvider.swift */; };
+		7597A6502E0BCF0700ECD758 /* ConfirmOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597A64F2E0BCF0700ECD758 /* ConfirmOrderViewModel.swift */; };
+		7597A6592E0BEA7A00ECD758 /* ScannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7597A6542E0BEA7A00ECD758 /* ScannerView.xib */; };
+		7597A65A2E0BEA7A00ECD758 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597A6532E0BEA7A00ECD758 /* ScannerView.swift */; };
+		7597A65B2E0BEA7A00ECD758 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597A6562E0BEA7A00ECD758 /* ScannerViewController.swift */; };
+		7597A65C2E0BEA7A00ECD758 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597A6512E0BEA7A00ECD758 /* SquareView.swift */; };
 		75A04A652D2E83340082D342 /* SocialDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A642D2E83340082D342 /* SocialDataProvider.swift */; };
 		75A04A682D2E86E50082D342 /* SocialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */; };
 		75A04A692D2E86E50082D342 /* SocialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */; };
 		75BB17282E095C8500376246 /* UniversalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB17272E095C8500376246 /* UniversalLink.swift */; };
+		75BB17592E0A893400376246 /* ConfirmOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB17582E0A893400376246 /* ConfirmOrderView.swift */; };
+		75BB175B2E0A893B00376246 /* ConfirmOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BB175A2E0A893B00376246 /* ConfirmOrderView.xib */; };
+		75BB175D2E0A894300376246 /* ConfirmOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB175C2E0A894300376246 /* ConfirmOrderViewController.swift */; };
 		75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */; };
 		75BB447C2D30F6DB0000C64A /* QRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447B2D30F6DB0000C64A /* QRViewModel.swift */; };
 		75BB447E2D30F6EB0000C64A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447D2D30F6EB0000C64A /* QRView.swift */; };
@@ -304,11 +312,19 @@
 		7596B51A2D1D697D0070A5BB /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7596B51F2D1D6A180070A5BB /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		7596B5212D1D6B310070A5BB /* MainDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataProvider.swift; sourceTree = "<group>"; };
+		7597A64F2E0BCF0700ECD758 /* ConfirmOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrderViewModel.swift; sourceTree = "<group>"; };
+		7597A6512E0BEA7A00ECD758 /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
+		7597A6532E0BEA7A00ECD758 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		7597A6542E0BEA7A00ECD758 /* ScannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScannerView.xib; sourceTree = "<group>"; };
+		7597A6562E0BEA7A00ECD758 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		75A04A642D2E83340082D342 /* SocialDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDataProvider.swift; sourceTree = "<group>"; };
 		75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCollectionViewCell.swift; sourceTree = "<group>"; };
 		75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialCollectionViewCell.xib; sourceTree = "<group>"; };
 		75BB17262E0955FB00376246 /* qahvazor-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "qahvazor-client.entitlements"; sourceTree = "<group>"; };
 		75BB17272E095C8500376246 /* UniversalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLink.swift; sourceTree = "<group>"; };
+		75BB17582E0A893400376246 /* ConfirmOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrderView.swift; sourceTree = "<group>"; };
+		75BB175A2E0A893B00376246 /* ConfirmOrderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmOrderView.xib; sourceTree = "<group>"; };
+		75BB175C2E0A894300376246 /* ConfirmOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrderViewController.swift; sourceTree = "<group>"; };
 		75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeDataProvider.swift; sourceTree = "<group>"; };
 		75BB447B2D30F6DB0000C64A /* QRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewModel.swift; sourceTree = "<group>"; };
 		75BB447D2D30F6EB0000C64A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
@@ -621,6 +637,8 @@
 				752331382D198C930090997E /* Main */,
 				750392982D40B9CB0010646F /* Search */,
 				757F36212D1E742900EFA728 /* Shop Detail */,
+				75BB17552E0A88FE00376246 /* Confirm Order */,
+				7597A6582E0BEA7A00ECD758 /* Scanner */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -950,6 +968,49 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		7597A64E2E0BCEF600ECD758 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				7597A64F2E0BCF0700ECD758 /* ConfirmOrderViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		7597A6522E0BEA7A00ECD758 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				7597A6512E0BEA7A00ECD758 /* SquareView.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		7597A6552E0BEA7A00ECD758 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7597A6532E0BEA7A00ECD758 /* ScannerView.swift */,
+				7597A6542E0BEA7A00ECD758 /* ScannerView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7597A6572E0BEA7A00ECD758 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7597A6562E0BEA7A00ECD758 /* ScannerViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		7597A6582E0BEA7A00ECD758 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				7597A6522E0BEA7A00ECD758 /* Class */,
+				7597A6572E0BEA7A00ECD758 /* View Controller */,
+				7597A6552E0BEA7A00ECD758 /* View */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
 		75BB17292E0962B600376246 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
@@ -975,6 +1036,33 @@
 				75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */,
 			);
 			path = Social;
+			sourceTree = "<group>";
+		};
+		75BB17552E0A88FE00376246 /* Confirm Order */ = {
+			isa = PBXGroup;
+			children = (
+				75BB17572E0A891F00376246 /* View Controller */,
+				75BB17562E0A891B00376246 /* View */,
+				7597A64E2E0BCEF600ECD758 /* View Model */,
+			);
+			path = "Confirm Order";
+			sourceTree = "<group>";
+		};
+		75BB17562E0A891B00376246 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75BB17582E0A893400376246 /* ConfirmOrderView.swift */,
+				75BB175A2E0A893B00376246 /* ConfirmOrderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75BB17572E0A891F00376246 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				75BB175C2E0A894300376246 /* ConfirmOrderViewController.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 		75BB44772D30F6B00000C64A /* QR */ = {
@@ -1345,6 +1433,7 @@
 				75DCE3552D1A9B26003A59CD /* Localizable.strings in Resources */,
 				7503929E2D40BA090010646F /* SearchView.xib in Resources */,
 				75BB44802D30F6F90000C64A /* QRView.xib in Resources */,
+				75BB175B2E0A893B00376246 /* ConfirmOrderView.xib in Resources */,
 				75DCE36A2D1ABBA3003A59CD /* LanguageCollectionViewCell.xib in Resources */,
 				75DCE3612D1ABB33003A59CD /* LanguageView.xib in Resources */,
 				75705CE52D2FD9FB00DA3AA4 /* ShopDetailView.xib in Resources */,
@@ -1352,6 +1441,7 @@
 				752331042D197B210090997E /* MainView.xib in Resources */,
 				75DCE3842D1C10BE003A59CD /* ProfileView.xib in Resources */,
 				75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */,
+				7597A6592E0BEA7A00ECD758 /* ScannerView.xib in Resources */,
 				75705CF02D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib in Resources */,
 				75DCE37B2D1AD6EE003A59CD /* InterestView.xib in Resources */,
 				75A04A682D2E86E50082D342 /* SocialCollectionViewCell.xib in Resources */,
@@ -1426,6 +1516,7 @@
 				752330DA2D197B210090997E /* MainConstants.swift in Sources */,
 				752330DB2D197B210090997E /* ReusableView.swift in Sources */,
 				75BB44822D30F7000000C64A /* QRViewController.swift in Sources */,
+				7597A6502E0BCF0700ECD758 /* ConfirmOrderViewModel.swift in Sources */,
 				752330DC2D197B210090997E /* UIViewController.swift in Sources */,
 				75CBFAE92D785CD0003E9102 /* PaymentCollectionViewCell.swift in Sources */,
 				752330DD2D197B210090997E /* PaddingLabel.swift in Sources */,
@@ -1448,6 +1539,9 @@
 				75A04A692D2E86E50082D342 /* SocialCollectionViewCell.swift in Sources */,
 				752330E82D197B210090997E /* NotificationCenter.swift in Sources */,
 				75422B0D2D33B03700B83C42 /* FeatureCollectionViewCell.swift in Sources */,
+				7597A65A2E0BEA7A00ECD758 /* ScannerView.swift in Sources */,
+				7597A65B2E0BEA7A00ECD758 /* ScannerViewController.swift in Sources */,
+				7597A65C2E0BEA7A00ECD758 /* SquareView.swift in Sources */,
 				75DCE3692D1ABBA3003A59CD /* LanguageCollectionViewCell.swift in Sources */,
 				752330E92D197B210090997E /* UIImage.swift in Sources */,
 				752330EA2D197B210090997E /* DateFormatter.swift in Sources */,
@@ -1461,6 +1555,7 @@
 				75DCE3772D1AD6E2003A59CD /* InterestViewController.swift in Sources */,
 				75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */,
 				752330EE2D197B210090997E /* AlertViewController.swift in Sources */,
+				75BB175D2E0A894300376246 /* ConfirmOrderViewController.swift in Sources */,
 				75DCE3822D1C10B9003A59CD /* ProfileView.swift in Sources */,
 				752330EF2D197B210090997E /* ResponseErrors.swift in Sources */,
 				752330F02D197B210090997E /* MainView.swift in Sources */,
@@ -1508,6 +1603,7 @@
 				75DCE3632D1ABB3E003A59CD /* LanguageViewController.swift in Sources */,
 				75DCE3952D1C3186003A59CD /* CodeConfirmView.swift in Sources */,
 				752331032D197B210090997E /* UIImageView.swift in Sources */,
+				75BB17592E0A893400376246 /* ConfirmOrderView.swift in Sources */,
 				75422B0A2D33ACC400B83C42 /* OrderHistory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1545,7 +1641,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -1559,7 +1655,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1579,7 +1675,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -1593,7 +1689,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

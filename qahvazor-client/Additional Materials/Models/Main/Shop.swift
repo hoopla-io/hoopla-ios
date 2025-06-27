@@ -8,6 +8,7 @@
 import Foundation
 
 struct Shop: Codable {
+    let id: Int?
     let shopId: Int?
     let name: String?
     let distance: Double?

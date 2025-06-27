@@ -47,8 +47,14 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
         appearanceSettings()
         if UserDefaults.standard.isAuthed() {
             viewModel.getQRCode()
-            viewModel.getOrderHistoryList()
             profileViewModel.getMe()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserDefaults.standard.isAuthed() {
+            viewModel.getOrderHistoryList()
             viewModel.getDrinksLimit()
         }
     }
@@ -72,10 +78,8 @@ extension QRViewController: QRViewModelProtocol {
     func didFinishFetch(data: Limit?) {
         let used = data?.used ?? 0
         let aviailable = data?.available ?? 0
-//        let limit = "dailyLimit".localized + " \(aviailable)"
-//        view().limitButton.setTitle(limit, for: .normal)
         view().usedLabel.text = "\("used".localized): \(used)"
-        view().availableLabel.text = "\("available".localized): \(aviailable)"
+        view().availableLabel.text = "\("total".localized): \(aviailable)"
         if used == 0 {
             view().progress.progress = 0
         } else {
