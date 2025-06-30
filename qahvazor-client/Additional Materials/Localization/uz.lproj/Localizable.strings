@@ -97,6 +97,11 @@ dailyLimit = "Kunlik limit";
 available = "Mavjud";
 used = "Foydalanilgan";
 total = "Jami";
+pending = "Kutilmoqda";
+accepted = "Qabul qilingan";
+created = "Yaratilgan";
+preparing = "Yayyorlanmoqda";
+canceled = "Bekor qilingan";
 
 // MARK: - Alert
 success = "Muvaffaqiyatli";

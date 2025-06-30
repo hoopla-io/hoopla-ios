@@ -87,6 +87,11 @@ confirm = "Ordering";
 today = "Today";
 scan = "Scan the QR code";
 camera = "Camera";
+pending = "Pending";
+accepted = "Accepted";
+created = "Created";
+preparing = "Preparing";
+canceled = "Canceled";
 
 // MARK: - QR
 history = "History";

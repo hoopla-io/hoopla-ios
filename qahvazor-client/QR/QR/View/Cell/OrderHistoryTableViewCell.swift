@@ -11,6 +11,9 @@ import SkeletonView
 enum OrderStatus: String {
     case pending
     case accepted
+    case created
+    case preparing
+    case canceled
 }
 
 class OrderHistoryTableViewCell: UITableViewCell {
@@ -37,8 +40,8 @@ class OrderHistoryTableViewCell: UITableViewCell {
             titleLabel.text = "#\(item.id ?? 0), \(item.drinkName ?? "")"
             subTitleLabel.text = item.shopName
             timeLabel.text = DateFormatter.string(timestamp: item.purchasedAtUnix, formatter: .fullDate)
-            orderStatusLabel.text = item.orderStatus
-            orderStatusLabel.backgroundColor = item.orderStatus == OrderStatus.pending.rawValue ? .appColor(.orange) : .appColor(.green)
+            orderStatusLabel.text = item.orderStatus?.localized
+            setStatusColor(item.orderStatus)
         }
     }
     
@@ -51,5 +54,19 @@ class OrderHistoryTableViewCell: UITableViewCell {
         super.layoutSubviews()
 
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0))
+    }
+    
+    func setStatusColor(_ type: String?) {
+        guard let type = type, let colorType = OrderStatus(rawValue: type) else { return }
+        switch colorType {
+        case .pending, .preparing:
+            orderStatusLabel.backgroundColor = .appColor(.orange)
+        case .canceled:
+            orderStatusLabel.backgroundColor = .appColor(.red)
+        case .created:
+            orderStatusLabel.backgroundColor = .lightGray
+        case .accepted:
+            orderStatusLabel.backgroundColor = .appColor(.green)
+        }
     }
 }

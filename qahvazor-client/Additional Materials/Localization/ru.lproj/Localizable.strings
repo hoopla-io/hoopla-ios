@@ -97,6 +97,11 @@ dailyLimit = "Дневной лимит";
 available = "Доступно";
 used = "Использовано";
 total = "Общее";
+pending = "В ожидании";
+accepted = "Одобренный";
+created = "Созданный";
+preparing = "Подготовка";
+canceled = "Отменено";
 
 // MARK: - Alert
 logoutAlert = "Вы действительно хотите выйти из аккаунта?";

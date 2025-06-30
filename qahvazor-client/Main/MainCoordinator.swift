@@ -59,6 +59,7 @@ final class MainCoordinator: Coordinator {
         if let viewController = viewController as? MainViewController {
             vc.delegate = viewController
         }
+        vc.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(vc, animated: true)
     }
 }
