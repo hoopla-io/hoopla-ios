@@ -10,10 +10,10 @@ import SkeletonView
 
 enum OrderStatus: String {
     case pending
-    case accepted
     case created
     case preparing
     case canceled
+    case completed
 }
 
 class OrderHistoryTableViewCell: UITableViewCell {
@@ -57,7 +57,10 @@ class OrderHistoryTableViewCell: UITableViewCell {
     }
     
     func setStatusColor(_ type: String?) {
-        guard let type = type, let colorType = OrderStatus(rawValue: type) else { return }
+        guard let type = type, let colorType = OrderStatus(rawValue: type) else {
+            orderStatusLabel.backgroundColor = .appColor(.green)
+            return
+        }
         switch colorType {
         case .pending, .preparing:
             orderStatusLabel.backgroundColor = .appColor(.orange)
@@ -65,7 +68,7 @@ class OrderHistoryTableViewCell: UITableViewCell {
             orderStatusLabel.backgroundColor = .appColor(.red)
         case .created:
             orderStatusLabel.backgroundColor = .lightGray
-        case .accepted:
+        case .completed:
             orderStatusLabel.backgroundColor = .appColor(.green)
         }
     }
