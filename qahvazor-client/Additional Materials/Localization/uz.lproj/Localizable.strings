@@ -102,6 +102,7 @@ accepted = "Qabul qilingan";
 created = "Yaratilgan";
 preparing = "Yayyorlanmoqda";
 canceled = "Bekor qilingan";
+completed = "Yakunlangan";
 
 // MARK: - Alert
 success = "Muvaffaqiyatli";

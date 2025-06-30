@@ -92,6 +92,7 @@ accepted = "Accepted";
 created = "Created";
 preparing = "Preparing";
 canceled = "Canceled";
+completed = "Completed";
 
 // MARK: - QR
 history = "History";

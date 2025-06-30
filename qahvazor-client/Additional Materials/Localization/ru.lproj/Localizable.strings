@@ -102,6 +102,7 @@ accepted = "Одобренный";
 created = "Созданный";
 preparing = "Подготовка";
 canceled = "Отменено";
+completed = "Завершено";
 
 // MARK: - Alert
 logoutAlert = "Вы действительно хотите выйти из аккаунта?";
