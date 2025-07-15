@@ -29,7 +29,7 @@ class CoffeeCollectionViewCell: CustomCollectionViewCell {
             orderView.layer.shadowRadius   = 4
 
             orderView.layer.shadowPath = UIBezierPath(
-              roundedRect: orderView.bounds,
+                roundedRect: CGRect(x: 0, y: 0, width: UIScreen.screenWidth / 4, height: orderView.frame.height),
               cornerRadius: 20
             ).cgPath
         }

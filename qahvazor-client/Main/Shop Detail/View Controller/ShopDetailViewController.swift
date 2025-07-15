@@ -22,6 +22,11 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     var coffeeDataProvider: CoffeeListDataProvider?
     var socialDataProvider: SocialDataProvider?
     // MARK: - Attributes
+    var distance: Double? {
+        didSet {
+            view().addressButton.setTitle("address".localized + " - " + (distance?.formatDistance() ?? ""), for: .normal)
+        }
+    }
     var shopId: Int?
     var data: Shop?
     var isExpanded: Bool = false
@@ -83,8 +88,9 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
             view().coffeeListCollectionView.layoutIfNeeded()
         }
         if let phone = data.phoneNumbers?.first {
-            let item = SocialMedia(url: phone.phoneNumber, urlType: SocialUrlType.phone.rawValue)
-            socialsData.append(item)
+            let phoneNumberString = phone.phoneNumber?.displayPhone() ?? ""
+            view().phoneNumberButton.setTitle("phoneNumber".localized + " \(phoneNumberString)", for: .normal)
+            view().phoneNumberButton.isHidden = false
         }
         if let socials = data.urls {
             socialsData += socials
@@ -119,6 +125,10 @@ extension ShopDetailViewController {
     func nextAction(item: Drinks) {
         guard UserDefaults.standard.isAuthed() else {
             tabBarController?.selectedIndex = 2
+            return
+        }
+        guard let canAcceptOrders = data?.canAcceptOrders, canAcceptOrders else {
+            showWarningAlert(message: "cantOrder".localized)
             return
         }
         coordinator?.pushToConfirmOrderVC(viewController: self, data: item, shop: data)

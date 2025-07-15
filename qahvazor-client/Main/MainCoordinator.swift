@@ -31,9 +31,10 @@ final class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func pushToShopDetail(id: Int, name: String?) {
+    func pushToShopDetail(id: Int, name: String?, distance: Double? = nil) {
         let vc = ShopDetailViewController()
         vc.shopId = id
+        vc.distance = distance
         vc.coordinator = self
         vc.navigationItem.title = name
         navigationController.pushViewController(vc, animated: true)
@@ -44,6 +45,7 @@ final class MainCoordinator: Coordinator {
         vc.data = data
         vc.shopData = shop
         vc.coordinator = self
+        vc.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(vc, animated: true)
     }
     

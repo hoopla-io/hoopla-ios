@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iZi-rC-bxd">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1245"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1272"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyr-cL-L6t">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="221"/>
@@ -57,10 +57,10 @@
                                     </constraints>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="XVB-JQ-OTO">
-                                    <rect key="frame" x="0.0" y="241" width="393" height="1004"/>
+                                    <rect key="frame" x="0.0" y="241" width="393" height="1031"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ztj-Ud-fXF">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="193"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VY7-6W-pcq">
                                                     <rect key="frame" x="16" y="0.0" width="361" height="24"/>
@@ -107,40 +107,62 @@
                                                         <constraint firstItem="2nz-2b-0kR" firstAttribute="top" secondItem="vUt-ki-9NJ" secondAttribute="top" id="ou2-7x-BLF"/>
                                                     </constraints>
                                                 </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NiY-mt-ZlZ">
+                                                    <rect key="frame" x="16" y="104" width="361" height="89"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYQ-Na-Ygn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="119.66666666666667" height="42"/>
+                                                            <color key="backgroundColor" name="mainColor"/>
+                                                            <color key="tintColor" name="white"/>
+                                                            <inset key="contentEdgeInsets" minX="12" minY="10" maxX="22" maxY="10"/>
+                                                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="-10" maxY="0.0"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="Address" image="mappin.circle.fill" catalog="system">
+                                                                <color key="titleColor" name="white"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="address"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="addressButtonAction:" destination="-1" eventType="touchUpInside" id="NPe-VJ-B66"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qj-7t-fAo">
+                                                            <rect key="frame" x="0.0" y="47" width="172.66666666666666" height="42"/>
+                                                            <color key="backgroundColor" name="mainColor"/>
+                                                            <color key="tintColor" name="white"/>
+                                                            <inset key="contentEdgeInsets" minX="12" minY="10" maxX="22" maxY="10"/>
+                                                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="-10" maxY="0.0"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="Telefon raqam:" image="phone.circle.fill" catalog="system">
+                                                                <color key="titleColor" name="white"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="phoneNumber"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="callButtonAction:" destination="-1" eventType="touchUpInside" id="Ex8-Mn-c3H"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="vUt-ki-9NJ" secondAttribute="trailing" id="G1E-hr-g6E"/>
+                                                <constraint firstItem="NiY-mt-ZlZ" firstAttribute="leading" secondItem="ztj-Ud-fXF" secondAttribute="leading" constant="16" id="Ted-rG-aBz"/>
                                                 <constraint firstItem="VY7-6W-pcq" firstAttribute="leading" secondItem="ztj-Ud-fXF" secondAttribute="leading" constant="16" id="Wmx-6U-tWl"/>
                                                 <constraint firstItem="vUt-ki-9NJ" firstAttribute="leading" secondItem="ztj-Ud-fXF" secondAttribute="leading" id="ei5-fa-Hhg"/>
+                                                <constraint firstAttribute="trailing" secondItem="NiY-mt-ZlZ" secondAttribute="trailing" constant="16" id="wS4-RJ-sE9"/>
                                             </constraints>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NiY-mt-ZlZ">
-                                            <rect key="frame" x="16" y="124" width="361" height="42"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYQ-Na-Ygn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="119.66666666666667" height="42"/>
-                                                    <color key="backgroundColor" name="mainColor"/>
-                                                    <color key="tintColor" name="white"/>
-                                                    <inset key="contentEdgeInsets" minX="12" minY="10" maxX="22" maxY="10"/>
-                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="-10" maxY="0.0"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="Address" image="mappin.circle.fill" catalog="system">
-                                                        <color key="titleColor" name="white"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="address"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="addressButtonAction:" destination="-1" eventType="touchUpInside" id="NPe-VJ-B66"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sBP-Gb-2U3">
-                                            <rect key="frame" x="0.0" y="196" width="393" height="684"/>
+                                            <rect key="frame" x="0.0" y="223" width="393" height="684"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qahva turlari" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFF-3x-plB">
                                                     <rect key="frame" x="16" y="0.0" width="361" height="24"/>
@@ -157,11 +179,11 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="650" id="eG0-fb-Vv6"/>
                                                     </constraints>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rgC-x7-VKp">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="rgC-x7-VKp">
                                                         <size key="itemSize" width="128" height="128"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="11" minY="0.0" maxX="11" maxY="0.0"/>
+                                                        <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                 </collectionView>
                                             </subviews>
@@ -172,7 +194,7 @@
                                             </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Psq-Nn-czN">
-                                            <rect key="frame" x="0.0" y="910" width="393" height="94"/>
+                                            <rect key="frame" x="0.0" y="937" width="393" height="94"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aloqa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh0-lP-LOR">
                                                     <rect key="frame" x="16" y="0.0" width="361" height="24"/>
@@ -211,7 +233,6 @@
                                         <constraint firstItem="ztj-Ud-fXF" firstAttribute="leading" secondItem="XVB-JQ-OTO" secondAttribute="leading" id="Heh-we-C0j"/>
                                         <constraint firstAttribute="trailing" secondItem="ztj-Ud-fXF" secondAttribute="trailing" id="jCI-q8-FNn"/>
                                         <constraint firstItem="Psq-Nn-czN" firstAttribute="leading" secondItem="XVB-JQ-OTO" secondAttribute="leading" id="kej-Ey-y5U"/>
-                                        <constraint firstItem="NiY-mt-ZlZ" firstAttribute="leading" secondItem="XVB-JQ-OTO" secondAttribute="leading" constant="16" id="tiC-5K-Tdd"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
@@ -241,10 +262,12 @@
                 <constraint firstItem="iZi-rC-bxd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="raq-Zy-q80"/>
             </constraints>
             <connections>
+                <outlet property="addressButton" destination="bYQ-Na-Ygn" id="4lK-FL-wbV"/>
                 <outlet property="coffeeCollectionHeight" destination="eG0-fb-Vv6" id="d72-m1-ZHh"/>
                 <outlet property="coffeeListCollectionView" destination="gs6-6X-69X" id="qtt-SX-VKd"/>
                 <outlet property="collectionView" destination="HxM-t0-0PF" id="uDJ-gV-mBy"/>
                 <outlet property="pageControll" destination="aH5-Gz-qWf" id="yXs-cY-Npa"/>
+                <outlet property="phoneNumberButton" destination="8qj-7t-fAo" id="0Uw-ue-gHP"/>
                 <outlet property="showMoreButton" destination="6Gf-wO-y7v" id="r1I-zB-8wd"/>
                 <outlet property="socialListCollectionView" destination="eEz-H9-QBG" id="aTp-kZ-6op"/>
                 <outlet property="tableView" destination="2nz-2b-0kR" id="1JD-AR-dQH"/>
@@ -255,6 +278,7 @@
     </objects>
     <resources>
         <image name="mappin.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="phone.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="mainColor">
             <color red="0.52549019607843139" green="0.14901960784313725" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

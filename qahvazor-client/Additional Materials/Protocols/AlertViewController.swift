@@ -93,7 +93,7 @@ extension AlertViewController where Self: UIViewController {
         
         let alert = UIAlertController(title: "", message: "phoneNumber".localized, preferredStyle: preferredStyle)
         items.indices.forEach { index in
-            alert.addAction(UIAlertAction(title: items[index].phoneNumber, style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: items[index].phoneNumber?.displayPhone(), style: .default, handler: { _ in
                 completion(items[index].phoneNumber)
             }))
         }
@@ -150,9 +150,9 @@ extension AlertViewController where Self: UIViewController {
         SwiftMessages.show(config: config, view: view)
     }
     
-    @MainActor func showInfoAlert(title: String? = nil, message: String? = nil) {
+    @MainActor func showInfoAlert(message: String? = nil) {
         let view = MessageView.viewFromNib(layout: .cardView)
-        view.configureContent(title: title, body: message, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
+        view.configureContent(title: message, body: nil, iconImage: nil, iconText: nil, buttonImage: nil, buttonTitle: "ok".localized, buttonTapHandler: { _ in SwiftMessages.hide() })
         view.configureTheme(backgroundColor: UIColor.appColor(.alertBackground), foregroundColor: .systemBlue, iconImage: .appImage(.infoAlert))
         view.accessibilityPrefix = "info"
         view.button?.isHidden = true

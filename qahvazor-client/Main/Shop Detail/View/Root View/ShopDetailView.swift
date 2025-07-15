@@ -18,6 +18,12 @@ class ShopDetailView: CustomView {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var showMoreButton: UIButton!
+    @IBOutlet weak var addressButton: UIButton!
+    @IBOutlet weak var phoneNumberButton: UIButton! {
+        didSet {
+            phoneNumberButton.isHidden = true
+        }
+    }
     @IBOutlet weak var coffeeListCollectionView: UICollectionView! {
         didSet {
             coffeeListCollectionView.register(UINib(nibName: CoffeeCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier)

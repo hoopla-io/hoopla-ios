@@ -13,6 +13,7 @@ final class ConfirmOrderView: CustomView {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var shopLabel: UILabel!
     @IBOutlet weak var drinkLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
 }
 

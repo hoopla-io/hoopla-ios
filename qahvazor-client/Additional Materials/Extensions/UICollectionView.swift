@@ -44,7 +44,7 @@ struct ItemCountPayment: ItemCount {
 struct ItemCountCoffeeCard: ItemCount {
     var padLandscape = 5
     var padPortrait  = 3
-    var phone        = 2
+    var phone        = 3
 }
 
 enum ItemRatio: CGFloat {
@@ -59,12 +59,13 @@ enum ItemRatio: CGFloat {
 enum ItemSpacing: CGFloat {
     case standard = 16.0
     case custom   = 10.0
-    case card     = 12.0
+    case card     = 6.0
     case zero     = 0.0
 }
 
 enum ItemAdditionalHeight: CGFloat {
     case zero = 0
+    case coffee = 40
 }
 
 enum ItemLayout {
@@ -84,7 +85,7 @@ extension UICollectionView {
         case .payment:
             return itemSize(itemType: .payment, layout: layout, ratio: .coffee, spacing: .custom, additionalHeight: .zero)
         case .coffeeCard:
-            return itemSize(itemType: .coffeeCard, layout: layout, ratio: .coffeeCard, spacing: .card, additionalHeight: .zero)
+            return itemSize(itemType: .coffeeCard, layout: layout, ratio: .coffeeCard, spacing: .card, additionalHeight: .coffee)
         default:
             return CGSize.zero
         }

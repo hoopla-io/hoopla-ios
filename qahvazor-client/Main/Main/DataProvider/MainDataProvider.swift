@@ -62,7 +62,7 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = viewController as? MainViewController else { return }
         guard let id = items[indexPath.row].shopId else { return }
-        vc.coordinator?.pushToShopDetail(id: id, name: items[indexPath.row].name)
+        vc.coordinator?.pushToShopDetail(id: id, name: items[indexPath.row].name, distance: items[indexPath.row].distance)
     }
 }
 

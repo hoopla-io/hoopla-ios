@@ -29,6 +29,9 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
             navigationItem.title = "\(data?.name ?? "")"
             view().drinkLabel.text = "\(data?.name ?? "")"
             view().dateLabel.text = DateFormatter.string(formatter: .orderedDate)
+            if let imageUrl = data?.pictureUrl {
+                view().imageView.setImage(with: imageUrl)
+            }
         }
     }
     var shopData: Shop? {
