@@ -25,22 +25,24 @@ final class CodeConfirmViewModel {
         ]
         
         delegate?.showActivityIndicator()
-        JSONDownloader.shared.jsonTask(url: EndPoints.confirmSms.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
-            guard let self = self else { return }
-            switch result {
-            case .Error(let error, let message):
-                self.delegate?.showAlertClosure(error: (error,message))
-            case .Success(let json):
-                do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<SignIn>.self, from: json)
-                    guard let data = fetchedData.data else { return }
-                    self.delegate?.didFinishFetch(data: data)
-                } catch {
-                    self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.confirmSms.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<SignIn>.self, from: json)
+                        guard let data = fetchedData.data else { return }
+                        self.delegate?.didFinishFetch(data: data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
                 }
-            }
-            self.delegate?.hideActivityIndicator()
-        })
+                self.delegate?.hideActivityIndicator()
+            })
+        }
     }
     
     func resendSms(sessionId: String) {
@@ -50,21 +52,23 @@ final class CodeConfirmViewModel {
         ]
         
         delegate?.showActivityIndicator()
-        JSONDownloader.shared.jsonTask(url: EndPoints.resendSms.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
-            guard let self = self else { return }
-            switch result {
-            case .Error(let error, let message):
-                self.delegate?.showAlertClosure(error: (error,message))
-            case .Success(let json):
-                do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<Auth>.self, from: json)
-                    guard let data = fetchedData.data else { return }
-                    self.delegate?.didFinishFetchResend(data: data)
-                } catch {
-                    self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.resendSms.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<Auth>.self, from: json)
+                        guard let data = fetchedData.data else { return }
+                        self.delegate?.didFinishFetchResend(data: data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
                 }
-            }
-            self.delegate?.hideActivityIndicator()
-        })
+                self.delegate?.hideActivityIndicator()
+            })
+        }
     }
 }

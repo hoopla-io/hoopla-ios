@@ -146,6 +146,9 @@
 		75A04A652D2E83340082D342 /* SocialDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A642D2E83340082D342 /* SocialDataProvider.swift */; };
 		75A04A682D2E86E50082D342 /* SocialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */; };
 		75A04A692D2E86E50082D342 /* SocialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */; };
+		75B90F762E360E790091A8BB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75B90F752E360E790091A8BB /* FirebaseCrashlytics */; };
+		75B90F782E360E980091A8BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75B90F772E360E980091A8BB /* GoogleService-Info.plist */; };
+		75B90F7B2E360ED30091A8BB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75B90F7A2E360ED30091A8BB /* FirebaseAnalytics */; };
 		75BB17282E095C8500376246 /* UniversalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB17272E095C8500376246 /* UniversalLink.swift */; };
 		75BB17592E0A893400376246 /* ConfirmOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB17582E0A893400376246 /* ConfirmOrderView.swift */; };
 		75BB175B2E0A893B00376246 /* ConfirmOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BB175A2E0A893B00376246 /* ConfirmOrderView.xib */; };
@@ -320,6 +323,7 @@
 		75A04A642D2E83340082D342 /* SocialDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialDataProvider.swift; sourceTree = "<group>"; };
 		75A04A662D2E86E50082D342 /* SocialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCollectionViewCell.swift; sourceTree = "<group>"; };
 		75A04A672D2E86E50082D342 /* SocialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialCollectionViewCell.xib; sourceTree = "<group>"; };
+		75B90F772E360E980091A8BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75BB17262E0955FB00376246 /* qahvazor-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "qahvazor-client.entitlements"; sourceTree = "<group>"; };
 		75BB17272E095C8500376246 /* UniversalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLink.swift; sourceTree = "<group>"; };
 		75BB17582E0A893400376246 /* ConfirmOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrderView.swift; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 				752331532D19918F0090997E /* Hero in Frameworks */,
 				7523314D2D1991690090997E /* Haptica in Frameworks */,
 				752331592D1991BE0090997E /* Lottie in Frameworks */,
+				75B90F7B2E360ED30091A8BB /* FirebaseAnalytics in Frameworks */,
 				752331562D1991AB0090997E /* IQKeyboardManagerSwift in Frameworks */,
 				752331612D1991FE0090997E /* SkeletonView in Frameworks */,
 				752331862D19950F0090997E /* SwiftMessages in Frameworks */,
@@ -388,6 +393,7 @@
 				7523315C2D1991EC0090997E /* SDWebImage in Frameworks */,
 				75DCE3752D1AD6CB003A59CD /* Magnetic in Frameworks */,
 				7523314A2D19912B0090997E /* GhostTypewriter in Frameworks */,
+				75B90F762E360E790091A8BB /* FirebaseCrashlytics in Frameworks */,
 				7523315E2D1991EC0090997E /* SDWebImageMapKit in Frameworks */,
 				752331832D1994F40090997E /* Alamofire in Frameworks */,
 			);
@@ -453,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				752330762D197AE80090997E /* qahvazor-client */,
+				75B90F792E360ED30091A8BB /* Frameworks */,
 				752330592D19789C0090997E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -695,6 +702,7 @@
 		7523313B2D198D940090997E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				75B90F772E360E980091A8BB /* GoogleService-Info.plist */,
 				752330712D197AE80090997E /* Assets.xcassets */,
 				752330742D197AE80090997E /* LaunchScreen.storyboard */,
 				752330702D197AE80090997E /* AppDelegate.swift */,
@@ -1009,6 +1017,13 @@
 				7597A6552E0BEA7A00ECD758 /* View */,
 			);
 			path = Scanner;
+			sourceTree = "<group>";
+		};
+		75B90F792E360ED30091A8BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		75BB17292E0962B600376246 /* Photo */ = {
@@ -1365,6 +1380,8 @@
 				752331822D1994F40090997E /* Alamofire */,
 				752331852D19950F0090997E /* SwiftMessages */,
 				75DCE3742D1AD6CB003A59CD /* Magnetic */,
+				75B90F752E360E790091A8BB /* FirebaseCrashlytics */,
+				75B90F7A2E360ED30091A8BB /* FirebaseAnalytics */,
 			);
 			productName = "qahvazor-client";
 			productReference = 752330582D19789C0090997E /* qahvazor-client.app */;
@@ -1411,6 +1428,7 @@
 				752331812D1994F40090997E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				752331842D19950F0090997E /* XCRemoteSwiftPackageReference "SwiftMessages" */,
 				75DCE3732D1AD6CB003A59CD /* XCRemoteSwiftPackageReference "Magnetic" */,
+				75B90F742E360E790091A8BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 752330592D19789C0090997E /* Products */;
@@ -1440,6 +1458,7 @@
 				7523319B2D1A90B30090997E /* LaunchScreenView.xib in Resources */,
 				752331042D197B210090997E /* MainView.xib in Resources */,
 				75DCE3842D1C10BE003A59CD /* ProfileView.xib in Resources */,
+				75B90F782E360E980091A8BB /* GoogleService-Info.plist in Resources */,
 				75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */,
 				7597A6592E0BEA7A00ECD758 /* ScannerView.xib in Resources */,
 				75705CF02D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib in Resources */,
@@ -1641,7 +1660,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -1655,7 +1674,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1675,7 +1694,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -1689,7 +1708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1951,6 +1970,14 @@
 				minimumVersion = 10.0.1;
 			};
 		};
+		75B90F742E360E790091A8BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.25.0;
+			};
+		};
 		75DCE3732D1AD6CB003A59CD /* XCRemoteSwiftPackageReference "Magnetic" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jakhongir97/Magnetic";
@@ -2031,6 +2058,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 752331842D19950F0090997E /* XCRemoteSwiftPackageReference "SwiftMessages" */;
 			productName = SwiftMessages;
+		};
+		75B90F752E360E790091A8BB /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75B90F742E360E790091A8BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		75B90F7A2E360ED30091A8BB /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75B90F742E360E790091A8BB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
 		75DCE3742D1AD6CB003A59CD /* Magnetic */ = {
 			isa = XCSwiftPackageProductDependency;

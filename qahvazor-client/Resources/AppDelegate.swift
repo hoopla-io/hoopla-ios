@@ -7,6 +7,8 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Firebase
+import FirebaseAnalytics
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().setup()
         
+        FirebaseApp.configure()
+        Analytics.setAnalyticsCollectionEnabled(true)
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
         IQKeyboardManager.shared.enable = true
         locationManager.requestLocationPermission()
         

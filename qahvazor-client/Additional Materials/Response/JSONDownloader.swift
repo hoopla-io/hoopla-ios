@@ -25,32 +25,22 @@ enum StatusCode: Int {
 
 typealias JSONTaskCompletionHandler = (Result<Data>) -> ()
 
-class JSONDownloader {
+actor JSONDownloader {
     
     private init() {}
     
     static let shared = JSONDownloader()
-    
-    private let iDevice = UIDevice.current.identifierForVendor?.uuidString ?? ""
-    private let iVersion = Bundle.main.releaseVersionNumber ?? "0"
-    private let devType: String = {
-        switch UIDevice.current.userInterfaceIdiom {
-        case .phone:
-            return Headers.phone.rawValue
-        case .pad:
-            return Headers.pad.rawValue
-        default:
-            return ""
-        }
-    }()
-    
     private let isDebug = true
     
     let retryLimit = 3
     
     let retryDelay: TimeInterval = 1
     
-    var isRetrying = false
+    private(set) var isRetrying = false
+    
+    func updateRetrying(to: Bool) {
+        isRetrying = to
+    }
     
     func jsonTask(baseUrl: MainConstants = .host, api: MainConstants = .api , path: MainConstants = .path1, url: String, query: String? = nil, requestMethod: HTTPMethod, parameters: [String : Any]? = nil, completionHandler completion: @escaping JSONTaskCompletionHandler) {
         
@@ -82,33 +72,36 @@ class JSONDownloader {
             encoding = JSONEncoding.default
         }
         
-        AF.request(URL, method: requestMethod, parameters: params, encoding: encoding, headers: headers, interceptor: self).customValidate().responseData { result in
-            DispatchQueue.main.async {
-                guard let httpResponse = result.response else {
+        AF.request(URL, method: requestMethod, parameters: params, encoding: encoding, headers: headers, interceptor: self).customValidate().responseData(queue: DispatchQueue.global(qos: .background)) { result in
+            guard let httpResponse = result.response else {
+                DispatchQueue.main.async {
                     completion(.Error(.requestFailed))
-                    return
                 }
-                
-                guard let data = result.data else {
+                return
+            }
+            
+            guard let data = result.data else {
+                DispatchQueue.main.async {
                     completion(.Error(.invalidData))
-                    return
                 }
-                
+                return
+            }
+            
+            if self.isDebug {
+                print("\n--- Start debug ---")
+                print("URL: \(URL)")
+                //                    print("Headers: \(String(describing: headers.dictionary))")
+                print("Parameters: \(String(describing: parameters))")
+                print("HTTPMethod: \(String(describing: requestMethod.rawValue))")
+                print("Status Code: \(httpResponse.statusCode)")
+            }
+            
+            do {
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
                 if self.isDebug {
-                    print("\n--- Start debug ---")
-                    print("URL: \(URL)")
-//                    print("Headers: \(String(describing: headers.dictionary))")
-                    print("Parameters: \(String(describing: parameters))")
-                    print("HTTPMethod: \(String(describing: requestMethod.rawValue))")
-                    print("Status Code: \(httpResponse.statusCode)")
+                    print("Result: \(String(describing: jsonResult))")
                 }
-                
-                do {
-                    let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
-                    if self.isDebug {
-                        print("Result: \(String(describing: jsonResult))")
-                    }
-                    
+                DispatchQueue.main.async {
                     switch httpResponse.statusCode {
                     case StatusCode.success200.rawValue, StatusCode.success202.rawValue:
                         completion(.Success(data))
@@ -122,20 +115,22 @@ class JSONDownloader {
                     default:
                         completion(.Error(.fromMessage, jsonResult?["message"] as? String))
                     }
-                } catch {
+                }
+            } catch {
+                DispatchQueue.main.async {
                     completion(.Error(.responseUnsuccessful))
                 }
-                
-                if self.isDebug {
-                    print("--- End debug ---\n")
-                }
+            }
+            
+            if self.isDebug {
+                print("--- End debug ---\n")
             }
         }
     }
     
 }
 
-extension JSONDownloader: RequestRetrier, RequestAdapter, RequestInterceptor {
+extension JSONDownloader: @preconcurrency RequestRetrier, @preconcurrency RequestAdapter, RequestInterceptor {
     
     func retry(_ request: Alamofire.Request, for session: Alamofire.Session, dueTo error: Error, completion: @escaping (Alamofire.RetryResult) -> Void) {
         let response = request.task?.response as? HTTPURLResponse
@@ -186,15 +181,21 @@ extension JSONDownloader: RequestRetrier, RequestAdapter, RequestInterceptor {
                 refreshToken { [weak self] statusCode in
                     guard let self else { return }
                     if statusCode == StatusCode.success200.rawValue {
-                        self.isRetrying = false
+                        Task {
+                            await self.updateRetrying(to: false)
+                        }
                         completion(.retryWithDelay(self.retryDelay))
                     } else if statusCode == StatusCode.notAuthorized.rawValue {
-                        self.isRetrying = false
+                        Task {
+                            await self.updateRetrying(to: false)
+                            await UIViewController().resetTabBar(4)
+                        }
                         UserDefaults.standard.removeAccount()
-                        UIViewController().resetTabBar(4)
                         completion(.doNotRetry)
                     } else {
-                        self.isRetrying = false
+                        Task {
+                            await self.updateRetrying(to: false)
+                        }
                         completion(.retryWithDelay(self.retryDelay))
                     }
                 }
@@ -211,7 +212,6 @@ extension JSONDownloader: RequestRetrier, RequestAdapter, RequestInterceptor {
     func refreshToken(completion: @escaping (_ StatusCode: Int) -> Void) {
         let url = EndPoints.refreshToken.rawValue
         let refreshToken = Parameters.refreshToken.rawValue + Symbols.equal.rawValue + (UserDefaults.standard.refreshToken() ?? "")
-//        let firebaseToken = Parameters.firebaseToken.rawValue + Symbols.equal.rawValue + (UserDefaults.standard.firebaseToken() ?? "")
         let query = refreshToken// + Symbols.and.rawValue + firebaseToken
         
         // Set Components
@@ -243,7 +243,7 @@ extension JSONDownloader: RequestRetrier, RequestAdapter, RequestInterceptor {
                 if self.isDebug {
                     print("\n--- Start debug ---")
                     print("URL: \(URL)")
-                    print("Headers: \(String(describing: headers.dictionary))")
+//                    print("Headers: \(String(describing: headers.dictionary))")
                     print("Status Code: \(httpResponse.statusCode)")
                 }
                 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCWOd1maEJELvC1n8IG6tHzp56pmVlYwJQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>708577463362</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>alphazet.qahvazor-client</string>
+	<key>PROJECT_ID</key>
+	<string>hoopla-az</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hoopla-az.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:708577463362:ios:c5ba7000f2fe93d491b1db</string>
+</dict>
+</plist>

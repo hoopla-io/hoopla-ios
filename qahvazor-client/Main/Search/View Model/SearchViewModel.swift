@@ -26,21 +26,23 @@ final class SearchViewModel {
         }
         
         delegate?.showActivityIndicator()
-        JSONDownloader.shared.jsonTask(url: EndPoints.nearShops.rawValue, requestMethod: .get, parameters: param, completionHandler: { [weak self]  (result) in
-            guard let self = self else { return }
-            switch result {
-            case .Error(let error, let message):
-                self.delegate?.showAlertClosure(error: (error,message))
-            case .Success(let json):
-                do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<[Shop]>.self, from: json)
-                    self.delegate?.didFinishFetch(data: fetchedData.data)
-                } catch {
-                    self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.nearShops.rawValue, requestMethod: .get, parameters: param, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<[Shop]>.self, from: json)
+                        self.delegate?.didFinishFetch(data: fetchedData.data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
                 }
-            }
-            self.delegate?.hideActivityIndicator()
-        })
+                self.delegate?.hideActivityIndicator()
+            })
+        }
     }
 }
 

@@ -31,69 +31,73 @@ final class ProfileViewModel {
         ]
         
         delegate?.showActivityIndicator()
-        JSONDownloader.shared.jsonTask(url: EndPoints.signIn.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
-            guard let self = self else { return }
-            switch result {
-            case .Error(let error, let message):
-                self.delegate?.showAlertClosure(error: (error,message))
-            case .Success(let json):
-                do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<Auth>.self, from: json)
-                    guard let data = fetchedData.data else { return }
-                    self.delegate?.didFinishFetch(data: data)
-                } catch {
-                    self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.signIn.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<Auth>.self, from: json)
+                        guard let data = fetchedData.data else { return }
+                        self.delegate?.didFinishFetch(data: data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
                 }
-            }
-            self.delegate?.hideActivityIndicator()
-        })
+                self.delegate?.hideActivityIndicator()
+            })
+        }
     }
-    
     func getMe() {
-        JSONDownloader.shared.jsonTask(url: EndPoints.getMe.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
-            guard let self = self else { return }
-            switch result {
-            case .Error(let error, let message):
-                self.delegate?.showAlertClosure(error: (error,message))
-            case .Success(let json):
-                do {
-                    let fetchedData = try CustomDecoder().decode(JSONData<Account>.self, from: json)
-                    guard let data = fetchedData.data else { return }
-                    self.delegate?.didFinishFetch(data: data)
-                } catch {
-                    self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.getMe.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<Account>.self, from: json)
+                        guard let data = fetchedData.data else { return }
+                        self.delegate?.didFinishFetch(data: data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
                 }
-            }
-        })
+            })
+        }
     }
-    
     func logOut() {
         delegate?.showActivityIndicator()
-        JSONDownloader.shared.jsonTask(url: EndPoints.logout.rawValue, requestMethod: .post, completionHandler: { [weak self]  (result) in
-            guard let self = self else { return }
-            switch result {
-            case .Error(let error, let message):
-                self.delegate?.showAlertClosure(error: (error,message))
-            case .Success(_):
-                self.delegate?.didFinishFetchLogout()
-            }
-            self.delegate?.hideActivityIndicator()
-        })
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.logout.rawValue, requestMethod: .post, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(_):
+                    self.delegate?.didFinishFetchLogout()
+                }
+                self.delegate?.hideActivityIndicator()
+            })
+        }
     }
-    
     func deleteAccount() {
         delegate?.showActivityIndicator()
-        JSONDownloader.shared.jsonTask(url: EndPoints.deleteUser.rawValue, requestMethod: .delete, completionHandler: { [weak self]  (result) in
-            guard let self = self else { return }
-            switch result {
-            case .Error(let error, let message):
-                self.delegate?.showAlertClosure(error: (error,message))
-            case .Success(_):
-                self.delegate?.didFinishFetchLogout()
-            }
-            self.delegate?.hideActivityIndicator()
-        })
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.deleteUser.rawValue, requestMethod: .delete, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(_):
+                    self.delegate?.didFinishFetchLogout()
+                }
+                self.delegate?.hideActivityIndicator()
+            })
+        }
     }
-    
 }
 
