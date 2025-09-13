@@ -14,6 +14,7 @@ class CoffeeCollectionViewCell: CustomCollectionViewCell {
         }
     }
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var containerView: UIView! {
         didSet {
             containerView.layer.cornerRadius = 26

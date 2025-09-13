@@ -41,6 +41,7 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CoffeeCollectionViewCell else { return UICollectionViewCell() }
         cell.titleLabel.text = items[indexPath.row].name
+        cell.priceLabel.text = items[indexPath.row].productPrice?.formattedWithCurrency
         if let imageURL = items[indexPath.row].pictureUrl {
             cell.imageView.setImage(with: imageURL, placeholder: .appImage(.placeholder))
         }

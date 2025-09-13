@@ -128,3 +128,8 @@ yes = "Да";
 successBoughtSubscriptionAlert = "Вы успешно приобрели подписку!";
 incorrect = "Неправильный";
 cantOrder = "Кофейня временно не принимает заказы";
+
+//MARK: - Others
+som = "сум";
+addOns = "Добавить";
+price = "Цена";

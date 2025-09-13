@@ -9,6 +9,7 @@ import UIKit
 
 protocol ConfirmOrderViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: WorkHour?, statusCode: Int)
+    func didFinishFetch(data: ConfirmDrink?)
 }
 
 final class ConfirmOrderViewModel {
@@ -16,12 +17,14 @@ final class ConfirmOrderViewModel {
     weak var delegate: ConfirmOrderViewModelProtocol?
     
     // MARK: - Network call
-    func createOrder(drinkId: Int, shopId: Int) {
-        let parameters: [String: Any] = [
+    func createOrder(drinkId: Int, shopId: Int, addOnId: String?) {
+        var parameters: [String: Any] = [
             Parameters.drinkId.rawValue: drinkId,
             Parameters.shopId.rawValue: shopId
         ]
-        
+        if let addOnId {
+            parameters[Parameters.addOnId.rawValue] = addOnId
+        }
         self.delegate?.showActivityIndicator()
         Task { [weak self] in
             await JSONDownloader.shared.jsonTask(url: EndPoints.createOrder.rawValue, requestMethod: .post, parameters: parameters, completionHandler: { [weak self]  (result) in
@@ -33,6 +36,32 @@ final class ConfirmOrderViewModel {
                     do {
                         let fetchedData = try CustomDecoder().decode(JSONData<WorkHour>.self, from: json)
                         self.delegate?.didFinishFetch(data: fetchedData.data, statusCode: fetchedData.code)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
+                }
+                self.delegate?.hideActivityIndicator()
+            })
+        }
+    }
+    
+    func validateOrder(drinkId: Int, shopId: Int) {
+        let parameters: [String: Any] = [
+            Parameters.drinkId.rawValue: drinkId,
+            Parameters.shopId.rawValue: shopId
+        ]
+        
+        self.delegate?.showActivityIndicator()
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.validateOrder.rawValue, requestMethod: .post, parameters: parameters, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<ConfirmDrink>.self, from: json)
+                        self.delegate?.didFinishFetch(data: fetchedData.data)
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }

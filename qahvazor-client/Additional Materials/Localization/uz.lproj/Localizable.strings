@@ -128,3 +128,8 @@ yes = "Ha";
 successBoughtSubscriptionAlert = "Siz obunani muvaffaqiyatli sotib oldingiz!";
 incorrect = "Noto'g'ri";
 cantOrder = "Vaqtincha buyurtma berib bo'lmaydi";
+
+//MARK: - Others
+som = "so'm";
+addOns = "Qo'shimchalar";
+price = "Narxi";

@@ -48,3 +48,11 @@ struct Module: Codable {
     let name: String?
 }
 
+struct ConfirmDrink: Codable {
+    let addOns: [AddOns]?
+}
+
+struct AddOns: Codable {
+    let addOn: String?
+    let vendorAddOnId: String?
+}

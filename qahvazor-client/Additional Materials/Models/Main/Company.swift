@@ -26,4 +26,5 @@ struct Drinks: Codable {
     let id: Int?
     let name: String?
     let pictureUrl: String?
+    let productPrice: Double?
 }

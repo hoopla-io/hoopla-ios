@@ -42,7 +42,7 @@ final class MainCoordinator: Coordinator {
     
     func pushToConfirmOrderVC(viewController: UIViewController, data: Drinks, shop: Shop?) {
         let vc = ConfirmOrderViewController()
-        vc.data = data
+        vc.drinkData = data
         vc.shopData = shop
         vc.coordinator = self
         vc.hidesBottomBarWhenPushed = true
@@ -53,6 +53,14 @@ final class MainCoordinator: Coordinator {
         let vc = SubscriptionViewController()
         let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
         vc.coordinator = profileCoordinator
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func pushToPaymentVC(amount: Double? = nil) {
+        let vc = PaymentViewController()
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
+        vc.coordinator = profileCoordinator
+        vc.amount = amount
         navigationController.pushViewController(vc, animated: true)
     }
     

@@ -25,4 +25,9 @@ extension Formatter {
 
 extension Numeric {
     var formattedWithSeparator: String { Formatter.withSeparator.string(for: self) ?? "" }
+    
+    var formattedWithCurrency: String {
+        let price = Formatter.withSeparator.string(for: self) ?? ""
+        return price + Symbols.space.rawValue + "som".localized
+    }
 }

@@ -20,6 +20,7 @@ enum Parameters: String {
     case lat = "lat"
     case name = "name"
     case drinkId = "drinkId"
+    case addOnId = "addOnId"
     
     // MARK: - Profile
     case phoneNumber = "phoneNumber"
