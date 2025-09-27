@@ -133,3 +133,6 @@ cantOrder = "The cafe shop is temporarily not accepting orders";
 som = "sum";
 addOns = "Add ons";
 price = "Price";
+updateAvailable = "Update Available";
+updateMessage = "A new version of application is available, Please update to new version";
+update = "Update";

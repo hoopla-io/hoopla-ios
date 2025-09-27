@@ -34,6 +34,7 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
         viewModel.getList()
         checkAccessLocation()
         checkUniversalLink()
+        checkUpdate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -210,5 +211,54 @@ extension MainViewController: ScannerViewControllerDelegate {
                 }
             }
         }
+    }
+}
+
+// MARK: - CheckToNewVersion
+extension MainViewController {
+    func checkUpdate() {
+        DispatchQueue.global().async {
+            do {
+                let hasUpdate = try self.isUpdateAvailable()
+                if hasUpdate {
+                    DispatchQueue.main.async {
+                        self.popupUpdateDialogue()
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func isUpdateAvailable() throws -> Bool {
+        guard let info = Bundle.main.infoDictionary,
+              let currentVersion = info["CFBundleShortVersionString"] as? String,
+              let url = URL(string: MainConstants.itunesPath.rawValue) else {
+            throw VersionError.invalidBundleInfo
+        }
+        
+        let data = try Data(contentsOf: url)
+        guard let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] else {
+            throw VersionError.invalidResponse
+        }
+        if let result = (json["results"] as? [Any])?.first as? [String: Any], let newVersion = result["version"] as? String {
+            return !(currentVersion >= newVersion)
+        }
+        throw VersionError.invalidResponse
+    }
+    
+    func popupUpdateDialogue() {
+        let alert = UIAlertController(title: "updateAvailable".localized, message: "updateMessage".localized, preferredStyle: UIAlertController.Style.alert)
+        
+        let updateAction = UIAlertAction(title: "update".localized, style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            if let url = URL(string: MainConstants.appstorePath.rawValue),
+               UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        })
+        
+        alert.addAction(updateAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }

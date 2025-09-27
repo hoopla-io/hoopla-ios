@@ -17,6 +17,8 @@ enum MainConstants: String {
     case termsOfUse = "https://hoopla.uz/uz/terms-of-use"
     case privacyPolicy = "https://hoopla.uz/uz/privacy-policy"
     case support = "http://t.me/alphazzet"
+    case appstorePath = "https://apps.apple.com/uz/app/hoopla/id6739946223"
+    case itunesPath = "http://itunes.apple.com/lookup?id=6739946223"
 }
 
 enum SocialPage: String {
