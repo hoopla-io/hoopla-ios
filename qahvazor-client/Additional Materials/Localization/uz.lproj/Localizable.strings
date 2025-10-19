@@ -136,3 +136,5 @@ price = "Narxi";
 updateAvailable = "Yangilanish mavjud";
 updateMessage = "Ilovaning yangi versiyasi mavjud. Iltimos, ilovani yangilang";
 update = "Yangilash";
+drinkSize = "Ichimlik hajmi";
+sugar = "Shakar";

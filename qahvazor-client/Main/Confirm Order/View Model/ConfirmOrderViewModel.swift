@@ -9,7 +9,7 @@ import UIKit
 
 protocol ConfirmOrderViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: WorkHour?, statusCode: Int)
-    func didFinishFetch(data: ConfirmDrink?)
+    func didFinishFetch(data: Modifications?)
 }
 
 final class ConfirmOrderViewModel {
@@ -17,14 +17,17 @@ final class ConfirmOrderViewModel {
     weak var delegate: ConfirmOrderViewModelProtocol?
     
     // MARK: - Network call
-    func createOrder(drinkId: Int, shopId: Int, addOnId: String?) {
+    func createOrder(drinkId: Int, shopId: Int, modifiers: [Modification?]?) async {
+        async let modifierList: [[String: Any]] = sortModifiers(modifiers)
+        
         var parameters: [String: Any] = [
             Parameters.drinkId.rawValue: drinkId,
-            Parameters.shopId.rawValue: shopId
+            Parameters.shopId.rawValue: shopId,
+            Parameters.modifiers.rawValue : await modifierList,
         ]
-        if let addOnId {
-            parameters[Parameters.addOnId.rawValue] = addOnId
-        }
+//        if let modifiers {
+//            parameters[Parameters.modifiers.rawValue] = modifiers
+//        }
         self.delegate?.showActivityIndicator()
         Task { [weak self] in
             await JSONDownloader.shared.jsonTask(url: EndPoints.createOrder.rawValue, requestMethod: .post, parameters: parameters, completionHandler: { [weak self]  (result) in
@@ -61,13 +64,33 @@ final class ConfirmOrderViewModel {
                 case .Success(let json):
                     do {
                         let fetchedData = try CustomDecoder().decode(JSONData<ConfirmDrink>.self, from: json)
-                        self.delegate?.didFinishFetch(data: fetchedData.data)
+                        self.delegate?.didFinishFetch(data: fetchedData.data?.modifications)
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }
                 }
                 self.delegate?.hideActivityIndicator()
             })
+        }
+    }
+    
+    func sortModifiers(_ data: [Modification?]?) async -> [[String: Any]] {
+        guard let data, !data.isEmpty else { return [] }
+        
+        return data.compactMap { item in
+            guard
+                let modifierId    = item?.modificationId,
+                let modifierKey   = item?.modificationKey,
+                let modifierPrice = item?.modificationPrice
+            else {
+                return nil
+            }
+            
+            return [
+                Parameters.modifierId.rawValue             : modifierId,
+                Parameters.modifierKey.rawValue            : modifierKey,
+                Parameters.modifierPrice.rawValue          : modifierPrice
+            ]
         }
     }
     

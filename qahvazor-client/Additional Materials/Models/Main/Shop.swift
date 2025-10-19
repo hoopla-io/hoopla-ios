@@ -49,10 +49,17 @@ struct Module: Codable {
 }
 
 struct ConfirmDrink: Codable {
-    let addOns: [AddOns]?
+    let modifications: Modifications?
 }
 
-struct AddOns: Codable {
-    let addOn: String?
-    let vendorAddOnId: String?
+struct Modifications: Codable {
+    let size: [Modification]?
+    let sugar: [Modification]?
+}
+
+struct Modification: Codable {
+    let modificationId: String?
+    let modificationKey: String?
+    let modificationName: String?
+    let modificationPrice: Double?
 }
