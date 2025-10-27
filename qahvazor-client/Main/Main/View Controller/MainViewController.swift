@@ -45,6 +45,7 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
 extension MainViewController: MainViewModelProtocol {
     func didFinishFetch(data: [Shop]) {
         dataProvider?.items = data
+        ShopDataCache.shops = data
     }
 }
 
@@ -55,6 +56,7 @@ extension MainViewController {
         navigationItem.title = "coffeeShops".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         setupSearchBar()
+        setupNavigationBar()
         
         let dataProvider = MainDataProvider(viewController: self)
         dataProvider.collectionView = view().collectionView
@@ -96,6 +98,15 @@ extension MainViewController {
         searchController.searchBar.placeholder = "placeholderSearch".localized
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    private func setupNavigationBar() {
+        view().notificationButton.addTarget(self, action: #selector(notifitcationAction), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: view().notificationButton)
+    }
+    
+    @objc func notifitcationAction() {
+        coordinator?.pushToNotificationsVC()
     }
     
     private func checkAccessLocation() {

@@ -49,7 +49,8 @@ extension SubscriptionViewController: SubscriptionViewModelProtocol {
 extension SubscriptionViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
-        navigationItem.title = "subscriptions".localized
+        navigationItem.title = "soon".localized
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let dataProvider = SubscriptionDataProvider(viewController: self)
         dataProvider.collectionView = view().collectionView

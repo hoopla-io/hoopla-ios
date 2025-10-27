@@ -72,4 +72,16 @@ final class MainCoordinator: Coordinator {
         vc.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func pushToNotificationsVC() {
+        let vc = NotificationsViewController()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func pushToNotificationsDetailVC(notificationId: Int) {
+        let vc = NotificationsDetailViewController()
+        vc.notificationId = notificationId
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

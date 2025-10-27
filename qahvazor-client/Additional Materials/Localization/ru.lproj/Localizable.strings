@@ -101,7 +101,7 @@ pending = "В ожидании";
 accepted = "Одобренный";
 created = "Созданный";
 preparing = "Подготовка";
-canceled = "Отменено";
+cancelled = "Отменено";
 completed = "Завершено";
 
 // MARK: - Alert
@@ -138,3 +138,11 @@ updateMessage = "Доступна новая версия приложения. 
 update = "Обновить";
 drinkSize = "Размер напитка";
 sugar = "Сахар";
+notification = "Уведомления";
+mark = "Отметить";
+more = "Подробнее";
+readAll = "Прочитать все";
+open = "Открыть";
+soon = "Скоро";
+closed = "Закрыто";
+map = "Карта";

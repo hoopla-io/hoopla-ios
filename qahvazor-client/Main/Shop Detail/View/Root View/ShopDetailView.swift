@@ -35,4 +35,9 @@ class ShopDetailView: CustomView {
             socialListCollectionView.register(UINib(nibName: SocialCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: SocialCollectionViewCell.defaultReuseIdentifier)
         }
     }
+    @IBOutlet weak var closedLabel: UILabel! {
+        didSet {
+            closedLabel.isHidden = true
+        }
+    }
 }

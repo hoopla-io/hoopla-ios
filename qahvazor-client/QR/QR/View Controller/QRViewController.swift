@@ -38,7 +38,7 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
     
     // MARK: - Actions
     @IBAction func authAction() {
-        tabBarController?.selectedIndex = 2
+        tabBarController?.selectedIndex = 3
     }
     
     // MARK: - Life cycle

@@ -12,7 +12,7 @@ enum OrderStatus: String {
     case pending
     case created
     case preparing
-    case canceled
+    case cancelled
     case completed
 }
 
@@ -64,7 +64,7 @@ class OrderHistoryTableViewCell: UITableViewCell {
         switch colorType {
         case .pending, .preparing:
             orderStatusLabel.backgroundColor = .appColor(.orange)
-        case .canceled:
+        case .cancelled:
             orderStatusLabel.backgroundColor = .appColor(.red)
         case .created:
             orderStatusLabel.backgroundColor = .lightGray

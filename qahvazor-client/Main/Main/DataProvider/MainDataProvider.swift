@@ -8,6 +8,10 @@
 import UIKit
 import SkeletonView
 
+struct ShopDataCache {
+    static var shops: [Shop] = []
+}
+
 final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     // MARK: - Outlets

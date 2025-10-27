@@ -16,6 +16,7 @@ final class TabBarController: UITabBarController {
 
     // MARK: - Attributes
     private let mainCoordinator = MainCoordinator(navigationController: UINavigationController())
+    private let mapCoordinator = MapCoordinator(navigationController: UINavigationController())
     private let qrCoordinator   = QRCoordinator(navigationController: UINavigationController())
     private let profileCoordinator = ProfileCoordinator(navigationController: UINavigationController())
     var lastViewController: UIViewController?
@@ -51,20 +52,19 @@ private extension TabBarController {
         }
         
         mainCoordinator.start()
+        mapCoordinator.start()
         qrCoordinator.start()
         profileCoordinator.start()
         
-        // Disable default tap on the middle (QR) tab item
         let homeNav    = mainCoordinator.navigationController
+        let mapNav     = mapCoordinator.navigationController
         let qrNav      = qrCoordinator.navigationController
         let profileNav = profileCoordinator.navigationController
-        
-        viewControllers = [homeNav, qrNav, profileNav]
+        viewControllers = [homeNav, mapNav, qrNav, profileNav]
     }
     
     private func appearanceSettings() {
         tabBar.setup()
-        delegate = self
     }
 
 }
@@ -97,23 +97,6 @@ private extension TabBarController {
         Haptic.selection.generate()
     }
 }
-
-// MARK: - UITabBarControllerDelegate
-extension TabBarController: UITabBarControllerDelegate {
-//    func tabBarController(_ tabBarController: UITabBarController,
-//                          shouldSelect viewController: UIViewController) -> Bool {
-//        // Prevent selecting the disabled placeholder (QR) tab
-//        if viewController === qrCoordinator.navigationController {
-//            return false
-//        }
-//        return true
-//    }
-    
-//    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-//        animationItem(item: item)
-//    }
-}
-
 
 extension UITabBar {
     func setup() {

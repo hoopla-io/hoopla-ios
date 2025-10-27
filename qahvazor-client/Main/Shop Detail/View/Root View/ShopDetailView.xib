@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -62,15 +62,50 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ztj-Ud-fXF">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="193"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VY7-6W-pcq">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="aI4-el-66q">
                                                     <rect key="frame" x="16" y="0.0" width="361" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="workTime"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="E4N-Sv-y06">
+                                                            <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="24"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VY7-6W-pcq">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="24"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="workTime"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-nL-ms5" customClass="PaddingLabel" customModule="qahvazor_client" customModuleProvider="target">
+                                                                    <rect key="frame" x="114.00000000000001" y="3" width="46.666666666666671" height="18"/>
+                                                                    <color key="backgroundColor" name="red"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                                    <color key="textColor" name="white"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="closed"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                                            <real key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                                            <real key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                                            <real key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                                            <real key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="10"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vUt-ki-9NJ">
                                                     <rect key="frame" x="0.0" y="34" width="393" height="60"/>
                                                     <subviews>
@@ -156,8 +191,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="vUt-ki-9NJ" secondAttribute="trailing" id="G1E-hr-g6E"/>
                                                 <constraint firstItem="NiY-mt-ZlZ" firstAttribute="leading" secondItem="ztj-Ud-fXF" secondAttribute="leading" constant="16" id="Ted-rG-aBz"/>
-                                                <constraint firstItem="VY7-6W-pcq" firstAttribute="leading" secondItem="ztj-Ud-fXF" secondAttribute="leading" constant="16" id="Wmx-6U-tWl"/>
                                                 <constraint firstItem="vUt-ki-9NJ" firstAttribute="leading" secondItem="ztj-Ud-fXF" secondAttribute="leading" id="ei5-fa-Hhg"/>
+                                                <constraint firstItem="aI4-el-66q" firstAttribute="leading" secondItem="ztj-Ud-fXF" secondAttribute="leading" constant="16" id="uW9-Xf-600"/>
                                                 <constraint firstAttribute="trailing" secondItem="NiY-mt-ZlZ" secondAttribute="trailing" constant="16" id="wS4-RJ-sE9"/>
                                             </constraints>
                                         </stackView>
@@ -263,6 +298,7 @@
             </constraints>
             <connections>
                 <outlet property="addressButton" destination="bYQ-Na-Ygn" id="4lK-FL-wbV"/>
+                <outlet property="closedLabel" destination="hbe-nL-ms5" id="vbG-iP-L2E"/>
                 <outlet property="coffeeCollectionHeight" destination="eG0-fb-Vv6" id="d72-m1-ZHh"/>
                 <outlet property="coffeeListCollectionView" destination="gs6-6X-69X" id="qtt-SX-VKd"/>
                 <outlet property="collectionView" destination="HxM-t0-0PF" id="uDJ-gV-mBy"/>
@@ -281,6 +317,9 @@
         <image name="phone.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="mainColor">
             <color red="0.52549019607843139" green="0.14901960784313725" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="red">
+            <color red="0.87058823529411766" green="0.23137254901960785" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

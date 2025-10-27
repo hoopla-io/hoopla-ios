@@ -101,7 +101,7 @@ pending = "Kutilmoqda";
 accepted = "Qabul qilingan";
 created = "Yaratilgan";
 preparing = "Yayyorlanmoqda";
-canceled = "Bekor qilingan";
+cancelled = "Bekor qilingan";
 completed = "Yakunlangan";
 
 // MARK: - Alert
@@ -138,3 +138,12 @@ updateMessage = "Ilovaning yangi versiyasi mavjud. Iltimos, ilovani yangilang";
 update = "Yangilash";
 drinkSize = "Ichimlik hajmi";
 sugar = "Shakar";
+notification = "Xabarnomalar";
+mark = "Mark";
+more = "Batafsil";
+readAll = "Hammasini o'qish";
+open = "Ochish";
+soon = "Tez orada";
+closed = "Yopiq";
+map = "Xarita";
+

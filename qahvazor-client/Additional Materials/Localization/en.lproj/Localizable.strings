@@ -91,7 +91,7 @@ pending = "Pending";
 accepted = "Accepted";
 created = "Created";
 preparing = "Preparing";
-canceled = "Canceled";
+cancelled = "Canceled";
 completed = "Completed";
 
 // MARK: - QR
@@ -138,3 +138,11 @@ updateMessage = "A new version of application is available, Please update to new
 update = "Update";
 drinkSize = "Drink size";
 sugar = "Sugar";
+notification = "Notifications";
+mark = "Mark";
+more = "More";
+readAll = "Read all";
+open = "Open";
+soon = "Soon";
+closed = "Closed";
+map = "Map";

@@ -14,4 +14,14 @@ final class MainView: CustomView {
             collectionView.register(UINib(nibName: CompanyCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier)
         }
     }
+    
+    lazy var notificationButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "bell.fill"), for: .normal)
+        button.setPreferredSymbolConfiguration(
+            UIImage.SymbolConfiguration(pointSize: 24, weight: .bold),
+            forImageIn: .normal
+        )
+        return button
+    }()
 }

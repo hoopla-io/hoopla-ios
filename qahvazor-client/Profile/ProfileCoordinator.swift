@@ -19,7 +19,7 @@ final class ProfileCoordinator: Coordinator {
     func start() {
         let vc = ProfileViewController()
         vc.tabBarItem = UITabBarItem(title: "profile".localized, image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
-        vc.tabBarItem.tag = 2
+        vc.tabBarItem.tag = 3
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

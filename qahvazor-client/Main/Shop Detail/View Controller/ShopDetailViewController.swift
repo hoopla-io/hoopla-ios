@@ -35,7 +35,11 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
             showWorkTime()
         }
     }
-    
+    var isOpen = true {
+        didSet {
+            view().closedLabel.isHidden = isOpen
+        }
+    }
     // MARK: - Actions
     @IBAction func addressButtonAction(_ sender: Any) {
         guard let lat = data?.location?.lat, let lng = data?.location?.lng else { return }
@@ -123,6 +127,10 @@ extension ShopDetailViewController {
     }
     
     func nextAction(item: Drinks) {
+        guard isOpen else {
+            showErrorAlert(message: "closed".localized)
+            return
+        }
         guard UserDefaults.standard.isAuthed() else {
             tabBarController?.selectedIndex = 2
             return
@@ -143,6 +151,7 @@ extension ShopDetailViewController {
             for i in workTimeData {
                 if i.weekDay?.lowercased() == currentWeekDay {
                     workTimeDataProvider?.items = [WorkHour(closeAt: "\(i.closeAt ?? "")", openAt: "\(i.openAt ?? "")", weekDay: "today".localized)]
+                    isOpen = i.isOpen()
                     break
                 }
             }

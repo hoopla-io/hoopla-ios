@@ -19,6 +19,7 @@ enum MainConstants: String {
     case support = "http://t.me/alphazzet"
     case appstorePath = "https://apps.apple.com/uz/app/hoopla/id6739946223"
     case itunesPath = "http://itunes.apple.com/lookup?id=6739946223"
+    case yandexKey = "4115671a-34dd-47dc-a8e5-809ed17374c1"
 }
 
 enum SocialPage: String {
