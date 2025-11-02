@@ -32,29 +32,40 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </collectionView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgV-1r-wRX">
-                    <rect key="frame" x="167.33333333333334" y="411.66666666666669" width="58.333333333333343" height="28.666666666666686"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                    <color key="textColor" name="mainColor"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="soon"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BH3-TK-cR7">
+                    <rect key="frame" x="20" y="397.33333333333337" width="353" height="78.666666666666686"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="T5x-oz-Cwn">
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgV-1r-wRX">
+                            <rect key="frame" x="0.0" y="49.999999999999993" width="353" height="28.666666666666664"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                            <color key="textColor" name="mainColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="soon"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="mainBackground"/>
             <constraints>
-                <constraint firstItem="FgV-1r-wRX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9Sx-jV-bIN"/>
+                <constraint firstItem="BH3-TK-cR7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="0bg-JB-xLo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="BH3-TK-cR7" secondAttribute="trailing" constant="20" id="3Q9-RU-X6S"/>
                 <constraint firstAttribute="bottom" secondItem="xAJ-Nn-N1E" secondAttribute="bottom" id="ASz-mx-0FE"/>
                 <constraint firstItem="xAJ-Nn-N1E" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="BYH-D0-jGx"/>
-                <constraint firstItem="FgV-1r-wRX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Yid-IR-LFc"/>
+                <constraint firstItem="BH3-TK-cR7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ShP-d8-Aer"/>
                 <constraint firstItem="xAJ-Nn-N1E" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="deH-Nv-0F4"/>
                 <constraint firstItem="xAJ-Nn-N1E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yDq-A5-23i"/>
             </constraints>
             <connections>
                 <outlet property="collectionView" destination="xAJ-Nn-N1E" id="rtm-Ze-JCZ"/>
                 <outlet property="comingLabel" destination="FgV-1r-wRX" id="doP-er-OCx"/>
+                <outlet property="comingStackView" destination="BH3-TK-cR7" id="hea-CJ-AIe"/>
+                <outlet property="lottieStackView" destination="T5x-oz-Cwn" id="PAD-BE-haD"/>
             </connections>
             <point key="canvasLocation" x="-57.251908396946561" y="19.718309859154932"/>
         </view>

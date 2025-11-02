@@ -88,7 +88,7 @@ final class ConfirmOrderViewModel {
                 Parameters.modifierId.rawValue             : modifierId,
                 Parameters.modifierKey.rawValue            : modifierKey,
                 Parameters.modifierPrice.rawValue          : modifierPrice,
-                Parameters.modificationGroupId.rawValue    : item?.modificationGroupId ?? ""
+                Parameters.modifierGroupId.rawValue        : item?.modificationGroupId ?? ""
             ]
         }
     }

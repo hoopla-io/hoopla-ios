@@ -25,7 +25,7 @@ enum Parameters: String {
     case modifierKey = "modifierKey"
     case modifierPrice = "modifierPrice"
     case notificationId = "notificationId"
-    case modificationGroupId = "modificationGroupId"
+    case modifierGroupId = "modifierGroupId"
     
     // MARK: - Profile
     case phoneNumber = "phoneNumber"

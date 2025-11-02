@@ -11,6 +11,7 @@
 		052E9AA02EB7A754002A9F61 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9A652EB7A754002A9F61 /* AccountView.swift */; };
 		052E9AA22EB7A754002A9F61 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9A632EB7A754002A9F61 /* AccountViewController.swift */; };
 		052E9AA62EB7A754002A9F61 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9A692EB7A754002A9F61 /* AccountViewModel.swift */; };
+		052E9AAD2EB7B242002A9F61 /* soon.json in Resources */ = {isa = PBXBuildFile; fileRef = 052E9AAC2EB7B242002A9F61 /* soon.json */; };
 		056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */; };
 		0571FFD02EB76B1D0011B81D /* RewardsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */; };
 		0571FFD12EB76B1D0011B81D /* RewardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */; };
@@ -227,6 +228,7 @@
 		052E9A652EB7A754002A9F61 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		052E9A662EB7A754002A9F61 /* AccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
 		052E9A692EB7A754002A9F61 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		052E9AAC2EB7B242002A9F61 /* soon.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soon.json; sourceTree = "<group>"; };
 		056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsCollectionViewCell.swift; sourceTree = "<group>"; };
 		0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RewardsCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -507,6 +509,14 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		052E9AAB2EB7B22C002A9F61 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				052E9AAC2EB7B242002A9F61 /* soon.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		0571FFCC2EB76AF80011B81D /* Reward */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,6 +767,7 @@
 				7523312E2D1983050090997E /* QR */,
 				7523312F2D1983190090997E /* Profile */,
 				7523313B2D198D940090997E /* Resources */,
+				052E9AAB2EB7B22C002A9F61 /* Lottie */,
 				752330722D197AE80090997E /* Info.plist */,
 			);
 			path = "qahvazor-client";
@@ -1741,6 +1752,7 @@
 				7523319B2D1A90B30090997E /* LaunchScreenView.xib in Resources */,
 				752331042D197B210090997E /* MainView.xib in Resources */,
 				75DCE3842D1C10BE003A59CD /* ProfileView.xib in Resources */,
+				052E9AAD2EB7B242002A9F61 /* soon.json in Resources */,
 				75B90F782E360E980091A8BB /* GoogleService-Info.plist in Resources */,
 				75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */,
 				7597A6592E0BEA7A00ECD758 /* ScannerView.xib in Resources */,
@@ -1968,7 +1980,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -2002,7 +2014,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";

@@ -34,7 +34,7 @@ class SubscriptionViewController: UIViewController, ViewSpecificController, Aler
 extension SubscriptionViewController: SubscriptionViewModelProtocol {
     func didFinishFetch(data: [Subscription]) {
         dataProvider?.items = data
-        view().comingLabel.isHidden = !data.isEmpty
+        view().comingStackView.isHidden = !data.isEmpty
     }
     
     func didFinishFetchBought(statusCode: Int) {
@@ -56,7 +56,8 @@ extension SubscriptionViewController {
         let dataProvider = SubscriptionDataProvider(viewController: self)
         dataProvider.collectionView = view().collectionView
         self.dataProvider = dataProvider
-        
+            
+        view().animate()
     }
     
     func showBuyAlert(id: Int) {
