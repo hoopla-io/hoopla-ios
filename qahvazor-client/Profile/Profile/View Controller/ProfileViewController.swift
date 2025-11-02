@@ -20,6 +20,7 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
     
     // MARK: - Attributes
     private var alphaStatusBar: CGFloat?
+    var account: Account?
     
     // MARK: - Actions
     @IBAction func loginAction(_ sender: UIButton) {
@@ -38,6 +39,8 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
             openURL(urlString: MainConstants.privacyPolicy.rawValue)
         case 4:
             openURL(urlString: MainConstants.support.rawValue)
+        case 5:
+            coordinator?.pushToAccountVC(account: account)
         default: break
         }
     }
@@ -98,6 +101,7 @@ extension ProfileViewController: ProfileViewModelProtocol {
         view().balanceLabel.text = data.balanceInfo
         view().subscription = data.subscription
         UserDefaults.standard.saveBalance(data.balance ?? 0)
+        self.account = data
     }
     
     func didFinishFetchLogout() {

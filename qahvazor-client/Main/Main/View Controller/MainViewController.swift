@@ -21,6 +21,7 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     
     // MARK: - Attributes
     var dataProvider: MainDataProvider?
+    var rewardDataProvider: RewardDataProvider?
     let locationAccessContainerView = UIView()
     
     //MARK: - Actions
@@ -31,6 +32,11 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
+        if UserDefaults.standard.isAuthed() {
+            viewModel.getLoyaltyCardList()
+        } else {
+            view().rewardsStackView.isHidden = true
+        }
         viewModel.getList()
         checkAccessLocation()
         checkUniversalLink()
@@ -43,9 +49,15 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
 }
 // MARK: - Networking
 extension MainViewController: MainViewModelProtocol {
+    func didFinishFetch(data: [Loyalty]) {
+        rewardDataProvider?.items = data
+    }
+    
     func didFinishFetch(data: [Shop]) {
         dataProvider?.items = data
         ShopDataCache.shops = data
+        view().collectionViewHeight.constant = CGFloat(data.count) * (dataProvider?.collectionView.dynamicHeight(type: .company) ?? 320)
+        view().shopCollectionView.layoutIfNeeded()
     }
 }
 
@@ -53,18 +65,22 @@ extension MainViewController: MainViewModelProtocol {
 extension MainViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
-        navigationItem.title = "coffeeShops".localized
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "home".localized
+
         setupSearchBar()
         setupNavigationBar()
         
+        let rewardDataProvider = RewardDataProvider(viewController: self)
+        rewardDataProvider.collectionView = view().rewardsCollectionView
+        self.rewardDataProvider = rewardDataProvider
+        
         let dataProvider = MainDataProvider(viewController: self)
-        dataProvider.collectionView = view().collectionView
+        dataProvider.collectionView = view().shopCollectionView
         self.dataProvider = dataProvider
         
         let refershControl = UIRefreshControl()
         refershControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        view().collectionView.refreshControl = refershControl
+        view().scrollView.refreshControl = refershControl
         
         addObservers()
     }
@@ -83,6 +99,9 @@ extension MainViewController {
     
     @objc func refresh(sender: UIRefreshControl? = nil) {
         viewModel.getList()
+        if UserDefaults.standard.isAuthed() {
+            viewModel.getLoyaltyCardList()
+        }
         locationManager.requestLocationPermission()
         
         DispatchQueue.main.async {

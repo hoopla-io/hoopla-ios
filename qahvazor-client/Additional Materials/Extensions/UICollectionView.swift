@@ -20,6 +20,7 @@ enum ItemType {
     case shops
     case subscription
     case payment
+    case reward
     case coffeeCard
 }
 
@@ -39,6 +40,12 @@ struct ItemCountPayment: ItemCount {
     var padLandscape = 5
     var padPortrait  = 3
     var phone        = 3
+}
+
+struct ItemCountReward: ItemCount {
+    var padLandscape = 7
+    var padPortrait  = 5
+    var phone        = 4
 }
 
 struct ItemCountCoffeeCard: ItemCount {
@@ -84,6 +91,8 @@ extension UICollectionView {
             return itemSize(itemType: .company, layout: layout, ratio: .subscription, spacing: .standard, additionalHeight: .zero)
         case .payment:
             return itemSize(itemType: .payment, layout: layout, ratio: .coffee, spacing: .custom, additionalHeight: .zero)
+        case .reward:
+            return itemSize(itemType: .reward, layout: layout, ratio: .coffee, spacing: .custom, additionalHeight: .zero)
         case .coffeeCard:
             return itemSize(itemType: .coffeeCard, layout: layout, ratio: .coffeeCard, spacing: .card, additionalHeight: .coffee)
         default:
@@ -103,6 +112,8 @@ extension UICollectionView {
             return numberInRow(type: ItemCountPayment())
         case .coffeeCard:
             return numberInRow(type: ItemCountCoffeeCard())
+        case .reward:
+            return numberInRow(type: ItemCountReward())
         }
     }
     

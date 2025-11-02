@@ -146,4 +146,9 @@ open = "Ochish";
 soon = "Tez orada...";
 closed = "Yopiq";
 map = "Xarita";
-
+free = "Bepul";
+myRewards = "Mening mukofotlarim";
+account = "Akkaunt";
+name = "Ism va familiya:";
+gender = "Jins:";
+dateOfBirth = "Tug'ilgan sana:";

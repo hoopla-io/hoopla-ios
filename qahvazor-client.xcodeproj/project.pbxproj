@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052E9A982EB7A754002A9F61 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052E9A662EB7A754002A9F61 /* AccountView.xib */; };
+		052E9AA02EB7A754002A9F61 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9A652EB7A754002A9F61 /* AccountView.swift */; };
+		052E9AA22EB7A754002A9F61 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9A632EB7A754002A9F61 /* AccountViewController.swift */; };
+		052E9AA62EB7A754002A9F61 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9A692EB7A754002A9F61 /* AccountViewModel.swift */; };
 		056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */; };
+		0571FFD02EB76B1D0011B81D /* RewardsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */; };
+		0571FFD12EB76B1D0011B81D /* RewardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */; };
+		0571FFD52EB773B90011B81D /* RewardDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFD42EB773B90011B81D /* RewardDataProvider.swift */; };
+		0571FFD72EB7765C0011B81D /* Loyalty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFD62EB7765C0011B81D /* Loyalty.swift */; };
 		059BA9C62EB664B5002A726F /* Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059BA9C52EB664B5002A726F /* Modification.swift */; };
 		05B84C2B2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B84C1C2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib */; };
 		05B84C2C2EAE0BA700AB66B2 /* NotificationsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B84C192EAE0BA700AB66B2 /* NotificationsView.xib */; };
@@ -215,7 +223,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		052E9A632EB7A754002A9F61 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		052E9A652EB7A754002A9F61 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		052E9A662EB7A754002A9F61 /* AccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
+		052E9A692EB7A754002A9F61 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsCollectionViewCell.swift; sourceTree = "<group>"; };
+		0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RewardsCollectionViewCell.xib; sourceTree = "<group>"; };
+		0571FFD42EB773B90011B81D /* RewardDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDataProvider.swift; sourceTree = "<group>"; };
+		0571FFD62EB7765C0011B81D /* Loyalty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loyalty.swift; sourceTree = "<group>"; };
 		059BA9C52EB664B5002A726F /* Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modification.swift; sourceTree = "<group>"; };
 		05B84C142EAE0BA700AB66B2 /* NotificationsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDataProvider.swift; sourceTree = "<group>"; };
 		05B84C162EAE0BA700AB66B2 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
@@ -440,6 +456,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		052E9A642EB7A754002A9F61 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				052E9A632EB7A754002A9F61 /* AccountViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		052E9A672EB7A754002A9F61 /* Root View */ = {
+			isa = PBXGroup;
+			children = (
+				052E9A652EB7A754002A9F61 /* AccountView.swift */,
+				052E9A662EB7A754002A9F61 /* AccountView.xib */,
+			);
+			path = "Root View";
+			sourceTree = "<group>";
+		};
+		052E9A682EB7A754002A9F61 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				052E9A672EB7A754002A9F61 /* Root View */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		052E9A6A2EB7A754002A9F61 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				052E9A692EB7A754002A9F61 /* AccountViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		052E9A6B2EB7A754002A9F61 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				052E9A642EB7A754002A9F61 /* View Controller */,
+				052E9A682EB7A754002A9F61 /* View */,
+				052E9A6A2EB7A754002A9F61 /* View Model */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		052E9A932EB7A754002A9F61 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				052E9A6B2EB7A754002A9F61 /* Account */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		0571FFCC2EB76AF80011B81D /* Reward */ = {
+			isa = PBXGroup;
+			children = (
+				0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */,
+				0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */,
+			);
+			path = Reward;
+			sourceTree = "<group>";
+		};
+		0571FFCD2EB76AFF0011B81D /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				75955BCD2D1D6D9600F4DD80 /* CompanyCollectionViewCell.swift */,
+				75955BCE2D1D6D9600F4DD80 /* CompanyCollectionViewCell.xib */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
 		05B84C152EAE0BA700AB66B2 /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -853,6 +938,7 @@
 			children = (
 				752331362D198BA80090997E /* ProfileCoordinator.swift */,
 				75DCE38D2D1C3105003A59CD /* Profile */,
+				052E9A932EB7A754002A9F61 /* Account */,
 				75DCE38E2D1C3118003A59CD /* CodeConfirm */,
 				7582AD6F2D3282F700FF1ECF /* Subscription */,
 				75CBFADC2D785B6E003E9102 /* Payment */,
@@ -903,6 +989,7 @@
 		7523313C2D1990530090997E /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
+				0571FFD42EB773B90011B81D /* RewardDataProvider.swift */,
 				7596B5212D1D6B310070A5BB /* MainDataProvider.swift */,
 			);
 			path = DataProvider;
@@ -1131,8 +1218,8 @@
 		75955BCB2D1D6D7300F4DD80 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				75955BCD2D1D6D9600F4DD80 /* CompanyCollectionViewCell.swift */,
-				75955BCE2D1D6D9600F4DD80 /* CompanyCollectionViewCell.xib */,
+				0571FFCC2EB76AF80011B81D /* Reward */,
+				0571FFCD2EB76AFF0011B81D /* Shop */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1164,6 +1251,7 @@
 				75F3B0DD2D3789C7003E37B9 /* Coordinate.swift */,
 				75BB17272E095C8500376246 /* UniversalLink.swift */,
 				059BA9C52EB664B5002A726F /* Modification.swift */,
+				0571FFD62EB7765C0011B81D /* Loyalty.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1644,6 +1732,7 @@
 				75DCE3552D1A9B26003A59CD /* Localizable.strings in Resources */,
 				7503929E2D40BA090010646F /* SearchView.xib in Resources */,
 				05C37E412E75958600645F35 /* FilterGenresCollectionViewCell.xib in Resources */,
+				052E9A982EB7A754002A9F61 /* AccountView.xib in Resources */,
 				75BB44802D30F6F90000C64A /* QRView.xib in Resources */,
 				75BB175B2E0A893B00376246 /* ConfirmOrderView.xib in Resources */,
 				75DCE36A2D1ABBA3003A59CD /* LanguageCollectionViewCell.xib in Resources */,
@@ -1664,6 +1753,7 @@
 				750392A82D40C1AD0010646F /* EmptyView.xib in Resources */,
 				05B84C2B2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib in Resources */,
 				05B84C2C2EAE0BA700AB66B2 /* NotificationsView.xib in Resources */,
+				0571FFD02EB76B1D0011B81D /* RewardsCollectionViewCell.xib in Resources */,
 				05B84C2D2EAE0BA700AB66B2 /* NotificationsDetailView.xib in Resources */,
 				7582AD852D32860700FF1ECF /* SubscriptionCollectionViewCell.xib in Resources */,
 				75CBFAE32D785B9C003E9102 /* PaymentView.xib in Resources */,
@@ -1722,6 +1812,7 @@
 				752330CF2D197B210090997E /* UILabel.swift in Sources */,
 				75DCE3992D1C3195003A59CD /* CodeConfirmViewController.swift in Sources */,
 				7535D11C2D3B8C620016C489 /* UISearchBar.swift in Sources */,
+				0571FFD12EB76B1D0011B81D /* RewardsCollectionViewCell.swift in Sources */,
 				752331992D1A90AD0090997E /* LaunchScreenView.swift in Sources */,
 				752331902D1A8D440090997E /* FullOnboardingViewController.swift in Sources */,
 				752330D02D197B210090997E /* CustomSpinnerView.swift in Sources */,
@@ -1735,6 +1826,9 @@
 				752330D22D197B210090997E /* TextFieldViewController.swift in Sources */,
 				752330D32D197B210090997E /* UITextField.swift in Sources */,
 				752330D42D197B210090997E /* CustomDecoder.swift in Sources */,
+				052E9AA02EB7A754002A9F61 /* AccountView.swift in Sources */,
+				052E9AA22EB7A754002A9F61 /* AccountViewController.swift in Sources */,
+				052E9AA62EB7A754002A9F61 /* AccountViewModel.swift in Sources */,
 				056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */,
 				752330D52D197B210090997E /* URLComponents.swift in Sources */,
 				752330D62D197B210090997E /* HighlightButton.swift in Sources */,
@@ -1776,6 +1870,7 @@
 				7503929C2D40BA040010646F /* SearchView.swift in Sources */,
 				752330EB2D197B210090997E /* Bool.swift in Sources */,
 				752330EC2D197B210090997E /* AssetsColor.swift in Sources */,
+				0571FFD52EB773B90011B81D /* RewardDataProvider.swift in Sources */,
 				759624D62D2CF66B00F52EE9 /* Shop.swift in Sources */,
 				752330ED2D197B210090997E /* Symbols.swift in Sources */,
 				750392AB2D40C51F0010646F /* SearchViewModel.swift in Sources */,
@@ -1831,6 +1926,7 @@
 				75DCE37A2D1AD6EE003A59CD /* InterestView.swift in Sources */,
 				05B84C392EAE0EE100AB66B2 /* Files.swift in Sources */,
 				7523318C2D1A8D340090997E /* FullOnboardingView.swift in Sources */,
+				0571FFD72EB7765C0011B81D /* Loyalty.swift in Sources */,
 				75DCE3632D1ABB3E003A59CD /* LanguageViewController.swift in Sources */,
 				75DCE3952D1C3186003A59CD /* CodeConfirmView.swift in Sources */,
 				752331032D197B210090997E /* UIImageView.swift in Sources */,
@@ -1886,7 +1982,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1920,7 +2016,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

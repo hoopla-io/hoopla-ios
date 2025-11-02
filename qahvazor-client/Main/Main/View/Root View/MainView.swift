@@ -9,11 +9,19 @@ import UIKit
 
 final class MainView: CustomView {
     // MARK: - Outlets
-    @IBOutlet weak var collectionView: UICollectionView! {
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var rewardsStackView: UIStackView!
+    @IBOutlet weak var rewardsCollectionView: UICollectionView! {
         didSet {
-            collectionView.register(UINib(nibName: CompanyCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier)
+            rewardsCollectionView.register(UINib(nibName: RewardsCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: RewardsCollectionViewCell.defaultReuseIdentifier)
         }
     }
+    @IBOutlet weak var shopCollectionView: UICollectionView! {
+        didSet {
+            shopCollectionView.register(UINib(nibName: CompanyCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier)
+        }
+    }
+    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     
     lazy var notificationButton: UIButton = {
         let button = UIButton()
