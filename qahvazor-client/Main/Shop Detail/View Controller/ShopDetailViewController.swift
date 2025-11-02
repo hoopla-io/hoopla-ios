@@ -132,7 +132,7 @@ extension ShopDetailViewController {
             return
         }
         guard UserDefaults.standard.isAuthed() else {
-            tabBarController?.selectedIndex = 2
+            tabBarController?.selectedIndex = 3
             return
         }
         guard let canAcceptOrders = data?.canAcceptOrders, canAcceptOrders else {

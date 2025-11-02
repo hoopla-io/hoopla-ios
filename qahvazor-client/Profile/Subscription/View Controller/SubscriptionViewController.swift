@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class SubscriptionViewController: UIViewController, ViewSpecificController, AlertViewController {
     // MARK: - Root View
@@ -33,6 +34,7 @@ class SubscriptionViewController: UIViewController, ViewSpecificController, Aler
 extension SubscriptionViewController: SubscriptionViewModelProtocol {
     func didFinishFetch(data: [Subscription]) {
         dataProvider?.items = data
+        view().comingLabel.isHidden = !data.isEmpty
     }
     
     func didFinishFetchBought(statusCode: Int) {
@@ -49,8 +51,7 @@ extension SubscriptionViewController: SubscriptionViewModelProtocol {
 extension SubscriptionViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
-        navigationItem.title = "soon".localized
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "subscriptions".localized
         
         let dataProvider = SubscriptionDataProvider(viewController: self)
         dataProvider.collectionView = view().collectionView

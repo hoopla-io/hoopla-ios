@@ -20,14 +20,12 @@ final class ConfirmOrderViewModel {
     func createOrder(drinkId: Int, shopId: Int, modifiers: [Modification?]?) async {
         async let modifierList: [[String: Any]] = sortModifiers(modifiers)
         
-        var parameters: [String: Any] = [
+        let parameters: [String: Any] = [
             Parameters.drinkId.rawValue: drinkId,
             Parameters.shopId.rawValue: shopId,
             Parameters.modifiers.rawValue : await modifierList,
         ]
-//        if let modifiers {
-//            parameters[Parameters.modifiers.rawValue] = modifiers
-//        }
+        
         self.delegate?.showActivityIndicator()
         Task { [weak self] in
             await JSONDownloader.shared.jsonTask(url: EndPoints.createOrder.rawValue, requestMethod: .post, parameters: parameters, completionHandler: { [weak self]  (result) in
@@ -89,7 +87,8 @@ final class ConfirmOrderViewModel {
             return [
                 Parameters.modifierId.rawValue             : modifierId,
                 Parameters.modifierKey.rawValue            : modifierKey,
-                Parameters.modifierPrice.rawValue          : modifierPrice
+                Parameters.modifierPrice.rawValue          : modifierPrice,
+                Parameters.modificationGroupId.rawValue    : item?.modificationGroupId ?? ""
             ]
         }
     }

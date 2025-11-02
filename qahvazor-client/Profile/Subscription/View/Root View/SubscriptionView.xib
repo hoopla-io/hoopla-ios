@@ -32,17 +32,29 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgV-1r-wRX">
+                    <rect key="frame" x="167.33333333333334" y="411.66666666666669" width="58.333333333333343" height="28.666666666666686"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                    <color key="textColor" name="mainColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="soon"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="mainBackground"/>
             <constraints>
+                <constraint firstItem="FgV-1r-wRX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9Sx-jV-bIN"/>
                 <constraint firstAttribute="bottom" secondItem="xAJ-Nn-N1E" secondAttribute="bottom" id="ASz-mx-0FE"/>
                 <constraint firstItem="xAJ-Nn-N1E" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="BYH-D0-jGx"/>
+                <constraint firstItem="FgV-1r-wRX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Yid-IR-LFc"/>
                 <constraint firstItem="xAJ-Nn-N1E" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="deH-Nv-0F4"/>
                 <constraint firstItem="xAJ-Nn-N1E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yDq-A5-23i"/>
             </constraints>
             <connections>
                 <outlet property="collectionView" destination="xAJ-Nn-N1E" id="rtm-Ze-JCZ"/>
+                <outlet property="comingLabel" destination="FgV-1r-wRX" id="doP-er-OCx"/>
             </connections>
             <point key="canvasLocation" x="-57.251908396946561" y="19.718309859154932"/>
         </view>
@@ -50,6 +62,9 @@
     <resources>
         <namedColor name="mainBackground">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainColor">
+            <color red="0.52549019607843139" green="0.14901960784313725" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

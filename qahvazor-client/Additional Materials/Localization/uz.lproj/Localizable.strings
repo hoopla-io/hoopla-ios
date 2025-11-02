@@ -143,7 +143,7 @@ mark = "Mark";
 more = "Batafsil";
 readAll = "Hammasini o'qish";
 open = "Ochish";
-soon = "Tez orada";
+soon = "Tez orada...";
 closed = "Yopiq";
 map = "Xarita";
 

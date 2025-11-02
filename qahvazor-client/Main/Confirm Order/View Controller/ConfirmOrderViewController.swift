@@ -87,7 +87,7 @@ extension ConfirmOrderViewController: ConfirmOrderViewModelProtocol {
             coordinator.pushToPaymentVC(amount: self.drinkData?.productPrice)
         } else if statusCode == StatusCode.success200.rawValue {
             showSuccessAlert(message: "success".localized)
-            tabBarController?.selectedIndex = 1
+            tabBarController?.selectedIndex = 2
             navigationController?.popToRootViewController(animated: false)
         }
     }

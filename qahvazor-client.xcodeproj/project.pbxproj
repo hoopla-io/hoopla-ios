@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */; };
+		059BA9C62EB664B5002A726F /* Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059BA9C52EB664B5002A726F /* Modification.swift */; };
 		05B84C2B2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B84C1C2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib */; };
 		05B84C2C2EAE0BA700AB66B2 /* NotificationsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B84C192EAE0BA700AB66B2 /* NotificationsView.xib */; };
 		05B84C2D2EAE0BA700AB66B2 /* NotificationsDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B84C252EAE0BA700AB66B2 /* NotificationsDetailView.xib */; };
@@ -215,6 +216,7 @@
 
 /* Begin PBXFileReference section */
 		056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		059BA9C52EB664B5002A726F /* Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modification.swift; sourceTree = "<group>"; };
 		05B84C142EAE0BA700AB66B2 /* NotificationsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDataProvider.swift; sourceTree = "<group>"; };
 		05B84C162EAE0BA700AB66B2 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		05B84C182EAE0BA700AB66B2 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
@@ -1161,6 +1163,7 @@
 				759624D52D2CF66B00F52EE9 /* Shop.swift */,
 				75F3B0DD2D3789C7003E37B9 /* Coordinate.swift */,
 				75BB17272E095C8500376246 /* UniversalLink.swift */,
+				059BA9C52EB664B5002A726F /* Modification.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1800,6 +1803,7 @@
 				750392A32D40C0960010646F /* SearchDataProvider.swift in Sources */,
 				75BB447C2D30F6DB0000C64A /* QRViewModel.swift in Sources */,
 				752330F52D197B210090997E /* AppUtility.swift in Sources */,
+				059BA9C62EB664B5002A726F /* Modification.swift in Sources */,
 				752331922D1A8E800090997E /* CircularProgressBar.swift in Sources */,
 				7582AD872D3287FD00FF1ECF /* Subscription.swift in Sources */,
 				752330F62D197B210090997E /* CustomTextField.swift in Sources */,

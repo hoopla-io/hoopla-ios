@@ -38,7 +38,7 @@ struct ItemCountShops: ItemCount {
 struct ItemCountPayment: ItemCount {
     var padLandscape = 5
     var padPortrait  = 3
-    var phone        = 2
+    var phone        = 3
 }
 
 struct ItemCountCoffeeCard: ItemCount {

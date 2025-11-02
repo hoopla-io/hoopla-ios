@@ -14,4 +14,5 @@ final class SubscriptionView: CustomView {
             collectionView.register(UINib(nibName: SubscriptionCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: SubscriptionCollectionViewCell.defaultReuseIdentifier)
         }
     }
+    @IBOutlet weak var comingLabel: UILabel!
 }

@@ -15,7 +15,6 @@ final class SubscriptionDataProvider: NSObject, UICollectionViewDataSource, UICo
         didSet {
             collectionView.dataSource = self
             collectionView.delegate = self
-            collectionView.showAnimatedSkeleton()
         }
     }
 
@@ -24,7 +23,6 @@ final class SubscriptionDataProvider: NSObject, UICollectionViewDataSource, UICo
     
     var items = [Subscription]() {
         didSet {
-            self.collectionView.hideSkeleton()
             self.collectionView.reloadData()
         }
     }
