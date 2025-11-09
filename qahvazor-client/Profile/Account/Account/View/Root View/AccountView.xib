@@ -199,22 +199,27 @@
                         <constraint firstAttribute="height" constant="1" id="7Iz-aL-i4g"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="baN-pe-hYN">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="baN-pe-hYN">
                     <rect key="frame" x="16" y="407" width="382" height="55"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Cp-iu-1aR">
                             <rect key="frame" x="0.0" y="0.0" width="382" height="55"/>
-                            <color key="backgroundColor" name="secondBackground"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Редактировать">
-                                <color key="titleColor" name="white"/>
+                                <color key="titleColor" name="mainColor"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="12"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="redact"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="mainColor"/>
+                                </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="changeInfoAction:" destination="-1" eventType="touchUpInside" id="O5q-u9-S1j"/>
@@ -242,9 +247,6 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="deleteAccount"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="removeAccountAction:" destination="-1" eventType="touchUpInside" id="9VO-ZF-mlX"/>
-                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -285,14 +287,14 @@
         <namedColor name="mainBackground">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="mainColor">
+            <color red="0.52549019607843139" green="0.14901960784313725" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="red">
             <color red="0.87058823529411766" green="0.23137254901960785" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="secondBackground">
             <color red="0.92549019607843142" green="0.92941176470588238" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="white">
-            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

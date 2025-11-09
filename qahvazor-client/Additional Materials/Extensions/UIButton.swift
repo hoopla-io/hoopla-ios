@@ -119,6 +119,21 @@ extension UIButton {
         menu = UIMenu(children: actions)
         showsMenuAsPrimaryAction = true
     }
+    
+    func setMenuItems(items: [Gender], completion: @escaping (String) -> ()) {
+        guard let first = items.first else { return }
+        setTitle(first.rawValue.localized, for: .normal)
+        var actions = [UIAction]()
+        items.forEach { gender in
+            let action = UIAction(title: gender.rawValue.localized) { [weak self] action in
+                self?.setTitle(gender.rawValue.localized, for: .normal)
+                completion(gender.rawValue)
+            }
+            actions.append(action)
+        }
+        menu = UIMenu(children: actions)
+        showsMenuAsPrimaryAction = true
+    }
 }
 
 extension UIButton {

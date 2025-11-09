@@ -17,6 +17,13 @@
 		0571FFD12EB76B1D0011B81D /* RewardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */; };
 		0571FFD52EB773B90011B81D /* RewardDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFD42EB773B90011B81D /* RewardDataProvider.swift */; };
 		0571FFD72EB7765C0011B81D /* Loyalty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFD62EB7765C0011B81D /* Loyalty.swift */; };
+		05736B572EC08BC6003ADEF0 /* ChangeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736B4A2EC08BC6003ADEF0 /* ChangeInfoView.swift */; };
+		05736B582EC08BC6003ADEF0 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736B502EC08BC6003ADEF0 /* BirthViewController.swift */; };
+		05736B592EC08BC6003ADEF0 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736B532EC08BC6003ADEF0 /* BirthView.swift */; };
+		05736B5A2EC08BC6003ADEF0 /* ChangeInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736B4D2EC08BC6003ADEF0 /* ChangeInfoViewModel.swift */; };
+		05736B5B2EC08BC6003ADEF0 /* ChangeInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736B482EC08BC6003ADEF0 /* ChangeInfoViewController.swift */; };
+		05736B5C2EC08BC6003ADEF0 /* BirthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05736B522EC08BC6003ADEF0 /* BirthView.xib */; };
+		05736B5D2EC08BC6003ADEF0 /* ChangeInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05736B4B2EC08BC6003ADEF0 /* ChangeInfoView.xib */; };
 		059BA9C62EB664B5002A726F /* Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059BA9C52EB664B5002A726F /* Modification.swift */; };
 		05B84C2B2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B84C1C2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib */; };
 		05B84C2C2EAE0BA700AB66B2 /* NotificationsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B84C192EAE0BA700AB66B2 /* NotificationsView.xib */; };
@@ -234,6 +241,13 @@
 		0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RewardsCollectionViewCell.xib; sourceTree = "<group>"; };
 		0571FFD42EB773B90011B81D /* RewardDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDataProvider.swift; sourceTree = "<group>"; };
 		0571FFD62EB7765C0011B81D /* Loyalty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loyalty.swift; sourceTree = "<group>"; };
+		05736B482EC08BC6003ADEF0 /* ChangeInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeInfoViewController.swift; sourceTree = "<group>"; };
+		05736B4A2EC08BC6003ADEF0 /* ChangeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeInfoView.swift; sourceTree = "<group>"; };
+		05736B4B2EC08BC6003ADEF0 /* ChangeInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeInfoView.xib; sourceTree = "<group>"; };
+		05736B4D2EC08BC6003ADEF0 /* ChangeInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeInfoViewModel.swift; sourceTree = "<group>"; };
+		05736B502EC08BC6003ADEF0 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
+		05736B522EC08BC6003ADEF0 /* BirthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BirthView.xib; sourceTree = "<group>"; };
+		05736B532EC08BC6003ADEF0 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		059BA9C52EB664B5002A726F /* Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modification.swift; sourceTree = "<group>"; };
 		05B84C142EAE0BA700AB66B2 /* NotificationsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDataProvider.swift; sourceTree = "<group>"; };
 		05B84C162EAE0BA700AB66B2 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
@@ -505,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				052E9A6B2EB7A754002A9F61 /* Account */,
+				05736B562EC08BC6003ADEF0 /* Change Info */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -533,6 +548,76 @@
 				75955BCE2D1D6D9600F4DD80 /* CompanyCollectionViewCell.xib */,
 			);
 			path = Shop;
+			sourceTree = "<group>";
+		};
+		05736B492EC08BC6003ADEF0 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05736B482EC08BC6003ADEF0 /* ChangeInfoViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		05736B4C2EC08BC6003ADEF0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				05736B4A2EC08BC6003ADEF0 /* ChangeInfoView.swift */,
+				05736B4B2EC08BC6003ADEF0 /* ChangeInfoView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		05736B4E2EC08BC6003ADEF0 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				05736B4D2EC08BC6003ADEF0 /* ChangeInfoViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		05736B4F2EC08BC6003ADEF0 /* ChangeInfo */ = {
+			isa = PBXGroup;
+			children = (
+				05736B492EC08BC6003ADEF0 /* View Controller */,
+				05736B4C2EC08BC6003ADEF0 /* View */,
+				05736B4E2EC08BC6003ADEF0 /* View Model */,
+			);
+			path = ChangeInfo;
+			sourceTree = "<group>";
+		};
+		05736B512EC08BC6003ADEF0 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05736B502EC08BC6003ADEF0 /* BirthViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		05736B542EC08BC6003ADEF0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				05736B522EC08BC6003ADEF0 /* BirthView.xib */,
+				05736B532EC08BC6003ADEF0 /* BirthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		05736B552EC08BC6003ADEF0 /* Birth */ = {
+			isa = PBXGroup;
+			children = (
+				05736B512EC08BC6003ADEF0 /* View Controller */,
+				05736B542EC08BC6003ADEF0 /* View */,
+			);
+			path = Birth;
+			sourceTree = "<group>";
+		};
+		05736B562EC08BC6003ADEF0 /* Change Info */ = {
+			isa = PBXGroup;
+			children = (
+				05736B4F2EC08BC6003ADEF0 /* ChangeInfo */,
+				05736B552EC08BC6003ADEF0 /* Birth */,
+			);
+			path = "Change Info";
 			sourceTree = "<group>";
 		};
 		05B84C152EAE0BA700AB66B2 /* Data Source */ = {
@@ -1759,6 +1844,8 @@
 				75705CF02D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib in Resources */,
 				75DCE37B2D1AD6EE003A59CD /* InterestView.xib in Resources */,
 				75A04A682D2E86E50082D342 /* SocialCollectionViewCell.xib in Resources */,
+				05736B5C2EC08BC6003ADEF0 /* BirthView.xib in Resources */,
+				05736B5D2EC08BC6003ADEF0 /* ChangeInfoView.xib in Resources */,
 				75422B0E2D33B03700B83C42 /* FeatureCollectionViewCell.xib in Resources */,
 				7582AD782D32835E00FF1ECF /* SubscriptionView.xib in Resources */,
 				75F6CFC82D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib in Resources */,
@@ -1936,6 +2023,11 @@
 				75CBFAED2D785D60003E9102 /* PaymentViewModel.swift in Sources */,
 				75705CE72D2FDA0300DA3AA4 /* ShopDetailViewController.swift in Sources */,
 				75DCE37A2D1AD6EE003A59CD /* InterestView.swift in Sources */,
+				05736B572EC08BC6003ADEF0 /* ChangeInfoView.swift in Sources */,
+				05736B582EC08BC6003ADEF0 /* BirthViewController.swift in Sources */,
+				05736B592EC08BC6003ADEF0 /* BirthView.swift in Sources */,
+				05736B5A2EC08BC6003ADEF0 /* ChangeInfoViewModel.swift in Sources */,
+				05736B5B2EC08BC6003ADEF0 /* ChangeInfoViewController.swift in Sources */,
 				05B84C392EAE0EE100AB66B2 /* Files.swift in Sources */,
 				7523318C2D1A8D340090997E /* FullOnboardingView.swift in Sources */,
 				0571FFD72EB7765C0011B81D /* Loyalty.swift in Sources */,
@@ -1980,7 +2072,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -1994,7 +2086,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2014,7 +2106,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -2028,7 +2120,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

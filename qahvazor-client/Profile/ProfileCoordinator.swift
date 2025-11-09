@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftMessages
 
 final class ProfileCoordinator: Coordinator {
     
@@ -27,6 +28,16 @@ final class ProfileCoordinator: Coordinator {
     func pushToAccountVC(account: Account?) {
         let vc = AccountViewController()
         vc.account = account
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func pushToChangeInfoVC(name: String? = nil, gender: String? = nil, dateOfBirth: Int? = nil) {
+        let vc = ChangeInfoViewController()
+        vc.coordinator = self
+        vc.name = name
+        vc.gender = gender
+        vc.dateOfBirth = dateOfBirth
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -58,5 +69,17 @@ final class ProfileCoordinator: Coordinator {
         vc.coordinator = self
         vc.amount = amount
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func pushToBirthVC(viewController: UIViewController, date: Int) {
+        let vc = BirthViewController()
+        vc.dateOfBirth = date
+        if let viewController = viewController as? ChangeInfoViewController {
+            vc.delegate = viewController
+        }
+        let segue = SwiftMessagesSegue(identifier: nil, source: viewController, destination: vc)
+        segue.configure(layout: .bottomCard)
+        segue.messageView.backgroundHeight = 352.0
+        segue.perform()
     }
 }

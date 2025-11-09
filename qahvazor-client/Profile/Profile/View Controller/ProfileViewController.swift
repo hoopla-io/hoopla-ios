@@ -17,10 +17,12 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
     var isLoading = false
     var coordinator: ProfileCoordinator?
     let viewModel = ProfileViewModel()
+    let accountViewModel = AccountViewModel()
     
     // MARK: - Attributes
     private var alphaStatusBar: CGFloat?
     var account: Account?
+    var editAccount: Account?
     
     // MARK: - Actions
     @IBAction func loginAction(_ sender: UIButton) {
@@ -58,6 +60,9 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
             self.viewModel.logOut()
         }
     }
+    @IBAction func editAction(_ sender: UIButton) {
+        coordinator?.pushToChangeInfoVC(name: editAccount?.name, gender: editAccount?.gender, dateOfBirth: editAccount?.dateOfBirthUnx)
+    }
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -70,6 +75,7 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, Al
         navigationController?.navigationBar.clear()
         if UserDefaults.standard.isAuthed() {
             viewModel.getMe()
+            accountViewModel.editMe()
         }
     }
     
@@ -110,11 +116,17 @@ extension ProfileViewController: ProfileViewModelProtocol {
         checkAuth()
     }
 }
-
+// MARK: - Networking
+extension ProfileViewController: AccountViewModelProtocol {
+    func didFinishFetchAcc(data: Account) {
+        editAccount = data
+    }
+}
 // MARK: - Other funcs
 extension ProfileViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
+        accountViewModel.delegate = self
         
         if let releaseVersionNumber = Bundle.main.releaseVersionNumber {
             view().versionLabel.text = "version".localized + Symbols.space.rawValue + releaseVersionNumber

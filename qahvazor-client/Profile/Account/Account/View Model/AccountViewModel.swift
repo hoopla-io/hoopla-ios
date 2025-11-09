@@ -7,7 +7,7 @@
 import Foundation
 
 protocol AccountViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(data: Account)
+    func didFinishFetchAcc(data: Account)
 }
 
 final class AccountViewModel {
@@ -15,23 +15,24 @@ final class AccountViewModel {
     weak var delegate: AccountViewModelProtocol?
     
     // MARK: - Network call
-    func getMe() {
-//        JSONDownloader.shared.jsonTask(url: EndPoints.getMe.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
-//            guard let self = self else { return }
-//            switch result {
-//            case .Error(let error, let message):
-//                self.delegate?.showAlertClosure(error: (error,message))
-//            case .Success(let json):
-//                do {
-//                    let fetchedData = try CustomDecoder().decode(JSONData<Account>.self, from: json)
-//                    guard let data = fetchedData.data else { return }
-//                    self.delegate?.didFinishFetch(data: data)
-//                } catch {
-//                    
-//                    self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
-//                }
-//            }
-//        })
+    func editMe() {
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.editMe.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<Account>.self, from: json)
+                        guard let data = fetchedData.data else { return }
+                        self.delegate?.didFinishFetchAcc(data: data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
+                }
+            })
+        }
     }
     
 }

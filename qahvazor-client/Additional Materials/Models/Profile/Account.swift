@@ -14,6 +14,9 @@ struct Account: Codable {
     let balance: Double?
     let currency: String?
     let subscription: Subscription?
+    let dateOfBirth: String?
+    let dateOfBirthUnx: Int?
+    let gender: String?
     
     var balanceInfo: String? {
         guard let balanceAmount = balance, let balanceCurrency = currency else {

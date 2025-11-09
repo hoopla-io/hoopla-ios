@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TzP-4h-775">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="137"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="171.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="TzP-4h-775" secondAttribute="height" multiplier="1:0.4" id="45d-x1-EX5"/>
+                            <constraint firstAttribute="width" secondItem="TzP-4h-775" secondAttribute="height" multiplier="1:0.5" id="45d-x1-EX5"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NVZ-44-8Sy">
-                        <rect key="frame" x="16" y="157" width="311" height="64"/>
+                        <rect key="frame" x="16" y="191.5" width="311" height="48.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MI-xf-J2V">
                                 <rect key="frame" x="0.0" y="0.0" width="311" height="0.0"/>
@@ -39,7 +39,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sve-OG-N0X">
-                                <rect key="frame" x="0.0" y="12" width="311" height="52"/>
+                                <rect key="frame" x="0.0" y="12" width="311" height="36.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="500" constant="52" id="aov-55-ONn"/>
                                 </constraints>
@@ -56,7 +56,7 @@
                         </subviews>
                     </stackView>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BtL-ej-2yi">
-                        <rect key="frame" x="249" y="246" width="78" height="29"/>
+                        <rect key="frame" x="249" y="255.5" width="78" height="29"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="tintColor" name="white"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -71,10 +71,10 @@
                         </userDefinedRuntimeAttributes>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Pum-zQ-2Sv">
-                        <rect key="frame" x="16" y="237" width="30" height="47"/>
+                        <rect key="frame" x="16" y="256" width="30" height="28"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxV-yS-Img">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="47"/>
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal">

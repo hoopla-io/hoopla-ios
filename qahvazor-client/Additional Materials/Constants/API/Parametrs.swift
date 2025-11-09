@@ -34,5 +34,7 @@ enum Parameters: String {
     case refreshToken = "refreshToken"
     case subscriptionId = "subscriptionId"
     case amount = "amount"
+    case dateOfBirth = "dateOfBirth"
+    case gender = "gender"
     
 }

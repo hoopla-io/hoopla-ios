@@ -24,7 +24,7 @@ extension DateFormatter {
     
     static let birthDate: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.locale = Locale(identifier: UserDefaults.standard.getLocalization())
         return formatter
     }()

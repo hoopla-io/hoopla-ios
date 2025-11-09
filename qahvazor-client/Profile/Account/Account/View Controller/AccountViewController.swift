@@ -31,14 +31,14 @@ class AccountViewController: UIViewController, ViewSpecificController, AlertView
     }
     internal var gender: String? {
         didSet {
-//            switch gender {
-//            case Gender.female.rawValue:
-//                view().genderLabel.text = "female".localized
-//            case Gender.male.rawValue:
-//                view().genderLabel.text = "male".localized
-//            default:
-//                view().genderLabel.text = "notSelected".localized
-//            }
+            switch gender {
+            case Gender.female.rawValue:
+                view().genderLabel.text = "female".localized
+            case Gender.male.rawValue:
+                view().genderLabel.text = "male".localized
+            default:
+                view().genderLabel.text = "notSelected".localized
+            }
         }
     }
     internal var dateOfBirth: Int? {
@@ -53,7 +53,7 @@ class AccountViewController: UIViewController, ViewSpecificController, AlertView
     var account: Account?
     // MARK: - Actions
     @IBAction func changeInfoAction(_ sender: UIButton) {
-//        coordinator?.pushToChangeInfoVC(email: email, phoneNumber: phoneNumber, name: name, gender: gender, dateOfBirth: dateOfBirth)
+        coordinator?.pushToChangeInfoVC(name: name, gender: gender, dateOfBirth: dateOfBirth)
     }
     @IBAction func removeAccountAction(_ sender: UIButton) {
 //        coordinator?.pushToDeleteAccountVC()
@@ -64,16 +64,19 @@ class AccountViewController: UIViewController, ViewSpecificController, AlertView
         super.viewDidLoad()
         appearanceSettings()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.editMe()
+    }
 }
 
 // MARK: - Networking
 extension AccountViewController: AccountViewModelProtocol {
-    func didFinishFetch(data: Account) {
-//        name = data.name
-//        email = data.email
-//        phoneNumber = data.phoneNumber?.displayPhone()
-//        gender = data.userAttributes?.gender
-//        dateOfBirth = data.userAttributes?.dateOfBirth
+    func didFinishFetchAcc(data: Account) {
+        name = data.name
+        gender = data.gender
+        dateOfBirth = data.dateOfBirthUnx
     }
     
 }

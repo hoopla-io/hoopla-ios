@@ -23,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXH-uJ-swe">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="270.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="345.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xp0-a9-or0">
                                     <rect key="frame" x="20" y="34" width="374" height="0.0"/>
@@ -42,9 +42,9 @@
                                     </state>
                                 </button>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0mE-bk-puW">
-                                    <rect key="frame" x="20" y="85" width="374" height="149.5"/>
+                                    <rect key="frame" x="20" y="85" width="374" height="224.5"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="0mE-bk-puW" secondAttribute="height" multiplier="1:0.4" id="jBx-PB-0IN"/>
+                                        <constraint firstAttribute="width" secondItem="0mE-bk-puW" secondAttribute="height" multiplier="1:0.6" id="jBx-PB-0IN"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -53,7 +53,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w78-M4-j9V">
-                                    <rect key="frame" x="20" y="250.5" width="374" height="0.0"/>
+                                    <rect key="frame" x="20" y="325.5" width="374" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                     <nil key="highlightedColor"/>

@@ -33,6 +33,7 @@ enum EndPoints: String {
     
     // MARK: - Profile
     case getMe = "user/get-me"
+    case editMe = "user/edit-me"
     case refreshToken = "user/refresh-token"
     case logout = "user/logout"
     case subscriptions = "subscriptions"
@@ -40,4 +41,5 @@ enum EndPoints: String {
     case deleteUser = "user/deactivate"
     case payServices = "user/pay/services"
     case topUp = "user/pay/top-up"
+    case updateMe = "user/update-me"
 }
