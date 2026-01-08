@@ -7,6 +7,7 @@
 
 import UIKit
 import LocalAuthentication
+import SafariServices
 
 extension UIViewController {
     @objc private func dismissKeyboard() {
@@ -170,3 +171,11 @@ extension UIViewController {
     }
 }
 
+
+extension UIViewController {
+    func openViaSafariVC(_ urlString: String, from vc: UIViewController) {
+        guard let url = URL(string: urlString) else { return }
+        let s = SFSafariViewController(url: url)
+        vc.present(s, animated: true)
+    }
+}

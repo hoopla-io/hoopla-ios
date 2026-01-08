@@ -22,6 +22,18 @@ final class MainView: CustomView {
         }
     }
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var cameraButton: UIButton! {
+        didSet {
+            if #available(iOS 26.0, *) {
+                var config: UIButton.Configuration
+                config = .clearGlass()
+                config.baseForegroundColor = .appColor(.white)
+                config.cornerStyle = .capsule
+                config.imagePadding = 8
+                cameraButton.configuration = config
+            }
+        }
+    }
     
     lazy var notificationButton: UIButton = {
         let button = UIButton()

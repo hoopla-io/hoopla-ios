@@ -44,6 +44,7 @@ final class HistoryDataProvider: NSObject, UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OrderHistoryTableViewCell.defaultReuseIdentifier, for: indexPath) as? OrderHistoryTableViewCell else { return UITableViewCell() }
         cell.item = items[indexPath.row]
+        cell.viewController = viewController
         return cell
     }
     
@@ -55,7 +56,7 @@ final class HistoryDataProvider: NSObject, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 120
     }
 }
 

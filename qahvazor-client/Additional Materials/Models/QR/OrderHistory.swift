@@ -13,5 +13,7 @@ struct OrderHistory: Codable {
     let shopName: String?
     let drinkName: String?
     let orderStatus: String?
+    let fiscalLink: String?
     let purchasedAtUnix: Int?
+    let productPrice: Double?
 }

@@ -165,3 +165,4 @@ dateOfBirth = "Tug'ilgan sana:";
 redact = "Tahrirlash";
 save = "Saqlash";
 successRedactSaveAlert = "O'zgarishlaringiz muvaffaqiyatli saqlandi!";
+check = "Elektron chek";

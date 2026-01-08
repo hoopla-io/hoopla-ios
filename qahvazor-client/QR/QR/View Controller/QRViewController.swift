@@ -102,7 +102,7 @@ extension QRViewController {
         profileViewModel.delegate = self
         navigationItem.title = "QR".localized
         
-        let dataProvider = HistoryDataProvider()
+        let dataProvider = HistoryDataProvider(viewController: self)
         dataProvider.tableView = view().tableView
         self.dataProvider = dataProvider
         
@@ -119,5 +119,9 @@ extension QRViewController {
         DispatchQueue.main.async {
             sender?.endRefreshing()
         }
+    }
+    
+    func openCheck(item: String) {
+        openViaSafariVC(item, from: self)
     }
 }

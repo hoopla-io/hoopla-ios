@@ -165,3 +165,4 @@ dateOfBirth = "Date of birth:";
 redact = "Edit";
 save = "Save";
 successRedactSaveAlert = "Your changes have been successfully saved!";
+check = "Electronic check";

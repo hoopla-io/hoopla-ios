@@ -24,6 +24,12 @@ class OrderHistoryTableViewCell: UITableViewCell {
             titleLabel.linesCornerRadius = 5
         }
     }
+    @IBOutlet weak var priceLabel: UILabel! {
+        didSet {
+            priceLabel.lastLineFillPercent = 100
+            priceLabel.linesCornerRadius = 5
+        }
+    }
     @IBOutlet weak var subTitleLabel: UILabel! {
         didSet {
             subTitleLabel.lastLineFillPercent = 100
@@ -32,17 +38,32 @@ class OrderHistoryTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var orderStatusLabel: UILabel!
+    @IBOutlet weak var checkButton: UIButton! {
+        didSet {
+            checkButton.isHidden = true
+        }
+    }
     
     //MARK: - Attributes
+    weak var viewController: UIViewController?
     var item: OrderHistory? {
         didSet {
             guard let item else { return }
             titleLabel.text = "#\(item.id ?? 0), \(item.drinkName ?? "")"
+            priceLabel.text = item.productPrice?.formattedWithCurrency
             subTitleLabel.text = item.shopName
             timeLabel.text = DateFormatter.string(timestamp: item.purchasedAtUnix, formatter: .fullDate)
             orderStatusLabel.text = item.orderStatus?.localized
             setStatusColor(item.orderStatus)
+            checkButton.isHidden = item.fiscalLink == nil
         }
+    }
+    
+    //MARK: - Actions
+    @IBAction func checkAction(_ sender: UIButton) {
+        guard let vc = viewController as? QRViewController else { return }
+        guard let fiscalLink = item?.fiscalLink else { return }
+        vc.openCheck(item: fiscalLink)
     }
     
     override func awakeFromNib() {

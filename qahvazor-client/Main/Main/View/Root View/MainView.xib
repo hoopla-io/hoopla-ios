@@ -147,6 +147,7 @@
                 <constraint firstItem="h98-Sy-cId" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="xfy-q6-Uus"/>
             </constraints>
             <connections>
+                <outlet property="cameraButton" destination="qGI-9g-9sH" id="Z31-q4-Ekr"/>
                 <outlet property="collectionViewHeight" destination="8p6-Id-yWF" id="eOB-u8-0UR"/>
                 <outlet property="rewardsCollectionView" destination="7HX-xd-WS7" id="rMQ-5O-Qzu"/>
                 <outlet property="rewardsStackView" destination="iZU-Rx-gPs" id="li4-Fj-Y5r"/>
