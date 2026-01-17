@@ -11,14 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="FilterGenresCollectionViewCell" id="gTV-IL-0wX" customClass="FilterGenresCollectionViewCell" customModule="qahvazor_client" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="ItemsCollectionViewCell" id="gTV-IL-0wX" customClass="ItemsCollectionViewCell" customModule="qahvazor_client" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="dB6-Hq-Wwf">
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="dB6-Hq-Wwf">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TWX-hL-y4V">
@@ -39,6 +39,11 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALt-oX-dAf">
+                                <rect key="frame" x="305.5" y="0.0" width="37.5" height="56"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -53,6 +58,7 @@
             <size key="customSize" width="343" height="56"/>
             <connections>
                 <outlet property="imageView" destination="nwh-CD-xFq" id="EbP-nq-FKH"/>
+                <outlet property="priceLabel" destination="ALt-oX-dAf" id="BGY-be-D1e"/>
                 <outlet property="titleLabel" destination="7pV-r5-cY1" id="90L-VM-Hb1"/>
             </connections>
             <point key="canvasLocation" x="138.40579710144928" y="160.71428571428569"/>

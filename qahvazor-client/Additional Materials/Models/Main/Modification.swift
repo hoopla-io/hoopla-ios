@@ -10,6 +10,8 @@ import Foundation
 struct Modifications: Codable {
     let size: [Modification]?
     let sugar: [Modification]?
+    let milk: [Modification]?
+    let syrup: [Modification]?
 }
 
 struct Modification: Codable {

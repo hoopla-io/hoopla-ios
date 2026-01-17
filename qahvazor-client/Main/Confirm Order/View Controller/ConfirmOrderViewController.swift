@@ -17,6 +17,10 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
     var isLoading = false
     let viewModel = ConfirmOrderViewModel()
     
+    // MARK: - Data Provider
+    var milkDataProvider: MilkDataProvider?
+    var syrupDataProvider: SyrupDataProvider?
+    
     // MARK: - Attributes
     var drinkData: Drinks? {
         didSet {
@@ -41,6 +45,8 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
     }
     var selectedSugar: Modification?
     var selectedSize: Modification?
+    var selectedMilk: Modification?
+    var selectedSyrop: Modification?
     var size: [Modification]?
     var sugar: [Modification]?
     
@@ -62,15 +68,18 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
     @IBAction func confirmOrderAction(_ sender: Any) {
         Task { @MainActor in
             guard let shopId = shopData?.id, let drinkId = drinkData?.id else { return }
-            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: [selectedSize, selectedSugar])
+            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: [selectedSize, selectedSugar, selectedMilk, selectedSyrop])
         }
     }
     
     func changePricingAction() {
         let sizePrice = selectedSize?.modificationPrice ?? 0.0
         let sugarPrice = selectedSugar?.modificationPrice ?? 0.0
-        productPrice = (drinkData?.productPrice ?? 0.0) + sizePrice + sugarPrice
+        let milkPrice = selectedMilk?.modificationPrice ?? 0.0
+        let syropPrice = selectedSyrop?.modificationPrice ?? 0.0
+        productPrice = (drinkData?.productPrice ?? 0.0) + sizePrice + sugarPrice + milkPrice + syropPrice
     }
+    
     // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +125,18 @@ extension ConfirmOrderViewController: ConfirmOrderViewModelProtocol {
             selectedSize = size.first
             view().drinkSizeStackView.isHidden = size.isEmpty
         }
+        if let milk = data.milk {
+            milkDataProvider?.items = milk
+            view().milkCollectionHeight.constant = milkDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 0
+            milkDataProvider?.collectionView.layoutIfNeeded()
+            view().milkStackView.isHidden = milk.isEmpty
+        }
+        if let syrup = data.syrup {
+            syrupDataProvider?.items = syrup
+            view().syrupCollectionHeight.constant = syrupDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 0
+            syrupDataProvider?.collectionView.layoutIfNeeded()
+            view().syrupStackView.isHidden = syrup.isEmpty
+        }
     }
 }
 // MARK: - Other funcs
@@ -125,6 +146,13 @@ extension ConfirmOrderViewController {
         viewModel.delegate = self
         navigationItem.title = "orderSummary".localized
         
+        let milkDataProvider = MilkDataProvider(viewController: self)
+        milkDataProvider.collectionView = view().milkCollectionView
+        self.milkDataProvider = milkDataProvider
+        
+        let syrupDataProvider = SyrupDataProvider(viewController: self)
+        syrupDataProvider.collectionView = view().syrupCollectionView
+        self.syrupDataProvider = syrupDataProvider
         
         view().segmentControl.selectedSegmentTintColor = .main
         view().segmentControl.setTitleTextAttributes([

@@ -166,3 +166,5 @@ redact = "Tahrirlash";
 save = "Saqlash";
 successRedactSaveAlert = "O'zgarishlaringiz muvaffaqiyatli saqlandi!";
 check = "Elektron chek";
+milk = "Sut";
+syrup = "Sirop";

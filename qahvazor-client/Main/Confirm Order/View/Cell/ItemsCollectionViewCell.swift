@@ -1,14 +1,15 @@
 //
-//  FilterGenresCollectionViewCell.swift
+//  ItemsCollectionViewCell.swift
 //  itv-new
 //
 //  Created Admin NBU on 03/12/21.
 
 import UIKit
 
-class FilterGenresCollectionViewCell: UICollectionViewCell {
+class ItemsCollectionViewCell: UICollectionViewCell {
     // MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView! {
         didSet {
             imageView.setImage(UIImage(systemName: "circle") ?? UIImage(), animated: false)
