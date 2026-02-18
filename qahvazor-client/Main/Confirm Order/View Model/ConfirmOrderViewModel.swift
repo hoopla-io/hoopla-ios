@@ -8,8 +8,13 @@
 import UIKit
 
 protocol ConfirmOrderViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(data: WorkHour?, statusCode: Int)
+    func didFinishFetch(statusCode: Int)
     func didFinishFetch(data: Modifications?)
+}
+
+extension ConfirmOrderViewModelProtocol {
+    func didFinishFetch(statusCode: Int) {}
+    func didFinishFetch(data: Modifications?) {}
 }
 
 final class ConfirmOrderViewModel {
@@ -35,8 +40,8 @@ final class ConfirmOrderViewModel {
                     self.delegate?.showAlertClosure(error: (error,message))
                 case .Success(let json):
                     do {
-                        let fetchedData = try CustomDecoder().decode(JSONData<WorkHour>.self, from: json)
-                        self.delegate?.didFinishFetch(data: fetchedData.data, statusCode: fetchedData.code)
+                        let fetchedData = try CustomDecoder().decode(JSONData<String>.self, from: json)
+                        self.delegate?.didFinishFetch(statusCode: fetchedData.code)
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }

@@ -12,7 +12,7 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
     typealias RootView = ConfirmOrderView
     
     // MARK: - Services
-    var coordinator: Coordinator?
+    var coordinator: MainCoordinator?
     var customSpinnerView = CustomSpinnerView()
     var isLoading = false
     let viewModel = ConfirmOrderViewModel()
@@ -66,10 +66,7 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
     }
     
     @IBAction func confirmOrderAction(_ sender: Any) {
-        Task { @MainActor in
-            guard let shopId = shopData?.id, let drinkId = drinkData?.id else { return }
-            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: [selectedSize, selectedSugar, selectedMilk, selectedSyrop])
-        }
+        coordinator?.pushToCheckoutVC(sugar: selectedSugar, size: selectedSize, milk: selectedMilk, syrop: selectedSyrop, shopData: shopData, drinkData: drinkData, totalPrice: productPrice)
     }
     
     func changePricingAction() {
@@ -90,17 +87,6 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
 
 // MARK: - Networking
 extension ConfirmOrderViewController: ConfirmOrderViewModelProtocol {
-    func didFinishFetch(data: WorkHour?, statusCode: Int) {
-        guard let coordinator = coordinator as? MainCoordinator else { return }
-        if statusCode == StatusCode.notEnoughBalance.rawValue {
-            coordinator.pushToPaymentVC(amount: self.drinkData?.productPrice)
-        } else if statusCode == StatusCode.success200.rawValue {
-            showSuccessAlert(message: "success".localized)
-            tabBarController?.selectedIndex = 2
-            navigationController?.popToRootViewController(animated: false)
-        }
-    }
-    
     func didFinishFetch(data: Modifications?) {
         guard let data else { return }
         if let sugar = data.sugar {

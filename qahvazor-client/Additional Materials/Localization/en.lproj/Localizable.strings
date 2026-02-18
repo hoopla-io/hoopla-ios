@@ -21,6 +21,7 @@ start = "Start";
 // MARK: - TabBar
 home    = "Main";
 profile = "Profile";
+orders = "Orders";
 
 // MARK: - Profile
 signIn = "Login";

@@ -84,4 +84,17 @@ final class MainCoordinator: Coordinator {
         vc.notificationId = notificationId
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func pushToCheckoutVC(sugar: Modification?, size: Modification?, milk: Modification?, syrop: Modification?, shopData: Shop?, drinkData: Drinks?, totalPrice: Double) {
+        let vc = CheckoutViewController()
+        vc.coordinator = self
+        vc.selectedSugar = sugar
+        vc.selectedSize = size
+        vc.selectedMilk = milk
+        vc.selectedSyrop = syrop
+        vc.shopData = shopData
+        vc.drinkData = drinkData
+        vc.totalPrice = totalPrice
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

@@ -43,6 +43,12 @@
 		05C37E402E75958600645F35 /* ItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C37E3D2E75958600645F35 /* ItemsCollectionViewCell.swift */; };
 		05C37E412E75958600645F35 /* ItemsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C37E3E2E75958600645F35 /* ItemsCollectionViewCell.xib */; };
 		05CDA6762EAFC209000562F0 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CDA6752EAFC209000562F0 /* MapCoordinator.swift */; };
+		05FF552C2F4620BC00918E0C /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF552B2F4620BC00918E0C /* CheckoutView.swift */; };
+		05FF552E2F4620C200918E0C /* CheckoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FF552D2F4620C200918E0C /* CheckoutView.xib */; };
+		05FF55302F4620CC00918E0C /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF552F2F4620CC00918E0C /* CheckoutViewController.swift */; };
+		05FF55352F46345700918E0C /* CashbeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55342F46345700918E0C /* CashbeckView.swift */; };
+		05FF55372F46345C00918E0C /* CashbeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FF55362F46345C00918E0C /* CashbeckView.xib */; };
+		05FF55392F46346600918E0C /* CashbeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55382F46346600918E0C /* CashbeckViewController.swift */; };
 		7503929C2D40BA040010646F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503929B2D40BA040010646F /* SearchView.swift */; };
 		7503929E2D40BA090010646F /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7503929D2D40BA090010646F /* SearchView.xib */; };
 		750392A02D40BA100010646F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503929F2D40BA100010646F /* SearchViewController.swift */; };
@@ -268,6 +274,12 @@
 		05C37E3D2E75958600645F35 /* ItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollectionViewCell.swift; sourceTree = "<group>"; };
 		05C37E3E2E75958600645F35 /* ItemsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemsCollectionViewCell.xib; sourceTree = "<group>"; };
 		05CDA6752EAFC209000562F0 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		05FF552B2F4620BC00918E0C /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		05FF552D2F4620C200918E0C /* CheckoutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckoutView.xib; sourceTree = "<group>"; };
+		05FF552F2F4620CC00918E0C /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		05FF55342F46345700918E0C /* CashbeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckView.swift; sourceTree = "<group>"; };
+		05FF55362F46345C00918E0C /* CashbeckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashbeckView.xib; sourceTree = "<group>"; };
+		05FF55382F46346600918E0C /* CashbeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckViewController.swift; sourceTree = "<group>"; };
 		7503929B2D40BA040010646F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		7503929D2D40BA090010646F /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		7503929F2D40BA100010646F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -772,6 +784,58 @@
 			path = "Root View";
 			sourceTree = "<group>";
 		};
+		05FF55282F46208800918E0C /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				05FF552A2F46209E00918E0C /* View Controller */,
+				05FF55292F46209A00918E0C /* View */,
+			);
+			path = Checkout;
+			sourceTree = "<group>";
+		};
+		05FF55292F46209A00918E0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				05FF552B2F4620BC00918E0C /* CheckoutView.swift */,
+				05FF552D2F4620C200918E0C /* CheckoutView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		05FF552A2F46209E00918E0C /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05FF552F2F4620CC00918E0C /* CheckoutViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		05FF55312F46343400918E0C /* Cashbeck */ = {
+			isa = PBXGroup;
+			children = (
+				05FF55332F46344A00918E0C /* View Controller */,
+				05FF55322F46344500918E0C /* View */,
+			);
+			path = Cashbeck;
+			sourceTree = "<group>";
+		};
+		05FF55322F46344500918E0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				05FF55342F46345700918E0C /* CashbeckView.swift */,
+				05FF55362F46345C00918E0C /* CashbeckView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		05FF55332F46344A00918E0C /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05FF55382F46346600918E0C /* CashbeckViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
 		750392982D40B9CB0010646F /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -1017,6 +1081,8 @@
 				750392982D40B9CB0010646F /* Search */,
 				757F36212D1E742900EFA728 /* Shop Detail */,
 				75BB17552E0A88FE00376246 /* Confirm Order */,
+				05FF55282F46208800918E0C /* Checkout */,
+				05FF55312F46343400918E0C /* Cashbeck */,
 				7597A6582E0BEA7A00ECD758 /* Scanner */,
 				05B84C2A2EAE0BA700AB66B2 /* Notification */,
 			);
@@ -1833,6 +1899,7 @@
 				05C37E412E75958600645F35 /* ItemsCollectionViewCell.xib in Resources */,
 				052E9A982EB7A754002A9F61 /* AccountView.xib in Resources */,
 				75BB44802D30F6F90000C64A /* QRView.xib in Resources */,
+				05FF55372F46345C00918E0C /* CashbeckView.xib in Resources */,
 				75BB175B2E0A893B00376246 /* ConfirmOrderView.xib in Resources */,
 				75DCE36A2D1ABBA3003A59CD /* LanguageCollectionViewCell.xib in Resources */,
 				75DCE3612D1ABB33003A59CD /* LanguageView.xib in Resources */,
@@ -1843,6 +1910,7 @@
 				052E9AAD2EB7B242002A9F61 /* soon.json in Resources */,
 				75B90F782E360E980091A8BB /* GoogleService-Info.plist in Resources */,
 				75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */,
+				05FF552E2F4620C200918E0C /* CheckoutView.xib in Resources */,
 				7597A6592E0BEA7A00ECD758 /* ScannerView.xib in Resources */,
 				75705CF02D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib in Resources */,
 				75DCE37B2D1AD6EE003A59CD /* InterestView.xib in Resources */,
@@ -1900,6 +1968,7 @@
 				05B84C2E2EAE0BA700AB66B2 /* NotificationsView.swift in Sources */,
 				05B84C2F2EAE0BA700AB66B2 /* NotificationsViewModel.swift in Sources */,
 				05B84C302EAE0BA700AB66B2 /* NotificationsDetailViewController.swift in Sources */,
+				05FF55302F4620CC00918E0C /* CheckoutViewController.swift in Sources */,
 				05B84C312EAE0BA700AB66B2 /* NotificationsDataProvider.swift in Sources */,
 				05B84C322EAE0BA700AB66B2 /* NotificationsDetailViewModel.swift in Sources */,
 				05B84C332EAE0BA700AB66B2 /* NotificationsCollectionViewCell.swift in Sources */,
@@ -1983,6 +2052,7 @@
 				752330EE2D197B210090997E /* AlertViewController.swift in Sources */,
 				75BB175D2E0A894300376246 /* ConfirmOrderViewController.swift in Sources */,
 				75DCE3822D1C10B9003A59CD /* ProfileView.swift in Sources */,
+				05FF55352F46345700918E0C /* CashbeckView.swift in Sources */,
 				752330EF2D197B210090997E /* ResponseErrors.swift in Sources */,
 				752330F02D197B210090997E /* MainView.swift in Sources */,
 				75CBFAE52D785BA6003E9102 /* PaymentViewController.swift in Sources */,
@@ -1996,6 +2066,7 @@
 				75BB44852D31296F0000C64A /* QR.swift in Sources */,
 				752330F42D197B210090997E /* LocalizationManager.swift in Sources */,
 				75955BCF2D1D6D9600F4DD80 /* CompanyCollectionViewCell.swift in Sources */,
+				05FF55392F46346600918E0C /* CashbeckViewController.swift in Sources */,
 				752331332D198B930090997E /* MainCoordinator.swift in Sources */,
 				750392A02D40BA100010646F /* SearchViewController.swift in Sources */,
 				750392A32D40C0960010646F /* SearchDataProvider.swift in Sources */,
@@ -2022,6 +2093,7 @@
 				752331012D197B210090997E /* Double.swift in Sources */,
 				7596B5202D1D6A180070A5BB /* Company.swift in Sources */,
 				752331022D197B210090997E /* Formatter.swift in Sources */,
+				05FF552C2F4620BC00918E0C /* CheckoutView.swift in Sources */,
 				75422B022D33AB4F00B83C42 /* HistoryDataProvider.swift in Sources */,
 				75705CDB2D2FA28900DA3AA4 /* Account.swift in Sources */,
 				75CBFAED2D785D60003E9102 /* PaymentViewModel.swift in Sources */,

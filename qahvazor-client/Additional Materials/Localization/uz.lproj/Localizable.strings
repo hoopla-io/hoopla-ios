@@ -21,6 +21,7 @@ start = "Boshlash";
 // MARK: - TabBar
 home    = "Asosiy";
 profile = "Profil";
+orders = "Buyurtmalar";
 
 // MARK: - Profile
 signIn = "Kirish";

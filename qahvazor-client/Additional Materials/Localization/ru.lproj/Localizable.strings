@@ -21,6 +21,7 @@ start = "Начинать";
 // MARK: - TabBar
 home    = "Главная";
 profile = "Профиль";
+orders = "Заказы";
 
 // MARK: - Profile
 signIn = "Войти";
