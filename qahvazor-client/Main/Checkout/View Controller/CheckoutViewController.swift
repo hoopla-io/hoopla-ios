@@ -72,6 +72,12 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
     }
     
     //MARK: - Actions
+    @IBAction func cashbeckAction(_ sender: UISwitch) {
+        guard let coordinator = coordinator as? MainCoordinator else { return }
+        guard sender.isOn else { return }
+        coordinator.pushToCashbeckVC()
+    }
+    
     @IBAction func confirmOrderAction(_ sender: Any) {
         Task { @MainActor in
             guard let shopId = shopData?.id, let drinkId = drinkData?.id else { return }

@@ -97,4 +97,29 @@ final class MainCoordinator: Coordinator {
         vc.totalPrice = totalPrice
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func pushToCashbeckVC() {
+        let vc = CashbeckViewController()
+        vc.loadViewIfNeeded()
+        vc.view.layoutIfNeeded()
+        
+        if let sheet = vc.sheetPresentationController {
+            sheet.preferredCornerRadius = 16
+            sheet.prefersGrabberVisible = true
+            
+            if #available(iOS 16.0, *) {
+                let smallId = UISheetPresentationController.Detent.Identifier("current")
+                let small = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
+                    return context.maximumDetentValue * 0.4
+                }
+                sheet.detents = [small]
+                sheet.selectedDetentIdentifier = smallId
+                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            } else {
+                sheet.detents = [.medium()]
+                sheet.selectedDetentIdentifier = .medium
+            }
+        }
+        navigationController.present(vc, animated: true)
+    }
 }
