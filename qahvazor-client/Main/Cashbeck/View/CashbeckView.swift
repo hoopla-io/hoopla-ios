@@ -17,4 +17,5 @@ final class CashbeckView: CustomView {
             containerView.layer.borderColor = UIColor.darkGray.cgColor
         }
     }
+    @IBOutlet weak var cashNoteLabel: UILabel!
 }

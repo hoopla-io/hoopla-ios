@@ -35,7 +35,7 @@ class GradientView: UIView {
         }
     }
     
-    internal var endPointX: CGFloat = 0 {
+    internal var endPointX: CGFloat = 1 {
         didSet {
             setNeedsLayout()
         }

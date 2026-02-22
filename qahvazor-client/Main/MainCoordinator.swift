@@ -98,11 +98,15 @@ final class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func pushToCashbeckVC() {
+    func pushToCashbeckVC(viewController: UIViewController, totalPrice: Double, cashbackAmount: Double) {
         let vc = CashbeckViewController()
+        vc.totalPrice = totalPrice
+        vc.selectedCashbekPrice = cashbackAmount
         vc.loadViewIfNeeded()
         vc.view.layoutIfNeeded()
-        
+        if let viewController = viewController as? CheckoutViewController {
+            vc.delegate = viewController
+        }
         if let sheet = vc.sheetPresentationController {
             sheet.preferredCornerRadius = 16
             sheet.prefersGrabberVisible = true

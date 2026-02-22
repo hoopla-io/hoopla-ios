@@ -159,10 +159,8 @@ extension AlertViewController where Self: UIViewController {
         view.titleLabel?.numberOfLines = 0
         view.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         var config = SwiftMessages.defaultConfig
-        config.dimMode = .blur(style: .dark, alpha: 1.0, interactive: true)
         config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
-        config.duration = .forever
-        config.presentationStyle = .center
+        config.duration = .automatic
         SwiftMessages.show(config: config, view: view)
     }
 }

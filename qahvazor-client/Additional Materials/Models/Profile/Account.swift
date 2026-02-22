@@ -25,3 +25,11 @@ struct Account: Codable {
         return "\(balanceAmount.formattedWithSeparator) \(balanceCurrency)"
     }
 }
+
+struct Cashbeck {
+    static var balance: Double = 0.0
+}
+
+struct Purchase {
+    static var isPurchased: Bool = false
+}

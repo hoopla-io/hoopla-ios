@@ -26,6 +26,9 @@ enum Parameters: String {
     case modifierPrice = "modifierPrice"
     case notificationId = "notificationId"
     case modifierGroupId = "modifierGroupId"
+    case use_cashback = "use_cashback"
+    case cashback_amount = "cashback_amount"
+    case order_id = "order_id"
     
     // MARK: - Profile
     case phoneNumber = "phoneNumber"

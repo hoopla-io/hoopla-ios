@@ -105,11 +105,16 @@ preparing = "Подготовка";
 cancelled = "Отменено";
 completed = "Завершено";
 
+pending_payment = "Ожидается оплата";
+paid = "Оплачено";
+payment_failed = "Ошибка оплаты";
+payment_expired = "Срок оплаты истёк";
+error = "Произошла ошибка";
+
 // MARK: - Alert
 logoutAlert = "Вы действительно хотите выйти из аккаунта?";
 success = "Успешно";
 warning = "Внимание";
-error = "Ошибка";
 emptyDetail = "К сожалению, информации здесь не найдено";
 noInternetConnection = "Нет подключения к Интернету";
 noInternetConnectionDetail = "Проверьте подключение к интернету и повторите попытку";
@@ -169,3 +174,8 @@ successRedactSaveAlert = "Ваши изменения успешно сохра�
 check = "Электронный чек";
 milk = "Молоко";
 syrup = "Сироп";
+checkout = "Оформление заказа";
+cashbeck = "Кешбэк";
+useCashbeck = "Использовать кешбэк";
+cashNote = "Вы можете использовать сумму до указанной в кешбэк";
+use = "Использовать";

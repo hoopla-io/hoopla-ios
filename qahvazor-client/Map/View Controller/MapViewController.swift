@@ -46,6 +46,10 @@ final class MapViewController: UIViewController {
         if mapView.annotations.count < 2 {
             addPins()
         }
+        
+        guard Purchase.isPurchased else { return }
+        Purchase.isPurchased = false
+        tabBarController?.selectedIndex = 2
     }
 
     private func requestLocation() {

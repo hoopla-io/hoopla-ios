@@ -105,10 +105,15 @@ preparing = "Yayyorlanmoqda";
 cancelled = "Bekor qilingan";
 completed = "Yakunlangan";
 
+pending_payment = "To‘lov kutilmoqda";
+paid = "To‘landi";
+payment_failed = "To‘lov amalga oshmadi";
+payment_expired = "To‘lov muddati tugadi";
+error = "Xatolik yuz berdi";
+
 // MARK: - Alert
 success = "Muvaffaqiyatli";
 warning = "Diqqat";
-error = "Xato";
 emptyDetail = "Kechirasiz, bu yerda hech qanday ma'lumot topilmadi.";
 noInternetConnection = "Internetga ulanish yo'q";
 noInternetConnectionDetail = "Internetga ulanishni tekshiring va qayta urining";
@@ -169,3 +174,8 @@ successRedactSaveAlert = "O'zgarishlaringiz muvaffaqiyatli saqlandi!";
 check = "Elektron chek";
 milk = "Sut";
 syrup = "Sirop";
+checkout = "Buyurtma";
+cashbeck = "Keshbek";
+useCashbeck = "Keshbekdan foydalanish";
+cashNote = "gacha bo'lgan pulni keshbekka ishlatishingiz mumkin";
+use = "Foydalanish";

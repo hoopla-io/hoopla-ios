@@ -15,7 +15,7 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
     var coordinator: Coordinator?
     var customSpinnerView = CustomSpinnerView()
     var isLoading = false
-    let viewModel = ConfirmOrderViewModel()
+    let viewModel = CheckoutViewModel()
 
     // MARK: - Attributes
     var drinkData: Drinks? {
@@ -70,18 +70,33 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
             view().syropStackView.isHidden = false
         }
     }
+    var cashbackAmount: Double = 0.0 {
+        didSet {
+            view().cashbackPriceLabel.text = cashbackAmount.formattedWithCurrency
+        }
+    }
+    var orderedId: Int?
     
     //MARK: - Actions
     @IBAction func cashbeckAction(_ sender: UISwitch) {
+        guard sender.isOn else {
+            view().oldPriceLabel.isHidden = true
+            view().totalPriceLabel.text = totalPrice.formattedWithCurrency
+            return
+        }
+        pushToCashbeckVC()
+        view().cashbackSwitch.isOn = false
+    }
+    
+    @objc func pushToCashbeckVC() {
         guard let coordinator = coordinator as? MainCoordinator else { return }
-        guard sender.isOn else { return }
-        coordinator.pushToCashbeckVC()
+        coordinator.pushToCashbeckVC(viewController: self, totalPrice: totalPrice, cashbackAmount: cashbackAmount)
     }
     
     @IBAction func confirmOrderAction(_ sender: Any) {
         Task { @MainActor in
             guard let shopId = shopData?.id, let drinkId = drinkData?.id else { return }
-            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: [selectedSize, selectedSugar, selectedMilk, selectedSyrop])
+            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: [selectedSize, selectedSugar, selectedMilk, selectedSyrop], useCashback: view().cashbackSwitch.isOn, cashbackAmount: cashbackAmount)
         }
     }
     
@@ -91,17 +106,39 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
         appearanceSettings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let orderedId else { return }
+        viewModel.paymentStatus(orderId: orderedId)
+    }
+    
 }
 // MARK: - Networking
-extension CheckoutViewController: ConfirmOrderViewModelProtocol {
-    func didFinishFetch(statusCode: Int) {
-        guard let coordinator = coordinator as? MainCoordinator else { return }
-        if statusCode == StatusCode.notEnoughBalance.rawValue {
-            coordinator.pushToPaymentVC(amount: self.drinkData?.productPrice)
-        } else if statusCode == StatusCode.success200.rawValue {
-            showSuccessAlert(message: "success".localized)
-            tabBarController?.selectedIndex = 2
-            navigationController?.popToRootViewController(animated: false)
+extension CheckoutViewController: CheckoutViewModelProtocol {
+    func didFinishFetch(data: Checkout?) {
+        orderedId = data?.orderId
+        guard let url = data?.checkoutUrl else { return }
+        openViaSafariVC(url, from: self)
+    }
+    
+    func didFinishFetch(status: String) {
+        Purchase.isPurchased = true
+        showAlert(status)
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func showAlert(_ status: String) {
+        guard let colorType = OrderStatus(rawValue: status) else {
+            showWarningAlert(message: status.localized)
+            return
+        }
+        switch colorType {
+        case .cancelled, .error, .payment_failed, .payment_expired:
+            showErrorAlert(message: status.localized)
+        case .completed, .paid:
+            showSuccessAlert(message: status.localized)
+        default:
+            showWarningAlert(message: status.localized)
         }
     }
 }
@@ -111,6 +148,33 @@ extension CheckoutViewController {
     private func appearanceSettings() {
         navigationItem.title = "checkout".localized
         viewModel.delegate = self
+        
+        cashbackAmount = Cashbeck.balance
+        view().cashbackSwitch.isEnabled = Cashbeck.balance != 0
+        
+        guard Cashbeck.balance != 0 else { return }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(pushToCashbeckVC))
+        view().cashbackContainerView.addGestureRecognizer(tap)
     }
 }
 
+// MARK: - Cashbeck
+extension CheckoutViewController: CashbeckViewProtocol {
+    func didFinishCashbeck(cashbek: Double) {
+        view().cashbackSwitch.isOn = true
+        
+        self.cashbackAmount = cashbek
+        
+        var finalPrice = totalPrice - cashbek
+        if finalPrice < 0 {
+            finalPrice = 0
+        }
+        view().totalPriceLabel.text = finalPrice.formattedWithCurrency
+        view().oldPriceLabel.text = totalPrice.formattedWithCurrency
+        view().oldPriceLabel.isHidden = false
+        
+        let underlineAttribute = [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]
+        let underlineAttributedString = NSAttributedString(string: "\(totalPrice.formattedWithCurrency)", attributes: underlineAttribute)
+        view().oldPriceLabel.attributedText = underlineAttributedString
+    }
+}

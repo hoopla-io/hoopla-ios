@@ -50,8 +50,20 @@ final class CheckoutView: CustomView {
     }
     
     @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var oldPriceLabel: UILabel! {
+        didSet {
+            oldPriceLabel.isHidden = true
+        }
+    }
     
+    @IBOutlet weak var cashbackSwitch: UISwitch!
     @IBOutlet weak var cashbackPriceLabel: UILabel!
+    @IBOutlet weak var cashbackContainerView: GradientView! {
+            didSet {
+                cashbackContainerView.topColor = UIColor(hex: "#BC4C59") ?? .red
+                cashbackContainerView.bottomColor = UIColor(hex: "#E45E6D") ?? .red
+            }
+        }
     
     @IBOutlet weak var nextButton: UIButton! {
         didSet {

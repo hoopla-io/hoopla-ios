@@ -14,6 +14,11 @@ enum OrderStatus: String {
     case preparing
     case cancelled
     case completed
+    case pending_payment
+    case error
+    case payment_expired
+    case payment_failed
+    case paid
 }
 
 class OrderHistoryTableViewCell: UITableViewCell {
@@ -83,7 +88,7 @@ class OrderHistoryTableViewCell: UITableViewCell {
             return
         }
         switch colorType {
-        case .pending, .preparing:
+        case .pending, .preparing, .pending_payment:
             orderStatusLabel.backgroundColor = .appColor(.orange)
         case .cancelled:
             orderStatusLabel.backgroundColor = .appColor(.red)
@@ -91,6 +96,8 @@ class OrderHistoryTableViewCell: UITableViewCell {
             orderStatusLabel.backgroundColor = .lightGray
         case .completed:
             orderStatusLabel.backgroundColor = .appColor(.green)
+        default:
+            orderStatusLabel.backgroundColor = .lightGray
         }
     }
 }

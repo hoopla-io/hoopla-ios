@@ -55,7 +55,7 @@ struct ItemCountCoffeeCard: ItemCount {
 }
 
 enum ItemRatio: CGFloat {
-    case company    = 0.71
+    case company    = 0.65
     case shops      = 0.5
     case coffee     = 1.0
     case photo      = 0.56

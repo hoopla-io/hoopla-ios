@@ -12,6 +12,8 @@
 		052E9AA22EB7A754002A9F61 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9A632EB7A754002A9F61 /* AccountViewController.swift */; };
 		052E9AA62EB7A754002A9F61 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E9A692EB7A754002A9F61 /* AccountViewModel.swift */; };
 		052E9AAD2EB7B242002A9F61 /* soon.json in Resources */ = {isa = PBXBuildFile; fileRef = 052E9AAC2EB7B242002A9F61 /* soon.json */; };
+		054A423F2F49CCC30030BA23 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054A423E2F49CCC30030BA23 /* CheckoutViewModel.swift */; };
+		054A42412F49F8BD0030BA23 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054A42402F49F8BD0030BA23 /* Checkout.swift */; };
 		056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */; };
 		0571FFD02EB76B1D0011B81D /* RewardsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */; };
 		0571FFD12EB76B1D0011B81D /* RewardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */; };
@@ -243,6 +245,8 @@
 		052E9A662EB7A754002A9F61 /* AccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
 		052E9A692EB7A754002A9F61 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		052E9AAC2EB7B242002A9F61 /* soon.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soon.json; sourceTree = "<group>"; };
+		054A423E2F49CCC30030BA23 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
+		054A42402F49F8BD0030BA23 /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
 		056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsCollectionViewCell.swift; sourceTree = "<group>"; };
 		0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RewardsCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -546,6 +550,14 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		054A423D2F49CCBB0030BA23 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				054A423E2F49CCC30030BA23 /* CheckoutViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		0571FFCC2EB76AF80011B81D /* Reward */ = {
 			isa = PBXGroup;
 			children = (
@@ -789,6 +801,7 @@
 			children = (
 				05FF552A2F46209E00918E0C /* View Controller */,
 				05FF55292F46209A00918E0C /* View */,
+				054A423D2F49CCBB0030BA23 /* View Model */,
 			);
 			path = Checkout;
 			sourceTree = "<group>";
@@ -1417,6 +1430,7 @@
 				75BB17272E095C8500376246 /* UniversalLink.swift */,
 				059BA9C52EB664B5002A726F /* Modification.swift */,
 				0571FFD62EB7765C0011B81D /* Loyalty.swift */,
+				054A42402F49F8BD0030BA23 /* Checkout.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2008,6 +2022,7 @@
 				752330D92D197B210090997E /* AlertViewTexts.swift in Sources */,
 				752330DA2D197B210090997E /* MainConstants.swift in Sources */,
 				752330DB2D197B210090997E /* ReusableView.swift in Sources */,
+				054A423F2F49CCC30030BA23 /* CheckoutViewModel.swift in Sources */,
 				75BB44822D30F7000000C64A /* QRViewController.swift in Sources */,
 				7597A6502E0BCF0700ECD758 /* ConfirmOrderViewModel.swift in Sources */,
 				752330DC2D197B210090997E /* UIViewController.swift in Sources */,
@@ -2056,6 +2071,7 @@
 				752330EF2D197B210090997E /* ResponseErrors.swift in Sources */,
 				752330F02D197B210090997E /* MainView.swift in Sources */,
 				75CBFAE52D785BA6003E9102 /* PaymentViewController.swift in Sources */,
+				054A42412F49F8BD0030BA23 /* Checkout.swift in Sources */,
 				75422B102D33B09F00B83C42 /* SubscriptionFeatureDataProvider.swift in Sources */,
 				752330F12D197B210090997E /* EndPoints.swift in Sources */,
 				750392A62D40C1A80010646F /* EmptyView.swift in Sources */,
@@ -2148,7 +2164,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -2162,7 +2178,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2182,7 +2198,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -2196,7 +2212,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

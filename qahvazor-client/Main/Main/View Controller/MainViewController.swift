@@ -17,6 +17,7 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     var isLoading = false
     var coordinator: MainCoordinator?
     let viewModel = MainViewModel()
+    let profileViewModel = ProfileViewModel()
     let locationManager = LocationManager()
     
     // MARK: - Attributes
@@ -32,11 +33,6 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
-        if UserDefaults.standard.isAuthed() {
-            viewModel.getLoyaltyCardList()
-        } else {
-            view().rewardsStackView.isHidden = true
-        }
         viewModel.getList()
         checkAccessLocation()
         checkUniversalLink()
@@ -44,7 +40,13 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         locationManager.requestLocationPermission()
+        profileViewModel.getMe()
+        
+        guard Purchase.isPurchased else { return }
+        Purchase.isPurchased = false
+        tabBarController?.selectedIndex = 2
     }
 }
 // MARK: - Networking
@@ -60,11 +62,17 @@ extension MainViewController: MainViewModelProtocol {
         view().shopCollectionView.layoutIfNeeded()
     }
 }
-
+// MARK: - Networking
+extension MainViewController: ProfileViewModelProtocol {
+    func didFinishFetch(data: Account) {
+        Cashbeck.balance = data.balance ?? 0
+    }
+}
 // MARK: - Other funcs
 extension MainViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
+        profileViewModel.delegate = self
         navigationItem.title = "home".localized
 
         setupSearchBar()

@@ -8,13 +8,7 @@
 import UIKit
 
 protocol ConfirmOrderViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(statusCode: Int)
     func didFinishFetch(data: Modifications?)
-}
-
-extension ConfirmOrderViewModelProtocol {
-    func didFinishFetch(statusCode: Int) {}
-    func didFinishFetch(data: Modifications?) {}
 }
 
 final class ConfirmOrderViewModel {
@@ -22,35 +16,6 @@ final class ConfirmOrderViewModel {
     weak var delegate: ConfirmOrderViewModelProtocol?
     
     // MARK: - Network call
-    func createOrder(drinkId: Int, shopId: Int, modifiers: [Modification?]?) async {
-        async let modifierList: [[String: Any]] = sortModifiers(modifiers)
-        
-        let parameters: [String: Any] = [
-            Parameters.drinkId.rawValue: drinkId,
-            Parameters.shopId.rawValue: shopId,
-            Parameters.modifiers.rawValue : await modifierList,
-        ]
-        
-        self.delegate?.showActivityIndicator()
-        Task { [weak self] in
-            await JSONDownloader.shared.jsonTask(url: EndPoints.createOrder.rawValue, requestMethod: .post, parameters: parameters, completionHandler: { [weak self]  (result) in
-                guard let self = self else { return }
-                switch result {
-                case .Error(let error, let message):
-                    self.delegate?.showAlertClosure(error: (error,message))
-                case .Success(let json):
-                    do {
-                        let fetchedData = try CustomDecoder().decode(JSONData<String>.self, from: json)
-                        self.delegate?.didFinishFetch(statusCode: fetchedData.code)
-                    } catch {
-                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
-                    }
-                }
-                self.delegate?.hideActivityIndicator()
-            })
-        }
-    }
-    
     func validateOrder(drinkId: Int, shopId: Int) {
         let parameters: [String: Any] = [
             Parameters.drinkId.rawValue: drinkId,
@@ -74,27 +39,6 @@ final class ConfirmOrderViewModel {
                 }
                 self.delegate?.hideActivityIndicator()
             })
-        }
-    }
-    
-    func sortModifiers(_ data: [Modification?]?) async -> [[String: Any]] {
-        guard let data, !data.isEmpty else { return [] }
-        
-        return data.compactMap { item in
-            guard
-                let modifierId    = item?.modificationId,
-                let modifierKey   = item?.modificationKey,
-                let modifierPrice = item?.modificationPrice
-            else {
-                return nil
-            }
-            
-            return [
-                Parameters.modifierId.rawValue             : modifierId,
-                Parameters.modifierKey.rawValue            : modifierKey,
-                Parameters.modifierPrice.rawValue          : modifierPrice,
-                Parameters.modifierGroupId.rawValue        : item?.modificationGroupId ?? ""
-            ]
         }
     }
     

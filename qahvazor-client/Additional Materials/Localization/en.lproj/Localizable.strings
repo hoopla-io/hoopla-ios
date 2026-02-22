@@ -105,11 +105,16 @@ available = "Available";
 used = "Used";
 total = "Total";
 
+pending_payment = "Payment pending";
+paid = "Paid";
+payment_failed = "Payment failed";
+payment_expired = "Payment expired";
+error = "An error occurred";
+
 // MARK: - Alert
 logoutAlert = "Do you really want to sign out?";
 success = "Successful";
 warning = "Attention";
-error = "Error";
 emptyDetail = "Sorry, no information found here.";
 noInternetConnection = "No internet connection";
 noInternetConnectionDetail = "Check your internet connection and try again";
@@ -169,3 +174,8 @@ successRedactSaveAlert = "Your changes have been successfully saved!";
 check = "Electronic check";
 milk = "Milk";
 syrup = "Syrup";
+checkout = "Checkout";
+cashbeck = "Cashback";
+useCashbeck = "Use cashback";
+cashNote = "You can use an amount up to this for cashback";
+use = "Use";
