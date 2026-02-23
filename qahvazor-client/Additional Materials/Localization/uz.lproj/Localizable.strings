@@ -110,6 +110,7 @@ paid = "To‘landi";
 payment_failed = "To‘lov amalga oshmadi";
 payment_expired = "To‘lov muddati tugadi";
 error = "Xatolik yuz berdi";
+successPurchased = "Muvaffaqiyatli to'landi";
 
 // MARK: - Alert
 success = "Muvaffaqiyatli";

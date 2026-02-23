@@ -110,6 +110,7 @@ paid = "Paid";
 payment_failed = "Payment failed";
 payment_expired = "Payment expired";
 error = "An error occurred";
+successPurchased = "Payment successful";
 
 // MARK: - Alert
 logoutAlert = "Do you really want to sign out?";

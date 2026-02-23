@@ -42,7 +42,9 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         locationManager.requestLocationPermission()
-        profileViewModel.getMe()
+        if UserDefaults.standard.isAuthed() {
+            profileViewModel.getMe()
+        }
         
         guard Purchase.isPurchased else { return }
         Purchase.isPurchased = false

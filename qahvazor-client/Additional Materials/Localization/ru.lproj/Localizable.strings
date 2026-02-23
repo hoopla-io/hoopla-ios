@@ -110,6 +110,7 @@ paid = "Оплачено";
 payment_failed = "Ошибка оплаты";
 payment_expired = "Срок оплаты истёк";
 error = "Произошла ошибка";
+successPurchased = "Оплата прошла успешно";
 
 // MARK: - Alert
 logoutAlert = "Вы действительно хотите выйти из аккаунта?";

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CheckoutViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(data: Checkout?)
+    func didFinishFetch(data: Checkout?, statusCode: Int)
     func didFinishFetch(status: String)
 }
 
@@ -38,7 +38,7 @@ final class CheckoutViewModel {
                 case .Success(let json):
                     do {
                         let fetchedData = try CustomDecoder().decode(JSONData<Checkout>.self, from: json)
-                        self.delegate?.didFinishFetch(data: fetchedData.data)
+                        self.delegate?.didFinishFetch(data: fetchedData.data, statusCode: fetchedData.code)
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }

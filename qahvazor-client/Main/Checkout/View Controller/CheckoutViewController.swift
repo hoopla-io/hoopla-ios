@@ -115,10 +115,14 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
 }
 // MARK: - Networking
 extension CheckoutViewController: CheckoutViewModelProtocol {
-    func didFinishFetch(data: Checkout?) {
-        orderedId = data?.orderId
-        guard let url = data?.checkoutUrl else { return }
-        openViaSafariVC(url, from: self)
+    func didFinishFetch(data: Checkout?, statusCode: Int) {
+        if statusCode == StatusCode.needSubscription.rawValue {
+            orderedId = data?.orderId
+            guard let url = data?.checkoutUrl else { return }
+            openViaSafariVC(url, from: self)
+        } else if statusCode == StatusCode.success200.rawValue {
+            didFinishFetch(status: "successPurchased".localized)
+        }
     }
     
     func didFinishFetch(status: String) {
@@ -128,6 +132,10 @@ extension CheckoutViewController: CheckoutViewModelProtocol {
     }
     
     func showAlert(_ status: String) {
+        guard status != "successPurchased".localized else {
+            showSuccessAlert(message: status.localized)
+            return
+        }
         guard let colorType = OrderStatus(rawValue: status) else {
             showWarningAlert(message: status.localized)
             return
