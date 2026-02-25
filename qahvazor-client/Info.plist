@@ -28,8 +28,8 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Ilovadan to&apos;liq foydalanish uchun sizning joylashgan joy lokatsiyasi zarur</string>
+	<string>Your location is required to fully use the app</string>
 	<key>NSCameraUsageDescription</key>
-	<string>QR kodlarini skanerlash uchun kamerangizdan foydalanish kerak.</string>
+	<string>You need to use your camera to scan QR codes</string>
 </dict>
 </plist>
