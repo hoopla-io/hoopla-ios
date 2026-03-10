@@ -107,12 +107,6 @@ extension SearchViewController {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
-//    func nextPage() {
-//        currentPage += 1
-//        guard let text = view().searchController.searchBar.text, !text.isEmpty else { return }
-//        viewModel.searchAll(text: text, page: currentPage)
-//    }
 }
 
 // MARK: - Delegate

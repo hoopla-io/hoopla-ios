@@ -15,10 +15,13 @@ final class SearchView: CustomView {
         }
     }
     
-    lazy var searchController: UISearchController = {
+    lazy var searchController: UISearchController = makeSearchController()
+    
+    private func makeSearchController() -> UISearchController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
+        
         let searchBar = searchController.searchBar
         searchBar.searchTextField.backgroundColor = UIColor.appColor(.secondBackground)
         searchBar.setShowsCancelButton(true, animated: true)
@@ -26,13 +29,9 @@ final class SearchView: CustomView {
         searchBar.placeholder = "placeholderSearch".localized
         
         let cancelButton = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
-        let offset = UIOffset(horizontal: 0, vertical: 5)
-        cancelButton.setTitlePositionAdjustment(offset, for: .default)
+        cancelButton.setTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: 5), for: .default)
         
-        var searchTextField: UITextField
-        
-        searchTextField = searchBar.searchTextField
-        
+        let searchTextField = searchBar.searchTextField
         searchTextField.textColor = .label
         
         let glassIconView = searchTextField.leftView as? UIImageView
@@ -40,7 +39,7 @@ final class SearchView: CustomView {
         glassIconView?.tintColor = .label
         
         return searchController
-    }()
+    }
     
 }
 

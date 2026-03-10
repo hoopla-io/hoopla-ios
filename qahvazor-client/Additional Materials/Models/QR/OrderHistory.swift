@@ -16,4 +16,5 @@ struct OrderHistory: Codable {
     let fiscalLink: String?
     let purchasedAtUnix: Int?
     let productPrice: Double?
+    let cashbackEarned: Double?
 }

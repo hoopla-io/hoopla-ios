@@ -10,7 +10,7 @@ import ImageViewer_swift
 import Haptica
 import SkeletonView
 
-class QRViewController: UIViewController, ViewSpecificController, AlertViewController {
+class QRViewController: UIViewController, ViewSpecificController, @MainActor AlertViewController {
     // MARK: - Root View
     typealias RootView = QRView
 
@@ -19,20 +19,9 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
     var isLoading = false
     var coordinator: QRCoordinator?
     let viewModel = QRViewModel()
-    let profileViewModel = ProfileViewModel()
     
     // MARK: - Attributes
     var dataProvider: HistoryDataProvider?
-    var data: QR? {
-        didSet {
-            guard let data else { return }
-            if let value = data.qrCode {
-                view().qrImageView.image = .generateQRCode(key: value)
-                view().containerView.hideSkeleton()
-                view().qrImageView.setupImageViewer(images: [view().qrImageView.image ?? UIImage()], options: [.theme(.dark), .closeIcon(.appImage(.closeCircle))], from: self)
-            }
-        }
-    }
     var appDeactiveTime = Double()
     var durationInDeactive = Double()
     
@@ -45,27 +34,18 @@ class QRViewController: UIViewController, ViewSpecificController, AlertViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
-        if UserDefaults.standard.isAuthed() {
-            viewModel.getQRCode()
-            profileViewModel.getMe()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if UserDefaults.standard.isAuthed() {
             viewModel.getOrderHistoryList()
-            viewModel.getDrinksLimit()
         }
     }
     
 }
 // MARK: - Networking
 extension QRViewController: QRViewModelProtocol {
-    func didFinishFetch(data: QR) {
-        self.data = data
-    }
-    
     func didFinishFetch(data: [OrderHistory]?) {
         if let data {
             dataProvider?.items = data
@@ -74,33 +54,14 @@ extension QRViewController: QRViewModelProtocol {
         }
         view().tableView.checkEmpty(items: dataProvider?.items, type: .history)
     }
-    
-    func didFinishFetch(data: Limit?) {
-        let used = data?.used ?? 0
-        let aviailable = data?.available ?? 0
-        view().usedLabel.text = "\("used".localized): \(used)"
-        view().availableLabel.text = "\("total".localized): \(aviailable)"
-        if used == 0 {
-            view().progress.progress = 0
-        } else {
-            view().progress.progress = Float(aviailable) / Float(used)
-        }
-    }
-}
-// MARK: - Networking
-extension QRViewController: ProfileViewModelProtocol {
-    func didFinishFetch(data: Account) {
-        view().subscriptionLabel.text = data.subscription?.name
-        view().phoneNumberLabel.text = data.phoneNumber?.displayPhone()
-    }
 }
 
 // MARK: - Other funcs
 extension QRViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
-        profileViewModel.delegate = self
-        navigationItem.title = "QR".localized
+        navigationItem.title = "history".localized
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let dataProvider = HistoryDataProvider(viewController: self)
         dataProvider.tableView = view().tableView

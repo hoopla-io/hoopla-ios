@@ -35,41 +35,28 @@ class OrderHistoryTableViewCell: UITableViewCell {
             priceLabel.linesCornerRadius = 5
         }
     }
-    @IBOutlet weak var subTitleLabel: UILabel! {
-        didSet {
-            subTitleLabel.lastLineFillPercent = 100
-            subTitleLabel.linesCornerRadius = 5
-        }
-    }
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var orderStatusLabel: UILabel!
-    @IBOutlet weak var checkButton: UIButton! {
-        didSet {
-            checkButton.isHidden = true
-        }
-    }
     
     //MARK: - Attributes
     weak var viewController: UIViewController?
     var item: OrderHistory? {
         didSet {
             guard let item else { return }
-            titleLabel.text = "#\(item.id ?? 0), \(item.drinkName ?? "")"
-            priceLabel.text = item.productPrice?.formattedWithCurrency
-            subTitleLabel.text = item.shopName
-            timeLabel.text = DateFormatter.string(timestamp: item.purchasedAtUnix, formatter: .fullDate)
+            titleLabel.text = "\(item.shopName ?? ""), \(item.drinkName ?? "")"
+            priceLabel.text = "- \(item.productPrice?.formattedWithCurrency ?? "0")"
+            dateLabel.text = DateFormatter.string(timestamp: item.purchasedAtUnix, formatter: .fullDate)
             orderStatusLabel.text = item.orderStatus?.localized
             setStatusColor(item.orderStatus)
-            checkButton.isHidden = item.fiscalLink == nil
         }
     }
     
     //MARK: - Actions
-    @IBAction func checkAction(_ sender: UIButton) {
-        guard let vc = viewController as? QRViewController else { return }
-        guard let fiscalLink = item?.fiscalLink else { return }
-        vc.openCheck(item: fiscalLink)
-    }
+//    @IBAction func checkAction(_ sender: UIButton) {
+//        guard let vc = viewController as? QRViewController else { return }
+//        guard let fiscalLink = item?.fiscalLink else { return }
+//        vc.openCheck(item: fiscalLink)
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -79,25 +66,26 @@ class OrderHistoryTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
     }
     
     func setStatusColor(_ type: String?) {
         guard let type = type, let colorType = OrderStatus(rawValue: type) else {
-            orderStatusLabel.backgroundColor = .appColor(.green)
+            orderStatusLabel.textColor = .appColor(.green)
             return
         }
         switch colorType {
         case .pending, .preparing, .pending_payment:
-            orderStatusLabel.backgroundColor = .appColor(.orange)
+            orderStatusLabel.textColor = .appColor(.orange)
         case .cancelled:
-            orderStatusLabel.backgroundColor = .appColor(.red)
+            orderStatusLabel.textColor = .appColor(.red)
         case .created:
-            orderStatusLabel.backgroundColor = .lightGray
+            orderStatusLabel.textColor = .lightGray
         case .completed:
-            orderStatusLabel.backgroundColor = .appColor(.green)
+            orderStatusLabel.textColor = .appColor(.green)
+            orderStatusLabel.text = "+ \(item?.cashbackEarned?.formattedWithCurrency ?? "0")"
         default:
-            orderStatusLabel.backgroundColor = .lightGray
+            orderStatusLabel.textColor = .lightGray
         }
     }
 }
