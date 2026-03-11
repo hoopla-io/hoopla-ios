@@ -1,5 +1,5 @@
 //
-//  QRViewModel.swift
+//  HistoryViewModel.swift
 //  qahvazor-client
 //
 //  Created by Alphazet on 10/01/25.

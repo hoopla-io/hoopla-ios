@@ -198,7 +198,7 @@
 		75BB175B2E0A893B00376246 /* ConfirmOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BB175A2E0A893B00376246 /* ConfirmOrderView.xib */; };
 		75BB175D2E0A894300376246 /* ConfirmOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB175C2E0A894300376246 /* ConfirmOrderViewController.swift */; };
 		75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */; };
-		75BB447C2D30F6DB0000C64A /* QRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447B2D30F6DB0000C64A /* QRViewModel.swift */; };
+		75BB447C2D30F6DB0000C64A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447B2D30F6DB0000C64A /* HistoryViewModel.swift */; };
 		75BB447E2D30F6EB0000C64A /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447D2D30F6EB0000C64A /* HistoryView.swift */; };
 		75BB44802D30F6F90000C64A /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BB447F2D30F6F90000C64A /* HistoryView.xib */; };
 		75BB44822D30F7000000C64A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44812D30F7000000C64A /* HistoryViewController.swift */; };
@@ -418,7 +418,7 @@
 		75BB175A2E0A893B00376246 /* ConfirmOrderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmOrderView.xib; sourceTree = "<group>"; };
 		75BB175C2E0A894300376246 /* ConfirmOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrderViewController.swift; sourceTree = "<group>"; };
 		75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeDataProvider.swift; sourceTree = "<group>"; };
-		75BB447B2D30F6DB0000C64A /* QRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewModel.swift; sourceTree = "<group>"; };
+		75BB447B2D30F6DB0000C64A /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		75BB447D2D30F6EB0000C64A /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		75BB447F2D30F6F90000C64A /* HistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryView.xib; sourceTree = "<group>"; };
 		75BB44812D30F7000000C64A /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -1554,7 +1554,7 @@
 		75BB44782D30F6B60000C64A /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				75BB447B2D30F6DB0000C64A /* QRViewModel.swift */,
+				75BB447B2D30F6DB0000C64A /* HistoryViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -2086,7 +2086,7 @@
 				752331332D198B930090997E /* MainCoordinator.swift in Sources */,
 				750392A02D40BA100010646F /* SearchViewController.swift in Sources */,
 				750392A32D40C0960010646F /* SearchDataProvider.swift in Sources */,
-				75BB447C2D30F6DB0000C64A /* QRViewModel.swift in Sources */,
+				75BB447C2D30F6DB0000C64A /* HistoryViewModel.swift in Sources */,
 				752330F52D197B210090997E /* AppUtility.swift in Sources */,
 				059BA9C62EB664B5002A726F /* Modification.swift in Sources */,
 				752331922D1A8E800090997E /* CircularProgressBar.swift in Sources */,
