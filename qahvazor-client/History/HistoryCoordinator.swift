@@ -23,4 +23,12 @@ final class HistoryCoordinator: Coordinator {
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
+    
+    func pushToHistoryDetailVC(item: OrderHistory) {
+        let vc = HistoryDetailViewController()
+        vc.coordinator = self
+        vc.data = item
+        vc.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

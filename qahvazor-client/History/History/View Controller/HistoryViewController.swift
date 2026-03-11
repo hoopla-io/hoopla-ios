@@ -58,7 +58,7 @@ extension HistoryViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
         navigationItem.title = "history".localized
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         let dataProvider = HistoryDataProvider(viewController: self)
         dataProvider.tableView = view().tableView

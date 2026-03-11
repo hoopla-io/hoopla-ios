@@ -17,4 +17,12 @@ struct OrderHistory: Codable {
     let purchasedAtUnix: Int?
     let productPrice: Double?
     let cashbackEarned: Double?
+    let cashbackUsed: Double?
+    let items: [OrderHistoryItem]?
+}
+
+struct OrderHistoryItem: Codable {
+    let itemType: String?
+    let name: String?
+    let price: Double?
 }

@@ -45,18 +45,17 @@ final class HistoryDataProvider: NSObject, UITableViewDataSource, UITableViewDel
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OrderHistoryTableViewCell.defaultReuseIdentifier, for: indexPath) as? OrderHistoryTableViewCell else { return UITableViewCell() }
         cell.item = items[indexPath.row]
         cell.viewController = viewController
+        cell.selectionStyle = .none
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let vc = viewController as? QRViewController else { return }
-//        if indexPath.row == items.count - 1 && vc.totalItems > items.count {
-//        vc.nextPage()
-//    }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = viewController as? HistoryViewController else { return }
+        vc.coordinator?.pushToHistoryDetailVC(item: items[indexPath.row])
     }
 }
 

@@ -51,6 +51,9 @@
 		05FF55352F46345700918E0C /* CashbeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55342F46345700918E0C /* CashbeckView.swift */; };
 		05FF55372F46345C00918E0C /* CashbeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FF55362F46345C00918E0C /* CashbeckView.xib */; };
 		05FF55392F46346600918E0C /* CashbeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55382F46346600918E0C /* CashbeckViewController.swift */; };
+		52AD94F82F6139B000F9021E /* HistoryDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52AD94F72F6139B000F9021E /* HistoryDetailView.xib */; };
+		52AD94F92F6139B000F9021E /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AD94F62F6139B000F9021E /* HistoryDetailView.swift */; };
+		52AD94FB2F6139B400F9021E /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AD94FA2F6139B400F9021E /* HistoryDetailViewController.swift */; };
 		7503929C2D40BA040010646F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503929B2D40BA040010646F /* SearchView.swift */; };
 		7503929E2D40BA090010646F /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7503929D2D40BA090010646F /* SearchView.xib */; };
 		750392A02D40BA100010646F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503929F2D40BA100010646F /* SearchViewController.swift */; };
@@ -284,6 +287,9 @@
 		05FF55342F46345700918E0C /* CashbeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckView.swift; sourceTree = "<group>"; };
 		05FF55362F46345C00918E0C /* CashbeckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashbeckView.xib; sourceTree = "<group>"; };
 		05FF55382F46346600918E0C /* CashbeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckViewController.swift; sourceTree = "<group>"; };
+		52AD94F62F6139B000F9021E /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
+		52AD94F72F6139B000F9021E /* HistoryDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryDetailView.xib; sourceTree = "<group>"; };
+		52AD94FA2F6139B400F9021E /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
 		7503929B2D40BA040010646F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		7503929D2D40BA090010646F /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		7503929F2D40BA100010646F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -849,6 +855,32 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
+		52AD94F32F61390A00F9021E /* History Detail */ = {
+			isa = PBXGroup;
+			children = (
+				52AD94F52F61399100F9021E /* View Controller */,
+				52AD94F42F61398B00F9021E /* View */,
+			);
+			path = "History Detail";
+			sourceTree = "<group>";
+		};
+		52AD94F42F61398B00F9021E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52AD94F62F6139B000F9021E /* HistoryDetailView.swift */,
+				52AD94F72F6139B000F9021E /* HistoryDetailView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52AD94F52F61399100F9021E /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				52AD94FA2F6139B400F9021E /* HistoryDetailViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
 		750392982D40B9CB0010646F /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -1107,6 +1139,7 @@
 			children = (
 				752331342D198B9E0090997E /* HistoryCoordinator.swift */,
 				75BB44772D30F6B00000C64A /* History */,
+				52AD94F32F61390A00F9021E /* History Detail */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -1923,6 +1956,7 @@
 				75DCE3842D1C10BE003A59CD /* ProfileView.xib in Resources */,
 				052E9AAD2EB7B242002A9F61 /* soon.json in Resources */,
 				75B90F782E360E980091A8BB /* GoogleService-Info.plist in Resources */,
+				52AD94F82F6139B000F9021E /* HistoryDetailView.xib in Resources */,
 				75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */,
 				05FF552E2F4620C200918E0C /* CheckoutView.xib in Resources */,
 				7597A6592E0BEA7A00ECD758 /* ScannerView.xib in Resources */,
@@ -2006,6 +2040,7 @@
 				75DCE35F2D1ABB2B003A59CD /* LanguageView.swift in Sources */,
 				75CBFAE12D785B95003E9102 /* PaymentView.swift in Sources */,
 				752330D12D197B210090997E /* UIWindow.swift in Sources */,
+				52AD94F92F6139B000F9021E /* HistoryDetailView.swift in Sources */,
 				75DCE36C2D1ABBED003A59CD /* Language.swift in Sources */,
 				7582AD842D32860700FF1ECF /* SubscriptionCollectionViewCell.swift in Sources */,
 				752330D22D197B210090997E /* TextFieldViewController.swift in Sources */,
@@ -2013,6 +2048,7 @@
 				752330D42D197B210090997E /* CustomDecoder.swift in Sources */,
 				052E9AA02EB7A754002A9F61 /* AccountView.swift in Sources */,
 				052E9AA22EB7A754002A9F61 /* AccountViewController.swift in Sources */,
+				52AD94FB2F6139B400F9021E /* HistoryDetailViewController.swift in Sources */,
 				052E9AA62EB7A754002A9F61 /* AccountViewModel.swift in Sources */,
 				056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */,
 				752330D52D197B210090997E /* URLComponents.swift in Sources */,
