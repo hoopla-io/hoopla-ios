@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol QRViewModelProtocol: ViewModelProtocol {
+protocol HistoryViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: [OrderHistory]?)
 }
 
-final class QRViewModel {
+final class HistoryViewModel {
     // MARK: - Attributes
-    weak var delegate: QRViewModelProtocol?
+    weak var delegate: HistoryViewModelProtocol?
     
     // MARK: - Network call
     func getOrderHistoryList() {

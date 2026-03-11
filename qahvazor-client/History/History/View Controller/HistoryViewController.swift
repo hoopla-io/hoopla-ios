@@ -1,24 +1,21 @@
 //
-//  QRViewController.swift
+//  HistoryViewController.swift
 //  qahvazor-client
 //
 //  Created by Alphazet on 10/01/25.
 //
 
 import UIKit
-import ImageViewer_swift
-import Haptica
-import SkeletonView
 
-class QRViewController: UIViewController, ViewSpecificController, @MainActor AlertViewController {
+class HistoryViewController: UIViewController, ViewSpecificController, @MainActor AlertViewController {
     // MARK: - Root View
-    typealias RootView = QRView
+    typealias RootView = HistoryView
 
     // MARK: - Services
     var customSpinnerView = CustomSpinnerView()
     var isLoading = false
-    var coordinator: QRCoordinator?
-    let viewModel = QRViewModel()
+    var coordinator: HistoryCoordinator?
+    let viewModel = HistoryViewModel()
     
     // MARK: - Attributes
     var dataProvider: HistoryDataProvider?
@@ -45,7 +42,7 @@ class QRViewController: UIViewController, ViewSpecificController, @MainActor Ale
     
 }
 // MARK: - Networking
-extension QRViewController: QRViewModelProtocol {
+extension HistoryViewController: HistoryViewModelProtocol {
     func didFinishFetch(data: [OrderHistory]?) {
         if let data {
             dataProvider?.items = data
@@ -57,7 +54,7 @@ extension QRViewController: QRViewModelProtocol {
 }
 
 // MARK: - Other funcs
-extension QRViewController {
+extension HistoryViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
         navigationItem.title = "history".localized

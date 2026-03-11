@@ -127,7 +127,7 @@
 		752331042D197B210090997E /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 752330C32D197B210090997E /* MainView.xib */; };
 		752331312D19834B0090997E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331302D19834B0090997E /* TabBarController.swift */; };
 		752331332D198B930090997E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331322D198B930090997E /* MainCoordinator.swift */; };
-		752331352D198B9E0090997E /* QRCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331342D198B9E0090997E /* QRCoordinator.swift */; };
+		752331352D198B9E0090997E /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331342D198B9E0090997E /* HistoryCoordinator.swift */; };
 		752331372D198BA80090997E /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331362D198BA80090997E /* ProfileCoordinator.swift */; };
 		752331442D1991020090997E /* ColorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 752331432D1991020090997E /* ColorKit */; };
 		752331472D1991140090997E /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 752331462D1991140090997E /* DeviceKit */; };
@@ -199,9 +199,9 @@
 		75BB175D2E0A894300376246 /* ConfirmOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB175C2E0A894300376246 /* ConfirmOrderViewController.swift */; };
 		75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */; };
 		75BB447C2D30F6DB0000C64A /* QRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447B2D30F6DB0000C64A /* QRViewModel.swift */; };
-		75BB447E2D30F6EB0000C64A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447D2D30F6EB0000C64A /* QRView.swift */; };
-		75BB44802D30F6F90000C64A /* QRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BB447F2D30F6F90000C64A /* QRView.xib */; };
-		75BB44822D30F7000000C64A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44812D30F7000000C64A /* QRViewController.swift */; };
+		75BB447E2D30F6EB0000C64A /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447D2D30F6EB0000C64A /* HistoryView.swift */; };
+		75BB44802D30F6F90000C64A /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BB447F2D30F6F90000C64A /* HistoryView.xib */; };
+		75BB44822D30F7000000C64A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44812D30F7000000C64A /* HistoryViewController.swift */; };
 		75BB44852D31296F0000C64A /* QR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44842D31296F0000C64A /* QR.swift */; };
 		75CBFAE12D785B95003E9102 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CBFAE02D785B95003E9102 /* PaymentView.swift */; };
 		75CBFAE32D785B9C003E9102 /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CBFAE22D785B9C003E9102 /* PaymentView.xib */; };
@@ -362,7 +362,7 @@
 		752330C42D197B210090997E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		752331302D19834B0090997E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		752331322D198B930090997E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		752331342D198B9E0090997E /* QRCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCoordinator.swift; sourceTree = "<group>"; };
+		752331342D198B9E0090997E /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		752331362D198BA80090997E /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		7523318B2D1A8D340090997E /* FullOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullOnboardingView.swift; sourceTree = "<group>"; };
 		7523318D2D1A8D3D0090997E /* FullOnboardingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullOnboardingView.xib; sourceTree = "<group>"; };
@@ -419,9 +419,9 @@
 		75BB175C2E0A894300376246 /* ConfirmOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrderViewController.swift; sourceTree = "<group>"; };
 		75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeDataProvider.swift; sourceTree = "<group>"; };
 		75BB447B2D30F6DB0000C64A /* QRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewModel.swift; sourceTree = "<group>"; };
-		75BB447D2D30F6EB0000C64A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
-		75BB447F2D30F6F90000C64A /* QRView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRView.xib; sourceTree = "<group>"; };
-		75BB44812D30F7000000C64A /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		75BB447D2D30F6EB0000C64A /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		75BB447F2D30F6F90000C64A /* HistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryView.xib; sourceTree = "<group>"; };
+		75BB44812D30F7000000C64A /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		75BB44842D31296F0000C64A /* QR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QR.swift; sourceTree = "<group>"; };
 		75CBFAE02D785B95003E9102 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		75CBFAE22D785B9C003E9102 /* PaymentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
@@ -929,7 +929,7 @@
 				752330C12D197B210090997E /* TabBarController */,
 				752330C52D197B210090997E /* Main */,
 				05B84C3A2EAE2FE600AB66B2 /* Map */,
-				7523312E2D1983050090997E /* QR */,
+				7523312E2D1983050090997E /* History */,
 				7523312F2D1983190090997E /* Profile */,
 				7523313B2D198D940090997E /* Resources */,
 				052E9AAB2EB7B22C002A9F61 /* Lottie */,
@@ -1102,13 +1102,13 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		7523312E2D1983050090997E /* QR */ = {
+		7523312E2D1983050090997E /* History */ = {
 			isa = PBXGroup;
 			children = (
-				752331342D198B9E0090997E /* QRCoordinator.swift */,
-				75BB44772D30F6B00000C64A /* QR */,
+				752331342D198B9E0090997E /* HistoryCoordinator.swift */,
+				75BB44772D30F6B00000C64A /* History */,
 			);
-			path = QR;
+			path = History;
 			sourceTree = "<group>";
 		};
 		7523312F2D1983190090997E /* Profile */ = {
@@ -1256,8 +1256,8 @@
 		75422B042D33ABFA00B83C42 /* Root View */ = {
 			isa = PBXGroup;
 			children = (
-				75BB447D2D30F6EB0000C64A /* QRView.swift */,
-				75BB447F2D30F6F90000C64A /* QRView.xib */,
+				75BB447D2D30F6EB0000C64A /* HistoryView.swift */,
+				75BB447F2D30F6F90000C64A /* HistoryView.xib */,
 			);
 			path = "Root View";
 			sourceTree = "<group>";
@@ -1540,7 +1540,7 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
-		75BB44772D30F6B00000C64A /* QR */ = {
+		75BB44772D30F6B00000C64A /* History */ = {
 			isa = PBXGroup;
 			children = (
 				75422B002D33AB4200B83C42 /* Data Provider */,
@@ -1548,7 +1548,7 @@
 				75BB44792D30F6BE0000C64A /* View */,
 				75BB44782D30F6B60000C64A /* View Model */,
 			);
-			path = QR;
+			path = History;
 			sourceTree = "<group>";
 		};
 		75BB44782D30F6B60000C64A /* View Model */ = {
@@ -1571,7 +1571,7 @@
 		75BB447A2D30F6C20000C64A /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				75BB44812D30F7000000C64A /* QRViewController.swift */,
+				75BB44812D30F7000000C64A /* HistoryViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -1912,7 +1912,7 @@
 				7503929E2D40BA090010646F /* SearchView.xib in Resources */,
 				05C37E412E75958600645F35 /* ItemsCollectionViewCell.xib in Resources */,
 				052E9A982EB7A754002A9F61 /* AccountView.xib in Resources */,
-				75BB44802D30F6F90000C64A /* QRView.xib in Resources */,
+				75BB44802D30F6F90000C64A /* HistoryView.xib in Resources */,
 				05FF55372F46345C00918E0C /* CashbeckView.xib in Resources */,
 				75BB175B2E0A893B00376246 /* ConfirmOrderView.xib in Resources */,
 				75DCE36A2D1ABBA3003A59CD /* LanguageCollectionViewCell.xib in Resources */,
@@ -1974,7 +1974,7 @@
 				752330C92D197B210090997E /* HTTPRequestMethods.swift in Sources */,
 				75F6CFC92D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift in Sources */,
 				752330CA2D197B210090997E /* UIView.swift in Sources */,
-				752331352D198B9E0090997E /* QRCoordinator.swift in Sources */,
+				752331352D198B9E0090997E /* HistoryCoordinator.swift in Sources */,
 				752330CB2D197B210090997E /* UITableView.swift in Sources */,
 				752330CC2D197B210090997E /* Cosmos.swift in Sources */,
 				75F6CFCC2D2BEBD200BDF947 /* CoffeeListDataProvider.swift in Sources */,
@@ -2023,7 +2023,7 @@
 				752330DA2D197B210090997E /* MainConstants.swift in Sources */,
 				752330DB2D197B210090997E /* ReusableView.swift in Sources */,
 				054A423F2F49CCC30030BA23 /* CheckoutViewModel.swift in Sources */,
-				75BB44822D30F7000000C64A /* QRViewController.swift in Sources */,
+				75BB44822D30F7000000C64A /* HistoryViewController.swift in Sources */,
 				7597A6502E0BCF0700ECD758 /* ConfirmOrderViewModel.swift in Sources */,
 				752330DC2D197B210090997E /* UIViewController.swift in Sources */,
 				75CBFAE92D785CD0003E9102 /* PaymentCollectionViewCell.swift in Sources */,
@@ -2094,7 +2094,7 @@
 				752330F62D197B210090997E /* CustomTextField.swift in Sources */,
 				752330F72D197B210090997E /* KAPinField.swift in Sources */,
 				752330F82D197B210090997E /* BaseView.swift in Sources */,
-				75BB447E2D30F6EB0000C64A /* QRView.swift in Sources */,
+				75BB447E2D30F6EB0000C64A /* HistoryView.swift in Sources */,
 				752331312D19834B0090997E /* TabBarController.swift in Sources */,
 				7582AD7F2D3283E300FF1ECF /* SubscriptionDataProvider.swift in Sources */,
 				752330F92D197B210090997E /* ViewSpecificController.swift in Sources */,

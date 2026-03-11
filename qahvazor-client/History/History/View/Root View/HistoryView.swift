@@ -1,5 +1,5 @@
 //
-//  QRView.swift
+//  HistoryView.swift
 //  qahvazor-client
 //
 //  Created by Alphazet on 10/01/25.
@@ -8,7 +8,7 @@
 import UIKit
 import SkeletonView
 
-final class QRView: CustomView {
+final class HistoryView: CustomView {
     // MARK: - Outlets
     @IBOutlet weak var authContainerView: UIView!
     @IBOutlet weak var tableView: UITableView! {

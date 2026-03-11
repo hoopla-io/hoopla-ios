@@ -17,7 +17,7 @@ final class TabBarController: UITabBarController {
     // MARK: - Attributes
     private let mainCoordinator = MainCoordinator(navigationController: UINavigationController())
     private let mapCoordinator = MapCoordinator(navigationController: UINavigationController())
-    private let qrCoordinator   = QRCoordinator(navigationController: UINavigationController())
+    private let historyCoordinator  = HistoryCoordinator(navigationController: UINavigationController())
     private let profileCoordinator = ProfileCoordinator(navigationController: UINavigationController())
     var lastViewController: UIViewController?
 
@@ -53,14 +53,14 @@ private extension TabBarController {
         
         mainCoordinator.start()
         mapCoordinator.start()
-        qrCoordinator.start()
+        historyCoordinator.start()
         profileCoordinator.start()
         
-        let homeNav    = mainCoordinator.navigationController
-        let mapNav     = mapCoordinator.navigationController
-        let qrNav      = qrCoordinator.navigationController
-        let profileNav = profileCoordinator.navigationController
-        viewControllers = [homeNav, mapNav, qrNav, profileNav]
+        let homeNav     = mainCoordinator.navigationController
+        let mapNav      = mapCoordinator.navigationController
+        let historyNav  = historyCoordinator.navigationController
+        let profileNav  = profileCoordinator.navigationController
+        viewControllers = [homeNav, mapNav, historyNav, profileNav]
     }
     
     private func appearanceSettings() {

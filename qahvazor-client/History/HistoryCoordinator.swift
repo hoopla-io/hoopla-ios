@@ -1,5 +1,5 @@
 //
-//  QRCoordinator.swift
+//  HistoryCoordinator.swift
 //  qahvazor-client
 //
 //  Created by Alphazet on 23/12/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class QRCoordinator: Coordinator {
+final class HistoryCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
@@ -17,7 +17,7 @@ final class QRCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = QRViewController()
+        let vc = HistoryViewController()
         vc.tabBarItem = UITabBarItem(title: "orders".localized, image: UIImage(systemName: "clock.arrow.circlepath"), selectedImage: UIImage(systemName: "clock.arrow.circlepath"))
         vc.tabBarItem.tag = 2
         vc.coordinator = self
