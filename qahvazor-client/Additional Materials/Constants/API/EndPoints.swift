@@ -26,10 +26,9 @@ enum EndPoints: String {
     case notificationShow = "notifications/show"
     case loyaltyCard = "user/orders/loyalty-card"
     
-    // MARK: - QR
-    case qrCode = "user/generate-qr-code"
-    case orders = "user/orders/orders-list"
-    case drinksLimit = "user/orders/drinks-stat"
+    // MARK: - History
+    case ordersList = "user/orders/orders-list"
+    case orders = "user/orders"
     
     // MARK: - Profile
     case getMe = "user/get-me"

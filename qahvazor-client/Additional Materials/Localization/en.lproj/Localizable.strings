@@ -180,3 +180,5 @@ cashbeck = "Cashback";
 useCashbeck = "Use cashback";
 cashNote = "You can use an amount up to this for cashback";
 use = "Use";
+earnedCashback = "Earned cashback";
+getReceipt = "Get receipt";

@@ -15,43 +15,12 @@ class HistoryDetailViewController: UIViewController, ViewSpecificController, @Ma
     var coordinator: Coordinator?
     var customSpinnerView = CustomSpinnerView()
     var isLoading = false
-
+    let viewModel = HistoryViewModel()
+    
     // MARK: - Attributes
     var totalPrice: Double = 0.0 {
         didSet {
             view().totalPriceLabel.text = totalPrice.formattedWithCurrency
-        }
-    }
-    var selectedSugar: Modification? {
-        didSet {
-            guard let selectedSugar else  { return }
-            view().sugarTitleLabel.text = selectedSugar.modificationName
-            view().sugarPriceLabel.text = ("+" + (selectedSugar.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().sugarStackView.isHidden = false
-        }
-    }
-    var selectedSize: Modification? {
-        didSet {
-            guard let selectedSize else  { return }
-            view().sizePriceLabel.text = ("+" + (selectedSize.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().sizeTitleLabel.text = selectedSize.modificationName
-            view().sizeStackView.isHidden = false
-        }
-    }
-    var selectedMilk: Modification? {
-        didSet {
-            guard let selectedMilk else  { return }
-            view().milkPriceLabel.text = ("+" + (selectedMilk.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().milkTitleLabel.text = selectedMilk.modificationName
-            view().milkStackView.isHidden = false
-        }
-    }
-    var selectedSyrop: Modification? {
-        didSet {
-            guard let selectedSyrop else  { return }
-            view().syropPriceLabel.text = ("+" + (selectedSyrop.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().syropTitleLabel.text = selectedSyrop.modificationName
-            view().syropStackView.isHidden = false
         }
     }
     var cashbackUsed: Double? {
@@ -76,21 +45,39 @@ class HistoryDetailViewController: UIViewController, ViewSpecificController, @Ma
     }
     
     //MARK: - Actions
-    @IBAction func confirmOrderAction(_ sender: Any) {
-        
+    @IBAction func getCheckAction(_ sender: Any) {
+        guard let fiscalLink = data?.fiscalLink else { return }
+        openViaSafariVC(fiscalLink, from: self)
     }
     
     // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
+        guard let id = data?.id else { return }
+        viewModel.getOrderHistoryDetail(id: id)
     }
     
 }
-
+// MARK: - Networking
+extension HistoryDetailViewController: HistoryViewModelProtocol {
+    func didFinishFetch(data: OrderHistory?) {
+        if let drinkImageUrl = data?.drinkImageUrl {
+            view().imageView.setImage(with: drinkImageUrl)
+        }
+        view().getButton.isHidden = data?.fiscalLink == nil
+        guard let items = data?.items else { return }
+        for i in items.enumerated() {
+            view().stackViews[i.offset].isHidden = false
+            view().titles[i.offset].text = i.element.name
+            view().prices[i.offset].text = ("+" + (i.element.price?.formattedWithCurrency ?? "0"))
+        }
+    }
+}
 // MARK: - Other funcs
 extension HistoryDetailViewController {
     private func appearanceSettings() {
+        viewModel.delegate = self
         navigationController?.navigationBar.prefersLargeTitles = false
     }
 }

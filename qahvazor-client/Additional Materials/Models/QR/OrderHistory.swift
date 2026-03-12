@@ -18,6 +18,8 @@ struct OrderHistory: Codable {
     let productPrice: Double?
     let cashbackEarned: Double?
     let cashbackUsed: Double?
+    let shopIconUrl: String?
+    let drinkImageUrl: String?
     let items: [OrderHistoryItem]?
 }
 

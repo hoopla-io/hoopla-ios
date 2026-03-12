@@ -73,12 +73,12 @@ public class KAPinField : UITextField {
     }
     
     // Mark: - Public vars
-    private (set) var properties = KAPinFieldProperties() {
+    private(set) var properties = KAPinFieldProperties() {
         didSet {
             self.reload()
         }
     }
-    private (set) var appearance = KAPinFieldAppearance() {
+    private(set) var appearance = KAPinFieldAppearance() {
         didSet {
             self.reloadAppearance()
         }

@@ -23,6 +23,7 @@ enum OrderStatus: String {
 
 class OrderHistoryTableViewCell: UITableViewCell {
     //MARK: - Outlets
+    @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.lastLineFillPercent = 100
@@ -48,15 +49,11 @@ class OrderHistoryTableViewCell: UITableViewCell {
             dateLabel.text = DateFormatter.string(timestamp: item.purchasedAtUnix, formatter: .fullDate)
             orderStatusLabel.text = item.orderStatus?.localized
             setStatusColor(item.orderStatus)
+            if let icon = item.shopIconUrl {
+                imgView.setImage(with: icon)
+            }
         }
     }
-    
-    //MARK: - Actions
-//    @IBAction func checkAction(_ sender: UIButton) {
-//        guard let vc = viewController as? QRViewController else { return }
-//        guard let fiscalLink = item?.fiscalLink else { return }
-//        vc.openCheck(item: fiscalLink)
-//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

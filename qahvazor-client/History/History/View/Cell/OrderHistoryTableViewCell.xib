@@ -23,7 +23,7 @@
                         <rect key="frame" x="10" y="10" width="367" height="64"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4BA-2w-Gsa">
-                                <rect key="frame" x="0.0" y="0.0" width="189" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="54.333333333333336" height="64"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CQ7-MI-OIv">
                                         <rect key="frame" x="0.0" y="12" width="40" height="40"/>
@@ -33,10 +33,10 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jT2-rj-i4c">
-                                        <rect key="frame" x="50" y="13" width="139" height="38"/>
+                                        <rect key="frame" x="50" y="13" width="4.3333333333333357" height="38"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe, Cappucino" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOU-mo-5se">
-                                                <rect key="frame" x="0.0" y="0.0" width="139" height="21.666666666666668"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOU-mo-5se">
+                                                <rect key="frame" x="0.0" y="0.0" width="4.333333333333333" height="21.666666666666668"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -47,8 +47,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02-iyun 21:02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Eq-h7-ePi">
-                                                <rect key="frame" x="0.0" y="23.666666666666664" width="139" height="14.333333333333336"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Eq-h7-ePi">
+                                                <rect key="frame" x="0.0" y="23.666666666666664" width="4.333333333333333" height="14.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
@@ -64,13 +64,13 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aRq-jl-X1U">
-                                <rect key="frame" x="254.33333333333329" y="0.0" width="112.66666666666666" height="64"/>
+                                <rect key="frame" x="363" y="0.0" width="4" height="64"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gLI-ze-dzm">
-                                        <rect key="frame" x="0.0" y="14" width="112.66666666666667" height="36"/>
+                                        <rect key="frame" x="0.0" y="14" width="4" height="36"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="- 25 000 so‘m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLn-Aj-hJq">
-                                                <rect key="frame" x="21.666666666666686" y="0.0" width="91" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLn-Aj-hJq">
+                                                <rect key="frame" x="0.0" y="0.0" width="4" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
@@ -80,8 +80,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pending Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7a-nW-F4i">
-                                                <rect key="frame" x="0.0" y="19" width="112.66666666666667" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7a-nW-F4i">
+                                                <rect key="frame" x="0.0" y="19" width="4" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" name="orange"/>
                                                 <nil key="highlightedColor"/>
@@ -120,6 +120,7 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="dateLabel" destination="1Eq-h7-ePi" id="tM8-ek-cvM"/>
+                <outlet property="imgView" destination="CQ7-MI-OIv" id="mam-K2-WgG"/>
                 <outlet property="orderStatusLabel" destination="U7a-nW-F4i" id="Tvc-Gi-Vj4"/>
                 <outlet property="priceLabel" destination="yLn-Aj-hJq" id="xwi-Xu-L6h"/>
                 <outlet property="titleLabel" destination="jOU-mo-5se" id="u14-hW-8Vw"/>

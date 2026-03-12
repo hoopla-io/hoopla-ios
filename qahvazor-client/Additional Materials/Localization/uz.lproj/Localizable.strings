@@ -180,3 +180,5 @@ cashbeck = "Keshbek";
 useCashbeck = "Keshbekdan foydalanish";
 cashNote = "gacha bo'lgan pulni keshbekka ishlatishingiz mumkin";
 use = "Foydalanish";
+earnedCashback = "To'plangan keshbek";
+getReceipt = "Chekni olish";

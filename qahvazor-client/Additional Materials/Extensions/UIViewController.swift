@@ -162,15 +162,6 @@ extension UIViewController {
     }
 }
 
-extension UIViewController {
-    var navigationBarHeight: CGFloat {
-        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-        let statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        return (statusBarHeight) +
-            (self.navigationController?.navigationBar.frame.height ?? 0.0)
-    }
-}
-
 
 extension UIViewController {
     func openViaSafariVC(_ urlString: String, from vc: UIViewController) {

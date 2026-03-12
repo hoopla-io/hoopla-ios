@@ -21,7 +21,6 @@ final class HighlightButton: UIButton {
     }
     
     func appearanceSettings() {
-        self.adjustsImageWhenHighlighted = false
         self.layer.cornerCurve = .continuous
         guard let textColor = normalTextColor else { return }
         self.setTitleColor(textColor, for: .normal)
