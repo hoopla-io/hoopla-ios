@@ -21,7 +21,9 @@ class HistoryViewController: UIViewController, ViewSpecificController, @MainActo
     var dataProvider: HistoryDataProvider?
     var appDeactiveTime = Double()
     var durationInDeactive = Double()
-    
+    var totalItems = 0
+    var currentPage = 1
+
     // MARK: - Actions
     @IBAction func authAction() {
         tabBarController?.selectedIndex = 3
@@ -31,10 +33,7 @@ class HistoryViewController: UIViewController, ViewSpecificController, @MainActo
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         if UserDefaults.standard.isAuthed() {
             viewModel.getOrderHistoryList()
         }
@@ -43,13 +42,16 @@ class HistoryViewController: UIViewController, ViewSpecificController, @MainActo
 }
 // MARK: - Networking
 extension HistoryViewController: HistoryViewModelProtocol {
-    func didFinishFetch(data: [OrderHistory]?) {
-        if let data {
+    func didFinishFetch(data: [OrderHistory], meta: Meta?) {
+        if currentPage == 1 {
             dataProvider?.items = data
         } else {
-            dataProvider?.items.removeAll()
+            dataProvider?.items += data
         }
         view().tableView.checkEmpty(items: dataProvider?.items, type: .history)
+        
+        guard let totalItems = meta?.totalItems else { return }
+        self.totalItems = totalItems
     }
 }
 
@@ -72,6 +74,7 @@ extension HistoryViewController {
     }
     
     @objc func handleRefreshControl(sender: UIRefreshControl? = nil) {
+        currentPage = 1
         viewModel.getOrderHistoryList()
         
         DispatchQueue.main.async {

@@ -8,13 +8,15 @@
 import UIKit
 
 protocol HistoryViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(data: [OrderHistory]?)
+    func didFinishFetch(data: [OrderHistory], meta: Meta?)
     func didFinishFetch(data: OrderHistory?)
+    func didFinishFetchCancel()
 }
 
 extension HistoryViewModelProtocol {
-    func didFinishFetch(data: [OrderHistory]?) {}
+    func didFinishFetch(data: [OrderHistory], meta: Meta?) {}
     func didFinishFetch(data: OrderHistory?) {}
+    func didFinishFetchCancel() {}
 }
 
 final class HistoryViewModel {
@@ -22,10 +24,14 @@ final class HistoryViewModel {
     weak var delegate: HistoryViewModelProtocol?
     
     // MARK: - Network call
-    func getOrderHistoryList() {
+    func getOrderHistoryList(page: Int = 1, itemsPerPage: Int = 16) {
+        let params: [String : String] = [
+            Parameters.page.rawValue : String(page),
+            Parameters.itemsPerPage.rawValue : String(itemsPerPage)
+        ]
         
         Task { [weak self] in
-            await JSONDownloader.shared.jsonTask(url: EndPoints.ordersList.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.ordersList.rawValue, requestMethod: .get, parameters: params, completionHandler: { [weak self]  (result) in
                 guard let self = self else { return }
                 switch result {
                 case .Error(let error, let message):
@@ -33,7 +39,8 @@ final class HistoryViewModel {
                 case .Success(let json):
                     do {
                         let fetchedData = try CustomDecoder().decode(JSONData<[OrderHistory]>.self, from: json)
-                        self.delegate?.didFinishFetch(data: fetchedData.data)
+                        guard let data = fetchedData.data else { return }
+                        self.delegate?.didFinishFetch(data: data, meta: fetchedData.meta)
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }
@@ -59,6 +66,23 @@ final class HistoryViewModel {
                         print("❌ JSON Decoding Error: \(error)")
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }
+                }
+                self.delegate?.hideActivityIndicator()
+            })
+        }
+    }
+    
+    func cancelOrder(id: Int) {
+        let url = "\(EndPoints.orders.rawValue)/\(id)/cancel"
+        delegate?.showActivityIndicator()
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: url, requestMethod: .post, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(_):
+                    self.delegate?.didFinishFetchCancel()
                 }
                 self.delegate?.hideActivityIndicator()
             })

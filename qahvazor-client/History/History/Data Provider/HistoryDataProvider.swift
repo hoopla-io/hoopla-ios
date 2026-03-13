@@ -57,6 +57,14 @@ final class HistoryDataProvider: NSObject, UITableViewDataSource, UITableViewDel
         guard let vc = viewController as? HistoryViewController else { return }
         vc.coordinator?.pushToHistoryDetailVC(item: items[indexPath.row])
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let vc = viewController as? HistoryViewController else { return }
+        if indexPath.row == items.count - 1 && vc.totalItems > items.count {
+            vc.currentPage += 1
+            vc.viewModel.getOrderHistoryList(page: vc.currentPage)
+        }
+    }
 }
 
 //MARK: - SkeletonTableViewDataDource

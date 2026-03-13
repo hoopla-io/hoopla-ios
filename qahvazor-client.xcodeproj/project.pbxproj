@@ -54,6 +54,7 @@
 		52AD94F82F6139B000F9021E /* HistoryDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52AD94F72F6139B000F9021E /* HistoryDetailView.xib */; };
 		52AD94F92F6139B000F9021E /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AD94F62F6139B000F9021E /* HistoryDetailView.swift */; };
 		52AD94FB2F6139B400F9021E /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AD94FA2F6139B400F9021E /* HistoryDetailViewController.swift */; };
+		52CCBEBC2F63E98B007797CC /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CCBEBB2F63E98B007797CC /* OrderStatus.swift */; };
 		7503929C2D40BA040010646F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503929B2D40BA040010646F /* SearchView.swift */; };
 		7503929E2D40BA090010646F /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7503929D2D40BA090010646F /* SearchView.xib */; };
 		750392A02D40BA100010646F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503929F2D40BA100010646F /* SearchViewController.swift */; };
@@ -290,6 +291,7 @@
 		52AD94F62F6139B000F9021E /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
 		52AD94F72F6139B000F9021E /* HistoryDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryDetailView.xib; sourceTree = "<group>"; };
 		52AD94FA2F6139B400F9021E /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
+		52CCBEBB2F63E98B007797CC /* OrderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatus.swift; sourceTree = "<group>"; };
 		7503929B2D40BA040010646F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		7503929D2D40BA090010646F /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		7503929F2D40BA100010646F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -983,7 +985,7 @@
 			isa = PBXGroup;
 			children = (
 				7596B51C2D1D6A040070A5BB /* Main */,
-				75BB44832D3129650000C64A /* QR */,
+				75BB44832D3129650000C64A /* History */,
 				75DCE38A2D1C2A8B003A59CD /* Profile */,
 				75DCE36B2D1ABBED003A59CD /* Language.swift */,
 			);
@@ -1609,14 +1611,15 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
-		75BB44832D3129650000C64A /* QR */ = {
+		75BB44832D3129650000C64A /* History */ = {
 			isa = PBXGroup;
 			children = (
 				75BB44842D31296F0000C64A /* QR.swift */,
 				75422B092D33ACC400B83C42 /* OrderHistory.swift */,
 				753533FE2DE5BB6F00C45CDC /* Limit.swift */,
+				52CCBEBB2F63E98B007797CC /* OrderStatus.swift */,
 			);
-			path = QR;
+			path = History;
 			sourceTree = "<group>";
 		};
 		75CBFADC2D785B6E003E9102 /* Payment */ = {
@@ -2021,6 +2024,7 @@
 				05B84C322EAE0BA700AB66B2 /* NotificationsDetailViewModel.swift in Sources */,
 				05B84C332EAE0BA700AB66B2 /* NotificationsCollectionViewCell.swift in Sources */,
 				05B84C342EAE0BA700AB66B2 /* NotificationsViewController.swift in Sources */,
+				52CCBEBC2F63E98B007797CC /* OrderStatus.swift in Sources */,
 				05B84C352EAE0BA700AB66B2 /* NotificationsDetailView.swift in Sources */,
 				752330CD2D197B210090997E /* UIApplication.swift in Sources */,
 				75705CE12D2FD9EB00DA3AA4 /* ShopDetailViewModel.swift in Sources */,
@@ -2200,7 +2204,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -2214,7 +2218,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2234,7 +2238,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -2248,7 +2252,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.7;
+				MARKETING_VERSION = 1.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

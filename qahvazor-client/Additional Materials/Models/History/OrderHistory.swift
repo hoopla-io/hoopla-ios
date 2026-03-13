@@ -20,6 +20,7 @@ struct OrderHistory: Codable {
     let cashbackUsed: Double?
     let shopIconUrl: String?
     let drinkImageUrl: String?
+    let checkoutUrl: String?
     let items: [OrderHistoryItem]?
 }
 

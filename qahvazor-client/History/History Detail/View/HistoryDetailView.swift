@@ -13,6 +13,7 @@ final class HistoryDetailView: CustomView {
     @IBOutlet weak var shopLabel: UILabel!
     @IBOutlet weak var drinkTitleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var statusLabel: UILabel!
     
     @IBOutlet weak var drinkLabel: UILabel!
     @IBOutlet weak var drinkPriceLabel: UILabel!
@@ -39,6 +40,43 @@ final class HistoryDetailView: CustomView {
                 config.imagePadding = 10
                 getButton.configuration = config
             }
+            getButton.isHidden = true
+        }
+    }
+    @IBOutlet weak var cancelledButton: UIButton! {
+        didSet {
+            if #available(iOS 26.0, *) {
+                var config: UIButton.Configuration
+                config = .clearGlass()
+                config.baseForegroundColor = .main
+                config.cornerStyle = .large
+                config.imagePadding = 10
+                cancelledButton.configuration = config
+            }
+            cancelledButton.isHidden = true
+        }
+    }
+    @IBOutlet weak var continuePaymentButton: UIButton! {
+        didSet {
+            if #available(iOS 26.0, *) {
+                var config: UIButton.Configuration
+                config = .clearGlass()
+                config.baseForegroundColor = .appColor(.orange)
+                config.cornerStyle = .large
+                config.imagePadding = 10
+                continuePaymentButton.configuration = config
+            }
+            continuePaymentButton.isHidden = true
+        }
+    }
+    @IBOutlet weak var completedButtonInfo: UIButton! {
+        didSet {
+            completedButtonInfo.isHidden = true
+        }
+    }
+    @IBOutlet weak var cancelledButtonInfo: UIButton! {
+        didSet {
+            cancelledButtonInfo.isHidden = true
         }
     }
 }

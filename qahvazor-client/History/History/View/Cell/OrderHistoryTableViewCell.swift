@@ -8,19 +8,6 @@
 import UIKit
 import SkeletonView
 
-enum OrderStatus: String {
-    case pending
-    case created
-    case preparing
-    case cancelled
-    case completed
-    case pending_payment
-    case error
-    case payment_expired
-    case payment_failed
-    case paid
-}
-
 class OrderHistoryTableViewCell: UITableViewCell {
     //MARK: - Outlets
     @IBOutlet weak var imgView: UIImageView!
@@ -77,12 +64,13 @@ class OrderHistoryTableViewCell: UITableViewCell {
         case .cancelled:
             orderStatusLabel.textColor = .appColor(.red)
         case .created:
-            orderStatusLabel.textColor = .lightGray
+            orderStatusLabel.textColor = .gray
         case .completed:
-            orderStatusLabel.textColor = .appColor(.green)
-            orderStatusLabel.text = "+ \(item?.cashbackEarned?.formattedWithCurrency ?? "0")"
+            let cashback = item?.cashbackEarned ?? 0
+            orderStatusLabel.textColor = cashback == 0 ? .gray : .appColor(.green)
+            orderStatusLabel.text = "+ \(cashback.formattedWithCurrency)"
         default:
-            orderStatusLabel.textColor = .lightGray
+            orderStatusLabel.textColor = .gray
         }
     }
 }
