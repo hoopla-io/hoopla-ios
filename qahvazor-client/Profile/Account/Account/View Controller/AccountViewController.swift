@@ -6,7 +6,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, ViewSpecificController, AlertViewController {
+class AccountViewController: UIViewController, ViewSpecificController, @MainActor AlertViewController {
     // MARK: - Root View
     typealias RootView = AccountView
 

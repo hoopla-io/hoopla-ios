@@ -33,7 +33,11 @@ final class ProfileView: CustomView {
         }
     }
     
-    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var versionLabel: UILabel! {
+        didSet {
+            versionLabel.isUserInteractionEnabled = true
+        }
+    }
     @IBOutlet var buttons: [UIButton]! {
         didSet {
             buttons.forEach { $0.setRightImage(image: UIImage(systemName: "chevron.right") ?? UIImage())}

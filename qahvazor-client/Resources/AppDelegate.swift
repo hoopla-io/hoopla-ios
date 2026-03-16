@@ -24,8 +24,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
         IQKeyboardManager.shared.enable = true
         locationManager.requestLocationPermission()
+        setupWormholy()
         
         return true
+    }
+    
+    func setupWormholy() {
+        Wormholy.applicationDidFinishLaunching()
+        // Ensure Wormholy intercepts Alamofire's default Session as well
+        Wormholy.setEnabled(true, sessionConfiguration: URLSessionConfiguration.af.default)
+        if UserDefaults.standard.bool(forKey: "is_log_enabled")
+        {
+            Wormholy.shakeEnabled = true
+        } else {
+            Wormholy.shakeEnabled = false
+        }
     }
     
     // MARK: UISceneSession Lifecycle

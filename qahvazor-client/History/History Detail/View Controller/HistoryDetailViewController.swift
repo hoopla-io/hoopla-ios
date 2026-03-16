@@ -37,6 +37,9 @@ class HistoryDetailViewController: UIViewController, ViewSpecificController, @Ma
         didSet {
             view().shopLabel.text = data?.shopName
             view().drinkTitleLabel.text = data?.drinkName
+            if let id = data?.id {
+                view().drinkTitleLabel.text! += " №\(id)"
+            }
             totalPrice = data?.productPrice ?? 0.0
             cashbackEarned = data?.cashbackEarned
             cashbackUsed = data?.cashbackUsed

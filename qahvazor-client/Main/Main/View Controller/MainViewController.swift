@@ -8,7 +8,7 @@
 import UIKit
 import Haptica
 
-class MainViewController: UIViewController, ViewSpecificController, AlertViewController {
+class MainViewController: UIViewController, ViewSpecificController, @MainActor AlertViewController {
     // MARK: - Root View
     typealias RootView = MainView
 
@@ -22,7 +22,6 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
     
     // MARK: - Attributes
     var dataProvider: MainDataProvider?
-    var rewardDataProvider: RewardDataProvider?
     let locationAccessContainerView = UIView()
     
     //MARK: - Actions
@@ -53,10 +52,6 @@ class MainViewController: UIViewController, ViewSpecificController, AlertViewCon
 }
 // MARK: - Networking
 extension MainViewController: MainViewModelProtocol {
-    func didFinishFetch(data: [Loyalty]) {
-        rewardDataProvider?.items = data
-    }
-    
     func didFinishFetch(data: [Shop]) {
         dataProvider?.items = data
         ShopDataCache.shops = data
@@ -79,10 +74,6 @@ extension MainViewController {
 
         setupSearchBar()
         setupNavigationBar()
-        
-        let rewardDataProvider = RewardDataProvider(viewController: self)
-        rewardDataProvider.collectionView = view().rewardsCollectionView
-        self.rewardDataProvider = rewardDataProvider
         
         let dataProvider = MainDataProvider(viewController: self)
         dataProvider.collectionView = view().shopCollectionView
@@ -109,9 +100,6 @@ extension MainViewController {
     
     @objc func refresh(sender: UIRefreshControl? = nil) {
         viewModel.getList()
-        if UserDefaults.standard.isAuthed() {
-            viewModel.getLoyaltyCardList()
-        }
         locationManager.requestLocationPermission()
         
         DispatchQueue.main.async {

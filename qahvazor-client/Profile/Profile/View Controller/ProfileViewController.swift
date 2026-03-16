@@ -8,7 +8,7 @@
 import UIKit
 import Haptica
 
-class ProfileViewController: TextFieldViewController, ViewSpecificController, AlertViewController {
+class ProfileViewController: TextFieldViewController, ViewSpecificController, @MainActor AlertViewController {
     // MARK: - Root View
     typealias RootView = ProfileView
 
@@ -138,6 +138,8 @@ extension ProfileViewController {
         
         let paymentTap = UITapGestureRecognizer(target: self, action: #selector(paymentTapped))
         view().paymentView.addGestureRecognizer(paymentTap)
+        
+        setupApiDebugger()
     }
     
     private func checkAuth() {
@@ -189,3 +191,60 @@ extension ProfileViewController: TabBarReselectHandling {
     }
 }
 
+//MARK: - Set Wormholy
+extension ProfileViewController {
+    func setupApiDebugger() {
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
+            longPress.minimumPressDuration = 3.0
+        view().versionLabel.addGestureRecognizer(longPress)
+    }
+    
+    @objc func didLongPress(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            // 2 sekund bosib turganda shu joy ishga tushadi
+            didTapAlert()
+        }
+    }
+    
+    func didTapAlert() {
+        // 1. Alert yaratamiz
+        let alert = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .alert
+        )
+        
+        let option1 = UIAlertAction(title: "Turn ON", style: .default) { _ in
+            self.handleAlertSelection(option: 1)
+        }
+        
+        let option2 = UIAlertAction(title: "Turn OFF", style: .default) { _ in
+            self.handleAlertSelection(option: 2)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(option1)
+        alert.addAction(option2)
+        alert.addAction(cancel)
+        
+        // 4. Alertni ko‘rsatamiz
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func handleAlertSelection(option: Int) {
+        switch option {
+        case 1:
+            Wormholy.shakeEnabled = true
+            UserDefaults.standard.set(true,
+                                      forKey: "is_log_enabled")
+        case 2:
+            Wormholy.shakeEnabled = false
+            UserDefaults.standard.set(false,
+                                      forKey: "is_log_enabled")
+            UserDefaults.standard.synchronize()
+        default:
+            break
+        }
+    }
+}

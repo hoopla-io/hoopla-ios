@@ -42,6 +42,13 @@ actor JSONDownloader {
         isRetrying = to
     }
     
+    // Dedicated Alamofire Session configured to work with Wormholy
+    private let session: Alamofire.Session = {
+        let configuration = URLSessionConfiguration.af.default
+        Wormholy.setEnabled(true, sessionConfiguration: configuration)
+        return Alamofire.Session(configuration: configuration)
+    }()
+    
     func jsonTask(baseUrl: MainConstants = .host, api: MainConstants = .api , path: MainConstants = .path1, url: String, query: String? = nil, requestMethod: HTTPMethod, parameters: [String : Any]? = nil, completionHandler completion: @escaping JSONTaskCompletionHandler) {
         
         // Set Components
@@ -72,7 +79,7 @@ actor JSONDownloader {
             encoding = JSONEncoding.default
         }
         
-        AF.request(URL, method: requestMethod, parameters: params, encoding: encoding, headers: headers, interceptor: self).customValidate().responseData(queue: DispatchQueue.global(qos: .background)) { result in
+        session.request(URL, method: requestMethod, parameters: params, encoding: encoding, headers: headers, interceptor: self).customValidate().responseData(queue: DispatchQueue.global(qos: .background)) { result in
             guard let httpResponse = result.response else {
                 DispatchQueue.main.async {
                     completion(.Error(.requestFailed))

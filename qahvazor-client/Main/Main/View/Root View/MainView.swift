@@ -10,16 +10,6 @@ import UIKit
 final class MainView: CustomView {
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var rewardsStackView: UIStackView! {
-        didSet {
-            rewardsStackView.isHidden = true
-        }
-    }
-    @IBOutlet weak var rewardsCollectionView: UICollectionView! {
-        didSet {
-            rewardsCollectionView.register(UINib(nibName: RewardsCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: RewardsCollectionViewCell.defaultReuseIdentifier)
-        }
-    }
     @IBOutlet weak var shopCollectionView: UICollectionView! {
         didSet {
             shopCollectionView.register(UINib(nibName: CompanyCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier)

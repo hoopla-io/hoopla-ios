@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -24,47 +24,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="h98-Sy-cId">
-                            <rect key="frame" x="0.0" y="10" width="393" height="1208"/>
+                            <rect key="frame" x="0.0" y="10" width="393" height="1034"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iZU-Rx-gPs">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="144"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vIG-ja-GPZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXe-om-jYu">
-                                                    <rect key="frame" x="16" y="0.0" width="361" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="myRewards"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gXe-om-jYu" firstAttribute="leading" secondItem="vIG-ja-GPZ" secondAttribute="leading" constant="16" id="3dA-hA-xrH"/>
-                                            </constraints>
-                                        </stackView>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="7HX-xd-WS7">
-                                            <rect key="frame" x="0.0" y="34" width="393" height="110"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="110" id="ivb-0y-l7P"/>
-                                            </constraints>
-                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7fo-iL-chC">
-                                                <size key="itemSize" width="128" height="128"/>
-                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
-                                            </collectionViewFlowLayout>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </collectionView>
-                                    </subviews>
-                                </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pts-DI-9ek">
-                                    <rect key="frame" x="0.0" y="174" width="393" height="1034"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="1034"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EN6-S0-NDT">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
@@ -149,8 +112,6 @@
             <connections>
                 <outlet property="cameraButton" destination="qGI-9g-9sH" id="Z31-q4-Ekr"/>
                 <outlet property="collectionViewHeight" destination="8p6-Id-yWF" id="eOB-u8-0UR"/>
-                <outlet property="rewardsCollectionView" destination="7HX-xd-WS7" id="rMQ-5O-Qzu"/>
-                <outlet property="rewardsStackView" destination="iZU-Rx-gPs" id="li4-Fj-Y5r"/>
                 <outlet property="scrollView" destination="ce6-hp-oHt" id="4mz-eX-ldY"/>
                 <outlet property="shopCollectionView" destination="dgT-2d-K8b" id="y1o-4g-VlZ"/>
             </connections>
