@@ -188,3 +188,4 @@ cancelOrder = "Cancel order";
 continuePayment = "Continue payment";
 cancelOrderMessage = "Do you want to cancel your order?";
 keep = "Keep";
+orderNumber = "Order number";

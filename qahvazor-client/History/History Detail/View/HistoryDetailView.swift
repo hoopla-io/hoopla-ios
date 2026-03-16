@@ -18,6 +18,8 @@ final class HistoryDetailView: CustomView {
     @IBOutlet weak var drinkLabel: UILabel!
     @IBOutlet weak var drinkPriceLabel: UILabel!
     
+    @IBOutlet weak var idLabel: UILabel!
+    
     @IBOutlet var titles: [UILabel]!
     @IBOutlet var prices: [UILabel]!
     @IBOutlet var stackViews: [UIStackView]! {

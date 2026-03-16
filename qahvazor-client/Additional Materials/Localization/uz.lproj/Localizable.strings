@@ -188,3 +188,4 @@ cancelOrder = "Buyurtmani bekor qilish";
 continuePayment = "To‘lovni davom ettirish";
 cancelOrderMessage = "Buyurtmani bekor qilmoqchimisiz?";
 keep = "Saqlash";
+orderNumber = "Buyurtma raqami";

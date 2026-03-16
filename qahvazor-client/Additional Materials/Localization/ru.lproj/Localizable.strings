@@ -188,3 +188,4 @@ cancelOrder = "Отменить заказ";
 continuePayment = "Продолжить оплату";
 cancelOrderMessage = "Вы хотите отменить заказ?";
 keep = "Оставить";
+orderNumber = "Номер заказа";
