@@ -111,19 +111,31 @@ final class MainCoordinator: Coordinator {
             sheet.preferredCornerRadius = 16
             sheet.prefersGrabberVisible = true
             
-            if #available(iOS 16.0, *) {
-                let smallId = UISheetPresentationController.Detent.Identifier("current")
-                let small = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
-                    return context.maximumDetentValue * 0.4
-                }
-                sheet.detents = [small]
-                sheet.selectedDetentIdentifier = smallId
-                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-            } else {
-                sheet.detents = [.medium()]
-                sheet.selectedDetentIdentifier = .medium
+            let smallId = UISheetPresentationController.Detent.Identifier("current")
+            let small = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
+                return context.maximumDetentValue * 0.4
             }
+            sheet.detents = [small]
+            sheet.selectedDetentIdentifier = smallId
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
         }
         navigationController.present(vc, animated: true)
+    }
+    
+    func presentReviewVC(from viewController: UIViewController, data: OrderHistory) {
+        let vc = ReviewViewController()
+        vc.data = data
+        if let sheet = vc.sheetPresentationController {
+            sheet.preferredCornerRadius = 16
+            sheet.prefersGrabberVisible = true
+            
+            let reviewId = UISheetPresentationController.Detent.Identifier("review")
+            let reviewDetent = UISheetPresentationController.Detent.custom(identifier: reviewId) { context in
+                return context.maximumDetentValue * 0.75
+            }
+            sheet.detents = [reviewDetent, .large()]
+            sheet.selectedDetentIdentifier = reviewId
+        }
+        viewController.present(vc, animated: true)
     }
 }

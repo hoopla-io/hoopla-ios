@@ -29,6 +29,8 @@ enum Parameters: String {
     case use_cashback = "use_cashback"
     case cashback_amount = "cashback_amount"
     case order_id = "order_id"
+    case rating = "rating"
+    case comment = "comment"
     
     // MARK: - Profile
     case phoneNumber = "phoneNumber"

@@ -28,6 +28,11 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     @IBAction func scannerAction(_ sender: Any) {
         coordinator?.pushToScannerVC(viewController: self)
     }
+    
+    @IBAction func reviewAction(_ sender: Any) {
+//        guard let data = data else { return }
+//        coordinator.presentReviewVC(from: self, data: data)
+    }
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()

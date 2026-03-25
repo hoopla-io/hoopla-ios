@@ -9,7 +9,7 @@ import UIKit
 
 final class LaunchScreenView: CustomView {
     override func setupBackgroundColor() {
-        backgroundColor = .appColor(.mainColor)
+        backgroundColor = .main
     }
 }
 

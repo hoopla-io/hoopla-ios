@@ -15,8 +15,6 @@
 		054A423F2F49CCC30030BA23 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054A423E2F49CCC30030BA23 /* CheckoutViewModel.swift */; };
 		054A42412F49F8BD0030BA23 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054A42402F49F8BD0030BA23 /* Checkout.swift */; };
 		056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */; };
-		0571FFD02EB76B1D0011B81D /* RewardsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */; };
-		0571FFD12EB76B1D0011B81D /* RewardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */; };
 		0571FFD72EB7765C0011B81D /* Loyalty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFD62EB7765C0011B81D /* Loyalty.swift */; };
 		05736B572EC08BC6003ADEF0 /* ChangeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736B4A2EC08BC6003ADEF0 /* ChangeInfoView.swift */; };
 		05736B582EC08BC6003ADEF0 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736B502EC08BC6003ADEF0 /* BirthViewController.swift */; };
@@ -80,6 +78,9 @@
 		52787F2C2F67D7AC0032DC5B /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52787F002F67D7AC0032DC5B /* RequestsView.swift */; };
 		52787F2D2F67D7AC0032DC5B /* BodyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52787EFE2F67D7AC0032DC5B /* BodyDetailView.swift */; };
 		52787F2E2F67D7AC0032DC5B /* CustomHTTPProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52787F092F67D7AC0032DC5B /* CustomHTTPProtocol.swift */; };
+		528AD1ED2F73F3FF0050ABBF /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528AD1EC2F73F3FF0050ABBF /* ReviewView.swift */; };
+		528AD1EF2F73F4170050ABBF /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528AD1EE2F73F4170050ABBF /* ReviewViewController.swift */; };
+		528AD1F22F740CCC0050ABBF /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528AD1F12F740CCC0050ABBF /* ReviewViewModel.swift */; };
 		52AD94F82F6139B000F9021E /* HistoryDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52AD94F72F6139B000F9021E /* HistoryDetailView.xib */; };
 		52AD94F92F6139B000F9021E /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AD94F62F6139B000F9021E /* HistoryDetailView.swift */; };
 		52AD94FB2F6139B400F9021E /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AD94FA2F6139B400F9021E /* HistoryDetailViewController.swift */; };
@@ -111,7 +112,6 @@
 		752330D32D197B210090997E /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330A22D197B210090997E /* UITextField.swift */; };
 		752330D42D197B210090997E /* CustomDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7523309C2D197B210090997E /* CustomDecoder.swift */; };
 		752330D52D197B210090997E /* URLComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330B12D197B210090997E /* URLComponents.swift */; };
-		752330D62D197B210090997E /* HighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330962D197B210090997E /* HighlightButton.swift */; };
 		752330D72D197B210090997E /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7523309E2D197B210090997E /* CustomView.swift */; };
 		752330D82D197B210090997E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330972D197B210090997E /* GradientView.swift */; };
 		752330D92D197B210090997E /* AlertViewTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330802D197B210090997E /* AlertViewTexts.swift */; };
@@ -281,8 +281,6 @@
 		054A423E2F49CCC30030BA23 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
 		054A42402F49F8BD0030BA23 /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
 		056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsCollectionViewCell.swift; sourceTree = "<group>"; };
-		0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RewardsCollectionViewCell.xib; sourceTree = "<group>"; };
 		0571FFD62EB7765C0011B81D /* Loyalty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loyalty.swift; sourceTree = "<group>"; };
 		05736B482EC08BC6003ADEF0 /* ChangeInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeInfoViewController.swift; sourceTree = "<group>"; };
 		05736B4A2EC08BC6003ADEF0 /* ChangeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeInfoView.swift; sourceTree = "<group>"; };
@@ -346,6 +344,9 @@
 		52787F0B2F67D7AC0032DC5B /* Wormholy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wormholy.swift; sourceTree = "<group>"; };
 		52787F0E2F67D7AC0032DC5B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		52787F0F2F67D7AC0032DC5B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		528AD1EC2F73F3FF0050ABBF /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		528AD1EE2F73F4170050ABBF /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		528AD1F12F740CCC0050ABBF /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		52AD94F62F6139B000F9021E /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
 		52AD94F72F6139B000F9021E /* HistoryDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryDetailView.xib; sourceTree = "<group>"; };
 		52AD94FA2F6139B400F9021E /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -384,7 +385,6 @@
 		752330922D197B210090997E /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		752330942D197B210090997E /* KAPinField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KAPinField.swift; sourceTree = "<group>"; };
 		752330952D197B210090997E /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
-		752330962D197B210090997E /* HighlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightButton.swift; sourceTree = "<group>"; };
 		752330972D197B210090997E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		752330982D197B210090997E /* TextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewController.swift; sourceTree = "<group>"; };
 		752330992D197B210090997E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -622,15 +622,6 @@
 				054A423E2F49CCC30030BA23 /* CheckoutViewModel.swift */,
 			);
 			path = "View Model";
-			sourceTree = "<group>";
-		};
-		0571FFCC2EB76AF80011B81D /* Reward */ = {
-			isa = PBXGroup;
-			children = (
-				0571FFCE2EB76B1D0011B81D /* RewardsCollectionViewCell.swift */,
-				0571FFCF2EB76B1D0011B81D /* RewardsCollectionViewCell.xib */,
-			);
-			path = Reward;
 			sourceTree = "<group>";
 		};
 		0571FFCD2EB76AFF0011B81D /* Shop */ = {
@@ -1032,6 +1023,40 @@
 			path = Wormholy;
 			sourceTree = "<group>";
 		};
+		528AD1E92F73F3D20050ABBF /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				528AD1EA2F73F3D70050ABBF /* View Controller */,
+				528AD1EB2F73F3D70050ABBF /* View */,
+				528AD1F02F740CBA0050ABBF /* View Model */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		528AD1EA2F73F3D70050ABBF /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				528AD1EE2F73F4170050ABBF /* ReviewViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		528AD1EB2F73F3D70050ABBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				528AD1EC2F73F3FF0050ABBF /* ReviewView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		528AD1F02F740CBA0050ABBF /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				528AD1F12F740CCC0050ABBF /* ReviewViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		52AD94F32F61390A00F9021E /* History Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1213,7 +1238,6 @@
 				750392A42D40C1930010646F /* Empty View */,
 				752330942D197B210090997E /* KAPinField.swift */,
 				752330952D197B210090997E /* CustomCollectionViewCell.swift */,
-				752330962D197B210090997E /* HighlightButton.swift */,
 				752330972D197B210090997E /* GradientView.swift */,
 				752330982D197B210090997E /* TextFieldViewController.swift */,
 				752330992D197B210090997E /* CustomTextField.swift */,
@@ -1318,6 +1342,7 @@
 				752331342D198B9E0090997E /* HistoryCoordinator.swift */,
 				75BB44772D30F6B00000C64A /* History */,
 				52AD94F32F61390A00F9021E /* History Detail */,
+				528AD1E92F73F3D20050ABBF /* Review */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -1606,7 +1631,6 @@
 		75955BCB2D1D6D7300F4DD80 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				0571FFCC2EB76AF80011B81D /* Reward */,
 				0571FFCD2EB76AFF0011B81D /* Shop */,
 			);
 			path = Cell;
@@ -2151,7 +2175,6 @@
 				750392A82D40C1AD0010646F /* EmptyView.xib in Resources */,
 				05B84C2B2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib in Resources */,
 				05B84C2C2EAE0BA700AB66B2 /* NotificationsView.xib in Resources */,
-				0571FFD02EB76B1D0011B81D /* RewardsCollectionViewCell.xib in Resources */,
 				05B84C2D2EAE0BA700AB66B2 /* NotificationsDetailView.xib in Resources */,
 				7582AD852D32860700FF1ECF /* SubscriptionCollectionViewCell.xib in Resources */,
 				75CBFAE32D785B9C003E9102 /* PaymentView.xib in Resources */,
@@ -2212,7 +2235,6 @@
 				752330CF2D197B210090997E /* UILabel.swift in Sources */,
 				75DCE3992D1C3195003A59CD /* CodeConfirmViewController.swift in Sources */,
 				7535D11C2D3B8C620016C489 /* UISearchBar.swift in Sources */,
-				0571FFD12EB76B1D0011B81D /* RewardsCollectionViewCell.swift in Sources */,
 				752331992D1A90AD0090997E /* LaunchScreenView.swift in Sources */,
 				752331902D1A8D440090997E /* FullOnboardingViewController.swift in Sources */,
 				752330D02D197B210090997E /* CustomSpinnerView.swift in Sources */,
@@ -2223,6 +2245,7 @@
 				752330D12D197B210090997E /* UIWindow.swift in Sources */,
 				52AD94F92F6139B000F9021E /* HistoryDetailView.swift in Sources */,
 				75DCE36C2D1ABBED003A59CD /* Language.swift in Sources */,
+				528AD1F22F740CCC0050ABBF /* ReviewViewModel.swift in Sources */,
 				7582AD842D32860700FF1ECF /* SubscriptionCollectionViewCell.swift in Sources */,
 				752330D22D197B210090997E /* TextFieldViewController.swift in Sources */,
 				752330D32D197B210090997E /* UITextField.swift in Sources */,
@@ -2233,7 +2256,6 @@
 				052E9AA62EB7A754002A9F61 /* AccountViewModel.swift in Sources */,
 				056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */,
 				752330D52D197B210090997E /* URLComponents.swift in Sources */,
-				752330D62D197B210090997E /* HighlightButton.swift in Sources */,
 				752330D72D197B210090997E /* CustomView.swift in Sources */,
 				752330D82D197B210090997E /* GradientView.swift in Sources */,
 				752330D92D197B210090997E /* AlertViewTexts.swift in Sources */,
@@ -2336,8 +2358,10 @@
 				752331922D1A8E800090997E /* CircularProgressBar.swift in Sources */,
 				7582AD872D3287FD00FF1ECF /* Subscription.swift in Sources */,
 				752330F62D197B210090997E /* CustomTextField.swift in Sources */,
+				528AD1EF2F73F4170050ABBF /* ReviewViewController.swift in Sources */,
 				752330F72D197B210090997E /* KAPinField.swift in Sources */,
 				752330F82D197B210090997E /* BaseView.swift in Sources */,
+				528AD1ED2F73F3FF0050ABBF /* ReviewView.swift in Sources */,
 				75BB447E2D30F6EB0000C64A /* HistoryView.swift in Sources */,
 				752331312D19834B0090997E /* TabBarController.swift in Sources */,
 				7582AD7F2D3283E300FF1ECF /* SubscriptionDataProvider.swift in Sources */,
@@ -2417,7 +2441,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2451,7 +2475,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

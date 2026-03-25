@@ -17,7 +17,7 @@ class CircularProgressView: UIView {
         makeCircularPath()
     }
     
-    var progressClr = UIColor.appColor(.mainColor) {
+    var progressClr = UIColor.main {
         didSet {
             progressLyr.strokeColor = progressClr.cgColor
         }

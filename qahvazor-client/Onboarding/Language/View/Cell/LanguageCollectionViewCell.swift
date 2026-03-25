@@ -15,9 +15,9 @@ class LanguageCollectionViewCell: UICollectionViewCell {
     // MARK: - Attributes
     var isTicked: Bool = false {
         didSet {
-            imageView.tintColor = isTicked ? UIColor.appColor(.mainColor) : UIColor.darkGray
+            imageView.tintColor = isTicked ? UIColor.main : UIColor.darkGray
             imageView.image = isTicked ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle")
-            label.textColor = isTicked ? UIColor.appColor(.mainColor) : UIColor.label
+            label.textColor = isTicked ? UIColor.main : UIColor.label
         }
     }
     

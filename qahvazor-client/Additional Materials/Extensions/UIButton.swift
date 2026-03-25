@@ -73,7 +73,7 @@ extension UIButton {
     func setStatus(_ status: ButtonStatus) {
         switch status {
         case .active:
-            backgroundColor = .appColor(.mainColor)
+            backgroundColor = .main
             setTitleColor(UIColor.appColor(.white), for: .normal)
         case .passive:
             backgroundColor = UIColor.systemGray5
@@ -86,7 +86,7 @@ extension UIButton {
     func selectedStatus(_ status: ButtonStatus) {
         switch status {
         case .active:
-            backgroundColor = .appColor(.mainColor)
+            backgroundColor = .main
             setTitleColor(UIColor.appColor(.white), for: .normal)
         case .passive:
             backgroundColor = UIColor.darkGray

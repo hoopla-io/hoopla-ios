@@ -70,7 +70,7 @@ extension InterestViewController {
             node.selectedFontColor = UIColor.appColor(.white)
             node.scaleToFitContent = true
             node.strokeColor = .clear
-            node.selectedColor = UIColor.appColor(.mainColor)
+            node.selectedColor = UIColor.main
             magnetic?.addChild(node)
         }
     }
