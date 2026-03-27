@@ -85,6 +85,7 @@ final class ReviewView: CustomView {
     let tagsContainerView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
+        v.isHidden = true
         return v
     }()
     
@@ -162,29 +163,47 @@ final class ReviewView: CustomView {
         let nameStack = UIStackView(arrangedSubviews: [drinkNameLabel, dateLabel])
         nameStack.axis = .vertical
         nameStack.spacing = 2
-        nameStack.translatesAutoresizingMaskIntoConstraints = false
         
         let drinkStack = UIStackView(arrangedSubviews: [drinkImageView, nameStack])
         drinkStack.axis = .horizontal
         drinkStack.spacing = 12
         drinkStack.alignment = .center
-        drinkStack.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(drinkStack)
         
-        addSubview(experienceLabel)
-        addSubview(cosmosView)
-        addSubview(reasonLabel)
-        addSubview(tagsContainerView)
-        
-        // Comment
-        addSubview(commentTextView)
+        // Comment with placeholder
         commentTextView.addSubview(placeholderLabel)
-        
-        // Submit
-        addSubview(submitButton)
         
         tagsHeightConstraint = tagsContainerView.heightAnchor.constraint(equalToConstant: 80)
         tagsHeightConstraint?.priority = .defaultLow
+        
+        let cosmosStack = UIStackView()
+        cosmosStack.axis = .vertical
+        cosmosStack.alignment = .center
+        cosmosStack.layer.cornerRadius = 20
+        cosmosStack.addArrangedSubview(cosmosView)
+        
+        // Main stack view with all content except closeButton
+        let mainStack = UIStackView(arrangedSubviews: [
+            drinkStack,
+            experienceLabel,
+            cosmosStack,
+            reasonLabel,
+            tagsContainerView,
+            commentTextView,
+            submitButton
+        ])
+        mainStack.axis = .vertical
+        mainStack.translatesAutoresizingMaskIntoConstraints = false
+        mainStack.spacing = 12
+        mainStack.isLayoutMarginsRelativeArrangement = true
+        mainStack.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        
+        mainStack.setCustomSpacing(20, after: drinkStack)
+        mainStack.setCustomSpacing(30, after: experienceLabel)
+        mainStack.setCustomSpacing(30, after: cosmosStack)
+        mainStack.setCustomSpacing(16, after: tagsContainerView)
+        mainStack.setCustomSpacing(16, after: commentTextView)
+        
+        addSubview(mainStack)
         
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
@@ -192,39 +211,21 @@ final class ReviewView: CustomView {
             closeButton.widthAnchor.constraint(equalToConstant: 40),
             closeButton.heightAnchor.constraint(equalToConstant: 40),
             
-            drinkStack.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 12),
-            drinkStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            drinkStack.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -20),
+            mainStack.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 12),
+            mainStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            mainStack.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             drinkImageView.widthAnchor.constraint(equalToConstant: 44),
             drinkImageView.heightAnchor.constraint(equalToConstant: 44),
             
-            experienceLabel.topAnchor.constraint(equalTo: drinkStack.bottomAnchor, constant: 20),
-            experienceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            
-            cosmosView.topAnchor.constraint(equalTo: experienceLabel.bottomAnchor, constant: 12),
-            cosmosView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            reasonLabel.topAnchor.constraint(equalTo: cosmosView.bottomAnchor, constant: 20),
-            reasonLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            
-            tagsContainerView.topAnchor.constraint(equalTo: reasonLabel.bottomAnchor, constant: 12),
-            tagsContainerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            tagsContainerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             tagsHeightConstraint!,
             
-            commentTextView.topAnchor.constraint(equalTo: tagsContainerView.bottomAnchor, constant: 16),
-            commentTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            commentTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             commentTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
             
             placeholderLabel.topAnchor.constraint(equalTo: commentTextView.topAnchor, constant: 12),
             placeholderLabel.leadingAnchor.constraint(equalTo: commentTextView.leadingAnchor, constant: 13),
             
-            submitButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            submitButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             submitButton.heightAnchor.constraint(equalToConstant: 50),
-            submitButton.topAnchor.constraint(equalTo: commentTextView.bottomAnchor, constant: 16),
         ])
     }
     

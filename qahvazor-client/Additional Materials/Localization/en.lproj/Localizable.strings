@@ -189,3 +189,7 @@ continuePayment = "Continue payment";
 cancelOrderMessage = "Do you want to cancel your order?";
 keep = "Keep";
 orderNumber = "Order number";
+submit = "Submit";
+anythingElse = "Anything else?";
+whyDidYouLoveIt = "Why did you love it?";
+howWasExperience = "How was your experience?";

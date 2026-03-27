@@ -189,3 +189,7 @@ continuePayment = "To‘lovni davom ettirish";
 cancelOrderMessage = "Buyurtmani bekor qilmoqchimisiz?";
 keep = "Saqlash";
 orderNumber = "Buyurtma raqami";
+submit = "Yuborish";
+anythingElse = "Izoh yozish";
+whyDidYouLoveIt = "Nima uchun yoqdi?";
+howWasExperience = "Sizga yoqdimi?";
