@@ -28,11 +28,6 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     @IBAction func scannerAction(_ sender: Any) {
         coordinator?.pushToScannerVC(viewController: self)
     }
-    
-    @IBAction func reviewAction(_ sender: Any) {
-//        guard let data = data else { return }
-//        coordinator.presentReviewVC(from: self, data: data)
-    }
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +36,7 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
         checkAccessLocation()
         checkUniversalLink()
         checkUpdate()
+        viewModel.getPendingFeedback()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +58,10 @@ extension MainViewController: MainViewModelProtocol {
         ShopDataCache.shops = data
         view().collectionViewHeight.constant = CGFloat(data.count) * (dataProvider?.collectionView.dynamicHeight(type: .company) ?? 320)
         view().shopCollectionView.layoutIfNeeded()
+    }
+    
+    func didFinishFetch(feedback: OrderHistory) {
+        coordinator?.presentReviewVC(data: feedback)
     }
 }
 // MARK: - Networking

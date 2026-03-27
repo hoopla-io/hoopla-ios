@@ -122,7 +122,7 @@ final class MainCoordinator: Coordinator {
         navigationController.present(vc, animated: true)
     }
     
-    func presentReviewVC(from viewController: UIViewController, data: OrderHistory) {
+    func presentReviewVC(data: OrderHistory) {
         let vc = ReviewViewController()
         vc.data = data
         if let sheet = vc.sheetPresentationController {
@@ -136,6 +136,6 @@ final class MainCoordinator: Coordinator {
             sheet.detents = [reviewDetent, .large()]
             sheet.selectedDetentIdentifier = reviewId
         }
-        viewController.present(vc, animated: true)
+        navigationController.present(vc, animated: true)
     }
 }

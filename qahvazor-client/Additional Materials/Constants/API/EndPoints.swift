@@ -28,6 +28,8 @@ enum EndPoints: String {
     // MARK: - History
     case ordersList = "user/orders/orders-list"
     case orders = "user/orders"
+    case feedbacks = "orders/feedbacks"
+    case pending = "orders/feedbacks/pending"
     
     // MARK: - Profile
     case getMe = "user/get-me"

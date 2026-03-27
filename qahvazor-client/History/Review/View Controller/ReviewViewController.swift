@@ -100,8 +100,8 @@ extension ReviewViewController {
         let comment = reviewView.commentTextView.text ?? ""
         let tags = selectedTags.map { tagOptions[$0] }
         
-        // TODO: API call will be added later
         print("Review submitted - Rating: \(selectedRating), Tags: \(tags), Comment: \(comment)")
+//        viewModel.sendFeedback(id: 1, rating: Int(selectedRating), comment: comment)
         dismiss(animated: true)
     }
 }

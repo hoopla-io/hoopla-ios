@@ -31,7 +31,7 @@ class OrderHistoryTableViewCell: UITableViewCell {
     var item: OrderHistory? {
         didSet {
             guard let item else { return }
-            titleLabel.text = "\(item.shopName ?? ""), \(item.drinkName ?? "")"
+            titleLabel.text = "\(item.drinkName ?? "")"
             priceLabel.text = "- \(item.productPrice?.formattedWithCurrency ?? "0")"
             dateLabel.text = DateFormatter.string(timestamp: item.purchasedAtUnix, formatter: .fullDate)
             orderStatusLabel.text = item.orderStatus?.localized

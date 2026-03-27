@@ -9,6 +9,7 @@ import UIKit
 
 protocol MainViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: [Shop])
+    func didFinishFetch(feedback: OrderHistory)
 }
 
 final class MainViewModel {
@@ -33,6 +34,27 @@ final class MainViewModel {
                         let fetchedData = try CustomDecoder().decode(JSONData<[Shop]>.self, from: json)
                         guard let data = fetchedData.data else { return }
                         self.delegate?.didFinishFetch(data: data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
+                }
+            })
+        }
+    }
+    
+    func getPendingFeedback() {
+        
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.pending.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<OrderHistory>.self, from: json)
+                        guard let data = fetchedData.data else { return }
+                        self.delegate?.didFinishFetch(feedback: data)
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }
