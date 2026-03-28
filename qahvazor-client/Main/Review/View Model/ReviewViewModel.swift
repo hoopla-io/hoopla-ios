@@ -19,8 +19,8 @@ final class ReviewViewModel {
     func sendFeedback(id: Int, rating: Int, comment: String) {
         let feedback = "/feedback"
         let url = "\(EndPoints.feedbacks.rawValue)/\(id)"
-        let params: [String : String] = [
-            Parameters.rating.rawValue : String(rating),
+        let params: [String : Any] = [
+            Parameters.rating.rawValue : rating,
             Parameters.comment.rawValue : comment
         ]
         

@@ -191,5 +191,5 @@ keep = "Saqlash";
 orderNumber = "Buyurtma raqami";
 submit = "Yuborish";
 anythingElse = "Izoh yozish";
-whyDidYouLoveIt = "Nima uchun yoqdi?";
-howWasExperience = "Sizga yoqdimi?";
+whyDidYouLoveIt = "O‘z fikringizni bildiring";
+howWasExperience = "Buyurtmani baholang";

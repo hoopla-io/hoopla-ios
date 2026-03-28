@@ -191,5 +191,5 @@ keep = "Keep";
 orderNumber = "Order number";
 submit = "Submit";
 anythingElse = "Anything else?";
-whyDidYouLoveIt = "Why did you love it?";
-howWasExperience = "How was your experience?";
+whyDidYouLoveIt = "Share your experience";
+howWasExperience = "Rate your order";

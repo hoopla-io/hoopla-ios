@@ -175,17 +175,11 @@ final class ReviewView: CustomView {
         tagsHeightConstraint = tagsContainerView.heightAnchor.constraint(equalToConstant: 80)
         tagsHeightConstraint?.priority = .defaultLow
         
-        let cosmosStack = UIStackView()
-        cosmosStack.axis = .vertical
-        cosmosStack.alignment = .center
-        cosmosStack.layer.cornerRadius = 20
-        cosmosStack.addArrangedSubview(cosmosView)
-        
         // Main stack view with all content except closeButton
         let mainStack = UIStackView(arrangedSubviews: [
             drinkStack,
             experienceLabel,
-            cosmosStack,
+            cosmosView,
             reasonLabel,
             tagsContainerView,
             commentTextView,
@@ -199,7 +193,7 @@ final class ReviewView: CustomView {
         
         mainStack.setCustomSpacing(20, after: drinkStack)
         mainStack.setCustomSpacing(30, after: experienceLabel)
-        mainStack.setCustomSpacing(30, after: cosmosStack)
+        mainStack.setCustomSpacing(30, after: cosmosView)
         mainStack.setCustomSpacing(16, after: tagsContainerView)
         mainStack.setCustomSpacing(16, after: commentTextView)
         

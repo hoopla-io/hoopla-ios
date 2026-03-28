@@ -73,7 +73,7 @@ extension ReviewViewController {
         guard let data = data else { return }
         reviewView.drinkNameLabel.text = data.drinkName
         reviewView.dateLabel.text = DateFormatter.string(timestamp: data.purchasedAtUnix, formatter: .orderedDate)
-        if let imageUrl = data.drinkImageUrl {
+        if let imageUrl = data.drinkImage {
             reviewView.drinkImageView.setImage(with: imageUrl)
         }
     }
@@ -99,9 +99,9 @@ extension ReviewViewController {
     @objc private func submitTapped() {
         let comment = reviewView.commentTextView.text ?? ""
         let tags = selectedTags.map { tagOptions[$0] }
+        guard let id = data?.id else { return }
         
-        print("Review submitted - Rating: \(selectedRating), Tags: \(tags), Comment: \(comment)")
-//        viewModel.sendFeedback(id: 1, rating: Int(selectedRating), comment: comment)
+        viewModel.sendFeedback(id: id, rating: Int(selectedRating), comment: comment)
         dismiss(animated: true)
     }
 }

@@ -191,5 +191,5 @@ keep = "Оставить";
 orderNumber = "Номер заказа";
 submit = "Отправить";
 anythingElse = "Что-то ещё?";
-whyDidYouLoveIt = "Почему вам понравилось?";
-howWasExperience = "Как вам всё понравилось?";
+whyDidYouLoveIt = "Поделитесь впечатлением";
+howWasExperience = "Оцените заказ";
