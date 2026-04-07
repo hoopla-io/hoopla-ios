@@ -36,7 +36,10 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
         checkAccessLocation()
         checkUniversalLink()
         checkUpdate()
-        viewModel.getPendingFeedback()
+        
+        if UserDefaults.standard.isAuthed() {
+            viewModel.getPendingFeedback()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -51,12 +51,7 @@ final class MilkDataProvider: NSObject, UICollectionViewDataSource, UICollection
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = viewController as? ConfirmOrderViewController else { return }
-        if items[indexPath.row].modificationId == vc.selectedMilk?.modificationId {
-            collectionView.deselectItem(at: indexPath, animated: true)
-            vc.selectedMilk = nil
-        } else {
-            vc.selectedMilk = items[indexPath.row]
-        }
+        vc.selectedMilk = items[indexPath.row]
         vc.changePricingAction()
         Haptic.impact(.light).generate()
     }

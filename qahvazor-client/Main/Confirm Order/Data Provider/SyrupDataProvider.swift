@@ -51,12 +51,7 @@ final class SyrupDataProvider: NSObject, UICollectionViewDataSource, UICollectio
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = viewController as? ConfirmOrderViewController else { return }
-        if items[indexPath.row].modificationId == vc.selectedSyrop?.modificationId {
-            collectionView.deselectItem(at: indexPath, animated: true)
-            vc.selectedSyrop = nil
-        } else {
-            vc.selectedSyrop = items[indexPath.row]
-        }
+        vc.selectedSyrop = items[indexPath.row]
         vc.changePricingAction()
         Haptic.impact(.light).generate()
     }

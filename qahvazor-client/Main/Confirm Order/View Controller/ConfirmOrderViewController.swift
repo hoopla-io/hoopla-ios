@@ -113,12 +113,20 @@ extension ConfirmOrderViewController: ConfirmOrderViewModelProtocol {
         }
         if let milk = data.milk {
             milkDataProvider?.items = milk
+            selectedMilk = milk.first
+            if let _ = selectedMilk {
+                milkDataProvider?.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .left)
+            }
             view().milkCollectionHeight.constant = milkDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 0
             milkDataProvider?.collectionView.layoutIfNeeded()
             view().milkStackView.isHidden = milk.isEmpty
         }
         if let syrup = data.syrup {
             syrupDataProvider?.items = syrup
+            selectedSyrop = syrup.first
+            if let _ = selectedSyrop {
+                syrupDataProvider?.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .left)
+            }
             view().syrupCollectionHeight.constant = syrupDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 0
             syrupDataProvider?.collectionView.layoutIfNeeded()
             view().syrupStackView.isHidden = syrup.isEmpty
