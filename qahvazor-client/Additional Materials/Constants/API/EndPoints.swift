@@ -22,7 +22,7 @@ enum EndPoints: String {
     case shop = "shops/shop"
     case createOrderRahmat = "user/orders/create-rahmat"
     case validateOrder = "user/orders/validate-order"
-    case notificationsList = "notifications/get-list"
+    case notificationsList = "notifications/list"
     case notificationShow = "notifications/show"
     
     // MARK: - History

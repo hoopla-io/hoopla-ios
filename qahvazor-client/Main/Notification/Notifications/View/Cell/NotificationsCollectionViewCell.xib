@@ -116,7 +116,7 @@
                 <outlet property="timeButton" destination="CxV-yS-Img" id="0aJ-Rb-Yhv"/>
                 <outlet property="titleLabel" destination="5MI-xf-J2V" id="1Sq-Hm-s8m"/>
             </connections>
-            <point key="canvasLocation" x="138.40579710144928" y="152.67857142857142"/>
+            <point key="canvasLocation" x="111" y="139"/>
         </collectionViewCell>
     </objects>
     <resources>
