@@ -24,7 +24,7 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     // MARK: - Attributes
     var distance: Double? {
         didSet {
-            view().addressButton.setTitle("address".localized + " - " + (distance?.formatDistance() ?? ""), for: .normal)
+//            view().addressButton.setTitle("address".localized + " - " + (distance?.formatDistance() ?? ""), for: .normal)
         }
     }
     var shopId: Int?
@@ -79,7 +79,8 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
     func didFinishFetch(data: Shop) {
         self.data = data
         
-        navigationItem.title = data.name
+//        navigationItem.title = data.name
+        view().titleLabel.text = data.name
         if let pictures = data.pictures {
             pictureDataProvider?.items = pictures
             view().pageControll.numberOfPages = pictures.count
@@ -92,8 +93,6 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
             view().coffeeListCollectionView.layoutIfNeeded()
         }
         if let phone = data.phoneNumbers?.first {
-            let phoneNumberString = phone.phoneNumber?.displayPhone() ?? ""
-            view().phoneNumberButton.setTitle("phoneNumber".localized + " \(phoneNumberString)", for: .normal)
             view().phoneNumberButton.isHidden = false
         }
         if let socials = data.urls {
@@ -150,8 +149,10 @@ extension ShopDetailViewController {
         } else {
             for i in workTimeData {
                 if i.weekDay?.lowercased() == currentWeekDay {
-                    workTimeDataProvider?.items = [WorkHour(closeAt: "\(i.closeAt ?? "")", openAt: "\(i.openAt ?? "")", weekDay: "today".localized)]
+                    let item = WorkHour(closeAt: "\(i.closeAt ?? "")", openAt: "\(i.openAt ?? "")", weekDay: "today".localized)
+                    workTimeDataProvider?.items = [item]
                     isOpen = i.isOpen()
+                    view().workingHoursButton.setTitle("\(i.openAt ?? "") - \(i.closeAt ?? "")", for: .normal)
                     break
                 }
             }

@@ -36,7 +36,7 @@ final class MainCoordinator: Coordinator {
         vc.shopId = id
         vc.distance = distance
         vc.coordinator = self
-        vc.navigationItem.title = name
+        vc.view().titleLabel.text = name
         navigationController.pushViewController(vc, animated: true)
     }
     

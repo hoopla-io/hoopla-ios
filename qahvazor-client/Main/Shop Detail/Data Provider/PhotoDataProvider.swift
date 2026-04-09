@@ -53,7 +53,7 @@ final class PhotoDataProvider: NSObject, UICollectionViewDataSource, UICollectio
 
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.itemSize(width: collectionView.frame.width, additionalHeight: 0, ratio: .photo)
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
