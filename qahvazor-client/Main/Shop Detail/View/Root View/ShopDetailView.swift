@@ -28,16 +28,30 @@ class ShopDetailView: CustomView {
             gradientView.endPointY   = 0.0  // top
             gradientView.topColor = .black.withAlphaComponent(0.9)
             gradientView.bottomColor = .clear
+            gradientView.layer.cornerRadius = 30
+            gradientView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            gradientView.clipsToBounds = true
         }
     }
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var workingHoursButton: UIButton!
-    @IBOutlet weak var collectionView: UICollectionView! {
+    @IBOutlet weak var imageView: UIImageView! {
         didSet {
-            collectionView.register(UINib(nibName: PhotoCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PhotoCollectionViewCell.defaultReuseIdentifier)
+            imageView.layer.cornerRadius = 30
+            imageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            imageView.clipsToBounds = true
         }
     }
-    @IBOutlet weak var pageControll: UIPageControl!
+//    @IBOutlet weak var collectionView: UICollectionView! {
+//        didSet {
+//            collectionView.register(UINib(nibName: PhotoCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PhotoCollectionViewCell.defaultReuseIdentifier)
+//        }
+//    }
+    @IBOutlet weak var pageControll: UIPageControl! {
+        didSet {
+            pageControll.isHidden = true
+        }
+    }
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var showMoreButton: UIButton!

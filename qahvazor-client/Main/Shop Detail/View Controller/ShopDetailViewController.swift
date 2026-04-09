@@ -17,7 +17,7 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     var coordinator: MainCoordinator?
     let viewModel = ShopDetailViewModel()
     //MARK: - Data Providers
-    var pictureDataProvider: PhotoDataProvider?
+//    var pictureDataProvider: PhotoDataProvider?
     var workTimeDataProvider: WorkTimeDataProvider?
     var categoryDataProvider: CategoryListDataProvider?
     var secondCategoryDataProvider: CategoryListDataProvider?
@@ -86,7 +86,8 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
         
         view().titleLabel.text = data.name
         if let pictures = data.pictures {
-            pictureDataProvider?.items = pictures
+            view().imageView.setImage(with: pictures.first?.pictureUrl)
+//            pictureDataProvider?.items = pictures
             view().pageControll.numberOfPages = pictures.count
         }
         var socialsData: [SocialMedia] = []
@@ -122,10 +123,10 @@ extension ShopDetailViewController {
         viewModel.delegate = self
         view().scrollView.delegate = self
         
-        let pictureDataProvider = PhotoDataProvider(viewController: self)
-        pictureDataProvider.collectionView = view().collectionView
-        self.pictureDataProvider = pictureDataProvider
-        
+//        let pictureDataProvider = PhotoDataProvider(viewController: self)
+//        pictureDataProvider.collectionView = view().collectionView
+//        self.pictureDataProvider = pictureDataProvider
+//        
         let categoryDataProvider = CategoryListDataProvider()
         categoryDataProvider.delegate = self
         categoryDataProvider.collectionView = view().categoryListCollectionView
@@ -147,6 +148,10 @@ extension ShopDetailViewController {
         let workTimeDataProvider = WorkTimeDataProvider()
         workTimeDataProvider.tableView = view().tableView
         self.workTimeDataProvider = workTimeDataProvider
+        
+        view().imageView.translatesAutoresizingMaskIntoConstraints = false
+        view().imageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
+
     }
     
     func nextAction(item: Drinks) {
