@@ -53,6 +53,10 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
         Purchase.isPurchased = false
         tabBarController?.selectedIndex = 2
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 // MARK: - Networking
 extension MainViewController: MainViewModelProtocol {
@@ -153,7 +157,7 @@ extension MainViewController {
         if let shopId = shopId {
             self.tabBarController?.selectedIndex = 0
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.coordinator?.pushToShopDetail(id: shopId, name: "")
+                self.coordinator?.pushToShopDetail(id: shopId, item: nil)
             }
         }
         UniversalLink.clear()
@@ -178,47 +182,66 @@ extension MainViewController: TabBarReselectHandling {
 //MARK: - SetupLocationAlertView
 extension MainViewController {
     func setupLocationAccessView() {
+        configureLocationAccessContainer()
+        setupBlurEffect()
+        setupLocationLabel()
+        setupCloseButton()
+    }
+    
+    private func configureLocationAccessContainer() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(accessLocationViewAction))
         locationAccessContainerView.addGestureRecognizer(tap)
         locationAccessContainerView.layer.cornerRadius = 10
         locationAccessContainerView.layer.cornerCurve = .continuous
         locationAccessContainerView.clipsToBounds = true
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemMaterial)
+        view.addSubview(locationAccessContainerView)
+        locationAccessContainerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            locationAccessContainerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 18),
+            locationAccessContainerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -18),
+            locationAccessContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
+            locationAccessContainerView.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    private func setupBlurEffect() {
+        let blurEffect = UIBlurEffect(style: .systemMaterial)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = locationAccessContainerView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
+        locationAccessContainerView.addSubview(blurEffectView)
+    }
+    
+    private func setupLocationLabel() {
         let label = UILabel()
         label.halfTextColorChange(fullText: "askAccessLocation".localized, changeText: "askAccess".localized, color: .appColor(.green))
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 14, weight: .medium)
         
-        let closeButton = UIButton()
-        closeButton.setImage(UIImage.appImage(.closeCircle) , for: .normal)
-        closeButton.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
-        
-        self.view.addSubview(locationAccessContainerView)
-        locationAccessContainerView.addSubview(blurEffectView)
-        locationAccessContainerView.translatesAutoresizingMaskIntoConstraints = false
-        locationAccessContainerView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 18).isActive = true
-        locationAccessContainerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -18).isActive = true
-        locationAccessContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true
-        locationAccessContainerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
         locationAccessContainerView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.leftAnchor.constraint(equalTo: locationAccessContainerView.leftAnchor, constant: 10).isActive = true
-        label.rightAnchor.constraint(equalTo: locationAccessContainerView.rightAnchor, constant: -50).isActive = true
-        label.bottomAnchor.constraint(equalTo: locationAccessContainerView.bottomAnchor, constant: -10).isActive = true
-        label.topAnchor.constraint(equalTo: locationAccessContainerView.topAnchor, constant: 10).isActive = true
+        NSLayoutConstraint.activate([
+            label.leftAnchor.constraint(equalTo: locationAccessContainerView.leftAnchor, constant: 10),
+            label.rightAnchor.constraint(equalTo: locationAccessContainerView.rightAnchor, constant: -50),
+            label.topAnchor.constraint(equalTo: locationAccessContainerView.topAnchor, constant: 10),
+            label.bottomAnchor.constraint(equalTo: locationAccessContainerView.bottomAnchor, constant: -10)
+        ])
+    }
+    
+    private func setupCloseButton() {
+        let closeButton = UIButton()
+        closeButton.setImage(UIImage.appImage(.closeCircle), for: .normal)
+        closeButton.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
         
         locationAccessContainerView.addSubview(closeButton)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.rightAnchor.constraint(equalTo: locationAccessContainerView.rightAnchor, constant: -10).isActive = true
-        closeButton.bottomAnchor.constraint(equalTo: locationAccessContainerView.bottomAnchor, constant: 0).isActive = true
-        closeButton.topAnchor.constraint(equalTo: locationAccessContainerView.topAnchor, constant: 0).isActive = true
-        closeButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        NSLayoutConstraint.activate([
+            closeButton.rightAnchor.constraint(equalTo: locationAccessContainerView.rightAnchor, constant: -10),
+            closeButton.topAnchor.constraint(equalTo: locationAccessContainerView.topAnchor),
+            closeButton.bottomAnchor.constraint(equalTo: locationAccessContainerView.bottomAnchor),
+            closeButton.widthAnchor.constraint(equalToConstant: 40)
+        ])
     }
     
     @objc func accessLocationViewAction() {

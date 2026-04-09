@@ -72,6 +72,7 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
+        prepareForTransition()
         
         guard let shopId else { return }
         viewModel.getShopInfo(shopId: shopId)
@@ -152,6 +153,18 @@ extension ShopDetailViewController {
         view().imageView.translatesAutoresizingMaskIntoConstraints = false
         view().imageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
 
+    }
+    
+    private func prepareForTransition() {
+        guard let item = data, let shopId = item.shopId else { return }
+        if let posterUrl = item.pictureUrl {
+            view().imageView.sd_setImage(with: URL(string: posterUrl), placeholderImage: view().imageView.image)
+        }
+        view().titleLabel.text = item.name
+        view().titleLabel.hero.id = HeroType.title.rawValue + String(shopId)
+        view().imageView.hero.id = HeroType.imageView.rawValue + String(shopId)
+        view().hero.id = HeroType.view.rawValue + String(shopId)
+        view().hero.modifiers = [.fade]
     }
     
     func nextAction(item: Drinks) {
