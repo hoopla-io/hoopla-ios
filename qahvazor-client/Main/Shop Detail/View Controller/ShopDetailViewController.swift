@@ -19,6 +19,7 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     //MARK: - Data Providers
     var pictureDataProvider: PhotoDataProvider?
     var workTimeDataProvider: WorkTimeDataProvider?
+    var categoryDataProvider: CategoryListDataProvider?
     var coffeeDataProvider: CoffeeListDataProvider?
     var socialDataProvider: SocialDataProvider?
     // MARK: - Attributes
@@ -98,6 +99,7 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
     }
     
     func didFinishFetch(drinks: [Categories]) {
+        categoryDataProvider?.items = drinks
         coffeeDataProvider?.items = drinks
         view().coffeeCollectionHeight.constant = coffeeDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 100
         view().coffeeListCollectionView.layoutIfNeeded()
@@ -112,6 +114,11 @@ extension ShopDetailViewController {
         let pictureDataProvider = PhotoDataProvider(viewController: self)
         pictureDataProvider.collectionView = view().collectionView
         self.pictureDataProvider = pictureDataProvider
+        
+        let categoryDataProvider = CategoryListDataProvider()
+        categoryDataProvider.delegate = self
+        categoryDataProvider.collectionView = view().categoryListCollectionView
+        self.categoryDataProvider = categoryDataProvider
         
         let coffeeDataProvider = CoffeeListDataProvider(viewController: self)
         coffeeDataProvider.collectionView = view().coffeeListCollectionView
@@ -201,4 +208,13 @@ extension ShopDetailViewController {
     }
 }
 
-
+// MARK: - CategoryListDataProviderDelegate
+extension ShopDetailViewController: CategoryListDataProviderDelegate {
+    func didSelectCategory(at index: Int) {
+        let indexPath = IndexPath(item: 0, section: index)
+        guard let attributes = view().coffeeListCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) else { return }
+        let offset = CGPoint(x: 0, y: attributes.frame.origin.y)
+        let yPosition = view().coffeeListCollectionView.frame.origin.y + offset.y
+        view().scrollView.setContentOffset(CGPoint(x: 0, y: yPosition), animated: true)
+    }
+}

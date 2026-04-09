@@ -46,6 +46,13 @@ class ShopDetailView: CustomView {
             phoneNumberButton.isHidden = true
         }
     }
+    @IBOutlet weak var categoryListCollectionView: UICollectionView! {
+        didSet {
+            categoryListCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.defaultReuseIdentifier)
+            categoryListCollectionView.contentInset.left = 16
+            categoryListCollectionView.contentInset.right = 16
+        }
+    }
     @IBOutlet weak var coffeeListCollectionView: UICollectionView! {
         didSet {
             coffeeListCollectionView.register(UINib(nibName: CoffeeCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier)
