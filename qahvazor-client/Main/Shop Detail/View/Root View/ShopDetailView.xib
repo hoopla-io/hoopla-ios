@@ -53,11 +53,11 @@
                                                 <constraint firstAttribute="height" constant="100" id="6fA-Sd-luS"/>
                                             </constraints>
                                         </view>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lwm-5c-XcA">
-                                            <rect key="frame" x="19" y="200.66666666666666" width="355" height="50.666666666666657"/>
+                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lwm-5c-XcA">
+                                            <rect key="frame" x="19" y="196.66666666666666" width="355" height="54.666666666666657"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="7sL-xy-ugV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="102.66666666666667" height="50.666666666666664"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="7sL-xy-ugV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="102.66666666666667" height="54.666666666666664"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yr-NP-McC">
                                                             <rect key="frame" x="0.0" y="0.0" width="77.666666666666671" height="31.333333333333332"/>
@@ -66,7 +66,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhq-VM-s0A">
-                                                            <rect key="frame" x="0.0" y="31.333333333333343" width="102.66666666666667" height="19.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="35.333333333333343" width="102.66666666666667" height="19.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="tintColor" name="mainColor"/>
                                                             <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -79,7 +79,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EmM-TI-Hil">
-                                                    <rect key="frame" x="253" y="2.3333333333333428" width="102" height="46"/>
+                                                    <rect key="frame" x="253" y="4.3333333333333428" width="102" height="46"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqY-f7-vFx">
                                                             <rect key="frame" x="0.0" y="0.0" width="46" height="46"/>
@@ -330,13 +330,29 @@
                         <constraint firstAttribute="trailing" secondItem="iZi-rC-bxd" secondAttribute="trailing" id="gqh-7E-iyi"/>
                     </constraints>
                 </scrollView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="GJ1-Jo-fiA">
+                    <rect key="frame" x="0.0" y="118" width="393" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="1bs-EH-ahk"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jBh-az-foa">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Lqn-Aw-C48" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4I8-hE-9Tl"/>
+                <constraint firstItem="GJ1-Jo-fiA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="G7h-9C-Cqx"/>
+                <constraint firstItem="GJ1-Jo-fiA" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="LRQ-Kf-t4j"/>
                 <constraint firstAttribute="bottom" secondItem="Lqn-Aw-C48" secondAttribute="bottom" id="N34-so-jWe"/>
                 <constraint firstItem="Lqn-Aw-C48" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QCK-ar-cx4"/>
+                <constraint firstItem="GJ1-Jo-fiA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bU0-0E-oGS"/>
                 <constraint firstAttribute="trailing" secondItem="Lqn-Aw-C48" secondAttribute="trailing" id="rKg-bv-LEU"/>
                 <constraint firstItem="iZi-rC-bxd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="raq-Zy-q80"/>
             </constraints>
@@ -350,6 +366,7 @@
                 <outlet property="pageControll" destination="aH5-Gz-qWf" id="yXs-cY-Npa"/>
                 <outlet property="phoneNumberButton" destination="pqY-f7-vFx" id="pA3-M8-xbr"/>
                 <outlet property="scrollView" destination="Lqn-Aw-C48" id="dji-yu-HeH"/>
+                <outlet property="secondCategoryListCollectionView" destination="GJ1-Jo-fiA" id="3JW-M0-KmZ"/>
                 <outlet property="showMoreButton" destination="6Gf-wO-y7v" id="r1I-zB-8wd"/>
                 <outlet property="socialListCollectionView" destination="eEz-H9-QBG" id="aTp-kZ-6op"/>
                 <outlet property="tableView" destination="2nz-2b-0kR" id="1JD-AR-dQH"/>

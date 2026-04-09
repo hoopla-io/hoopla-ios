@@ -1534,7 +1534,6 @@
 			children = (
 				75705CEC2D2FFDE200DA3AA4 /* Root View */,
 				75705CEB2D2FFDD800DA3AA4 /* Cell */,
-				521378B42F87B3AB00A4554E /* Header */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1566,6 +1565,7 @@
 				75BB172B2E0962E700376246 /* Social */,
 				75BB17292E0962B600376246 /* Photo */,
 				521378B72F87B75100A4554E /* Category */,
+				521378B42F87B3AB00A4554E /* Header */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

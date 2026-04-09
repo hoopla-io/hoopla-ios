@@ -20,6 +20,7 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
     var pictureDataProvider: PhotoDataProvider?
     var workTimeDataProvider: WorkTimeDataProvider?
     var categoryDataProvider: CategoryListDataProvider?
+    var secondCategoryDataProvider: CategoryListDataProvider?
     var coffeeDataProvider: CoffeeListDataProvider?
     var socialDataProvider: SocialDataProvider?
     // MARK: - Attributes
@@ -99,7 +100,14 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
     }
     
     func didFinishFetch(drinks: [Categories]) {
-        categoryDataProvider?.items = drinks
+        let showCategories = drinks.count > 1
+        view().categoryListCollectionView.isHidden = !showCategories
+        
+        if showCategories {
+            categoryDataProvider?.items = drinks
+            secondCategoryDataProvider?.items = drinks
+        }
+        
         coffeeDataProvider?.items = drinks
         view().coffeeCollectionHeight.constant = coffeeDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 100
         view().coffeeListCollectionView.layoutIfNeeded()
@@ -110,6 +118,7 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
 extension ShopDetailViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
+        view().scrollView.delegate = self
         
         let pictureDataProvider = PhotoDataProvider(viewController: self)
         pictureDataProvider.collectionView = view().collectionView
@@ -119,6 +128,11 @@ extension ShopDetailViewController {
         categoryDataProvider.delegate = self
         categoryDataProvider.collectionView = view().categoryListCollectionView
         self.categoryDataProvider = categoryDataProvider
+        
+        let secondCategoryDataProvider = CategoryListDataProvider()
+        secondCategoryDataProvider.delegate = self
+        secondCategoryDataProvider.collectionView = view().secondCategoryListCollectionView
+        self.secondCategoryDataProvider = secondCategoryDataProvider
         
         let coffeeDataProvider = CoffeeListDataProvider(viewController: self)
         coffeeDataProvider.collectionView = view().coffeeListCollectionView
@@ -208,13 +222,56 @@ extension ShopDetailViewController {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension ShopDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView == view().scrollView else { return }
+        
+        let categoryFrame = view().categoryListCollectionView.convert(view().categoryListCollectionView.bounds, to: view())
+        let isHidden = categoryFrame.maxY > view().safeAreaInsets.top
+        navigationItem.title = isHidden ? "" : data?.name
+        
+        guard let items = categoryDataProvider?.items, items.count > 1 else { return }
+        
+        UIView.animate(withDuration: 0.2) { [self] in
+            view().secondCategoryListCollectionView.alpha = isHidden ? 0 : 1
+        }
+        
+        // Auto-select category based on visible coffee section
+        let coffeeCollectionView = view().coffeeListCollectionView!
+        let coffeeOriginY = coffeeCollectionView.frame.origin.y
+        let visibleY = scrollView.contentOffset.y - coffeeOriginY
+        
+        var currentSection = 0
+        for section in 0..<items.count {
+            let indexPath = IndexPath(item: 0, section: section)
+            guard let attributes = coffeeCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) else { continue }
+            if attributes.frame.origin.y <= visibleY + 10 {
+                currentSection = section
+            } else {
+                break
+            }
+        }
+        
+        let categoryIndexPath = IndexPath(item: currentSection, section: 0)
+        categoryDataProvider?.collectionView.selectItem(at: categoryIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+        secondCategoryDataProvider?.collectionView.selectItem(at: categoryIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+    }
+}
+
 // MARK: - CategoryListDataProviderDelegate
 extension ShopDetailViewController: CategoryListDataProviderDelegate {
     func didSelectCategory(at index: Int) {
-        let indexPath = IndexPath(item: 0, section: index)
-        guard let attributes = view().coffeeListCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) else { return }
-        let offset = CGPoint(x: 0, y: attributes.frame.origin.y)
-        let yPosition = view().coffeeListCollectionView.frame.origin.y + offset.y
+        let categoryIndexPath = IndexPath(item: index, section: 0)
+        
+        // Sync selection on both category lists
+        categoryDataProvider?.collectionView.selectItem(at: categoryIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+        secondCategoryDataProvider?.collectionView.selectItem(at: categoryIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+        
+        // Scroll coffee list to the selected section
+        let sectionIndexPath = IndexPath(item: 0, section: index)
+        guard let attributes = view().coffeeListCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: sectionIndexPath) else { return }
+        let yPosition = view().coffeeListCollectionView.frame.origin.y + attributes.frame.origin.y
         view().scrollView.setContentOffset(CGPoint(x: 0, y: yPosition), animated: true)
     }
 }

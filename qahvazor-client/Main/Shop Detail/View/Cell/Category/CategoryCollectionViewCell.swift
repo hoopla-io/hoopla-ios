@@ -51,7 +51,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
             contentView.layer.borderColor = UIColor.appColor(.mainColor).cgColor
             titleLabel.textColor = .appColor(.white)
         } else {
-            contentView.backgroundColor = .clear
+            contentView.backgroundColor = .mainBackground
             contentView.layer.borderColor = UIColor.separator.cgColor
             titleLabel.textColor = .label
         }

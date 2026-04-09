@@ -53,6 +53,14 @@ class ShopDetailView: CustomView {
             categoryListCollectionView.contentInset.right = 16
         }
     }
+    @IBOutlet weak var secondCategoryListCollectionView: UICollectionView! {
+        didSet {
+            secondCategoryListCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.defaultReuseIdentifier)
+            secondCategoryListCollectionView.contentInset.left = 16
+            secondCategoryListCollectionView.contentInset.right = 16
+            secondCategoryListCollectionView.alpha = 0
+        }
+    }
     @IBOutlet weak var coffeeListCollectionView: UICollectionView! {
         didSet {
             coffeeListCollectionView.register(UINib(nibName: CoffeeCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier)
