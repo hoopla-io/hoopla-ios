@@ -48,6 +48,8 @@
 		05FF55352F46345700918E0C /* CashbeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55342F46345700918E0C /* CashbeckView.swift */; };
 		05FF55372F46345C00918E0C /* CashbeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FF55362F46345C00918E0C /* CashbeckView.xib */; };
 		05FF55392F46346600918E0C /* CashbeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55382F46346600918E0C /* CashbeckViewController.swift */; };
+		521378B32F87B0DB00A4554E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521378B22F87B0DB00A4554E /* Categories.swift */; };
+		521378B62F87B3C100A4554E /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521378B52F87B3C100A4554E /* SectionHeader.swift */; };
 		52787F112F67D7AC0032DC5B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 52787F0E2F67D7AC0032DC5B /* LICENSE */; };
 		52787F122F67D7AC0032DC5B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 52787F0F2F67D7AC0032DC5B /* README.md */; };
 		52787F132F67D7AC0032DC5B /* HighlightedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52787EF92F67D7AC0032DC5B /* HighlightedTextView.swift */; };
@@ -314,6 +316,8 @@
 		05FF55342F46345700918E0C /* CashbeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckView.swift; sourceTree = "<group>"; };
 		05FF55362F46345C00918E0C /* CashbeckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashbeckView.xib; sourceTree = "<group>"; };
 		05FF55382F46346600918E0C /* CashbeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckViewController.swift; sourceTree = "<group>"; };
+		521378B22F87B0DB00A4554E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		521378B52F87B3C100A4554E /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		52787EE82F67D7AC0032DC5B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		52787EEA2F67D7AC0032DC5B /* Postman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Postman.swift; sourceTree = "<group>"; };
 		52787EEC2F67D7AC0032DC5B /* RequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
@@ -904,6 +908,14 @@
 				05FF55382F46346600918E0C /* CashbeckViewController.swift */,
 			);
 			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		521378B42F87B3AB00A4554E /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				521378B52F87B3C100A4554E /* SectionHeader.swift */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		52787EE92F67D7AC0032DC5B /* Extensions */ = {
@@ -1510,6 +1522,7 @@
 			children = (
 				75705CEC2D2FFDE200DA3AA4 /* Root View */,
 				75705CEB2D2FFDD800DA3AA4 /* Cell */,
+				521378B42F87B3AB00A4554E /* Header */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1660,6 +1673,7 @@
 				05B84C362EAE0C0B00AB66B2 /* NewsNotification.swift */,
 				7596B51F2D1D6A180070A5BB /* Company.swift */,
 				759624D52D2CF66B00F52EE9 /* Shop.swift */,
+				521378B22F87B0DB00A4554E /* Categories.swift */,
 				75F3B0DD2D3789C7003E37B9 /* Coordinate.swift */,
 				75BB17272E095C8500376246 /* UniversalLink.swift */,
 				059BA9C52EB664B5002A726F /* Modification.swift */,
@@ -2234,12 +2248,14 @@
 				752331942D1A8EDC0090997E /* OnboardingCoordinator.swift in Sources */,
 				752330CF2D197B210090997E /* UILabel.swift in Sources */,
 				75DCE3992D1C3195003A59CD /* CodeConfirmViewController.swift in Sources */,
+				521378B32F87B0DB00A4554E /* Categories.swift in Sources */,
 				7535D11C2D3B8C620016C489 /* UISearchBar.swift in Sources */,
 				752331992D1A90AD0090997E /* LaunchScreenView.swift in Sources */,
 				752331902D1A8D440090997E /* FullOnboardingViewController.swift in Sources */,
 				752330D02D197B210090997E /* CustomSpinnerView.swift in Sources */,
 				7596B5222D1D6B310070A5BB /* MainDataProvider.swift in Sources */,
 				7596B51B2D1D697D0070A5BB /* MainViewModel.swift in Sources */,
+				521378B62F87B3C100A4554E /* SectionHeader.swift in Sources */,
 				75DCE35F2D1ABB2B003A59CD /* LanguageView.swift in Sources */,
 				75CBFAE12D785B95003E9102 /* PaymentView.swift in Sources */,
 				752330D12D197B210090997E /* UIWindow.swift in Sources */,

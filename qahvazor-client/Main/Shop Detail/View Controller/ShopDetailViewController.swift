@@ -71,6 +71,7 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
         
         guard let shopId else { return }
         viewModel.getShopInfo(shopId: shopId)
+        viewModel.getDrinks(shopId: shopId)
     }
     
 }
@@ -79,7 +80,6 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
     func didFinishFetch(data: Shop) {
         self.data = data
         
-//        navigationItem.title = data.name
         view().titleLabel.text = data.name
         if let pictures = data.pictures {
             pictureDataProvider?.items = pictures
@@ -87,12 +87,7 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
         }
         var socialsData: [SocialMedia] = []
         
-        if let drinks = data.drinks {
-            coffeeDataProvider?.items = drinks
-            view().coffeeCollectionHeight.constant = coffeeDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 100
-            view().coffeeListCollectionView.layoutIfNeeded()
-        }
-        if let phone = data.phoneNumbers?.first {
+        if let _ = data.phoneNumbers?.first {
             view().phoneNumberButton.isHidden = false
         }
         if let socials = data.urls {
@@ -100,6 +95,12 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
         }
         socialDataProvider?.items = socialsData
         self.workTimeData = data.workingHours
+    }
+    
+    func didFinishFetch(drinks: [Categories]) {
+        coffeeDataProvider?.items = drinks
+        view().coffeeCollectionHeight.constant = coffeeDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 100
+        view().coffeeListCollectionView.layoutIfNeeded()
     }
 }
 

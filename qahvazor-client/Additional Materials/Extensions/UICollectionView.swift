@@ -60,7 +60,7 @@ enum ItemRatio: CGFloat {
     case coffee     = 1.0
     case photo      = 0.56
     case subscription = 0.8
-    case coffeeCard = 1.43
+    case coffeeCard = 1.33
 }
 
 enum ItemSpacing: CGFloat {
@@ -94,7 +94,7 @@ extension UICollectionView {
         case .reward:
             return itemSize(itemType: .reward, layout: layout, ratio: .coffee, spacing: .custom, additionalHeight: .zero)
         case .coffeeCard:
-            return itemSize(itemType: .coffeeCard, layout: layout, ratio: .coffeeCard, spacing: .card, additionalHeight: .coffee)
+            return itemSize(itemType: .coffeeCard, layout: layout, ratio: .coffeeCard, spacing: .custom, additionalHeight: .coffee)
         default:
             return CGSize.zero
         }
