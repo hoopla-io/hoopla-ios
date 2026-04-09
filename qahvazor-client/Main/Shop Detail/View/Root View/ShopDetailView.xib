@@ -53,10 +53,10 @@
                                                 <constraint firstAttribute="height" constant="100" id="6fA-Sd-luS"/>
                                             </constraints>
                                         </view>
-                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lwm-5c-XcA">
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lwm-5c-XcA">
                                             <rect key="frame" x="19" y="196.66666666666666" width="355" height="54.666666666666657"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="7sL-xy-ugV">
+                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="7sL-xy-ugV">
                                                     <rect key="frame" x="0.0" y="0.0" width="102.66666666666667" height="54.666666666666664"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yr-NP-McC">
@@ -326,7 +326,6 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="iZi-rC-bxd" secondAttribute="bottom" constant="100" id="4Uo-0s-tq8"/>
                         <constraint firstItem="iZi-rC-bxd" firstAttribute="leading" secondItem="Lqn-Aw-C48" secondAttribute="leading" id="NPR-fK-8lU"/>
-                        <constraint firstItem="iZi-rC-bxd" firstAttribute="top" secondItem="Lqn-Aw-C48" secondAttribute="top" id="eo0-Ns-a6d"/>
                         <constraint firstAttribute="trailing" secondItem="iZi-rC-bxd" secondAttribute="trailing" id="gqh-7E-iyi"/>
                     </constraints>
                 </scrollView>
@@ -352,6 +351,7 @@
                 <constraint firstItem="GJ1-Jo-fiA" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="LRQ-Kf-t4j"/>
                 <constraint firstAttribute="bottom" secondItem="Lqn-Aw-C48" secondAttribute="bottom" id="N34-so-jWe"/>
                 <constraint firstItem="Lqn-Aw-C48" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QCK-ar-cx4"/>
+                <constraint firstItem="iZi-rC-bxd" firstAttribute="top" secondItem="Lqn-Aw-C48" secondAttribute="top" id="QG0-6i-3J7"/>
                 <constraint firstItem="GJ1-Jo-fiA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bU0-0E-oGS"/>
                 <constraint firstAttribute="trailing" secondItem="Lqn-Aw-C48" secondAttribute="trailing" id="rKg-bv-LEU"/>
                 <constraint firstItem="iZi-rC-bxd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="raq-Zy-q80"/>

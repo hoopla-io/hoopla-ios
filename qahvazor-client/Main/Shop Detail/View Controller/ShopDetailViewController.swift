@@ -42,6 +42,8 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
             view().closedLabel.isHidden = isOpen
         }
     }
+    private var currentSelectedSection = 0
+    private var isScrollingFromCategoryTap = false
     // MARK: - Actions
     @IBAction func addressButtonAction(_ sender: Any) {
         guard let lat = data?.location?.lat, let lng = data?.location?.lng else { return }
@@ -224,6 +226,10 @@ extension ShopDetailViewController {
 
 // MARK: - UIScrollViewDelegate
 extension ShopDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        isScrollingFromCategoryTap = false
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView == view().scrollView else { return }
         
@@ -237,23 +243,30 @@ extension ShopDetailViewController: UIScrollViewDelegate {
             view().secondCategoryListCollectionView.alpha = isHidden ? 0 : 1
         }
         
+        // Skip auto-selection while scrolling from a category tap
+        guard !isScrollingFromCategoryTap else { return }
+        
         // Auto-select category based on visible coffee section
         let coffeeCollectionView = view().coffeeListCollectionView!
         let coffeeOriginY = coffeeCollectionView.frame.origin.y
         let visibleY = scrollView.contentOffset.y - coffeeOriginY
         
-        var currentSection = 0
+        var newSection = 0
         for section in 0..<items.count {
             let indexPath = IndexPath(item: 0, section: section)
             guard let attributes = coffeeCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) else { continue }
             if attributes.frame.origin.y <= visibleY + 10 {
-                currentSection = section
+                newSection = section
             } else {
                 break
             }
         }
         
-        let categoryIndexPath = IndexPath(item: currentSection, section: 0)
+        // Only update selection when the section actually changes
+        guard newSection != currentSelectedSection else { return }
+        currentSelectedSection = newSection
+        
+        let categoryIndexPath = IndexPath(item: newSection, section: 0)
         categoryDataProvider?.collectionView.selectItem(at: categoryIndexPath, animated: true, scrollPosition: .centeredHorizontally)
         secondCategoryDataProvider?.collectionView.selectItem(at: categoryIndexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
@@ -263,6 +276,8 @@ extension ShopDetailViewController: UIScrollViewDelegate {
 extension ShopDetailViewController: CategoryListDataProviderDelegate {
     func didSelectCategory(at index: Int) {
         let categoryIndexPath = IndexPath(item: index, section: 0)
+        currentSelectedSection = index
+        isScrollingFromCategoryTap = true
         
         // Sync selection on both category lists
         categoryDataProvider?.collectionView.selectItem(at: categoryIndexPath, animated: true, scrollPosition: .centeredHorizontally)
@@ -270,7 +285,10 @@ extension ShopDetailViewController: CategoryListDataProviderDelegate {
         
         // Scroll coffee list to the selected section
         let sectionIndexPath = IndexPath(item: 0, section: index)
-        guard let attributes = view().coffeeListCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: sectionIndexPath) else { return }
+        guard let attributes = view().coffeeListCollectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: sectionIndexPath) else {
+            isScrollingFromCategoryTap = false
+            return
+        }
         let yPosition = view().coffeeListCollectionView.frame.origin.y + attributes.frame.origin.y
         view().scrollView.setContentOffset(CGPoint(x: 0, y: yPosition), animated: true)
     }
