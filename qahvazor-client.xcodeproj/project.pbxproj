@@ -82,6 +82,8 @@
 		52787F2C2F67D7AC0032DC5B /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52787F002F67D7AC0032DC5B /* RequestsView.swift */; };
 		52787F2D2F67D7AC0032DC5B /* BodyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52787EFE2F67D7AC0032DC5B /* BodyDetailView.swift */; };
 		52787F2E2F67D7AC0032DC5B /* CustomHTTPProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52787F092F67D7AC0032DC5B /* CustomHTTPProtocol.swift */; };
+		5282AF9F2F88C6160013F06E /* MainCategoryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282AF9E2F88C6160013F06E /* MainCategoryDataProvider.swift */; };
+		5282AFA22F88C6910013F06E /* MainCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282AFA12F88C6910013F06E /* MainCategoryCollectionViewCell.swift */; };
 		528AD1ED2F73F3FF0050ABBF /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528AD1EC2F73F3FF0050ABBF /* ReviewView.swift */; };
 		528AD1EF2F73F4170050ABBF /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528AD1EE2F73F4170050ABBF /* ReviewViewController.swift */; };
 		528AD1F22F740CCC0050ABBF /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528AD1F12F740CCC0050ABBF /* ReviewViewModel.swift */; };
@@ -352,6 +354,8 @@
 		52787F0B2F67D7AC0032DC5B /* Wormholy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wormholy.swift; sourceTree = "<group>"; };
 		52787F0E2F67D7AC0032DC5B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		52787F0F2F67D7AC0032DC5B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5282AF9E2F88C6160013F06E /* MainCategoryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryDataProvider.swift; sourceTree = "<group>"; };
+		5282AFA12F88C6910013F06E /* MainCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		528AD1EC2F73F3FF0050ABBF /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		528AD1EE2F73F4170050ABBF /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		528AD1F12F740CCC0050ABBF /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
@@ -1047,6 +1051,14 @@
 			path = Wormholy;
 			sourceTree = "<group>";
 		};
+		5282AFA02F88C6890013F06E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				5282AFA12F88C6910013F06E /* MainCategoryCollectionViewCell.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		528AD1E92F73F3D20050ABBF /* Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -1428,6 +1440,7 @@
 			isa = PBXGroup;
 			children = (
 				7596B5212D1D6B310070A5BB /* MainDataProvider.swift */,
+				5282AF9E2F88C6160013F06E /* MainCategoryDataProvider.swift */,
 			);
 			path = DataProvider;
 			sourceTree = "<group>";
@@ -1659,6 +1672,7 @@
 			isa = PBXGroup;
 			children = (
 				0571FFCD2EB76AFF0011B81D /* Shop */,
+				5282AFA02F88C6890013F06E /* Category */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2338,6 +2352,7 @@
 				52787F252F67D7AC0032DC5B /* RequestResponseExportOption.swift in Sources */,
 				52787F262F67D7AC0032DC5B /* Storage.swift in Sources */,
 				52787F272F67D7AC0032DC5B /* RequestModelBeautifier.swift in Sources */,
+				5282AF9F2F88C6160013F06E /* MainCategoryDataProvider.swift in Sources */,
 				52787F282F67D7AC0032DC5B /* WHBundle.swift in Sources */,
 				52787F292F67D7AC0032DC5B /* Postman.swift in Sources */,
 				52787F2A2F67D7AC0032DC5B /* InputStream+Utils.swift in Sources */,
@@ -2421,6 +2436,7 @@
 				05736B5A2EC08BC6003ADEF0 /* ChangeInfoViewModel.swift in Sources */,
 				05736B5B2EC08BC6003ADEF0 /* ChangeInfoViewController.swift in Sources */,
 				05B84C392EAE0EE100AB66B2 /* Files.swift in Sources */,
+				5282AFA22F88C6910013F06E /* MainCategoryCollectionViewCell.swift in Sources */,
 				7523318C2D1A8D340090997E /* FullOnboardingView.swift in Sources */,
 				0571FFD72EB7765C0011B81D /* Loyalty.swift in Sources */,
 				75DCE3632D1ABB3E003A59CD /* LanguageViewController.swift in Sources */,

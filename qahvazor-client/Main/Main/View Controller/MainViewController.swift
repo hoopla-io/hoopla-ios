@@ -22,6 +22,7 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     
     // MARK: - Attributes
     var dataProvider: MainDataProvider?
+    var categoryDataProvider: MainCategoryDataProvider?
     let locationAccessContainerView = UIView()
     
     //MARK: - Actions
@@ -32,6 +33,7 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
+        viewModel.getCategories()
         viewModel.getList()
         checkAccessLocation()
         checkUniversalLink()
@@ -60,11 +62,18 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
 }
 // MARK: - Networking
 extension MainViewController: MainViewModelProtocol {
+    func didFinishFetch(data: [Categories]) {
+        categoryDataProvider?.items = data
+    }
+    
     func didFinishFetch(data: [Shop]) {
         dataProvider?.items = data
-        ShopDataCache.shops = data
         view().collectionViewHeight.constant = CGFloat(data.count) * (dataProvider?.collectionView.dynamicHeight(type: .company) ?? 320)
         view().shopCollectionView.layoutIfNeeded()
+        
+        if ShopDataCache.shops.isEmpty {
+            ShopDataCache.shops = data
+        }
     }
     
     func didFinishFetch(feedback: OrderHistory) {
@@ -90,6 +99,11 @@ extension MainViewController {
         let dataProvider = MainDataProvider(viewController: self)
         dataProvider.collectionView = view().shopCollectionView
         self.dataProvider = dataProvider
+        
+        let categoryDataProvider = MainCategoryDataProvider()
+        categoryDataProvider.collectionView = view().categoryCollectionView
+        categoryDataProvider.delegate = self
+        self.categoryDataProvider = categoryDataProvider
         
         let refershControl = UIRefreshControl()
         refershControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -163,19 +177,21 @@ extension MainViewController {
         UniversalLink.clear()
     }
 }
+// MARK: - CategoryDataProviderDelegate
+extension MainViewController: MainCategoryDataProviderDelegate {
+    func didSelectCategory(at index: Int, category: Categories) {
+        viewModel.getList(categoryId: category.id)
+    }
+    
+    func didDeselectCategory() {
+        viewModel.getList()
+    }
+}
 // MARK: - Delegate
 extension MainViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         coordinator?.startSearch()
         return true
-    }
-}
-
-//MARK: - Scroll to up
-extension MainViewController: TabBarReselectHandling {
-    func handleReselect() {
-//        guard let items = dataProvider?.items, !items.isEmpty else { return }
-//        view().collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
 }
 

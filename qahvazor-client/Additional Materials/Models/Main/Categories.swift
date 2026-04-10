@@ -10,5 +10,6 @@ import Foundation
 struct Categories: Codable {
     let id: Int?
     let name: String?
+    let imageUrl: String?
     let drinks: [Drinks]?
 }

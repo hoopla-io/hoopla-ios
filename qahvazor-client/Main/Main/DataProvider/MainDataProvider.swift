@@ -30,7 +30,7 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
     var items = [Shop]() {
         didSet {
             self.collectionView.hideSkeleton()
-            self.collectionView.reloadData()
+            self.collectionView.reloadWithAnimation()
         }
     }
 
@@ -54,14 +54,6 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
             cell.hero.id = HeroType.view.rawValue + String(shopId)
         }
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let vc = viewController as? MainViewController else { return }
-//        if indexPath.row == items.count - 1 && vc.totalItems > items.count {
-//            vc.currentPage += 1
-//            vc.viewModel.notificationsList(page: vc.currentPage)
-//        }
     }
 
     // MARK: - Delegate
