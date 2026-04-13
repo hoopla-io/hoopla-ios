@@ -9,24 +9,76 @@ import UIKit
 
 class ShopDetailView: CustomView {
     // MARK: - Outlets
-    @IBOutlet weak var collectionView: UICollectionView! {
+    @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
-            collectionView.register(UINib(nibName: PhotoCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PhotoCollectionViewCell.defaultReuseIdentifier)
+            scrollView.contentInsetAdjustmentBehavior = .never
         }
     }
-    @IBOutlet weak var pageControll: UIPageControl!
+    @IBOutlet weak var topContainerView: UIView! {
+        didSet {
+            topContainerView.layer.cornerRadius = 30
+            topContainerView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        }
+    }
+    @IBOutlet weak var gradientView: GradientView! {
+        didSet {
+            gradientView.startPointX = 0.5
+            gradientView.startPointY = 1.0  // bottom
+            gradientView.endPointX   = 0.5
+            gradientView.endPointY   = 0.0  // top
+            gradientView.topColor = .black.withAlphaComponent(0.9)
+            gradientView.bottomColor = .clear
+            gradientView.layer.cornerRadius = 30
+            gradientView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            gradientView.clipsToBounds = true
+        }
+    }
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var workingHoursButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView! {
+        didSet {
+            imageView.layer.cornerRadius = 30
+            imageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            imageView.clipsToBounds = true
+        }
+    }
+//    @IBOutlet weak var collectionView: UICollectionView! {
+//        didSet {
+//            collectionView.register(UINib(nibName: PhotoCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PhotoCollectionViewCell.defaultReuseIdentifier)
+//        }
+//    }
+    @IBOutlet weak var pageControll: UIPageControl! {
+        didSet {
+            pageControll.isHidden = true
+        }
+    }
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var showMoreButton: UIButton!
-    @IBOutlet weak var addressButton: UIButton!
     @IBOutlet weak var phoneNumberButton: UIButton! {
         didSet {
             phoneNumberButton.isHidden = true
         }
     }
+    @IBOutlet weak var categoryListCollectionView: UICollectionView! {
+        didSet {
+            categoryListCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.defaultReuseIdentifier)
+            categoryListCollectionView.contentInset.left = 16
+            categoryListCollectionView.contentInset.right = 16
+        }
+    }
+    @IBOutlet weak var secondCategoryListCollectionView: UICollectionView! {
+        didSet {
+            secondCategoryListCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.defaultReuseIdentifier)
+            secondCategoryListCollectionView.contentInset.left = 16
+            secondCategoryListCollectionView.contentInset.right = 16
+            secondCategoryListCollectionView.alpha = 0
+        }
+    }
     @IBOutlet weak var coffeeListCollectionView: UICollectionView! {
         didSet {
             coffeeListCollectionView.register(UINib(nibName: CoffeeCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier)
+            coffeeListCollectionView.register(CoffeeSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CoffeeSectionHeaderView.reuseIdentifier)
         }
     }
     @IBOutlet weak var coffeeCollectionHeight: NSLayoutConstraint!

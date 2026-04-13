@@ -19,8 +19,8 @@ struct Shop: Codable {
     let workingHours: [WorkHour]?
     let urls: [SocialMedia]?
     let drinks: [Drinks]?
-    let modules: [Module]?
     let canAcceptOrders: Bool?
+    let categories: [Categories]?
 }
 
 struct Location: Codable {
@@ -76,12 +76,6 @@ struct WorkHour: Codable {
               (0..<24).contains(h), (0..<60).contains(m) else { return nil }
         return h * 60 + m
     }
-}
-
-struct Module: Codable {
-    let colour: String?
-    let moduleId: Int?
-    let name: String?
 }
 
 struct ConfirmDrink: Codable {

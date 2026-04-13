@@ -34,6 +34,7 @@ final class EmptyView: CustomView {
                 titleLabel.text = "notActivSubs".localized
             case .history:
                 titleLabel.text = "emptyHistory".localized
+                imageView.image = UIImage.emptyBox
             }
         }
     }

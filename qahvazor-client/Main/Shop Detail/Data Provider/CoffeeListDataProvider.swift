@@ -8,6 +8,7 @@
 import UIKit
 import SkeletonView
 
+// MARK: - CoffeeListDataProvider
 final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     // MARK: - Outlets
@@ -22,7 +23,7 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
     // MARK: - Attributes
     weak var viewController: UIViewController?
     
-    var items = [Drinks]() {
+    var items = [Categories]() {
         didSet {
             self.collectionView.reloadData()
         }
@@ -34,18 +35,31 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
     }
 
     // MARK: - Data Source
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items[section].drinks?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CoffeeCollectionViewCell else { return UICollectionViewCell() }
-        cell.titleLabel.text = items[indexPath.row].name
-        cell.priceLabel.text = items[indexPath.row].productPrice?.formattedWithCurrency
-        if let imageURL = items[indexPath.row].pictureUrl {
+        cell.titleLabel.text = items[indexPath.section].drinks?[indexPath.row].name
+        cell.priceLabel.text = items[indexPath.section].drinks?[indexPath.row].productPrice?.formattedWithCurrency
+        if let imageURL = items[indexPath.section].drinks?[indexPath.row].pictureUrl {
             cell.imageView.setImage(with: imageURL, placeholder: .appImage(.placeholder))
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
+        }
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CoffeeSectionHeaderView.reuseIdentifier, for: indexPath) as! CoffeeSectionHeaderView
+        header.titleLabel.text = items[indexPath.section].name
+        return header
     }
 
     // MARK: - Delegate
@@ -53,9 +67,13 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
         return collectionView.itemSize(type: .coffeeCard)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: 50)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        guard let vc = viewController as? ShopDetailViewController else { return }
+        let item = items[indexPath.section].drinks?[indexPath.row]
+        guard let vc = viewController as? ShopDetailViewController, let item else { return }
         vc.nextAction(item: item)
     }
 

@@ -39,7 +39,11 @@ final class HistoryViewModel {
                 case .Success(let json):
                     do {
                         let fetchedData = try CustomDecoder().decode(JSONData<[OrderHistory]>.self, from: json)
-                        guard let data = fetchedData.data else { return }
+                        guard let data = fetchedData.data else {
+                            let emptyData: [OrderHistory] = []
+                            self.delegate?.didFinishFetch(data: emptyData, meta: nil)
+                            return
+                        }
                         self.delegate?.didFinishFetch(data: data, meta: fetchedData.meta)
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))

@@ -7,6 +7,7 @@
 
 import UIKit
 import SkeletonView
+import Hero
 
 struct ShopDataCache {
     static var shops: [Shop] = []
@@ -29,7 +30,7 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
     var items = [Shop]() {
         didSet {
             self.collectionView.hideSkeleton()
-            self.collectionView.reloadData()
+            self.collectionView.reloadWithAnimation()
         }
     }
 
@@ -47,15 +48,12 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CompanyCollectionViewCell else { return UICollectionViewCell() }
         cell.prepareForReuse()
         cell.item = items[indexPath.row]
+        if let shopId = items[indexPath.row].shopId {
+            cell.imageView.hero.id = HeroType.imageView.rawValue + String(shopId)
+            cell.nameLabel.hero.id = HeroType.title.rawValue + String(shopId)
+            cell.hero.id = HeroType.view.rawValue + String(shopId)
+        }
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let vc = viewController as? MainViewController else { return }
-//        if indexPath.row == items.count - 1 && vc.totalItems > items.count {
-//            vc.currentPage += 1
-//            vc.viewModel.notificationsList(page: vc.currentPage)
-//        }
     }
 
     // MARK: - Delegate
@@ -66,7 +64,7 @@ final class MainDataProvider: NSObject, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let vc = viewController as? MainViewController else { return }
         guard let id = items[indexPath.row].shopId else { return }
-        vc.coordinator?.pushToShopDetail(id: id, name: items[indexPath.row].name, distance: items[indexPath.row].distance)
+        vc.coordinator?.pushToShopDetail(id: id, item: items[indexPath.row])
     }
 }
 

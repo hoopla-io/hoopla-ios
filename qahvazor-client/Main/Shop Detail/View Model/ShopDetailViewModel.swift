@@ -9,6 +9,7 @@ import UIKit
 
 protocol ShopDetailViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: Shop)
+    func didFinishFetch(drinks: [Categories])
 }
 
 final class ShopDetailViewModel {
@@ -32,6 +33,30 @@ final class ShopDetailViewModel {
                         let fetchedData = try CustomDecoder().decode(JSONData<Shop>.self, from: json)
                         guard let data = fetchedData.data else { return }
                         self.delegate?.didFinishFetch(data: data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
+                }
+            })
+        }
+    }
+    
+    func getDrinks(shopId: Int) {
+        let params: [String : Any] = [
+            Parameters.shopId.rawValue : shopId
+        ]
+        
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.drinks.rawValue, requestMethod: .get, parameters: params, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<Shop>.self, from: json)
+                        guard let data = fetchedData.data?.categories else { return }
+                        self.delegate?.didFinishFetch(drinks: data)
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }

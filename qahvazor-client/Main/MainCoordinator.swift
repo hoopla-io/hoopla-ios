@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftMessages
+import Hero
 
 final class MainCoordinator: Coordinator {
     
@@ -31,12 +32,14 @@ final class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func pushToShopDetail(id: Int, name: String?, distance: Double? = nil) {
+    func pushToShopDetail(id: Int, item: Shop?) {
         let vc = ShopDetailViewController()
+        vc.data = item
         vc.shopId = id
-        vc.distance = distance
+        vc.distance = item?.distance
         vc.coordinator = self
-        vc.navigationItem.title = name
+//        vc.hero.isEnabled = true
+//        navigationController.hero.isEnabled = true
         navigationController.pushViewController(vc, animated: true)
     }
     
