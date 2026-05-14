@@ -246,7 +246,7 @@ extension UICollectionView {
 }
 
 extension UICollectionView {
-    func reloadWithoutAnimation() {
+    func reloadWithAnimation() {
         UIView.transition(with: self,
                                   duration: 0.2,
                                   options: .transitionCrossDissolve,

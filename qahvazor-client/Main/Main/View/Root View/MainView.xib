@@ -24,13 +24,26 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="h98-Sy-cId">
-                            <rect key="frame" x="0.0" y="10" width="393" height="1034"/>
+                            <rect key="frame" x="0.0" y="10" width="393" height="1134"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pts-DI-9ek">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="1034"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="1134"/>
                                     <subviews>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vVE-2r-QUc">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="90"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="90" id="mi6-fb-o8q"/>
+                                            </constraints>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LKh-p1-MdQ">
+                                                <size key="itemSize" width="128" height="128"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                        </collectionView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EN6-S0-NDT">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
+                                            <rect key="frame" x="0.0" y="100" width="393" height="24"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e11-dr-MuY">
                                                     <rect key="frame" x="16" y="0.0" width="361" height="24"/>
@@ -46,7 +59,7 @@
                                             </constraints>
                                         </stackView>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dgT-2d-K8b">
-                                            <rect key="frame" x="0.0" y="34" width="393" height="1000"/>
+                                            <rect key="frame" x="0.0" y="134" width="393" height="1000"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1000" id="8p6-Id-yWF"/>
@@ -111,6 +124,7 @@
             </constraints>
             <connections>
                 <outlet property="cameraButton" destination="qGI-9g-9sH" id="Z31-q4-Ekr"/>
+                <outlet property="categoryCollectionView" destination="vVE-2r-QUc" id="gh9-AO-3GX"/>
                 <outlet property="collectionViewHeight" destination="8p6-Id-yWF" id="eOB-u8-0UR"/>
                 <outlet property="scrollView" destination="ce6-hp-oHt" id="4mz-eX-ldY"/>
                 <outlet property="shopCollectionView" destination="dgT-2d-K8b" id="y1o-4g-VlZ"/>

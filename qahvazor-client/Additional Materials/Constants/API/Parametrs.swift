@@ -14,6 +14,7 @@ enum Parameters: String {
     
     // MARK: - Main
     case id = "id"
+    case categoryId = "categoryId"
     case partnerId = "partnerId"
     case shopId = "shopId"
     case long = "long"

@@ -10,6 +10,14 @@ import UIKit
 final class MainView: CustomView {
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var categoryCollectionView: UICollectionView! {
+        didSet {
+            categoryCollectionView.register(MainCategoryCollectionViewCell.self, forCellWithReuseIdentifier: MainCategoryCollectionViewCell.defaultReuseIdentifier)
+            categoryCollectionView.contentInset.left = 16
+            categoryCollectionView.contentInset.right = 16
+            categoryCollectionView.showsHorizontalScrollIndicator = false
+        }
+    }
     @IBOutlet weak var shopCollectionView: UICollectionView! {
         didSet {
             shopCollectionView.register(UINib(nibName: CompanyCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier)
