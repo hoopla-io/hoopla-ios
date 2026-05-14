@@ -31,4 +31,21 @@ final class HistoryCoordinator: Coordinator {
         vc.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func presentGetOrderVC(orderId: Int) {
+        let vc = GetOrderViewController()
+        vc.orderId = orderId
+        if let sheet = vc.sheetPresentationController {
+            sheet.preferredCornerRadius = 16
+            sheet.prefersGrabberVisible = true
+            
+            let reviewId = UISheetPresentationController.Detent.Identifier("GetOrders")
+            let reviewDetent = UISheetPresentationController.Detent.custom(identifier: reviewId) { context in
+                return context.maximumDetentValue * 0.9
+            }
+            sheet.detents = [reviewDetent]
+            sheet.selectedDetentIdentifier = reviewId
+        }
+        navigationController.present(vc, animated: true)
+    }
 }
