@@ -8,15 +8,6 @@
 import UIKit
 
 final class GetOrderView: CustomView {
-
-    // MARK: - Constants
-    private static let expiresAtFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d MMMM, yyyy HH:mm"
-        formatter.locale = Locale(identifier: UserDefaults.standard.getLocalization())
-        return formatter
-    }()
-
     // MARK: - UI Elements
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -67,17 +58,6 @@ final class GetOrderView: CustomView {
         return imageView
     }()
 
-    private let expiresAtLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 17, weight: .regular)
-        label.textAlignment = .center
-        label.textColor = .label
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.8
-        return label
-    }()
-
     let doneButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -115,24 +95,19 @@ final class GetOrderView: CustomView {
         guard let qrValue, !qrValue.isEmpty else {
             qrImageView.image = nil
             codeLabel.text = nil
-            expiresAtLabel.text = nil
             return
         }
 
         qrImageView.image = UIImage.generateQRCode(key: qrValue)
         codeLabel.text = code
-        expiresAtLabel.text = formattedExpiresAt(timestamp: expiresAt)
     }
 
     // MARK: - Setup
     private func setupUI() {
-        backgroundColor = UIColor(red: 0.969, green: 0.973, blue: 0.984, alpha: 1)
-
         addSubview(titleLabel)
         addSubview(subtitleLabel)
         addSubview(codeLabel)
         addSubview(qrContainerView)
-        addSubview(expiresAtLabel)
         addSubview(doneButton)
 
         qrContainerView.addSubview(qrImageView)
@@ -161,11 +136,6 @@ final class GetOrderView: CustomView {
             qrImageView.trailingAnchor.constraint(equalTo: qrContainerView.trailingAnchor, constant: -30),
             qrImageView.bottomAnchor.constraint(equalTo: qrContainerView.bottomAnchor, constant: -30),
 
-            expiresAtLabel.topAnchor.constraint(equalTo: qrContainerView.bottomAnchor, constant: 28),
-            expiresAtLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            expiresAtLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            expiresAtLabel.bottomAnchor.constraint(lessThanOrEqualTo: doneButton.topAnchor, constant: -24),
-
             doneButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
             doneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             doneButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12),
@@ -173,9 +143,4 @@ final class GetOrderView: CustomView {
         ])
     }
 
-    private func formattedExpiresAt(timestamp: Int?) -> String? {
-        guard let timestamp else { return nil }
-        let date = DateFormatter.string(timestamp: timestamp, formatter: Self.expiresAtFormatter)
-        return "\("validUntil".localized): \(date)"
-    }
 }

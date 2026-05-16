@@ -9,7 +9,6 @@ import UIKit
 final class NotificationsDetailView: CustomView {
     // MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var timeButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var detailLabel: UILabel!
 }

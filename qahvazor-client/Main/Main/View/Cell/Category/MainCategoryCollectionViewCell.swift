@@ -7,30 +7,31 @@ import UIKit
 
 final class MainCategoryCollectionViewCell: UICollectionViewCell {
 
-    // MARK: - UI Elements
-    private let imageContainerView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 16
-        view.clipsToBounds = true
-        view.layer.borderWidth = 2
-        view.layer.borderColor = UIColor.clear.cgColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private enum Constants {
+        static let height: CGFloat = 44
+        static let imageSide: CGFloat = 28
+        static let horizontalInset: CGFloat = 16
+        static let imageSpacing: CGFloat = 10
+        static let minimumWidth: CGFloat = 86
+        static let titleFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+    }
 
+    // MARK: - UI Elements
     let categoryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.textAlignment = .center
-        label.numberOfLines = 2
+        label.font = Constants.titleFont
+        label.textAlignment = .natural
+        label.numberOfLines = 1
+        label.lineBreakMode = .byTruncatingTail
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -54,37 +55,34 @@ final class MainCategoryCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Setup
     private func setupUI() {
-        contentView.addSubview(imageContainerView)
-        imageContainerView.addSubview(categoryImageView)
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = Constants.height / 2
+        contentView.layer.masksToBounds = true
+        contentView.layer.borderWidth = 1
+
+        contentView.addSubview(categoryImageView)
         contentView.addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
-            imageContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageContainerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            imageContainerView.widthAnchor.constraint(equalToConstant: 64),
-            imageContainerView.heightAnchor.constraint(equalToConstant: 64),
+            categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.horizontalInset),
+            categoryImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            categoryImageView.widthAnchor.constraint(equalToConstant: Constants.imageSide),
+            categoryImageView.heightAnchor.constraint(equalToConstant: Constants.imageSide),
 
-            categoryImageView.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
-            categoryImageView.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
-            categoryImageView.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor),
-            categoryImageView.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
-
-            titleLabel.topAnchor.constraint(equalTo: imageContainerView.bottomAnchor, constant: 4),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            titleLabel.leadingAnchor.constraint(equalTo: categoryImageView.trailingAnchor, constant: Constants.imageSpacing),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.horizontalInset),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
         updateAppearance()
     }
 
     private func updateAppearance() {
-        if isSelected {
-            UIView.animate(withDuration: 0.25) {
-                self.imageContainerView.layer.borderColor = UIColor.appColor(.mainColor).cgColor
-                self.titleLabel.textColor = .appColor(.mainColor)
-            }
-        } else {
-            imageContainerView.layer.borderColor = UIColor.clear.cgColor
-            titleLabel.textColor = .label
+        let borderColor = isSelected ? UIColor.appColor(.mainColor) : .clear
+        let titleColor = isSelected ? UIColor.appColor(.mainColor) : UIColor.label
+
+        UIView.animate(withDuration: 0.2) {
+            self.contentView.layer.borderColor = borderColor.cgColor
+            self.titleLabel.textColor = titleColor
         }
     }
 
@@ -98,5 +96,12 @@ final class MainCategoryCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         categoryImageView.image = nil
         titleLabel.text = nil
+    }
+
+    static func size(for category: Categories) -> CGSize {
+        let title = category.name ?? ""
+        let titleWidth = (title as NSString).size(withAttributes: [.font: Constants.titleFont]).width
+        let width = Constants.horizontalInset * 2 + Constants.imageSide + Constants.imageSpacing + ceil(titleWidth)
+        return CGSize(width: max(Constants.minimumWidth, width), height: Constants.height)
     }
 }

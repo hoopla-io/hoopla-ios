@@ -74,7 +74,7 @@ final class NotificationsDataProvider: NSObject, UICollectionViewDataSource, UIC
 
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.itemSize(additionalHeight: 80.0,
+        return collectionView.itemSize(additionalHeight: 90.0,
                                        additionalSpace: 32.0,
                                        firstText: items[safe: indexPath.row]?.notificationTitle,
                                        firstFont: .systemFont(ofSize: 20, weight: .bold),
