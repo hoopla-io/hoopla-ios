@@ -26,6 +26,7 @@ enum EndPoints: String {
     case notificationsList = "notifications/list"
     case notificationShow = "notifications/show"
     case categories = "categories/list"
+    case storiesList = "stories/list"
     
     // MARK: - History
     case ordersList = "user/orders/orders-list"
