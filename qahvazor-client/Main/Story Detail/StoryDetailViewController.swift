@@ -10,6 +10,7 @@ import UIKit
 final class MainStoryViewController: UIViewController {
 
     private let story: StoryDetail
+    private let bottomGradientLayer = CAGradientLayer()
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -17,6 +18,13 @@ final class MainStoryViewController: UIViewController {
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
+    }()
+
+    private let bottomGradientView: UIView = {
+        let view = UIView()
+        view.isUserInteractionEnabled = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     private let titleLabel: UILabel = {
@@ -90,12 +98,25 @@ final class MainStoryViewController: UIViewController {
         configure()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        bottomGradientLayer.frame = bottomGradientView.bounds
+    }
+
     private func setupUI() {
         view.backgroundColor = .black
         view.addSubview(imageView)
+        view.addSubview(bottomGradientView)
         view.addSubview(textStackView)
         view.addSubview(closeButton)
         view.addSubview(actionButton)
+
+        bottomGradientLayer.colors = [
+            UIColor.black.withAlphaComponent(0).cgColor,
+            UIColor.black.withAlphaComponent(0.75).cgColor
+        ]
+        bottomGradientLayer.locations = [0, 1]
+        bottomGradientView.layer.addSublayer(bottomGradientLayer)
 
         closeButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         actionButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
@@ -105,6 +126,11 @@ final class MainStoryViewController: UIViewController {
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            bottomGradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomGradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomGradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomGradientView.heightAnchor.constraint(equalToConstant: 260),
 
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),

@@ -64,11 +64,13 @@ final class StoryCollectionViewCell: UICollectionViewCell {
 
     func configure(with item: Stories) {
         accessibilityLabel = item.title
+        imageContainerView.layer.borderColor = item.isSeen == true ? UIColor.clear.cgColor : UIColor.appColor(.mainColor).cgColor
         storyImageView.setImage(with: item.coverImageUrl, placeholder: .appImage(.placeholder))
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         storyImageView.image = nil
+        imageContainerView.layer.borderColor = UIColor.appColor(.mainColor).cgColor
     }
 }
