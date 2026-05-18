@@ -55,7 +55,7 @@ final class MainCategoryCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Setup
     private func setupUI() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .dynamicWhite
         contentView.layer.cornerRadius = Constants.height / 2
         contentView.layer.masksToBounds = true
         contentView.layer.borderWidth = 1
