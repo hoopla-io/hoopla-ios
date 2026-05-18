@@ -46,8 +46,6 @@ extension NotificationsDetailViewController: NotificationsDetailViewModelProtoco
         view().titleLabel.text = notification.notificationTitle
         view().detailLabel.text = notification.notificationDescription
         
-        view().timeButton.setTitle(notification.createdAt, for: .normal)
-        
         if let imageUrl = notification.files?.imageUrl {
             view().imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage())
         }

@@ -48,6 +48,11 @@ class HistoryDetailViewController: UIViewController, ViewSpecificController, @Ma
     }
     
     //MARK: - Actions
+    @IBAction func getOrderAction(_ sender: Any) {
+        guard let id = data?.id else { return }
+        guard let coordinator = coordinator as? HistoryCoordinator else { return }
+        coordinator.presentGetOrderVC(orderId: id)
+    }
     @IBAction func getCheckAction(_ sender: Any) {
         guard let fiscalLink = data?.fiscalLink else { return }
         openViaSafariVC(fiscalLink, from: self)
@@ -91,6 +96,7 @@ extension HistoryDetailViewController: HistoryViewModelProtocol {
         view().cancelledButtonInfo.isHidden = !(orderStatus == .cancelled)
         view().cancelledButton.isHidden = !(orderStatus == .pending_payment)
         view().continuePaymentButton.isHidden = !(orderStatus == .pending_payment)
+        view().getOrderButton.isHidden = (orderStatus == .cancelled)
         
         guard let items = data?.items else { return }
         for i in items.enumerated() {

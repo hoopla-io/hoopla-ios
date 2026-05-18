@@ -32,6 +32,19 @@ final class HistoryDetailView: CustomView {
     @IBOutlet weak var cashbackUsedLabel: UILabel!
     @IBOutlet weak var cashbackEarnedLabel: UILabel!
     
+    @IBOutlet weak var getOrderButton: UIButton! {
+        didSet {
+            if #available(iOS 26.0, *) {
+                var config: UIButton.Configuration
+                config = .clearGlass()
+                config.baseForegroundColor = .appColor(.white)
+                config.cornerStyle = .large
+                config.imagePadding = 10
+                getOrderButton.configuration = config
+            }
+            getOrderButton.isHidden = true
+        }
+    }
     @IBOutlet weak var getButton: UIButton! {
         didSet {
             if #available(iOS 26.0, *) {

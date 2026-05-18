@@ -23,6 +23,7 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     // MARK: - Attributes
     var dataProvider: MainDataProvider?
     var categoryDataProvider: MainCategoryDataProvider?
+    var storiesDataProvider: MainStoriesDataProvider?
     let locationAccessContainerView = UIView()
     
     //MARK: - Actions
@@ -33,6 +34,7 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
+        viewModel.getStories()
         viewModel.getCategories()
         viewModel.getList()
         checkAccessLocation()
@@ -62,6 +64,15 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
 }
 // MARK: - Networking
 extension MainViewController: MainViewModelProtocol {
+    func didFinishFetch(data: [Stories]) {
+        storiesDataProvider?.items = data
+    }
+    
+    func didFinishFetch(data: Stories) {
+        guard let detail = data.items?.first else { return }
+        coordinator?.presentStoryDetailVC(data: detail)
+    }
+    
     func didFinishFetch(data: [Categories]) {
         categoryDataProvider?.items = data
     }
@@ -96,6 +107,11 @@ extension MainViewController {
         setupSearchBar()
         setupNavigationBar()
         
+        let storiesDataProvider = MainStoriesDataProvider()
+        storiesDataProvider.collectionView = view().storiesCollectionView
+        storiesDataProvider.delegate = self
+        self.storiesDataProvider = storiesDataProvider
+
         let dataProvider = MainDataProvider(viewController: self)
         dataProvider.collectionView = view().shopCollectionView
         self.dataProvider = dataProvider
@@ -185,6 +201,14 @@ extension MainViewController: MainCategoryDataProviderDelegate {
     
     func didDeselectCategory() {
         viewModel.getList()
+    }
+}
+
+// MARK: - StoriesDataProviderDelegate
+extension MainViewController: MainStoriesDataProviderDelegate {
+    func didSelectStory(_ story: Stories) {
+        guard let id = story.id else { return }
+        viewModel.getStoryDetail(id: id)
     }
 }
 // MARK: - Delegate

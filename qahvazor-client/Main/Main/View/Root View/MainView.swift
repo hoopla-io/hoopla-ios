@@ -10,6 +10,16 @@ import UIKit
 final class MainView: CustomView {
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var storiesCollectionView: UICollectionView! {
+        didSet {
+            storiesCollectionView.register(StoryCollectionViewCell.self, forCellWithReuseIdentifier: StoryCollectionViewCell.defaultReuseIdentifier)
+            storiesCollectionView.contentInset.left = 16
+            storiesCollectionView.contentInset.right = 16
+            storiesCollectionView.showsHorizontalScrollIndicator = false
+            storiesCollectionView.decelerationRate = .fast
+            storiesCollectionView.isHidden = true
+        }
+    }
     @IBOutlet weak var categoryCollectionView: UICollectionView! {
         didSet {
             categoryCollectionView.register(MainCategoryCollectionViewCell.self, forCellWithReuseIdentifier: MainCategoryCollectionViewCell.defaultReuseIdentifier)

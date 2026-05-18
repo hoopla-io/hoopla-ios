@@ -30,3 +30,9 @@ struct OrderHistoryItem: Codable {
     let name: String?
     let price: Double?
 }
+
+struct GetOrder: Codable {
+    let expiresAt: Int?
+    let orderId: Int?
+    let token: String?
+}

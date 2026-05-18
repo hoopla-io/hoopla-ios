@@ -9,6 +9,8 @@ import UIKit
 
 protocol MainViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: [Shop])
+    func didFinishFetch(data: [Stories])
+    func didFinishFetch(data: Stories)
     func didFinishFetch(data: [Categories])
     func didFinishFetch(feedback: OrderHistory)
 }
@@ -47,6 +49,51 @@ final class MainViewModel {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }
                 }
+            })
+        }
+    }
+    
+    func getStories() {
+        
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.storiesList.rawValue, requestMethod: .get, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<[Stories]>.self, from: json)
+                        guard let data = fetchedData.data else { return }
+                        self.delegate?.didFinishFetch(data: data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
+                }
+            })
+        }
+    }
+    
+    func getStoryDetail(id: Int) {
+        let url = "stories/show/\(id)"
+        delegate?.showActivityIndicator()
+        
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(url: url, requestMethod: .get, completionHandler: { [weak self]  (result) in
+                guard let self = self else { return }
+                switch result {
+                case .Error(let error, let message):
+                    self.delegate?.showAlertClosure(error: (error,message))
+                case .Success(let json):
+                    do {
+                        let fetchedData = try CustomDecoder().decode(JSONData<Stories>.self, from: json)
+                        guard let data = fetchedData.data else { return }
+                        self.delegate?.didFinishFetch(data: data)
+                    } catch {
+                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                    }
+                }
+                self.delegate?.hideActivityIndicator()
             })
         }
     }

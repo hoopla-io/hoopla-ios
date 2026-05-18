@@ -44,7 +44,7 @@ final class MainCategoryDataProvider: NSObject, UICollectionViewDataSource, UICo
 
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 72, height: 90)
+        return MainCategoryCollectionViewCell.size(for: items[indexPath.row])
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
