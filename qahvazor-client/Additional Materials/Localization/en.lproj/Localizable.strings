@@ -201,3 +201,4 @@ pickupQRSubtitle = "Show this QR code to the barista to pick up your order";
 validUntil = "Valid until";
 close = "Close";
 comment = "Comment";
+addComment = "Add additional comment...";

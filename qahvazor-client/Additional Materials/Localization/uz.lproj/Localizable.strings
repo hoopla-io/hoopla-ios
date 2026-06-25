@@ -201,3 +201,4 @@ pickupQRSubtitle = "Buyurtmangizni olish uchun ushbu QR-kodni baristaga ko'rsati
 validUntil = "Amal qiladi";
 close = "Yopish";
 comment = "Izoh";
+addComment = "Qo'shimcha izoh yozing...";
