@@ -76,6 +76,13 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
         }
     }
     var orderedId: Int?
+    var comment: String? {
+        didSet {
+            guard let comment, !comment.isEmpty else { return }
+            view().commentLabel.text = comment
+            view().commentStackView.isHidden = false
+        }
+    }
     
     //MARK: - Actions
     @IBAction func cashbeckAction(_ sender: UISwitch) {
@@ -96,7 +103,7 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
     @IBAction func confirmOrderAction(_ sender: Any) {
         Task { @MainActor in
             guard let shopId = shopData?.id, let drinkId = drinkData?.id else { return }
-            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: [selectedSize, selectedSugar, selectedMilk, selectedSyrop], useCashback: view().cashbackSwitch.isOn, cashbackAmount: cashbackAmount)
+            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: [selectedSize, selectedSugar, selectedMilk, selectedSyrop], useCashback: view().cashbackSwitch.isOn, cashbackAmount: cashbackAmount, comment: comment)
         }
     }
     

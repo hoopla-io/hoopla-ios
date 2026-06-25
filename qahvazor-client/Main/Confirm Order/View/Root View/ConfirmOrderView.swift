@@ -47,6 +47,7 @@ final class ConfirmOrderView: CustomView {
             syrupStackView.isHidden = true
         }
     }
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var priceButton: UIButton! {
         didSet {
             if #available(iOS 26.0, *) {

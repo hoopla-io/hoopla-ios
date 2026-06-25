@@ -66,7 +66,7 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
     }
     
     @IBAction func confirmOrderAction(_ sender: Any) {
-        coordinator?.pushToCheckoutVC(sugar: selectedSugar, size: selectedSize, milk: selectedMilk, syrop: selectedSyrop, shopData: shopData, drinkData: drinkData, totalPrice: productPrice)
+        coordinator?.pushToCheckoutVC(sugar: selectedSugar, size: selectedSize, milk: selectedMilk, syrop: selectedSyrop, shopData: shopData, drinkData: drinkData, totalPrice: productPrice, comment: view().textView.text)
     }
     
     func changePricingAction() {

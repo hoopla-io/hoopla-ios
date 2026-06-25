@@ -49,6 +49,13 @@ final class CheckoutView: CustomView {
         }
     }
     
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var commentStackView: UIStackView! {
+        didSet {
+            commentStackView.isHidden = true
+        }
+    }
+    
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var oldPriceLabel: UILabel! {
         didSet {

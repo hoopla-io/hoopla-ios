@@ -200,3 +200,4 @@ pickupQRTitle = "QR-код для самовывоза";
 pickupQRSubtitle = "Покажите этот QR-код бариста, чтобы получить заказ";
 validUntil = "Действует до";
 close = "Закрыть";
+comment = "Комментарий";

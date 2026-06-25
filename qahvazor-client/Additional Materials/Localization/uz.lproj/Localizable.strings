@@ -200,3 +200,4 @@ pickupQRTitle = "Olib ketish QR-kodi";
 pickupQRSubtitle = "Buyurtmangizni olish uchun ushbu QR-kodni baristaga ko'rsating";
 validUntil = "Amal qiladi";
 close = "Yopish";
+comment = "Izoh";
