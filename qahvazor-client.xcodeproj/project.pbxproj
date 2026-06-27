@@ -18,6 +18,7 @@
 		055B67512FB8E0F900DF350B /* StoryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B67502FB8E0F900DF350B /* StoryDataProvider.swift */; };
 		055B67542FB8E13900DF350B /* StoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B67532FB8E13900DF350B /* StoryDetailViewController.swift */; };
 		055B67572FB8E3A800DF350B /* StoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B67562FB8E3A800DF350B /* StoryCollectionViewCell.swift */; };
+		056D1E002FF00784007EC0F1 /* ModifierGroupDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D1DFF2FF00784007EC0F1 /* ModifierGroupDataProvider.swift */; };
 		056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */; };
 		0571FFD72EB7765C0011B81D /* Loyalty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571FFD62EB7765C0011B81D /* Loyalty.swift */; };
 		05736B572EC08BC6003ADEF0 /* ChangeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736B4A2EC08BC6003ADEF0 /* ChangeInfoView.swift */; };
@@ -27,7 +28,6 @@
 		05736B5B2EC08BC6003ADEF0 /* ChangeInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736B482EC08BC6003ADEF0 /* ChangeInfoViewController.swift */; };
 		05736B5C2EC08BC6003ADEF0 /* BirthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05736B522EC08BC6003ADEF0 /* BirthView.xib */; };
 		05736B5D2EC08BC6003ADEF0 /* ChangeInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05736B4B2EC08BC6003ADEF0 /* ChangeInfoView.xib */; };
-		057DDB112F1BDFC400963E9F /* MilkDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DDB102F1BDFC400963E9F /* MilkDataProvider.swift */; };
 		0587461A2FB5CB25002FC40B /* GetOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058746192FB5CB25002FC40B /* GetOrderViewModel.swift */; };
 		0587461C2FB5CB2E002FC40B /* GetOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587461B2FB5CB2E002FC40B /* GetOrderView.swift */; };
 		0587461E2FB5CB37002FC40B /* GetOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587461D2FB5CB37002FC40B /* GetOrderViewController.swift */; };
@@ -45,7 +45,6 @@
 		05B84C352EAE0BA700AB66B2 /* NotificationsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B84C242EAE0BA700AB66B2 /* NotificationsDetailView.swift */; };
 		05B84C372EAE0C0B00AB66B2 /* NewsNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B84C362EAE0C0B00AB66B2 /* NewsNotification.swift */; };
 		05B84C392EAE0EE100AB66B2 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B84C382EAE0EE100AB66B2 /* Files.swift */; };
-		05C37E3C2E7594B500645F35 /* SyrupDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C37E3B2E7594B500645F35 /* SyrupDataProvider.swift */; };
 		05C37E402E75958600645F35 /* ItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C37E3D2E75958600645F35 /* ItemsCollectionViewCell.swift */; };
 		05C37E412E75958600645F35 /* ItemsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C37E3E2E75958600645F35 /* ItemsCollectionViewCell.xib */; };
 		05CDA6762EAFC209000562F0 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CDA6752EAFC209000562F0 /* MapCoordinator.swift */; };
@@ -297,6 +296,7 @@
 		055B67502FB8E0F900DF350B /* StoryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDataProvider.swift; sourceTree = "<group>"; };
 		055B67532FB8E13900DF350B /* StoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailViewController.swift; sourceTree = "<group>"; };
 		055B67562FB8E3A800DF350B /* StoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		056D1DFF2FF00784007EC0F1 /* ModifierGroupDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierGroupDataProvider.swift; sourceTree = "<group>"; };
 		056ECCBC2EAFBB3400FC4A4F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0571FFD62EB7765C0011B81D /* Loyalty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loyalty.swift; sourceTree = "<group>"; };
 		05736B482EC08BC6003ADEF0 /* ChangeInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeInfoViewController.swift; sourceTree = "<group>"; };
@@ -306,7 +306,6 @@
 		05736B502EC08BC6003ADEF0 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		05736B522EC08BC6003ADEF0 /* BirthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BirthView.xib; sourceTree = "<group>"; };
 		05736B532EC08BC6003ADEF0 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
-		057DDB102F1BDFC400963E9F /* MilkDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilkDataProvider.swift; sourceTree = "<group>"; };
 		058746192FB5CB25002FC40B /* GetOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOrderViewModel.swift; sourceTree = "<group>"; };
 		0587461B2FB5CB2E002FC40B /* GetOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOrderView.swift; sourceTree = "<group>"; };
 		0587461D2FB5CB37002FC40B /* GetOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOrderViewController.swift; sourceTree = "<group>"; };
@@ -324,7 +323,6 @@
 		05B84C272EAE0BA700AB66B2 /* NotificationsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDetailViewModel.swift; sourceTree = "<group>"; };
 		05B84C362EAE0C0B00AB66B2 /* NewsNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsNotification.swift; sourceTree = "<group>"; };
 		05B84C382EAE0EE100AB66B2 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
-		05C37E3B2E7594B500645F35 /* SyrupDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyrupDataProvider.swift; sourceTree = "<group>"; };
 		05C37E3D2E75958600645F35 /* ItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollectionViewCell.swift; sourceTree = "<group>"; };
 		05C37E3E2E75958600645F35 /* ItemsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemsCollectionViewCell.xib; sourceTree = "<group>"; };
 		05CDA6752EAFC209000562F0 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
@@ -905,8 +903,7 @@
 		05C37E3A2E7594A200645F35 /* Data Provider */ = {
 			isa = PBXGroup;
 			children = (
-				057DDB102F1BDFC400963E9F /* MilkDataProvider.swift */,
-				05C37E3B2E7594B500645F35 /* SyrupDataProvider.swift */,
+				056D1DFF2FF00784007EC0F1 /* ModifierGroupDataProvider.swift */,
 			);
 			path = "Data Provider";
 			sourceTree = "<group>";
@@ -2313,7 +2310,6 @@
 				75F3B0DE2D3789C7003E37B9 /* Coordinate.swift in Sources */,
 				752330C72D197B210090997E /* AssetsImage.swift in Sources */,
 				752331372D198BA80090997E /* ProfileCoordinator.swift in Sources */,
-				05C37E3C2E7594B500645F35 /* SyrupDataProvider.swift in Sources */,
 				75705CEA2D2FFD5500DA3AA4 /* PhotoDataProvider.swift in Sources */,
 				05C37E402E75958600645F35 /* ItemsCollectionViewCell.swift in Sources */,
 				75DCE3892D1C28BF003A59CD /* ProfileViewModel.swift in Sources */,
@@ -2397,7 +2393,6 @@
 				75BB17282E095C8500376246 /* UniversalLink.swift in Sources */,
 				752330E52D197B210090997E /* SKStoreReviewController.swift in Sources */,
 				752330E62D197B210090997E /* Headers.swift in Sources */,
-				057DDB112F1BDFC400963E9F /* MilkDataProvider.swift in Sources */,
 				055B67572FB8E3A800DF350B /* StoryCollectionViewCell.swift in Sources */,
 				752330E72D197B210090997E /* UIBarButtonItem.swift in Sources */,
 				75DCE3862D1C10C6003A59CD /* ProfileViewController.swift in Sources */,
@@ -2428,6 +2423,7 @@
 				52787F282F67D7AC0032DC5B /* WHBundle.swift in Sources */,
 				52787F292F67D7AC0032DC5B /* Postman.swift in Sources */,
 				52787F2A2F67D7AC0032DC5B /* InputStream+Utils.swift in Sources */,
+				056D1E002FF00784007EC0F1 /* ModifierGroupDataProvider.swift in Sources */,
 				52787F2B2F67D7AC0032DC5B /* ShakeDetectionViewController.swift in Sources */,
 				52787F2C2F67D7AC0032DC5B /* RequestsView.swift in Sources */,
 				52787F2D2F67D7AC0032DC5B /* BodyDetailView.swift in Sources */,
@@ -2570,7 +2566,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2604,7 +2600,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

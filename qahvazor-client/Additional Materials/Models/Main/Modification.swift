@@ -7,6 +7,19 @@
 
 import Foundation
 
+struct ConfirmDrink: Codable {
+    let modifications: Modifications?
+    let modifierGroups: [ModifierGroups]?
+}
+
+struct ModifierGroups: Codable {
+    let key: String?
+    let maxSelect: Int?
+    let minSelect: Int?
+    let name: String?
+    let options: [Modification]?
+}
+
 struct Modifications: Codable {
     let size: [Modification]?
     let sugar: [Modification]?

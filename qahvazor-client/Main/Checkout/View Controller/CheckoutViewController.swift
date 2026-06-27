@@ -38,36 +38,9 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
             view().shopLabel.text = shopData?.name
         }
     }
-    var selectedSugar: Modification? {
+    var selectedModifiers = [Modification]() {
         didSet {
-            guard let selectedSugar else  { return }
-            view().sugarTitleLabel.text = selectedSugar.modificationName
-            view().sugarPriceLabel.text = ("+" + (selectedSugar.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().sugarStackView.isHidden = false
-        }
-    }
-    var selectedSize: Modification? {
-        didSet {
-            guard let selectedSize else  { return }
-            view().sizePriceLabel.text = ("+" + (selectedSize.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().sizeTitleLabel.text = selectedSize.modificationName
-            view().sizeStackView.isHidden = false
-        }
-    }
-    var selectedMilk: Modification? {
-        didSet {
-            guard let selectedMilk else  { return }
-            view().milkPriceLabel.text = ("+" + (selectedMilk.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().milkTitleLabel.text = selectedMilk.modificationName
-            view().milkStackView.isHidden = false
-        }
-    }
-    var selectedSyrop: Modification? {
-        didSet {
-            guard let selectedSyrop else  { return }
-            view().syropPriceLabel.text = ("+" + (selectedSyrop.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().syropTitleLabel.text = selectedSyrop.modificationName
-            view().syropStackView.isHidden = false
+            configureModifierSummary()
         }
     }
     var cashbackAmount: Double = 0.0 {
@@ -83,7 +56,6 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
             view().commentStackView.isHidden = false
         }
     }
-    
     //MARK: - Actions
     @IBAction func cashbeckAction(_ sender: UISwitch) {
         guard sender.isOn else {
@@ -103,7 +75,7 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
     @IBAction func confirmOrderAction(_ sender: Any) {
         Task { @MainActor in
             guard let shopId = shopData?.id, let drinkId = drinkData?.id else { return }
-            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: [selectedSize, selectedSugar, selectedMilk, selectedSyrop], useCashback: view().cashbackSwitch.isOn, cashbackAmount: cashbackAmount, comment: comment)
+            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: selectedModifiers, useCashback: view().cashbackSwitch.isOn, cashbackAmount: cashbackAmount, comment: comment)
         }
     }
     
@@ -191,5 +163,56 @@ extension CheckoutViewController: CashbeckViewProtocol {
         let underlineAttribute = [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]
         let underlineAttributedString = NSAttributedString(string: "\(totalPrice.formattedWithCurrency)", attributes: underlineAttribute)
         view().oldPriceLabel.attributedText = underlineAttributedString
+    }
+}
+
+private extension CheckoutViewController {
+    func configureModifierSummary() {
+        view().sizeStackView.isHidden = true
+        view().sugarStackView.isHidden = true
+        view().milkStackView.isHidden = true
+        view().syropStackView.isHidden = true
+
+        configure(
+            selectedModifiers.modifiers(for: ["size"]),
+            titleLabel: view().sizeTitleLabel,
+            priceLabel: view().sizePriceLabel,
+            stackView: view().sizeStackView
+        )
+        configure(
+            selectedModifiers.modifiers(for: ["sugar"]),
+            titleLabel: view().sugarTitleLabel,
+            priceLabel: view().sugarPriceLabel,
+            stackView: view().sugarStackView
+        )
+        configure(
+            selectedModifiers.modifiers(for: ["milk"]),
+            titleLabel: view().milkTitleLabel,
+            priceLabel: view().milkPriceLabel,
+            stackView: view().milkStackView
+        )
+        configure(
+            selectedModifiers.modifiers(for: ["syrup", "syrop"]),
+            titleLabel: view().syropTitleLabel,
+            priceLabel: view().syropPriceLabel,
+            stackView: view().syropStackView
+        )
+    }
+
+    func configure(_ modifiers: [Modification], titleLabel: UILabel, priceLabel: UILabel, stackView: UIStackView) {
+        guard !modifiers.isEmpty else { return }
+        titleLabel.text = modifiers.compactMap(\.modificationName).joined(separator: ", ")
+        let price = modifiers.reduce(0.0) { $0 + ($1.modificationPrice ?? 0.0) }
+        priceLabel.text = "+" + price.formattedWithCurrency
+        stackView.isHidden = false
+    }
+}
+
+private extension Array where Element == Modification {
+    func modifiers(for keys: Set<String>) -> [Modification] {
+        return filter { item in
+            guard let key = item.modificationKey?.lowercased() else { return false }
+            return keys.contains(key)
+        }
     }
 }

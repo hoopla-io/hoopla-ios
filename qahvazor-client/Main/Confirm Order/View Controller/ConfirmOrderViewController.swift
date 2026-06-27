@@ -18,8 +18,7 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
     let viewModel = ConfirmOrderViewModel()
     
     // MARK: - Data Provider
-    var milkDataProvider: MilkDataProvider?
-    var syrupDataProvider: SyrupDataProvider?
+    var modifierGroupDataProvider: ModifierGroupDataProvider?
     
     // MARK: - Attributes
     var drinkData: Drinks? {
@@ -43,38 +42,31 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
             viewModel.validateOrder(drinkId: drinkId, shopId: shopId)
         }
     }
-    var selectedSugar: Modification?
-    var selectedSize: Modification?
-    var selectedMilk: Modification?
-    var selectedSyrop: Modification?
-    var size: [Modification]?
-    var sugar: [Modification]?
+    var selectedModifiers = [Modification]()
     
     //MARK: - Actions
-    @IBAction func sizeAction(_ sender: UISegmentedControl) {
-        guard let size else { return }
-        let selectedIndex = sender.selectedSegmentIndex
-        selectedSize = size[selectedIndex]
-        changePricingAction()
-    }
-    
-    @IBAction func sugarAction(_ sender: UISegmentedControl) {
-        guard let sugar else { return }
-        let selectedIndex = sender.selectedSegmentIndex
-        selectedSugar = sugar[selectedIndex]
-        changePricingAction()
-    }
-    
     @IBAction func confirmOrderAction(_ sender: Any) {
-        coordinator?.pushToCheckoutVC(sugar: selectedSugar, size: selectedSize, milk: selectedMilk, syrop: selectedSyrop, shopData: shopData, drinkData: drinkData, totalPrice: productPrice, comment: view().textView.text)
+        if let validationMessage = modifierGroupDataProvider?.validationMessage() {
+            showWarningAlert(message: validationMessage)
+            return
+        }
+
+        coordinator?.pushToCheckoutVC(
+            shopData: shopData,
+            drinkData: drinkData,
+            totalPrice: productPrice,
+            comment: view().textView.text,
+            modifiers: selectedModifiers
+        )
     }
     
     func changePricingAction() {
-        let sizePrice = selectedSize?.modificationPrice ?? 0.0
-        let sugarPrice = selectedSugar?.modificationPrice ?? 0.0
-        let milkPrice = selectedMilk?.modificationPrice ?? 0.0
-        let syropPrice = selectedSyrop?.modificationPrice ?? 0.0
-        productPrice = (drinkData?.productPrice ?? 0.0) + sizePrice + sugarPrice + milkPrice + syropPrice
+        let basePrice = drinkData?.productPrice ?? 0.0
+
+        let modifiersPrice = selectedModifiers.reduce(0.0) {
+            $0 + ($1.modificationPrice ?? 0.0)
+        }
+        productPrice = basePrice + modifiersPrice
     }
     
     // MARK: - Life cycles
@@ -87,50 +79,15 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
 
 // MARK: - Networking
 extension ConfirmOrderViewController: ConfirmOrderViewModelProtocol {
-    func didFinishFetch(data: Modifications?) {
-        guard let data else { return }
-        if let sugar = data.sugar {
-            view().sugarSegmentControl.removeAllSegments()
-            sugar.enumerated().forEach { index, item in
-                let title: String = (item.modificationName ?? "") + "\n+" + (item.modificationPrice?.formattedWithCurrency ?? "0")
-                view().sugarSegmentControl.insertSegment(withTitle: title, at: index, animated: false)
-            }
-            view().sugarSegmentControl.selectedSegmentIndex = 0
-            view().sugarStackView.isHidden = sugar.isEmpty
-            selectedSugar = sugar.first
-            self.sugar = sugar
+    func didFinishFetch(data: [ModifierGroups]?) {
+        let groups = data?.filter { $0.options?.isEmpty == false } ?? []
+        view().collectionView.isHidden = groups.isEmpty
+        if groups.isEmpty {
+            view().collectionViewHeightConstraint.constant = 0
         }
-        if let size = data.size {
-            view().segmentControl.removeAllSegments()
-            size.enumerated().forEach { index, item in
-                let title: String = (item.modificationName ?? "") + "\n+" + (item.modificationPrice?.formattedWithCurrency ?? "0")
-                view().segmentControl.insertSegment(withTitle: title, at: index, animated: false)
-            }
-            view().segmentControl.selectedSegmentIndex = 0
-            self.size = size
-            selectedSize = size.first
-            view().drinkSizeStackView.isHidden = size.isEmpty
-        }
-        if let milk = data.milk {
-            milkDataProvider?.items = milk
-            selectedMilk = milk.first
-            if let _ = selectedMilk {
-                milkDataProvider?.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .left)
-            }
-            view().milkCollectionHeight.constant = milkDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 0
-            milkDataProvider?.collectionView.layoutIfNeeded()
-            view().milkStackView.isHidden = milk.isEmpty
-        }
-        if let syrup = data.syrup {
-            syrupDataProvider?.items = syrup
-            selectedSyrop = syrup.first
-            if let _ = selectedSyrop {
-                syrupDataProvider?.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .left)
-            }
-            view().syrupCollectionHeight.constant = syrupDataProvider?.collectionView.collectionViewLayout.collectionViewContentSize.height ?? 0
-            syrupDataProvider?.collectionView.layoutIfNeeded()
-            view().syrupStackView.isHidden = syrup.isEmpty
-        }
+
+        modifierGroupDataProvider?.groups = groups
+        updateSelectedModifiers([])
     }
 }
 // MARK: - Other funcs
@@ -139,28 +96,18 @@ extension ConfirmOrderViewController {
         navigationItem.largeTitleDisplayMode = .never
         viewModel.delegate = self
         navigationItem.title = "orderSummary".localized
-        
-        let milkDataProvider = MilkDataProvider(viewController: self)
-        milkDataProvider.collectionView = view().milkCollectionView
-        self.milkDataProvider = milkDataProvider
-        
-        let syrupDataProvider = SyrupDataProvider(viewController: self)
-        syrupDataProvider.collectionView = view().syrupCollectionView
-        self.syrupDataProvider = syrupDataProvider
-        
-        view().segmentControl.selectedSegmentTintColor = .main
-        view().segmentControl.setTitleTextAttributes([
-            .font: UIFont.systemFont(ofSize: 13, weight: .semibold),
-            .foregroundColor: UIColor.white
-        ], for: .selected)
-        view().sugarSegmentControl.selectedSegmentTintColor = .main
-        view().sugarSegmentControl.setTitleTextAttributes([
-            .font: UIFont.systemFont(ofSize: 13, weight: .semibold),
-            .foregroundColor: UIColor.white
-        ], for: .selected)
-        
+
+        let modifierGroupDataProvider = ModifierGroupDataProvider(viewController: self)
+        modifierGroupDataProvider.collectionView = view().collectionView
+        modifierGroupDataProvider.collectionViewHeightConstraint = view().collectionViewHeightConstraint
+        self.modifierGroupDataProvider = modifierGroupDataProvider
+
         UILabel.appearance(whenContainedInInstancesOf: [UISegmentedControl.self]).numberOfLines = 0
 
     }
-}
 
+    func updateSelectedModifiers(_ modifiers: [Modification]) {
+        selectedModifiers = modifiers
+        changePricingAction()
+    }
+}

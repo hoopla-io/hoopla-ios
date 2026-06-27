@@ -17,7 +17,7 @@ final class CheckoutViewModel {
     weak var delegate: CheckoutViewModelProtocol?
     
     // MARK: - Network call
-    func createOrder(drinkId: Int, shopId: Int, modifiers: [Modification?]?, useCashback: Bool, cashbackAmount: Double, comment: String?) async {
+    func createOrder(drinkId: Int, shopId: Int, modifiers: [Modification], useCashback: Bool, cashbackAmount: Double, comment: String?) async {
         async let modifierList: [[String: Any]] = sortModifiers(modifiers)
         
         let parameters: [String: Any] = [
@@ -49,14 +49,14 @@ final class CheckoutViewModel {
         }
     }
     
-    func sortModifiers(_ data: [Modification?]?) async -> [[String: Any]] {
-        guard let data, !data.isEmpty else { return [] }
+    func sortModifiers(_ data: [Modification]) async -> [[String: Any]] {
+        guard !data.isEmpty else { return [] }
         
         return data.compactMap { item in
             guard
-                let modifierId    = item?.modificationId,
-                let modifierKey   = item?.modificationKey,
-                let modifierPrice = item?.modificationPrice
+                let modifierId    = item.modificationId,
+                let modifierKey   = item.modificationKey,
+                let modifierPrice = item.modificationPrice
             else {
                 return nil
             }
@@ -65,7 +65,7 @@ final class CheckoutViewModel {
                 Parameters.modifierId.rawValue             : modifierId,
                 Parameters.modifierKey.rawValue            : modifierKey,
                 Parameters.modifierPrice.rawValue          : modifierPrice,
-                Parameters.modifierGroupId.rawValue        : item?.modificationGroupId ?? ""
+                Parameters.modifierGroupId.rawValue        : item.modificationGroupId ?? ""
             ]
         }
     }
@@ -98,4 +98,3 @@ final class CheckoutViewModel {
     }
     
 }
-

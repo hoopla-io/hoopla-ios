@@ -9,42 +9,30 @@ import UIKit
 
 final class ConfirmOrderView: CustomView {
     //MARK: - Outlets
-    @IBOutlet weak var segmentControl: UISegmentedControl!
-    @IBOutlet weak var drinkSizeStackView: UIStackView! {
-        didSet {
-            drinkSizeStackView.isHidden = true
-        }
-    }
     @IBOutlet weak var shopLabel: UILabel!
     @IBOutlet weak var drinkLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var sugarStackView: UIStackView! {
-        didSet {
-            sugarStackView.isHidden = true
-        }
-    }
-    @IBOutlet weak var sugarSegmentControl: UISegmentedControl!
     @IBOutlet weak var orderButton: UIButton!
-    @IBOutlet weak var milkCollectionView: UICollectionView! {
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
-            milkCollectionView.register(UINib(nibName: ItemsCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: ItemsCollectionViewCell.defaultReuseIdentifier)
-        }
-    }
-    @IBOutlet weak var syrupCollectionView: UICollectionView! {
-        didSet {
-            syrupCollectionView.register(UINib(nibName: ItemsCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: ItemsCollectionViewCell.defaultReuseIdentifier)
-        }
-    }
-    @IBOutlet weak var milkCollectionHeight: NSLayoutConstraint!
-    @IBOutlet weak var syrupCollectionHeight: NSLayoutConstraint!
-    @IBOutlet weak var milkStackView: UIStackView! {
-        didSet {
-            milkStackView.isHidden = true
-        }
-    }
-    @IBOutlet weak var syrupStackView: UIStackView! {
-        didSet {
-            syrupStackView.isHidden = true
+            collectionView.backgroundColor = .clear
+            collectionView.showsVerticalScrollIndicator = false
+            collectionView.register(
+                UINib(nibName: ItemsCollectionViewCell.defaultReuseIdentifier, bundle: nil),
+                forCellWithReuseIdentifier: ItemsCollectionViewCell.defaultReuseIdentifier
+            )
+            collectionView.register(
+                ModifierGroupHeaderView.self,
+                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: ModifierGroupHeaderView.defaultReuseIdentifier
+            )
+
+            if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.estimatedItemSize = .zero
+                layout.minimumLineSpacing = 10
+                layout.minimumInteritemSpacing = 0
+            }
         }
     }
     @IBOutlet weak var textView: UITextView! {
@@ -87,6 +75,9 @@ extension ConfirmOrderView: UITextViewDelegate {
 
 private extension ConfirmOrderView {
     func configureTextView() {
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor.separator.withAlphaComponent(0.24).cgColor
+
         textView.delegate = self
         textView.textContainerInset = TextViewLayout.inset
         textView.textContainer.lineFragmentPadding = 0

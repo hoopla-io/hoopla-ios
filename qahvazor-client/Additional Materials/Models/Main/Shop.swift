@@ -78,8 +78,3 @@ struct WorkHour: Codable {
         return h * 60 + m
     }
 }
-
-struct ConfirmDrink: Codable {
-    let modifications: Modifications?
-}
-
