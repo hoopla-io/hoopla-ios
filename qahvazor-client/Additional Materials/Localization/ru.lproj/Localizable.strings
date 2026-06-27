@@ -202,3 +202,7 @@ validUntil = "Действует до";
 close = "Закрыть";
 comment = "Комментарий";
 addComment = "Добавить дополнительный комментарий...";
+modifierRequired = "Обязательно";
+modifierOptional = "Необязательно";
+modifierMinSelectWarning = "Выберите минимум %d вариант(а) для \"%@\"";
+modifierMaxSelectWarning = "Выберите не больше %d вариант(ов) для \"%@\"";

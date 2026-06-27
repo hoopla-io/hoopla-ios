@@ -84,6 +84,11 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
         super.viewDidLoad()
         appearanceSettings()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateModifierCollectionViewHeight()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -168,51 +173,23 @@ extension CheckoutViewController: CashbeckViewProtocol {
 
 private extension CheckoutViewController {
     func configureModifierSummary() {
-        view().sizeStackView.isHidden = true
-        view().sugarStackView.isHidden = true
-        view().milkStackView.isHidden = true
-        view().syropStackView.isHidden = true
-
-        configure(
-            selectedModifiers.modifiers(for: ["size"]),
-            titleLabel: view().sizeTitleLabel,
-            priceLabel: view().sizePriceLabel,
-            stackView: view().sizeStackView
-        )
-        configure(
-            selectedModifiers.modifiers(for: ["sugar"]),
-            titleLabel: view().sugarTitleLabel,
-            priceLabel: view().sugarPriceLabel,
-            stackView: view().sugarStackView
-        )
-        configure(
-            selectedModifiers.modifiers(for: ["milk"]),
-            titleLabel: view().milkTitleLabel,
-            priceLabel: view().milkPriceLabel,
-            stackView: view().milkStackView
-        )
-        configure(
-            selectedModifiers.modifiers(for: ["syrup", "syrop"]),
-            titleLabel: view().syropTitleLabel,
-            priceLabel: view().syropPriceLabel,
-            stackView: view().syropStackView
-        )
+        view().modifierCollectionView.dataSource = self
+        view().modifierCollectionView.delegate = self
+        view().modifierCollectionView.reloadData()
+        updateModifierCollectionViewHeight()
     }
 
-    func configure(_ modifiers: [Modification], titleLabel: UILabel, priceLabel: UILabel, stackView: UIStackView) {
-        guard !modifiers.isEmpty else { return }
-        titleLabel.text = modifiers.compactMap(\.modificationName).joined(separator: ", ")
-        let price = modifiers.reduce(0.0) { $0 + ($1.modificationPrice ?? 0.0) }
-        priceLabel.text = "+" + price.formattedWithCurrency
-        stackView.isHidden = false
-    }
-}
+    func updateModifierCollectionViewHeight() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            let collectionView = self.view().modifierCollectionView
+            collectionView.collectionViewLayout.invalidateLayout()
+            collectionView.layoutIfNeeded()
+            let height = ceil(collectionView.collectionViewLayout.collectionViewContentSize.height)
+            guard abs(self.view().modifierCollectionViewHeightConstraint.constant - height) > 0.5 else { return }
 
-private extension Array where Element == Modification {
-    func modifiers(for keys: Set<String>) -> [Modification] {
-        return filter { item in
-            guard let key = item.modificationKey?.lowercased() else { return false }
-            return keys.contains(key)
+            self.view().modifierCollectionViewHeightConstraint.constant = height
+            self.view().layoutIfNeeded()
         }
     }
 }

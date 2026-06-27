@@ -202,3 +202,7 @@ validUntil = "Amal qiladi";
 close = "Yopish";
 comment = "Izoh";
 addComment = "Qo'shimcha izoh yozing...";
+modifierRequired = "Majburiy";
+modifierOptional = "Ixtiyoriy";
+modifierMinSelectWarning = "Kamida %d ta variantni \"%@\" uchun tanlang";
+modifierMaxSelectWarning = "Ko'pi bilan %d ta variantni \"%@\" uchun tanlang";

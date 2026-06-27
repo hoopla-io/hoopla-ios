@@ -202,3 +202,7 @@ validUntil = "Valid until";
 close = "Close";
 comment = "Comment";
 addComment = "Add additional comment...";
+modifierRequired = "Required";
+modifierOptional = "Optional";
+modifierMinSelectWarning = "Please select at least %d option(s) for \"%@\"";
+modifierMaxSelectWarning = "Please select no more than %d option(s) for \"%@\"";

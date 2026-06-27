@@ -74,11 +74,11 @@ final class ModifierGroupDataProvider: NSObject {
             let minSelect = group.minSelect ?? 0
 
             if selectedCount < minSelect {
-                return "Please select at least \(minSelect) option(s) for \"\(group.displayTitle)\""
+                return String(format: "modifierMinSelectWarning".localized, minSelect, group.displayTitle)
             }
 
             if let maxSelect = group.maxSelect, maxSelect > 0, selectedCount > maxSelect {
-                return "Please select no more than \(maxSelect) option(s) for \"\(group.displayTitle)\""
+                return String(format: "modifierMaxSelectWarning".localized, maxSelect, group.displayTitle)
             }
         }
 
@@ -246,7 +246,7 @@ final class ModifierGroupHeaderView: UICollectionReusableView {
     func configure(with group: ModifierGroups) {
         titleLabel.text = group.displayTitle.uppercased()
         let required = (group.minSelect ?? 0) > 0
-        statusLabel.text = required ? "Required" : "Optional"
+        statusLabel.text = required ? "modifierRequired".localized : "modifierOptional".localized
         statusLabel.textColor = required ? .appColor(.mainColor) : .secondaryLabel
     }
 }
