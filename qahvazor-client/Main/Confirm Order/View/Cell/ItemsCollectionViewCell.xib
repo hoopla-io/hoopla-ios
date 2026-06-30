@@ -50,9 +50,9 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="dB6-Hq-Wwf" secondAttribute="trailing" id="2hr-Px-hmf"/>
+                <constraint firstAttribute="trailing" secondItem="dB6-Hq-Wwf" secondAttribute="trailing" constant="14" id="2hr-Px-hmf"/>
                 <constraint firstItem="dB6-Hq-Wwf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Nzb-MN-F4y"/>
-                <constraint firstItem="dB6-Hq-Wwf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cLN-N4-uVP"/>
+                <constraint firstItem="dB6-Hq-Wwf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="14" id="cLN-N4-uVP"/>
                 <constraint firstAttribute="bottom" secondItem="dB6-Hq-Wwf" secondAttribute="bottom" id="x2I-Lv-PXp"/>
             </constraints>
             <size key="customSize" width="343" height="56"/>

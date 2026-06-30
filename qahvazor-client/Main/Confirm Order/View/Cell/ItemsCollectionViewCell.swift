@@ -12,19 +12,63 @@ class ItemsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView! {
         didSet {
-            imageView.setImage(UIImage(systemName: "circle") ?? UIImage(), animated: false)
+            imageView.contentMode = .scaleAspectFit
         }
     }
+
+    private var isOptionSelected = false
     
     // MARK: - Life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        configureAppearance()
+        updateSelectionState()
     }
-    
-    override var isSelected: Bool {
-        didSet {
-            imageView.setImage((isSelected ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle")) ?? UIImage(), animated: true)
-        }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        priceLabel.text = nil
+        priceLabel.isHidden = false
+        setOptionSelected(false)
+    }
+
+    func configure(with item: Modification, selected: Bool) {
+        titleLabel.text = item.modificationName
+
+        let price = item.modificationPrice ?? 0
+        priceLabel.isHidden = price <= 0
+        priceLabel.text = price > 0 ? "+\(price.formattedWithSeparator) UZS" : nil
+
+        setOptionSelected(selected)
+    }
+
+    func setOptionSelected(_ selected: Bool) {
+        isOptionSelected = selected
+        updateSelectionState()
+    }
+}
+
+private extension ItemsCollectionViewCell {
+    func configureAppearance() {
+        clipsToBounds = false
+        backgroundColor = .clear
+        contentView.backgroundColor = .systemBackground
+        contentView.clipsToBounds = true
+        contentView.layer.cornerRadius = 14
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = UIColor.separator.withAlphaComponent(0.24).cgColor
+
+        titleLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+        titleLabel.textColor = .label
+        priceLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+        priceLabel.textColor = .label
+    }
+
+    func updateSelectionState() {
+        let imageName = isOptionSelected ? "checkmark.circle.fill" : "circle"
+        let configuration = UIImage.SymbolConfiguration(pointSize: 28, weight: .regular)
+        imageView.image = UIImage(systemName: imageName, withConfiguration: configuration)
+        imageView.tintColor = isOptionSelected ? .appColor(.mainColor) : .systemGray3
     }
 }

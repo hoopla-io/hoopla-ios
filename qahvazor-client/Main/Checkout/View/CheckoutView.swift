@@ -16,36 +16,35 @@ final class CheckoutView: CustomView {
     
     @IBOutlet weak var drinkLabel: UILabel!
     @IBOutlet weak var drinkPriceLabel: UILabel!
-    
-    @IBOutlet weak var sizeTitleLabel: UILabel!
-    @IBOutlet weak var sizePriceLabel: UILabel!
-    @IBOutlet weak var sizeStackView: UIStackView! {
+
+    @IBOutlet weak var modifierStackView: UIStackView! {
         didSet {
-            sizeStackView.isHidden = true
+            configureModifierCollectionView()
         }
     }
+    private(set) var modifierCollectionViewHeightConstraint: NSLayoutConstraint!
+    let modifierCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = .zero
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 0
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(
+            CheckoutModifierCollectionViewCell.self,
+            forCellWithReuseIdentifier: CheckoutModifierCollectionViewCell.defaultReuseIdentifier
+        )
+        return collectionView
+    }()
     
-    @IBOutlet weak var sugarTitleLabel: UILabel!
-    @IBOutlet weak var sugarPriceLabel: UILabel!
-    @IBOutlet weak var sugarStackView: UIStackView! {
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var commentStackView: UIStackView! {
         didSet {
-            sugarStackView.isHidden = true
-        }
-    }
-    
-    @IBOutlet weak var milkTitleLabel: UILabel!
-    @IBOutlet weak var milkPriceLabel: UILabel!
-    @IBOutlet weak var milkStackView: UIStackView! {
-        didSet {
-            milkStackView.isHidden = true
-        }
-    }
-    
-    @IBOutlet weak var syropTitleLabel: UILabel!
-    @IBOutlet weak var syropPriceLabel: UILabel!
-    @IBOutlet weak var syropStackView: UIStackView! {
-        didSet {
-            syropStackView.isHidden = true
+            commentStackView.isHidden = true
         }
     }
     
@@ -75,5 +74,17 @@ final class CheckoutView: CustomView {
                 nextButton.configuration = config
             }
         }
+    }
+}
+
+private extension CheckoutView {
+    func configureModifierCollectionView() {
+        guard !modifierStackView.arrangedSubviews.contains(modifierCollectionView) else { return }
+
+        modifierCollectionViewHeightConstraint = modifierCollectionView.heightAnchor.constraint(equalToConstant: 0)
+        modifierCollectionViewHeightConstraint.isActive = true
+
+        let index = min(1, modifierStackView.arrangedSubviews.count)
+        modifierStackView.insertArrangedSubview(modifierCollectionView, at: index)
     }
 }

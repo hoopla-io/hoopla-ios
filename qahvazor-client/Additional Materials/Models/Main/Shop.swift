@@ -21,6 +21,7 @@ struct Shop: Codable {
     let drinks: [Drinks]?
     let canAcceptOrders: Bool?
     let categories: [Categories]?
+    let logoUrl: String?
 }
 
 struct Location: Codable {
@@ -77,8 +78,3 @@ struct WorkHour: Codable {
         return h * 60 + m
     }
 }
-
-struct ConfirmDrink: Codable {
-    let modifications: Modifications?
-}
-

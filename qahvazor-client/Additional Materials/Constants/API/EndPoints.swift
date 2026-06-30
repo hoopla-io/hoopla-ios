@@ -21,7 +21,7 @@ enum EndPoints: String {
     case partnerShops = "shops/partner-shops"
     case shop = "shops/shop"
     case drinks = "shops/drinks"
-    case createOrderRahmat = "user/orders/create-rahmat"
+    case createOrder = "user/orders/create"
     case validateOrder = "user/orders/validate-order"
     case notificationsList = "notifications/list"
     case notificationShow = "notifications/show"

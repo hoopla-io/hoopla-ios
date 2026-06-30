@@ -38,36 +38,9 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
             view().shopLabel.text = shopData?.name
         }
     }
-    var selectedSugar: Modification? {
+    var selectedModifiers = [Modification]() {
         didSet {
-            guard let selectedSugar else  { return }
-            view().sugarTitleLabel.text = selectedSugar.modificationName
-            view().sugarPriceLabel.text = ("+" + (selectedSugar.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().sugarStackView.isHidden = false
-        }
-    }
-    var selectedSize: Modification? {
-        didSet {
-            guard let selectedSize else  { return }
-            view().sizePriceLabel.text = ("+" + (selectedSize.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().sizeTitleLabel.text = selectedSize.modificationName
-            view().sizeStackView.isHidden = false
-        }
-    }
-    var selectedMilk: Modification? {
-        didSet {
-            guard let selectedMilk else  { return }
-            view().milkPriceLabel.text = ("+" + (selectedMilk.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().milkTitleLabel.text = selectedMilk.modificationName
-            view().milkStackView.isHidden = false
-        }
-    }
-    var selectedSyrop: Modification? {
-        didSet {
-            guard let selectedSyrop else  { return }
-            view().syropPriceLabel.text = ("+" + (selectedSyrop.modificationPrice?.formattedWithCurrency ?? "0"))
-            view().syropTitleLabel.text = selectedSyrop.modificationName
-            view().syropStackView.isHidden = false
+            configureModifierSummary()
         }
     }
     var cashbackAmount: Double = 0.0 {
@@ -76,7 +49,13 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
         }
     }
     var orderedId: Int?
-    
+    var comment: String? {
+        didSet {
+            guard let comment, !comment.isEmpty else { return }
+            view().commentLabel.text = comment
+            view().commentStackView.isHidden = false
+        }
+    }
     //MARK: - Actions
     @IBAction func cashbeckAction(_ sender: UISwitch) {
         guard sender.isOn else {
@@ -96,7 +75,7 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
     @IBAction func confirmOrderAction(_ sender: Any) {
         Task { @MainActor in
             guard let shopId = shopData?.id, let drinkId = drinkData?.id else { return }
-            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: [selectedSize, selectedSugar, selectedMilk, selectedSyrop], useCashback: view().cashbackSwitch.isOn, cashbackAmount: cashbackAmount)
+            await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: selectedModifiers, useCashback: view().cashbackSwitch.isOn, cashbackAmount: cashbackAmount, comment: comment)
         }
     }
     
@@ -104,6 +83,11 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateModifierCollectionViewHeight()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -184,5 +168,28 @@ extension CheckoutViewController: CashbeckViewProtocol {
         let underlineAttribute = [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]
         let underlineAttributedString = NSAttributedString(string: "\(totalPrice.formattedWithCurrency)", attributes: underlineAttribute)
         view().oldPriceLabel.attributedText = underlineAttributedString
+    }
+}
+
+private extension CheckoutViewController {
+    func configureModifierSummary() {
+        view().modifierCollectionView.dataSource = self
+        view().modifierCollectionView.delegate = self
+        view().modifierCollectionView.reloadData()
+        updateModifierCollectionViewHeight()
+    }
+
+    func updateModifierCollectionViewHeight() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            let collectionView = self.view().modifierCollectionView
+            collectionView.collectionViewLayout.invalidateLayout()
+            collectionView.layoutIfNeeded()
+            let height = ceil(collectionView.collectionViewLayout.collectionViewContentSize.height)
+            guard abs(self.view().modifierCollectionViewHeightConstraint.constant - height) > 0.5 else { return }
+
+            self.view().modifierCollectionViewHeightConstraint.constant = height
+            self.view().layoutIfNeeded()
+        }
     }
 }

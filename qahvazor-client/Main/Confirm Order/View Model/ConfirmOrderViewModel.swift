@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ConfirmOrderViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(data: Modifications?)
+    func didFinishFetch(data: [ModifierGroups]?)
 }
 
 final class ConfirmOrderViewModel {
@@ -32,7 +32,7 @@ final class ConfirmOrderViewModel {
                 case .Success(let json):
                     do {
                         let fetchedData = try CustomDecoder().decode(JSONData<ConfirmDrink>.self, from: json)
-                        self.delegate?.didFinishFetch(data: fetchedData.data?.modifications)
+                        self.delegate?.didFinishFetch(data: fetchedData.data?.modifierGroups)
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }

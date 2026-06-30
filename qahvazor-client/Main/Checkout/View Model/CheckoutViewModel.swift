@@ -17,7 +17,7 @@ final class CheckoutViewModel {
     weak var delegate: CheckoutViewModelProtocol?
     
     // MARK: - Network call
-    func createOrder(drinkId: Int, shopId: Int, modifiers: [Modification?]?, useCashback: Bool, cashbackAmount: Double) async {
+    func createOrder(drinkId: Int, shopId: Int, modifiers: [Modification], useCashback: Bool, cashbackAmount: Double, comment: String?) async {
         async let modifierList: [[String: Any]] = sortModifiers(modifiers)
         
         let parameters: [String: Any] = [
@@ -25,12 +25,13 @@ final class CheckoutViewModel {
             Parameters.shopId.rawValue: shopId,
             Parameters.modifiers.rawValue : await modifierList,
             Parameters.cashback_amount.rawValue : cashbackAmount,
-            Parameters.use_cashback.rawValue : useCashback
+            Parameters.use_cashback.rawValue : useCashback,
+            Parameters.comment.rawValue: comment ?? ""
         ]
         
         self.delegate?.showActivityIndicator()
         Task { [weak self] in
-            await JSONDownloader.shared.jsonTask(url: EndPoints.createOrderRahmat.rawValue, requestMethod: .post, parameters: parameters, completionHandler: { [weak self]  (result) in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.createOrder.rawValue, requestMethod: .post, parameters: parameters, completionHandler: { [weak self]  (result) in
                 guard let self = self else { return }
                 switch result {
                 case .Error(let error, let message):
@@ -48,14 +49,14 @@ final class CheckoutViewModel {
         }
     }
     
-    func sortModifiers(_ data: [Modification?]?) async -> [[String: Any]] {
-        guard let data, !data.isEmpty else { return [] }
+    func sortModifiers(_ data: [Modification]) async -> [[String: Any]] {
+        guard !data.isEmpty else { return [] }
         
         return data.compactMap { item in
             guard
-                let modifierId    = item?.modificationId,
-                let modifierKey   = item?.modificationKey,
-                let modifierPrice = item?.modificationPrice
+                let modifierId    = item.modificationId,
+                let modifierKey   = item.modificationKey,
+                let modifierPrice = item.modificationPrice
             else {
                 return nil
             }
@@ -64,7 +65,7 @@ final class CheckoutViewModel {
                 Parameters.modifierId.rawValue             : modifierId,
                 Parameters.modifierKey.rawValue            : modifierKey,
                 Parameters.modifierPrice.rawValue          : modifierPrice,
-                Parameters.modifierGroupId.rawValue        : item?.modificationGroupId ?? ""
+                Parameters.modifierGroupId.rawValue        : item.modificationGroupId ?? ""
             ]
         }
     }
@@ -97,4 +98,3 @@ final class CheckoutViewModel {
     }
     
 }
-
