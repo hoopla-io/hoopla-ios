@@ -101,7 +101,7 @@ total = "Jami";
 pending = "Kutilmoqda";
 accepted = "Qabul qilingan";
 created = "Yaratilgan";
-preparing = "Yayyorlanmoqda";
+preparing = "Tayyorlanmoqda";
 cancelled = "Bekor qilingan";
 completed = "Yakunlangan";
 
