@@ -83,7 +83,7 @@
                                         </collectionView>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yv6-tC-Lv3">
                                             <rect key="frame" x="0.0" y="140" width="353" height="100"/>
-                                            <color key="backgroundColor" name="white"/>
+                                            <color key="backgroundColor" name="dynamicWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="UaD-QO-AvC"/>
                                             </constraints>
@@ -161,6 +161,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="dynamicWhite">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="mainColor">
             <color red="0.52549019607843139" green="0.14901960784313725" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -100,6 +100,8 @@ extension ShopDetailViewController: ShopDetailViewModelProtocol {
             socialsData += socials
         }
         socialDataProvider?.items = socialsData
+        view().socialStackView.isHidden = socialsData.isEmpty
+        
         self.workTimeData = data.workingHours
     }
     
@@ -184,7 +186,11 @@ extension ShopDetailViewController {
     }
     
     private func showWorkTime() {
-        guard let workTimeData else { return }
+        guard let workTimeData else {
+            view().workTimeStackView.isHidden = true
+            return
+        }
+        view().workTimeStackView.isHidden = workTimeData.isEmpty
         let currentWeekDay = DateFormatter.string(formatter: .weekDay).lowercased()
         if isExpanded {
             workTimeDataProvider?.items = workTimeData
@@ -206,8 +212,6 @@ extension ShopDetailViewController {
         if let url = URL(string: "tel://+\(phoneNumber)") {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
-            } else {
-                print("Phone call not supported on this device")
             }
         }
     }

@@ -42,11 +42,6 @@ class ShopDetailView: CustomView {
             imageView.clipsToBounds = true
         }
     }
-//    @IBOutlet weak var collectionView: UICollectionView! {
-//        didSet {
-//            collectionView.register(UINib(nibName: PhotoCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PhotoCollectionViewCell.defaultReuseIdentifier)
-//        }
-//    }
     @IBOutlet weak var pageControll: UIPageControl! {
         didSet {
             pageControll.isHidden = true
@@ -82,6 +77,8 @@ class ShopDetailView: CustomView {
         }
     }
     @IBOutlet weak var coffeeCollectionHeight: NSLayoutConstraint!
+    @IBOutlet weak var workTimeStackView: UIStackView!
+    @IBOutlet weak var socialStackView: UIStackView!
     @IBOutlet weak var socialListCollectionView: UICollectionView! {
         didSet {
             socialListCollectionView.register(UINib(nibName: SocialCollectionViewCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: SocialCollectionViewCell.defaultReuseIdentifier)
