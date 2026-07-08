@@ -65,8 +65,13 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
             view().cashbackPercentStackView.isHidden = false
         }
     }
-    //MARK: - Actions
-    @IBAction func cashbeckAction(_ sender: UISwitch) {
+
+    override func loadView() {
+        view = CheckoutView()
+    }
+
+    // MARK: - Actions
+    @objc func cashbeckAction(_ sender: UISwitch) {
         guard sender.isOn else {
             view().oldPriceLabel.isHidden = true
             view().totalPriceLabel.text = totalPrice.formattedWithCurrency
@@ -81,7 +86,7 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
         coordinator.pushToCashbeckVC(viewController: self, totalPrice: totalPrice, cashbackAmount: cashbackAmount)
     }
     
-    @IBAction func confirmOrderAction(_ sender: Any) {
+    @objc func confirmOrderAction(_ sender: Any) {
         Task { @MainActor in
             guard let shopId = shopData?.id, let drinkId = drinkData?.id else { return }
             await viewModel.createOrder(drinkId: drinkId, shopId: shopId, modifiers: selectedModifiers, useCashback: view().cashbackSwitch.isOn, cashbackAmount: cashbackAmount, comment: comment)
@@ -149,6 +154,9 @@ extension CheckoutViewController {
     private func appearanceSettings() {
         navigationItem.title = "checkout".localized
         viewModel.delegate = self
+
+        view().cashbackSwitch.addTarget(self, action: #selector(cashbeckAction(_:)), for: .touchUpInside)
+        view().nextButton.addTarget(self, action: #selector(confirmOrderAction(_:)), for: .touchUpInside)
         
         cashbackAmount = Cashbeck.balance
         view().cashbackSwitch.isEnabled = Cashbeck.balance != 0

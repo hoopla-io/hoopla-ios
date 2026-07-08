@@ -50,7 +50,6 @@
 		05C37E412E75958600645F35 /* ItemsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05C37E3E2E75958600645F35 /* ItemsCollectionViewCell.xib */; };
 		05CDA6762EAFC209000562F0 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CDA6752EAFC209000562F0 /* MapCoordinator.swift */; };
 		05FF552C2F4620BC00918E0C /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF552B2F4620BC00918E0C /* CheckoutView.swift */; };
-		05FF552E2F4620C200918E0C /* CheckoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FF552D2F4620C200918E0C /* CheckoutView.xib */; };
 		05FF55302F4620CC00918E0C /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF552F2F4620CC00918E0C /* CheckoutViewController.swift */; };
 		05FF55352F46345700918E0C /* CashbeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55342F46345700918E0C /* CashbeckView.swift */; };
 		05FF55372F46345C00918E0C /* CashbeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FF55362F46345C00918E0C /* CashbeckView.xib */; };
@@ -329,7 +328,6 @@
 		05C37E3E2E75958600645F35 /* ItemsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemsCollectionViewCell.xib; sourceTree = "<group>"; };
 		05CDA6752EAFC209000562F0 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		05FF552B2F4620BC00918E0C /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
-		05FF552D2F4620C200918E0C /* CheckoutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckoutView.xib; sourceTree = "<group>"; };
 		05FF552F2F4620CC00918E0C /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		05FF55342F46345700918E0C /* CashbeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckView.swift; sourceTree = "<group>"; };
 		05FF55362F46345C00918E0C /* CashbeckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashbeckView.xib; sourceTree = "<group>"; };
@@ -951,7 +949,6 @@
 			isa = PBXGroup;
 			children = (
 				05FF552B2F4620BC00918E0C /* CheckoutView.swift */,
-				05FF552D2F4620C200918E0C /* CheckoutView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2281,7 +2278,6 @@
 				75B90F782E360E980091A8BB /* GoogleService-Info.plist in Resources */,
 				52AD94F82F6139B000F9021E /* HistoryDetailView.xib in Resources */,
 				75DCE39B2D1C337D003A59CD /* CodeConfirmView.xib in Resources */,
-				05FF552E2F4620C200918E0C /* CheckoutView.xib in Resources */,
 				7597A6592E0BEA7A00ECD758 /* ScannerView.xib in Resources */,
 				75705CF02D2FFDF000DA3AA4 /* PhotoCollectionViewCell.xib in Resources */,
 				75DCE37B2D1AD6EE003A59CD /* InterestView.xib in Resources */,
