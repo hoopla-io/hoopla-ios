@@ -85,6 +85,11 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
         guard let coordinator = coordinator as? MainCoordinator else { return }
         coordinator.pushToCashbeckVC(viewController: self, totalPrice: totalPrice, cashbackAmount: cashbackAmount)
     }
+
+    @objc func presentPromocodeVC() {
+        guard let coordinator = coordinator as? MainCoordinator else { return }
+        coordinator.presentPromocodeVC(viewController: self)
+    }
     
     @objc func confirmOrderAction(_ sender: Any) {
         Task { @MainActor in
@@ -157,6 +162,7 @@ extension CheckoutViewController {
 
         view().cashbackSwitch.addTarget(self, action: #selector(cashbeckAction(_:)), for: .touchUpInside)
         view().cashbackSelectButton.addTarget(self, action: #selector(pushToCashbeckVC), for: .touchUpInside)
+        view().promoCodeButton.addTarget(self, action: #selector(presentPromocodeVC), for: .touchUpInside)
         view().nextButton.addTarget(self, action: #selector(confirmOrderAction(_:)), for: .touchUpInside)
         
         cashbackAmount = Cashbeck.balance
@@ -183,6 +189,12 @@ extension CheckoutViewController: CashbeckViewProtocol {
         let underlineAttribute = [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]
         let underlineAttributedString = NSAttributedString(string: "\(totalPrice.formattedWithCurrency)", attributes: underlineAttribute)
         view().oldPriceLabel.attributedText = underlineAttributedString
+    }
+}
+
+extension CheckoutViewController: PromocodeViewControllerDelegate {
+    func promocodeViewController(_ viewController: PromocodeViewController, didApply code: String) {
+        view().setPromocodeTitle(code)
     }
 }
 

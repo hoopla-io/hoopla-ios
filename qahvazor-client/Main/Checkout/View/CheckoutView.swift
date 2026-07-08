@@ -254,6 +254,12 @@ final class CheckoutView: CustomView {
         super.init(coder: coder)
         setupUI()
     }
+
+    func setPromocodeTitle(_ title: String) {
+        var configuration = promoCodeButton.configuration
+        configuration?.title = title
+        promoCodeButton.configuration = configuration
+    }
 }
 
 private extension CheckoutView {

@@ -130,6 +130,23 @@ final class MainCoordinator: Coordinator {
         }
         navigationController.present(vc, animated: true)
     }
+
+    func presentPromocodeVC(viewController: UIViewController) {
+        let vc = PromocodeViewController()
+        if let viewController = viewController as? CheckoutViewController {
+            vc.delegate = viewController
+        }
+        if let sheet = vc.sheetPresentationController {
+            sheet.preferredCornerRadius = 24
+            sheet.prefersGrabberVisible = false
+
+            let promocodeId = UISheetPresentationController.Detent.Identifier("promocode")
+            sheet.detents = [.large()]
+            sheet.selectedDetentIdentifier = promocodeId
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+        }
+        navigationController.present(vc, animated: true)
+    }
     
     func presentReviewVC(data: OrderHistory) {
         let vc = ReviewViewController()
