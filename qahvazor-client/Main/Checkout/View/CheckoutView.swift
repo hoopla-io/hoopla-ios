@@ -108,6 +108,26 @@ final class CheckoutView: CustomView {
         return stackView
     }()
 
+    let promocodeDiscountStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .top
+        stackView.distribution = .fill
+        stackView.spacing = 16
+        stackView.isHidden = true
+        return stackView
+    }()
+
+    let promocodeDiscountLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.textColor = .appColor(.green)
+        label.textAlignment = .right
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return label
+    }()
+
     let totalPriceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -189,6 +209,40 @@ final class CheckoutView: CustomView {
         return button
     }()
 
+    let appliedPromocodeView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemBackground
+        view.layer.cornerRadius = 14
+        view.layer.cornerCurve = .continuous
+        view.isHidden = true
+        return view
+    }()
+
+    let appliedPromocodeCodeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = .label
+        label.lineBreakMode = .byTruncatingTail
+        return label
+    }()
+
+    let appliedPromocodeDiscountLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .appColor(.green)
+        label.lineBreakMode = .byTruncatingTail
+        return label
+    }()
+
+    let removePromocodeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .tertiaryLabel
+        return button
+    }()
+
     let cashbackSwitch: UISwitch = {
         let cashbackSwitch = UISwitch()
         cashbackSwitch.setContentHuggingPriority(.required, for: .horizontal)
@@ -255,10 +309,22 @@ final class CheckoutView: CustomView {
         setupUI()
     }
 
-    func setPromocodeTitle(_ title: String) {
-        var configuration = promoCodeButton.configuration
-        configuration?.title = title
-        promoCodeButton.configuration = configuration
+    func showAppliedPromocode(code: String, discountAmount: Double) {
+        promoCodeButton.isHidden = true
+        appliedPromocodeView.isHidden = false
+        promocodeDiscountStackView.isHidden = false
+        appliedPromocodeCodeLabel.text = code
+        appliedPromocodeDiscountLabel.text = "-\(discountAmount.formattedWithCurrency)"
+        promocodeDiscountLabel.text = "-\(discountAmount.formattedWithCurrency)"
+    }
+
+    func resetPromocode() {
+        promoCodeButton.isHidden = false
+        appliedPromocodeView.isHidden = true
+        promocodeDiscountStackView.isHidden = true
+        appliedPromocodeCodeLabel.text = nil
+        appliedPromocodeDiscountLabel.text = nil
+        promocodeDiscountLabel.text = nil
     }
 }
 
@@ -283,12 +349,16 @@ private extension CheckoutView {
         headerStackView.spacing = 20
 
         let commentTitleLabel = makeLabel(text: "comment".localized, font: .systemFont(ofSize: 16), color: .secondaryLabel)
+        let promocodeDiscountTitleLabel = makeLabel(text: "promocodeDiscount".localized, font: .systemFont(ofSize: 16), color: .secondaryLabel)
         let totalTitleLabel = makeLabel(text: "total".localized, font: .systemFont(ofSize: 16), color: .label)
 
         let productStackView = makeRowStack(leftView: drinkLabel, rightView: drinkPriceLabel)
 
         commentStackView.addArrangedSubview(commentTitleLabel)
         commentStackView.addArrangedSubview(commentLabel)
+
+        promocodeDiscountStackView.addArrangedSubview(promocodeDiscountTitleLabel)
+        promocodeDiscountStackView.addArrangedSubview(promocodeDiscountLabel)
 
         let priceStackView = UIStackView(arrangedSubviews: [oldPriceLabel, totalPriceLabel])
         priceStackView.axis = .vertical
@@ -304,6 +374,7 @@ private extension CheckoutView {
 
         modifierStackView.addArrangedSubview(productStackView)
         modifierStackView.addArrangedSubview(commentStackView)
+        modifierStackView.addArrangedSubview(promocodeDiscountStackView)
         modifierStackView.addArrangedSubview(totalStackView)
         modifierStackView.addArrangedSubview(cashbackPercentStackView)
         configureModifierCollectionView()
@@ -318,6 +389,23 @@ private extension CheckoutView {
         bottomContainerView.layer.shadowOpacity = 0.05
         bottomContainerView.layer.shadowRadius = 12
         bottomContainerView.layer.shadowOffset = CGSize(width: 0, height: -4)
+
+        let appliedPromocodeTextStackView = UIStackView(arrangedSubviews: [appliedPromocodeCodeLabel, appliedPromocodeDiscountLabel])
+        appliedPromocodeTextStackView.axis = .vertical
+        appliedPromocodeTextStackView.spacing = 2
+        appliedPromocodeTextStackView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
+        let checkmarkImageView = UIImageView(image: UIImage(systemName: "checkmark"))
+        checkmarkImageView.translatesAutoresizingMaskIntoConstraints = false
+        checkmarkImageView.tintColor = .appColor(.green)
+        checkmarkImageView.contentMode = .scaleAspectFit
+
+        let appliedPromocodeStackView = UIStackView(arrangedSubviews: [checkmarkImageView, appliedPromocodeTextStackView, removePromocodeButton])
+        appliedPromocodeStackView.axis = .horizontal
+        appliedPromocodeStackView.alignment = .center
+        appliedPromocodeStackView.spacing = 14
+        appliedPromocodeStackView.translatesAutoresizingMaskIntoConstraints = false
+        appliedPromocodeView.addSubview(appliedPromocodeStackView)
 
         let cashbackTitleLabel = makeLabel(text: "cashbeck".localized, font: .systemFont(ofSize: 16, weight: .medium), color: .label)
         let cashbackTextStackView = UIStackView(arrangedSubviews: [cashbackTitleLabel, cashbackPriceLabel])
@@ -334,7 +422,7 @@ private extension CheckoutView {
         cashbackContainerView.addSubview(cashbackRowStackView)
         cashbackContainerView.addSubview(cashbackSelectButton)
 
-        let bottomStackView = UIStackView(arrangedSubviews: [promoCodeButton, cashbackContainerView, nextButton])
+        let bottomStackView = UIStackView(arrangedSubviews: [promoCodeButton, appliedPromocodeView, cashbackContainerView, nextButton])
         bottomStackView.axis = .vertical
         bottomStackView.spacing = 16
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -371,8 +459,20 @@ private extension CheckoutView {
             bottomStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
 
             promoCodeButton.heightAnchor.constraint(equalToConstant: 60),
+            appliedPromocodeView.heightAnchor.constraint(equalToConstant: 60),
             cashbackContainerView.heightAnchor.constraint(equalToConstant: 70),
             nextButton.heightAnchor.constraint(equalToConstant: 60),
+
+            checkmarkImageView.widthAnchor.constraint(equalToConstant: 24),
+            checkmarkImageView.heightAnchor.constraint(equalToConstant: 24),
+
+            removePromocodeButton.widthAnchor.constraint(equalToConstant: 44),
+            removePromocodeButton.heightAnchor.constraint(equalToConstant: 44),
+
+            appliedPromocodeStackView.topAnchor.constraint(equalTo: appliedPromocodeView.topAnchor, constant: 8),
+            appliedPromocodeStackView.leadingAnchor.constraint(equalTo: appliedPromocodeView.leadingAnchor, constant: 22),
+            appliedPromocodeStackView.trailingAnchor.constraint(equalTo: appliedPromocodeView.trailingAnchor, constant: -12),
+            appliedPromocodeStackView.bottomAnchor.constraint(equalTo: appliedPromocodeView.bottomAnchor, constant: -8),
 
             cashbackIconView.widthAnchor.constraint(equalToConstant: 34),
             cashbackIconView.heightAnchor.constraint(equalToConstant: 34),

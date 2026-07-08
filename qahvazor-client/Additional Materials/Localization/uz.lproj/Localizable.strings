@@ -182,6 +182,7 @@ addPromocode = "Promokod qo'shish";
 promocode = "Promokod";
 enterPromocode = "Promokodni kiriting";
 apply = "Qo'llash";
+promocodeDiscount = "Promokod chegirmasi:";
 cashNote = "gacha bo'lgan pulni keshbekka ishlatishingiz mumkin";
 use = "Foydalanish";
 earnedCashback = "To'plangan keshbek";

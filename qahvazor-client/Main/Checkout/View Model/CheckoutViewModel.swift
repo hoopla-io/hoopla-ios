@@ -17,10 +17,18 @@ final class CheckoutViewModel {
     weak var delegate: CheckoutViewModelProtocol?
     
     // MARK: - Network call
-    func createOrder(drinkId: Int, shopId: Int, modifiers: [Modification], useCashback: Bool, cashbackAmount: Double, comment: String?) async {
+    func createOrder(
+        drinkId: Int,
+        shopId: Int,
+        modifiers: [Modification],
+        useCashback: Bool,
+        cashbackAmount: Double,
+        comment: String?,
+        promoCode: String?
+    ) async {
         async let modifierList: [[String: Any]] = sortModifiers(modifiers)
         
-        let parameters: [String: Any] = [
+        var parameters: [String: Any] = [
             Parameters.drinkId.rawValue: drinkId,
             Parameters.shopId.rawValue: shopId,
             Parameters.modifiers.rawValue : await modifierList,
@@ -28,6 +36,10 @@ final class CheckoutViewModel {
             Parameters.use_cashback.rawValue : useCashback,
             Parameters.comment.rawValue: comment ?? ""
         ]
+
+        if let promoCode, !promoCode.isEmpty {
+            parameters[Parameters.promo_code.rawValue] = promoCode
+        }
         
         self.delegate?.showActivityIndicator()
         Task { [weak self] in

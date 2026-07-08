@@ -32,6 +32,7 @@ enum Parameters: String {
     case order_id = "order_id"
     case rating = "rating"
     case comment = "comment"
+    case promo_code = "promo_code"
     
     // MARK: - Profile
     case phoneNumber = "phoneNumber"

@@ -182,6 +182,7 @@ addPromocode = "Добавить промокод";
 promocode = "Промокод";
 enterPromocode = "Введите промокод";
 apply = "Применить";
+promocodeDiscount = "Скидка по промокоду:";
 cashNote = "Вы можете использовать сумму до указанной в кешбэк";
 use = "Использовать";
 earnedCashback = "Накопленный кэшбэк";

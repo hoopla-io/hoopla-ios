@@ -182,6 +182,7 @@ addPromocode = "Add promocode";
 promocode = "Promocode";
 enterPromocode = "Enter promocode";
 apply = "Apply";
+promocodeDiscount = "Promocode discount:";
 cashNote = "You can use an amount up to this for cashback";
 use = "Use";
 earnedCashback = "Earned cashback";

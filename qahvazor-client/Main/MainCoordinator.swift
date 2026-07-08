@@ -131,8 +131,11 @@ final class MainCoordinator: Coordinator {
         navigationController.present(vc, animated: true)
     }
 
-    func presentPromocodeVC(viewController: UIViewController) {
+    func presentPromocodeVC(viewController: UIViewController, shopId: Int, drinkId: Int, modifiers: [Modification]) {
         let vc = PromocodeViewController()
+        vc.shopId = shopId
+        vc.drinkId = drinkId
+        vc.modifiers = modifiers
         if let viewController = viewController as? CheckoutViewController {
             vc.delegate = viewController
         }

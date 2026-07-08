@@ -35,6 +35,7 @@
 		058CF6132FFEBB4D00EAF16D /* PromocodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CF6122FFEBB4D00EAF16D /* PromocodeViewModel.swift */; };
 		058CF6152FFEBB5100EAF16D /* PromocodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CF6142FFEBB5100EAF16D /* PromocodeView.swift */; };
 		058CF6172FFEBB6300EAF16D /* PromocodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CF6162FFEBB6300EAF16D /* PromocodeViewController.swift */; };
+		058CF6192FFEC1FA00EAF16D /* Promocode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058CF6182FFEC1FA00EAF16D /* Promocode.swift */; };
 		059BA9C62EB664B5002A726F /* Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059BA9C52EB664B5002A726F /* Modification.swift */; };
 		05B84C2B2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B84C1C2EAE0BA700AB66B2 /* NotificationsCollectionViewCell.xib */; };
 		05B84C2C2EAE0BA700AB66B2 /* NotificationsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B84C192EAE0BA700AB66B2 /* NotificationsView.xib */; };
@@ -316,6 +317,7 @@
 		058CF6122FFEBB4D00EAF16D /* PromocodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeViewModel.swift; sourceTree = "<group>"; };
 		058CF6142FFEBB5100EAF16D /* PromocodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeView.swift; sourceTree = "<group>"; };
 		058CF6162FFEBB6300EAF16D /* PromocodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeViewController.swift; sourceTree = "<group>"; };
+		058CF6182FFEC1FA00EAF16D /* Promocode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promocode.swift; sourceTree = "<group>"; };
 		059BA9C52EB664B5002A726F /* Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modification.swift; sourceTree = "<group>"; };
 		05B84C142EAE0BA700AB66B2 /* NotificationsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDataProvider.swift; sourceTree = "<group>"; };
 		05B84C162EAE0BA700AB66B2 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
@@ -1822,6 +1824,7 @@
 				059BA9C52EB664B5002A726F /* Modification.swift */,
 				0571FFD62EB7765C0011B81D /* Loyalty.swift */,
 				054A42402F49F8BD0030BA23 /* Checkout.swift */,
+				058CF6182FFEC1FA00EAF16D /* Promocode.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2397,6 +2400,7 @@
 				7535D11C2D3B8C620016C489 /* UISearchBar.swift in Sources */,
 				752331992D1A90AD0090997E /* LaunchScreenView.swift in Sources */,
 				752331902D1A8D440090997E /* FullOnboardingViewController.swift in Sources */,
+				058CF6192FFEC1FA00EAF16D /* Promocode.swift in Sources */,
 				752330D02D197B210090997E /* CustomSpinnerView.swift in Sources */,
 				7596B5222D1D6B310070A5BB /* MainDataProvider.swift in Sources */,
 				7596B51B2D1D697D0070A5BB /* MainViewModel.swift in Sources */,
@@ -2618,7 +2622,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2652,7 +2656,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
