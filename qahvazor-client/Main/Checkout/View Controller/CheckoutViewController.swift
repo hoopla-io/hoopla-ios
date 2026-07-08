@@ -45,7 +45,7 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
     }
     var cashbackAmount: Double = 0.0 {
         didSet {
-            view().cashbackPriceLabel.text = cashbackAmount.formattedWithCurrency
+            view().cashbackPriceLabel.text = "available".localized + ": " + cashbackAmount.formattedWithCurrency
         }
     }
     var orderedId: Int?
@@ -156,14 +156,12 @@ extension CheckoutViewController {
         viewModel.delegate = self
 
         view().cashbackSwitch.addTarget(self, action: #selector(cashbeckAction(_:)), for: .touchUpInside)
+        view().cashbackSelectButton.addTarget(self, action: #selector(pushToCashbeckVC), for: .touchUpInside)
         view().nextButton.addTarget(self, action: #selector(confirmOrderAction(_:)), for: .touchUpInside)
         
         cashbackAmount = Cashbeck.balance
         view().cashbackSwitch.isEnabled = Cashbeck.balance != 0
-        
-        guard Cashbeck.balance != 0 else { return }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(pushToCashbeckVC))
-        view().cashbackContainerView.addGestureRecognizer(tap)
+        view().cashbackSelectButton.isEnabled = Cashbeck.balance != 0
     }
 }
 

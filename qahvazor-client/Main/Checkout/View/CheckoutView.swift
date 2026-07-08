@@ -9,6 +9,14 @@ import UIKit
 
 final class CheckoutView: CustomView {
     // MARK: - UI Elements
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
+
     let shopLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
@@ -19,7 +27,7 @@ final class CheckoutView: CustomView {
 
     let drinkTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 22, weight: .medium)
+        label.font = .systemFont(ofSize: 24, weight: .semibold)
         label.textColor = .label
         label.lineBreakMode = .byTruncatingTail
         return label
@@ -55,7 +63,7 @@ final class CheckoutView: CustomView {
     let modifierStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 15
+        stackView.spacing = 18
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -102,7 +110,7 @@ final class CheckoutView: CustomView {
 
     let totalPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         label.textColor = .label
         label.textAlignment = .right
         return label
@@ -145,6 +153,42 @@ final class CheckoutView: CustomView {
         return label
     }()
 
+    let promoCodeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .systemBackground
+        button.layer.cornerRadius = 14
+        button.layer.cornerCurve = .continuous
+        button.contentHorizontalAlignment = .leading
+        button.tintColor = .appColor(.mainColor)
+
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "plus")
+        configuration.imagePadding = 14
+        configuration.title = "addPromocode".localized
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 48)
+        configuration.baseForegroundColor = .appColor(.mainColor)
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = .systemFont(ofSize: 16, weight: .regular)
+            outgoing.foregroundColor = .label
+            return outgoing
+        }
+        button.configuration = configuration
+
+        let chevronImageView = UIImageView(image: UIImage(systemName: "chevron.right"))
+        chevronImageView.translatesAutoresizingMaskIntoConstraints = false
+        chevronImageView.tintColor = .tertiaryLabel
+        button.addSubview(chevronImageView)
+
+        NSLayoutConstraint.activate([
+            chevronImageView.centerYAnchor.constraint(equalTo: button.centerYAnchor),
+            chevronImageView.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -18)
+        ])
+
+        return button
+    }()
+
     let cashbackSwitch: UISwitch = {
         let cashbackSwitch = UISwitch()
         cashbackSwitch.setContentHuggingPriority(.required, for: .horizontal)
@@ -152,22 +196,28 @@ final class CheckoutView: CustomView {
         return cashbackSwitch
     }()
 
+    let cashbackSelectButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .clear
+        button.accessibilityLabel = "cashbeck".localized
+        return button
+    }()
+
     let cashbackPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .appColor(.white)
-        label.textAlignment = .right
-        label.setContentHuggingPriority(.required, for: .horizontal)
-        label.setContentCompressionResistancePriority(.required, for: .horizontal)
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .secondaryLabel
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
 
     let cashbackContainerView: GradientView = {
         let view = GradientView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.topColor = UIColor(hex: "#BC4C59") ?? .red
-        view.bottomColor = UIColor(hex: "#E45E6D") ?? .red
-        view.layer.cornerRadius = 12
+        view.topColor = .systemBackground
+        view.bottomColor = .systemBackground
+        view.layer.cornerRadius = 14
         view.layer.cornerCurve = .continuous
         view.clipsToBounds = true
         return view
@@ -180,6 +230,7 @@ final class CheckoutView: CustomView {
         button.layer.cornerRadius = 12
         button.layer.cornerCurve = .continuous
         button.setTitle("confirm".localized, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         button.setTitleColor(.appColor(.white), for: .normal)
 
         if #available(iOS 26.0, *) {
@@ -207,17 +258,23 @@ final class CheckoutView: CustomView {
 
 private extension CheckoutView {
     func setupUI() {
-        backgroundColor = .systemBackground
+        backgroundColor = .appColor(.mainBackground)
+
+        let contentStackView = UIStackView()
+        contentStackView.axis = .vertical
+        contentStackView.spacing = 28
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        contentStackView.isLayoutMarginsRelativeArrangement = true
+        contentStackView.layoutMargins = UIEdgeInsets(top: 24, left: 14, bottom: 24, right: 14)
 
         let titleStackView = UIStackView(arrangedSubviews: [drinkTitleLabel, shopLabel])
         titleStackView.axis = .vertical
-        titleStackView.spacing = 5
+        titleStackView.spacing = 6
 
         let headerStackView = UIStackView(arrangedSubviews: [imageView, titleStackView])
         headerStackView.axis = .horizontal
         headerStackView.alignment = .center
-        headerStackView.spacing = 16
-        headerStackView.translatesAutoresizingMaskIntoConstraints = false
+        headerStackView.spacing = 20
 
         let commentTitleLabel = makeLabel(text: "comment".localized, font: .systemFont(ofSize: 16), color: .secondaryLabel)
         let totalTitleLabel = makeLabel(text: "total".localized, font: .systemFont(ofSize: 16), color: .label)
@@ -245,54 +302,84 @@ private extension CheckoutView {
         modifierStackView.addArrangedSubview(cashbackPercentStackView)
         configureModifierCollectionView()
 
-        let cashbackTitleLabel = makeLabel(text: "cashbeck".localized, font: .systemFont(ofSize: 16), color: .appColor(.white))
-        cashbackTitleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        let bottomContainerView = UIView()
+        bottomContainerView.translatesAutoresizingMaskIntoConstraints = false
+        bottomContainerView.backgroundColor = .appColor(.mainBackground)
+        bottomContainerView.layer.cornerRadius = 24
+        bottomContainerView.layer.cornerCurve = .continuous
+        bottomContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        bottomContainerView.layer.shadowColor = UIColor.black.cgColor
+        bottomContainerView.layer.shadowOpacity = 0.05
+        bottomContainerView.layer.shadowRadius = 12
+        bottomContainerView.layer.shadowOffset = CGSize(width: 0, height: -4)
 
-        let cashbackAmountStackView = makeRowStack(leftView: cashbackTitleLabel, rightView: cashbackPriceLabel)
-        cashbackAmountStackView.translatesAutoresizingMaskIntoConstraints = false
-        cashbackContainerView.addSubview(cashbackAmountStackView)
+        let cashbackTitleLabel = makeLabel(text: "cashbeck".localized, font: .systemFont(ofSize: 16, weight: .medium), color: .label)
+        let cashbackTextStackView = UIStackView(arrangedSubviews: [cashbackTitleLabel, cashbackPriceLabel])
+        cashbackTextStackView.axis = .vertical
+        cashbackTextStackView.spacing = 2
+        cashbackTextStackView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
-        let useCashbackLabel = makeLabel(text: "useCashbeck".localized, font: .systemFont(ofSize: 16), color: .label)
-        useCashbackLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        let cashbackIconView = makeCashbackIconView()
+        let cashbackRowStackView = UIStackView(arrangedSubviews: [cashbackIconView, cashbackTextStackView, cashbackSwitch])
+        cashbackRowStackView.axis = .horizontal
+        cashbackRowStackView.alignment = .center
+        cashbackRowStackView.spacing = 12
+        cashbackRowStackView.translatesAutoresizingMaskIntoConstraints = false
+        cashbackContainerView.addSubview(cashbackRowStackView)
+        cashbackContainerView.addSubview(cashbackSelectButton)
 
-        let switchStackView = makeRowStack(leftView: useCashbackLabel, rightView: cashbackSwitch, spacing: 16)
+        let bottomStackView = UIStackView(arrangedSubviews: [promoCodeButton, cashbackContainerView, nextButton])
+        bottomStackView.axis = .vertical
+        bottomStackView.spacing = 16
+        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        let cashbackStackView = UIStackView(arrangedSubviews: [cashbackContainerView, switchStackView])
-        cashbackStackView.axis = .vertical
-        cashbackStackView.spacing = 10
-        cashbackStackView.translatesAutoresizingMaskIntoConstraints = false
-
-        addSubview(headerStackView)
-        addSubview(modifierStackView)
-        addSubview(cashbackStackView)
-        addSubview(nextButton)
+        addSubview(scrollView)
+        addSubview(bottomContainerView)
+        scrollView.addSubview(contentStackView)
+        contentStackView.addArrangedSubview(headerStackView)
+        contentStackView.addArrangedSubview(modifierStackView)
+        bottomContainerView.addSubview(bottomStackView)
 
         NSLayoutConstraint.activate([
-            headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            headerStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            headerStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomContainerView.topAnchor),
 
-            imageView.widthAnchor.constraint(equalToConstant: 100),
-            imageView.heightAnchor.constraint(equalToConstant: 100),
+            contentStackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentStackView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            contentStackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            contentStackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
 
-            modifierStackView.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 30),
-            modifierStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            modifierStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            imageView.widthAnchor.constraint(equalToConstant: 120),
+            imageView.heightAnchor.constraint(equalToConstant: 120),
 
-            cashbackStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            cashbackStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            bottomContainerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            bottomContainerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            bottomContainerView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            cashbackContainerView.heightAnchor.constraint(equalToConstant: 40),
-            cashbackAmountStackView.topAnchor.constraint(equalTo: cashbackContainerView.topAnchor),
-            cashbackAmountStackView.leadingAnchor.constraint(equalTo: cashbackContainerView.leadingAnchor, constant: 16),
-            cashbackAmountStackView.trailingAnchor.constraint(equalTo: cashbackContainerView.trailingAnchor, constant: -16),
-            cashbackAmountStackView.bottomAnchor.constraint(equalTo: cashbackContainerView.bottomAnchor),
+            bottomStackView.topAnchor.constraint(equalTo: bottomContainerView.topAnchor, constant: 20),
+            bottomStackView.leadingAnchor.constraint(equalTo: bottomContainerView.leadingAnchor, constant: 12),
+            bottomStackView.trailingAnchor.constraint(equalTo: bottomContainerView.trailingAnchor, constant: -12),
+            bottomStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
 
-            nextButton.topAnchor.constraint(equalTo: cashbackStackView.bottomAnchor, constant: 25),
-            nextButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            nextButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            nextButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            nextButton.heightAnchor.constraint(equalToConstant: 50)
+            promoCodeButton.heightAnchor.constraint(equalToConstant: 60),
+            cashbackContainerView.heightAnchor.constraint(equalToConstant: 70),
+            nextButton.heightAnchor.constraint(equalToConstant: 60),
+
+            cashbackIconView.widthAnchor.constraint(equalToConstant: 34),
+            cashbackIconView.heightAnchor.constraint(equalToConstant: 34),
+
+            cashbackRowStackView.topAnchor.constraint(equalTo: cashbackContainerView.topAnchor, constant: 12),
+            cashbackRowStackView.leadingAnchor.constraint(equalTo: cashbackContainerView.leadingAnchor, constant: 16),
+            cashbackRowStackView.trailingAnchor.constraint(equalTo: cashbackContainerView.trailingAnchor, constant: -16),
+            cashbackRowStackView.bottomAnchor.constraint(equalTo: cashbackContainerView.bottomAnchor, constant: -12),
+
+            cashbackSelectButton.topAnchor.constraint(equalTo: cashbackContainerView.topAnchor),
+            cashbackSelectButton.leadingAnchor.constraint(equalTo: cashbackContainerView.leadingAnchor),
+            cashbackSelectButton.trailingAnchor.constraint(equalTo: cashbackSwitch.leadingAnchor, constant: -8),
+            cashbackSelectButton.bottomAnchor.constraint(equalTo: cashbackContainerView.bottomAnchor)
         ])
     }
 
@@ -322,6 +409,29 @@ private extension CheckoutView {
         rightView.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         return stackView
+    }
+
+    func makeCashbackIconView() -> UIView {
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = UIColor.appColor(.white).withAlphaComponent(0.7)
+        containerView.layer.cornerRadius = 17
+        containerView.layer.cornerCurve = .continuous
+
+        let imageView = UIImageView(image: UIImage(systemName: "c.circle"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.tintColor = UIColor.appColor(.secondBackground)
+        imageView.contentMode = .scaleAspectFit
+        containerView.addSubview(imageView)
+
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 22),
+            imageView.heightAnchor.constraint(equalToConstant: 22)
+        ])
+
+        return containerView
     }
 
     func configureModifierCollectionView() {

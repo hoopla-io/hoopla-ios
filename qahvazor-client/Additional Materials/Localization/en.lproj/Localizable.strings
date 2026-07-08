@@ -178,6 +178,7 @@ syrup = "Syrup";
 checkout = "Checkout";
 cashbeck = "Cashback";
 useCashbeck = "Use cashback";
+addPromocode = "Add promocode";
 cashNote = "You can use an amount up to this for cashback";
 use = "Use";
 earnedCashback = "Earned cashback";
