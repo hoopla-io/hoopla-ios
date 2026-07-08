@@ -8,7 +8,7 @@
 import Foundation
 
 struct ConfirmDrink: Codable {
-    let modifications: Modifications?
+    let cashbackPercent: Int?
     let modifierGroups: [ModifierGroups]?
 }
 
@@ -18,13 +18,6 @@ struct ModifierGroups: Codable {
     let minSelect: Int?
     let name: String?
     let options: [Modification]?
-}
-
-struct Modifications: Codable {
-    let size: [Modification]?
-    let sugar: [Modification]?
-    let milk: [Modification]?
-    let syrup: [Modification]?
 }
 
 struct Modification: Codable {

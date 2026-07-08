@@ -56,6 +56,15 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
             view().commentStackView.isHidden = false
         }
     }
+    var cashbackPercent: Int? {
+        didSet {
+            guard let cashbackPercent, cashbackPercent > 0 else { return }
+            let cashback = (totalPrice / 100 * Double(cashbackPercent))
+            view().cashbackPercentTitleLabel.text = ("youGet".localized + " (\(cashbackPercent)%)")
+            view().cashbackPercentLabel.text = "+" + cashback.formattedWithCurrency
+            view().cashbackPercentStackView.isHidden = false
+        }
+    }
     //MARK: - Actions
     @IBAction func cashbeckAction(_ sender: UISwitch) {
         guard sender.isOn else {

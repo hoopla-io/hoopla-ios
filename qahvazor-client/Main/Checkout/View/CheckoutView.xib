@@ -65,7 +65,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="9xb-mI-2p2">
-                    <rect key="frame" x="30" y="264" width="333" height="116"/>
+                    <rect key="frame" x="30" y="264" width="333" height="149"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="03l-PN-26d">
                             <rect key="frame" x="0.0" y="0.0" width="333" height="19.333333333333332"/>
@@ -131,6 +131,26 @@
                                         </label>
                                     </subviews>
                                 </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="gdD-md-Wcp">
+                            <rect key="frame" x="0.0" y="131" width="333" height="18"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHk-52-2lV">
+                                    <rect key="frame" x="0.0" y="0.0" width="38.333333333333336" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                    <color key="textColor" name="green"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="youGet"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFJ-tc-JUM">
+                                    <rect key="frame" x="294.66666666666669" y="0.0" width="38.333333333333314" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                    <color key="textColor" name="green"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -239,6 +259,9 @@
             </constraints>
             <connections>
                 <outlet property="cashbackContainerView" destination="HlJ-8Y-SM6" id="wce-X1-aAr"/>
+                <outlet property="cashbackPercentLabel" destination="SFJ-tc-JUM" id="oOg-YY-ybo"/>
+                <outlet property="cashbackPercentStackView" destination="gdD-md-Wcp" id="mhd-61-LBj"/>
+                <outlet property="cashbackPercentTitleLabel" destination="UHk-52-2lV" id="8dA-aO-efg"/>
                 <outlet property="cashbackPriceLabel" destination="0tC-3l-j0U" id="hAp-ZO-ECA"/>
                 <outlet property="cashbackSwitch" destination="bJN-Hj-2SI" id="bgL-kD-gBn"/>
                 <outlet property="commentLabel" destination="sF5-KD-yda" id="LEK-Sd-ydV"/>
@@ -257,6 +280,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="green">
+            <color red="0.32156862745098042" green="0.69019607843137254" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="mainColor">
             <color red="0.52549019607843139" green="0.14901960784313725" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -264,7 +290,7 @@
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

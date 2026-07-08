@@ -206,3 +206,4 @@ modifierRequired = "Majburiy";
 modifierOptional = "Ixtiyoriy";
 modifierMinSelectWarning = "Kamida %d ta variantni \"%@\" uchun tanlang";
 modifierMaxSelectWarning = "Ko'pi bilan %d ta variantni \"%@\" uchun tanlang";
+youGet = "Sizga qaytadi";

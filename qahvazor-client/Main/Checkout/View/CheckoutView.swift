@@ -55,6 +55,14 @@ final class CheckoutView: CustomView {
         }
     }
     
+    @IBOutlet weak var cashbackPercentStackView: UIStackView! {
+        didSet {
+            cashbackPercentStackView.isHidden = true
+        }
+    }
+    @IBOutlet weak var cashbackPercentTitleLabel: UILabel!
+    @IBOutlet weak var cashbackPercentLabel: UILabel!
+
     @IBOutlet weak var cashbackSwitch: UISwitch!
     @IBOutlet weak var cashbackPriceLabel: UILabel!
     @IBOutlet weak var cashbackContainerView: GradientView! {

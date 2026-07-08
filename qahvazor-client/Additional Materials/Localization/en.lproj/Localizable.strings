@@ -206,3 +206,4 @@ modifierRequired = "Required";
 modifierOptional = "Optional";
 modifierMinSelectWarning = "Please select at least %d option(s) for \"%@\"";
 modifierMaxSelectWarning = "Please select no more than %d option(s) for \"%@\"";
+youGet = "You will receive";

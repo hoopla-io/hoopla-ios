@@ -93,7 +93,8 @@ final class MainCoordinator: Coordinator {
         drinkData: Drinks?,
         totalPrice: Double,
         comment: String?,
-        modifiers: [Modification]
+        modifiers: [Modification],
+        cashbackPercent: Int?
     ) {
         let vc = CheckoutViewController()
         vc.coordinator = self
@@ -102,6 +103,7 @@ final class MainCoordinator: Coordinator {
         vc.totalPrice = totalPrice
         vc.comment = comment
         vc.selectedModifiers = modifiers
+        vc.cashbackPercent = cashbackPercent
         navigationController.pushViewController(vc, animated: true)
     }
     
