@@ -80,8 +80,13 @@ final class ProfileCoordinator: Coordinator {
         if let sheet = vc.sheetPresentationController {
             sheet.preferredCornerRadius = 28
             sheet.prefersGrabberVisible = false
-            sheet.detents = [.medium()]
-            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+
+            let giftcardId = UISheetPresentationController.Detent.Identifier("giftcard")
+            let giftcardDetent = UISheetPresentationController.Detent.custom(identifier: giftcardId) { context in
+                context.maximumDetentValue * 0.75
+            }
+            sheet.detents = [giftcardDetent]
+            sheet.selectedDetentIdentifier = giftcardId
         }
 
         navigationController.present(vc, animated: true)

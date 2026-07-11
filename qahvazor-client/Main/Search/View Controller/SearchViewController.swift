@@ -137,7 +137,6 @@ extension SearchViewController {
         setupDataProvider()
         setupSearchBar()
         setupViewModel()
-        setupKeyboardNotifications()
         viewModel.getPartners()
     }
     
@@ -163,15 +162,6 @@ extension SearchViewController {
         
         // Prevent the search controller from defining presentation context
         view().searchController.definesPresentationContext = false
-    }
-    
-    private func setupKeyboardNotifications() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillDisappear),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
     }
     
     private func setupViewModel() {
