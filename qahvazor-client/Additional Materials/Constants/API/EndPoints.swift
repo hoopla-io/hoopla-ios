@@ -46,4 +46,5 @@ enum EndPoints: String {
     case payServices = "user/pay/services"
     case topUp = "user/pay/top-up"
     case updateMe = "user/update-me"
+    case redeemGiftcard = "user/gift-cards/redeem"
 }

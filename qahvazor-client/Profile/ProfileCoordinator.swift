@@ -70,6 +70,22 @@ final class ProfileCoordinator: Coordinator {
         vc.amount = amount
         navigationController.pushViewController(vc, animated: true)
     }
+
+    func presentGiftcardVC(viewController: UIViewController) {
+        let vc = GiftcardViewController()
+        if let viewController = viewController as? ProfileViewController {
+            vc.delegate = viewController
+        }
+
+        if let sheet = vc.sheetPresentationController {
+            sheet.preferredCornerRadius = 28
+            sheet.prefersGrabberVisible = false
+            sheet.detents = [.medium()]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+        }
+
+        navigationController.present(vc, animated: true)
+    }
     
     func pushToBirthVC(viewController: UIViewController, date: Int) {
         let vc = BirthViewController()

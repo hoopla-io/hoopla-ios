@@ -116,6 +116,8 @@ final class ProfileView: CustomView {
 
     let topUpButton = ProfileView.makePrimaryButton(titleKey: "topUp")
 
+    let activateButton = ProfileView.makePrimaryButton(titleKey: "activate")
+
     let versionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -342,7 +344,7 @@ private extension ProfileView {
         titleStack.translatesAutoresizingMaskIntoConstraints = false
         titleStack.axis = .horizontal
         titleStack.spacing = 12
-        titleStack.alignment = .top
+        titleStack.alignment = .center
 
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -350,8 +352,6 @@ private extension ProfileView {
         descriptionLabel.font = .systemFont(ofSize: 14)
         descriptionLabel.textColor = .secondaryLabel
         descriptionLabel.numberOfLines = 0
-
-        let activateButton = ProfileView.makePrimaryButton(titleKey: "activate")
 
         let contentStack = UIStackView(arrangedSubviews: [titleStack, descriptionLabel, activateButton])
         contentStack.translatesAutoresizingMaskIntoConstraints = false

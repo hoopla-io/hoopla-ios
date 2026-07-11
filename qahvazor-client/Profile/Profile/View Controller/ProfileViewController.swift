@@ -49,6 +49,10 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, @M
     @objc func paymentTapped() {
         coordinator?.pushToPaymentVC()
     }
+
+    @objc private func activateGiftcardTapped() {
+        coordinator?.presentGiftcardVC(viewController: self)
+    }
     
     @IBAction func logoutAction(_ sender: UIButton) {
         showLogoutAlert()
@@ -124,6 +128,7 @@ extension ProfileViewController {
         }
         view().editButton.addTarget(self, action: #selector(editAction(_:)), for: .touchUpInside)
         view().topUpButton.addTarget(self, action: #selector(paymentTapped), for: .touchUpInside)
+        view().activateButton.addTarget(self, action: #selector(activateGiftcardTapped), for: .touchUpInside)
         
         if let releaseVersionNumber = Bundle.main.releaseVersionNumber {
             view().versionLabel.text = "version".localized + Symbols.space.rawValue + releaseVersionNumber
@@ -176,6 +181,19 @@ extension ProfileViewController {
 extension ProfileViewController: LanguageViewControllerDelegate {
     func didSelectLanguage() {
         resetTabBar()
+    }
+}
+
+extension ProfileViewController: GiftcardViewControllerDelegate {
+    func giftcardViewController(_ viewController: GiftcardViewController, didRedeem data: GiftcardRedemption) {
+        view().balanceLabel.text = "\(data.balance.formattedWithSeparator) \(data.currency)"
+        UserDefaults.standard.saveBalance(data.balance)
+
+        let message = String(
+            format: "giftcardCredited".localized,
+            data.credited.formattedWithSeparator
+        )
+        showSuccessAlert(message: message)
     }
 }
 
