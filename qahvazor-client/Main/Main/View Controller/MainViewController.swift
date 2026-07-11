@@ -131,7 +131,6 @@ extension MainViewController {
         profileViewModel.delegate = self
         navigationItem.title = "home".localized
 
-        setupSearchBar()
         setupNavigationBar()
         
         let storiesDataProvider = MainStoriesDataProvider()
@@ -176,19 +175,15 @@ extension MainViewController {
         }
     }
     
-    private func setupSearchBar() {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.delegate = self
-        searchController.searchBar.searchTextField.backgroundColor = UIColor.appColor(.secondBackground)
-        searchController.searchBar.updateHeight(height: 44)
-        searchController.searchBar.placeholder = "placeholderSearch".localized
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
+    private func setupNavigationBar() {
+        view().searchButton.addTarget(self, action: #selector(searchAction), for: .touchUpInside)
+        view().notificationButton.addTarget(self, action: #selector(notifitcationAction), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: view().notificationButton), UIBarButtonItem(customView: view().searchButton)]
     }
     
-    private func setupNavigationBar() {
-        view().notificationButton.addTarget(self, action: #selector(notifitcationAction), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: view().notificationButton)
+    @objc func searchAction() {
+        coordinator?.startSearch()
     }
     
     @objc func notifitcationAction() {
@@ -238,13 +233,6 @@ extension MainViewController: MainStoriesDataProviderDelegate {
         isLoading = true
         selectedStoryID = id
         viewModel.getStoryDetail(id: id)
-    }
-}
-// MARK: - Delegate
-extension MainViewController: UISearchBarDelegate {
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        coordinator?.startSearch()
-        return true
     }
 }
 

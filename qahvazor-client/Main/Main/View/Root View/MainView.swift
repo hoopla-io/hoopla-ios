@@ -47,6 +47,16 @@ final class MainView: CustomView {
         }
     }
     
+    lazy var searchButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        button.setPreferredSymbolConfiguration(
+            UIImage.SymbolConfiguration(pointSize: 24, weight: .bold),
+            forImageIn: .normal
+        )
+        return button
+    }()
+    
     lazy var notificationButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "bell.fill"), for: .normal)

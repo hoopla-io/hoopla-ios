@@ -29,7 +29,7 @@ final class MainCoordinator: Coordinator {
     func startSearch() {
         let vc = SearchViewController()
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func pushToShopDetail(id: Int, item: Shop?) {
