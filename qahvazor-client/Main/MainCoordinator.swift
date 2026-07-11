@@ -180,7 +180,7 @@ final class MainCoordinator: Coordinator {
             initialGroup: initialGroup,
             storyLoader: storyLoader
         )
-        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .overFullScreen
         navigationController.present(vc, animated: true)
     }
 }

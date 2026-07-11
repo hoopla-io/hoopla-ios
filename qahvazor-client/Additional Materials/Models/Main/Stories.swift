@@ -20,6 +20,8 @@ struct StoryDetail: Codable {
     let title: String?
     let imageUrl: String?
     let description: String?
+    let linkType: String?
+    let linkValue: String?
     let duration: Int?
 }
 

@@ -37,6 +37,8 @@ final class MainStoryViewController: UIViewController, @MainActor AlertViewContr
 
     enum Constants {
         static let defaultDuration: TimeInterval = 5
+        static let dismissProgressThreshold: CGFloat = 0.2
+        static let dismissVelocityThreshold: CGFloat = 1_000
     }
 
     private let groups: [Stories]
@@ -118,6 +120,35 @@ final class MainStoryViewController: UIViewController, @MainActor AlertViewContr
         target: self,
         action: #selector(handleHold(_:))
     )
+
+    private lazy var swipeLeftGestureRecognizer: UISwipeGestureRecognizer = {
+        let gestureRecognizer = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(handleSwipe(_:))
+        )
+        gestureRecognizer.direction = .left
+        gestureRecognizer.delegate = self
+        return gestureRecognizer
+    }()
+
+    private lazy var swipeRightGestureRecognizer: UISwipeGestureRecognizer = {
+        let gestureRecognizer = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(handleSwipe(_:))
+        )
+        gestureRecognizer.direction = .right
+        gestureRecognizer.delegate = self
+        return gestureRecognizer
+    }()
+
+    private lazy var dismissPanGestureRecognizer: UIPanGestureRecognizer = {
+        let gestureRecognizer = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(handleDismissPan(_:))
+        )
+        gestureRecognizer.delegate = self
+        return gestureRecognizer
+    }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -234,6 +265,9 @@ final class MainStoryViewController: UIViewController, @MainActor AlertViewContr
         holdGestureRecognizer.cancelsTouchesInView = false
 
         view.addGestureRecognizer(holdGestureRecognizer)
+        view.addGestureRecognizer(swipeLeftGestureRecognizer)
+        view.addGestureRecognizer(swipeRightGestureRecognizer)
+        view.addGestureRecognizer(dismissPanGestureRecognizer)
     }
 
     private func setupObservers() {
@@ -600,6 +634,95 @@ private extension MainStoryViewController {
 
 // MARK: - Actions
 private extension MainStoryViewController {
+    @objc func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer) {
+        guard gestureRecognizer.state == .ended else { return }
+
+        removePauseReason(.loadFailure)
+        switch gestureRecognizer.direction {
+        case .left:
+            moveForward()
+        case .right:
+            moveBackward()
+        default:
+            break
+        }
+    }
+
+    @objc func handleDismissPan(_ gestureRecognizer: UIPanGestureRecognizer) {
+        let translation = gestureRecognizer.translation(in: view)
+        let downwardTranslation = max(translation.y, 0)
+        let progress = min(downwardTranslation / max(view.bounds.height, 1), 1)
+
+        switch gestureRecognizer.state {
+        case .began:
+            addPauseReason(.transition)
+
+        case .changed:
+            view.transform = CGAffineTransform(translationX: 0, y: downwardTranslation)
+            view.alpha = 1 - (progress * 0.25)
+            view.layer.cornerRadius = 28 * progress
+            view.layer.masksToBounds = true
+
+        case .ended:
+            let velocity = gestureRecognizer.velocity(in: view)
+            let shouldDismiss = progress >= Constants.dismissProgressThreshold
+                || velocity.y >= Constants.dismissVelocityThreshold
+
+            if shouldDismiss {
+                finishInteractiveDismissal()
+            } else {
+                cancelInteractiveDismissal(initialVelocity: velocity.y)
+            }
+
+        case .cancelled, .failed:
+            cancelInteractiveDismissal(initialVelocity: 0)
+
+        default:
+            break
+        }
+    }
+
+    func finishInteractiveDismissal() {
+        addPauseReason(.hidden)
+        UIView.animate(
+            withDuration: 0.22,
+            delay: 0,
+            options: [.curveEaseIn, .beginFromCurrentState],
+            animations: {
+                self.view.transform = CGAffineTransform(
+                    translationX: 0,
+                    y: self.view.bounds.height
+                )
+                self.view.alpha = 0.7
+                self.view.layer.cornerRadius = 28
+            },
+            completion: { [weak self] _ in
+                self?.dismiss(animated: false)
+            }
+        )
+    }
+
+    func cancelInteractiveDismissal(initialVelocity: CGFloat) {
+        let normalizedVelocity = min(abs(initialVelocity) / max(view.bounds.height, 1), 2)
+        UIView.animate(
+            withDuration: 0.35,
+            delay: 0,
+            usingSpringWithDamping: 0.82,
+            initialSpringVelocity: normalizedVelocity,
+            options: [.curveEaseOut, .beginFromCurrentState],
+            animations: {
+                self.view.transform = .identity
+                self.view.alpha = 1
+                self.view.layer.cornerRadius = 0
+            },
+            completion: { [weak self] _ in
+                guard let self else { return }
+                self.view.layer.masksToBounds = false
+                self.removePauseReason(.transition)
+            }
+        )
+    }
+
     @objc func handleHold(_ gestureRecognizer: UILongPressGestureRecognizer) {
         switch gestureRecognizer.state {
         case .began:
@@ -705,6 +828,30 @@ extension MainStoryViewController: UICollectionViewDelegate {
 
 // MARK: - UIGestureRecognizerDelegate
 extension MainStoryViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard gestureRecognizer === dismissPanGestureRecognizer,
+              let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else {
+            return true
+        }
+
+        let velocity = panGestureRecognizer.velocity(in: view)
+        return velocity.y > 0 && abs(velocity.y) > abs(velocity.x)
+    }
+
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
+    ) -> Bool {
+        let gestureRecognizers = [gestureRecognizer, otherGestureRecognizer]
+        let includesHold = gestureRecognizers.contains { $0 === holdGestureRecognizer }
+        let includesSwipe = gestureRecognizers.contains {
+            $0 === swipeLeftGestureRecognizer
+                || $0 === swipeRightGestureRecognizer
+                || $0 === dismissPanGestureRecognizer
+        }
+        return includesHold && includesSwipe
+    }
+
     func gestureRecognizer(
         _ gestureRecognizer: UIGestureRecognizer,
         shouldReceive touch: UITouch
