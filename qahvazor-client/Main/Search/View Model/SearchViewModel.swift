@@ -9,8 +9,6 @@ import UIKit
 
 protocol SearchViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(partners: [Company])
-    func didFinishFetch(searchResults: [Shop])
-    func didFinishFetch(partnerShops: [Shop])
 }
 
 final class SearchViewModel {
@@ -27,41 +25,6 @@ final class SearchViewModel {
         }
     }
     
-    // MARK: - Network call
-    func getList(name: String? = nil) {
-        var param: [String : Any ] = [
-            Parameters.long.rawValue : Coordinate.longitude,
-            Parameters.lat.rawValue : Coordinate.latitude
-        ]
-        if let name {
-            param[Parameters.name.rawValue] = name
-        }
-        
-        performRequest(
-            url: EndPoints.nearShops.rawValue,
-            parameters: param,
-            type: Shop.self
-        ) { [weak self] shops in
-            self?.delegate?.didFinishFetch(searchResults: shops)
-        }
-    }
-
-    func getShops(partnerId: Int) {
-        let parameters: [String: Any] = [
-            Parameters.partnerId.rawValue: partnerId,
-            Parameters.long.rawValue: Coordinate.longitude,
-            Parameters.lat.rawValue: Coordinate.latitude
-        ]
-
-        performRequest(
-            url: EndPoints.partnersShops.rawValue,
-            parameters: parameters,
-            type: Shop.self
-        ) { [weak self] shops in
-            self?.delegate?.didFinishFetch(partnerShops: shops)
-        }
-    }
-
     private func performRequest<T: Decodable>(
         url: String,
         parameters: [String: Any]?,
@@ -88,5 +51,3 @@ final class SearchViewModel {
         }
     }
 }
-
-

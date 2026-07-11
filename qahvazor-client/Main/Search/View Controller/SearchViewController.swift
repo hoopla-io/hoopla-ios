@@ -14,7 +14,7 @@ final class SearchViewController: UIViewController, ViewSpecificController, Aler
     
     // MARK: - Constants
     private enum Constants {
-        static let minimumSearchLength = 2
+        static let minimumSearchLength = 1
         static let searchDelay: TimeInterval = 0.5
         static let keyboardActivationDelay: TimeInterval = 0.3
     }
@@ -30,8 +30,7 @@ final class SearchViewController: UIViewController, ViewSpecificController, Aler
     
     // MARK: - Attributes
     private var shouldActivateKeyboard = true
-    private var isOpeningPartner = false
-    private var isUpdatingSearchText = false
+    private var partners: [Company] = []
     
     // MARK: - Deinitializer
     deinit {
@@ -46,8 +45,7 @@ final class SearchViewController: UIViewController, ViewSpecificController, Aler
             return 
         }
         
-        isOpeningPartner = false
-        viewModel.getList(name: query)
+        showPartners(matching: query)
     }
     
     @objc private func keyboardWillDisappear() {
@@ -95,6 +93,17 @@ final class SearchViewController: UIViewController, ViewSpecificController, Aler
             }
         }
     }
+
+    private func showPartners(matching query: String) {
+        let filteredPartners = partners.filter {
+            $0.name?.range(
+                of: query,
+                options: [.caseInsensitive, .diacriticInsensitive]
+            ) != nil
+        }
+        dataProvider?.showPartners(filteredPartners)
+        view().collectionView.checkEmpty(items: filteredPartners, type: .search)
+    }
 }
 
 // MARK: - Networking
@@ -102,30 +111,15 @@ extension SearchViewController: SearchViewModelProtocol {
     func didFinishFetch(partners: [Company]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            self.partners = partners
             let query = self.view().searchController.searchBar.text?
                 .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            guard query.isEmpty, !self.isOpeningPartner else { return }
-            self.dataProvider?.showPartners(partners)
-            self.view().collectionView.checkEmpty(items: partners, type: .search)
-        }
-    }
-
-    func didFinishFetch(searchResults: [Shop]) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            let query = self.view().searchController.searchBar.text?
-                .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            guard query.count >= Constants.minimumSearchLength, !self.isOpeningPartner else { return }
-            self.dataProvider?.showShops(searchResults)
-            self.view().collectionView.checkEmpty(items: searchResults, type: .search)
-        }
-    }
-
-    func didFinishFetch(partnerShops: [Shop]) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self, self.isOpeningPartner else { return }
-            self.dataProvider?.showShops(partnerShops)
-            self.view().collectionView.checkEmpty(items: partnerShops, type: .search)
+            if query.isEmpty {
+                self.dataProvider?.showPartners(partners)
+                self.view().collectionView.checkEmpty(items: partners, type: .search)
+            } else if query.count >= Constants.minimumSearchLength {
+                self.showPartners(matching: query)
+            }
         }
     }
 }
@@ -169,27 +163,23 @@ extension SearchViewController {
     }
 
     func didSelectPartner(_ partner: Company) {
-        guard let partnerId = partner.id else { return }
-        isOpeningPartner = true
-        isUpdatingSearchText = true
-        view().searchController.searchBar.text = partner.name
-        isUpdatingSearchText = false
-        viewModel.getShops(partnerId: partnerId)
+        guard partner.id != nil else { return }
+        view().searchController.searchBar.resignFirstResponder()
+        coordinator?.pushToSearchShop(partner: partner)
     }
 }
 
 // MARK: - Delegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard !isUpdatingSearchText else { return }
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(search), object: searchBar)
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        isOpeningPartner = false
 
         if query.isEmpty {
-            viewModel.getPartners()
+            dataProvider?.showPartners(partners)
+            view().collectionView.checkEmpty(items: partners, type: .search)
         } else if query.count < Constants.minimumSearchLength {
-            dataProvider?.showShops([])
+            dataProvider?.showPartners([])
             view().collectionView.restore()
         } else {
             perform(#selector(search), with: searchBar, afterDelay: Constants.searchDelay)

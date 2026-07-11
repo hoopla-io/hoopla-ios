@@ -62,14 +62,6 @@ final class SearchView: CustomView {
     
     private func setupCollectionView() {
         // Register cell
-        let cellNib = UINib(
-            nibName: CompanyCollectionViewCell.defaultReuseIdentifier, 
-            bundle: nil
-        )
-        collectionView.register(
-            cellNib, 
-            forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier
-        )
         collectionView.register(
             PartnerSearchCollectionViewCell.self,
             forCellWithReuseIdentifier: PartnerSearchCollectionViewCell.defaultReuseIdentifier
