@@ -13,6 +13,8 @@ typealias MainStoryLoader = (_ id: Int, _ completion: @escaping MainStoryLoadCom
 
 final class MainStoryViewController: UIViewController, @MainActor AlertViewController {
 
+    var onOpenAction: ((StoryLinkAction, String?) -> Void)?
+
     enum PauseReason: Hashable {
         case hold
         case inactive
@@ -114,6 +116,18 @@ final class MainStoryViewController: UIViewController, @MainActor AlertViewContr
         indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
+    }()
+
+    private let openButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("open".localized, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+        button.backgroundColor = .appColor(.mainColor)
+        button.layer.cornerRadius = 14
+        button.isHidden = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
 
     private lazy var holdGestureRecognizer = UILongPressGestureRecognizer(
@@ -234,8 +248,10 @@ final class MainStoryViewController: UIViewController, @MainActor AlertViewContr
         view.addSubview(progressStackView)
         view.addSubview(closeButton)
         view.addSubview(loadingIndicator)
+        view.addSubview(openButton)
 
         closeButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
+        openButton.addTarget(self, action: #selector(openAction), for: .touchUpInside)
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -254,8 +270,15 @@ final class MainStoryViewController: UIViewController, @MainActor AlertViewContr
             closeButton.heightAnchor.constraint(equalToConstant: 32),
 
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+
+            openButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            openButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            openButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            openButton.heightAnchor.constraint(equalToConstant: 52)
         ])
+
+        updateOpenButton()
     }
 
     private func setupGestures() {
@@ -456,6 +479,7 @@ private extension MainStoryViewController {
         addPauseReason(.transition)
         pendingItemIndex = index
         collectionView.isUserInteractionEnabled = false
+        openButton.isEnabled = false
         collectionView.scrollToItem(
             at: IndexPath(item: index, section: 0),
             at: .centeredHorizontally,
@@ -485,6 +509,7 @@ private extension MainStoryViewController {
         currentIndex = pendingItemIndex
         self.pendingItemIndex = nil
         collectionView.isUserInteractionEnabled = true
+        updateOpenButton()
         updateMediaLoadingState()
         restartPlayback()
         removePauseReason(.transition)
@@ -494,6 +519,7 @@ private extension MainStoryViewController {
         guard !pauseReasons.contains(.loading) else { return }
         removePauseReason(.loadFailure)
         addPauseReason(.loading)
+        openButton.isHidden = true
         loadFirstAvailableGroup(
             at: currentGroupIndex + direction.step,
             direction: direction
@@ -563,6 +589,7 @@ private extension MainStoryViewController {
     func finishGroupLoadingWithError(_ error: APIError, message: String?) {
         pendingGroupIndex = nil
         loadingIndicator.stopAnimating()
+        updateOpenButton()
 
         switch error {
         case .notAuthorized:
@@ -589,6 +616,7 @@ private extension MainStoryViewController {
         elapsedTime = 0
         playbackStartTime = nil
         rebuildProgressViews()
+        updateOpenButton()
 
         UIView.transition(
             with: collectionView,
@@ -626,6 +654,7 @@ private extension MainStoryViewController {
             removePauseReason(.loading)
         case .backward:
             restartPlayback()
+            updateOpenButton()
             removePauseReason(.loading)
         }
     }
@@ -634,6 +663,22 @@ private extension MainStoryViewController {
 
 // MARK: - Actions
 private extension MainStoryViewController {
+    func updateOpenButton() {
+        let hasAction = stories.indices.contains(currentIndex)
+            && stories[currentIndex].linkAction != nil
+        openButton.isHidden = !hasAction
+        openButton.isEnabled = hasAction
+    }
+
+    @objc func openAction() {
+        guard stories.indices.contains(currentIndex),
+              let action = stories[currentIndex].linkAction else { return }
+        addPauseReason(.hidden)
+        openButton.isEnabled = false
+        let storyTitle = groups[safe: currentGroupIndex]?.title
+        onOpenAction?(action, storyTitle)
+    }
+
     @objc func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer) {
         guard gestureRecognizer.state == .ended else { return }
 

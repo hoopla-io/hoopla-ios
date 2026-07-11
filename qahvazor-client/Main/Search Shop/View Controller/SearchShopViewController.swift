@@ -15,12 +15,20 @@ final class SearchShopViewController: UIViewController, ViewSpecificController, 
     var isLoading = false
     weak var coordinator: MainCoordinator?
 
-    private let partner: Company
+    private let partnerId: Int?
+    private let partnerName: String?
     private let viewModel = SearchShopViewModel()
     private var shops: [Shop] = []
 
     init(partner: Company) {
-        self.partner = partner
+        partnerId = partner.id
+        partnerName = partner.name
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    init(partnerId: Int, partnerName: String? = nil) {
+        self.partnerId = partnerId
+        self.partnerName = partnerName
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -34,12 +42,12 @@ final class SearchShopViewController: UIViewController, ViewSpecificController, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = partner.name
+        navigationItem.title = partnerName
         viewModel.delegate = self
         view().collectionView.dataSource = self
         view().collectionView.delegate = self
 
-        guard let partnerId = partner.id else { return }
+        guard let partnerId else { return }
         viewModel.getShops(partnerId: partnerId)
     }
 

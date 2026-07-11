@@ -37,6 +37,12 @@ final class MainCoordinator: Coordinator {
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
+
+    func pushToSearchShop(partnerId: Int, partnerName: String? = nil) {
+        let vc = SearchShopViewController(partnerId: partnerId, partnerName: partnerName)
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
     
     func pushToShopDetail(id: Int, item: Shop?) {
         let vc = ShopDetailViewController()
@@ -186,7 +192,23 @@ final class MainCoordinator: Coordinator {
             initialGroup: initialGroup,
             storyLoader: storyLoader
         )
+        vc.onOpenAction = { [weak self, weak vc] action, storyTitle in
+            vc?.dismiss(animated: true) {
+                self?.handleStoryLinkAction(action, storyTitle: storyTitle)
+            }
+        }
         vc.modalPresentationStyle = .overFullScreen
         navigationController.present(vc, animated: true)
+    }
+
+    private func handleStoryLinkAction(_ action: StoryLinkAction, storyTitle: String?) {
+        switch action {
+        case .partner(let partnerId):
+            pushToSearchShop(partnerId: partnerId, partnerName: storyTitle)
+        case .url(let url):
+            navigationController.openViaSafariVC(url.absoluteString, from: navigationController)
+        case .shop(let shopId):
+            pushToShopDetail(id: shopId, item: nil)
+        }
     }
 }
