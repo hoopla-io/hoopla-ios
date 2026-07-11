@@ -16,31 +16,51 @@ final class SearchView: CustomView {
     }
     
     // MARK: - UI Components
-    @IBOutlet private(set) weak var collectionView: UICollectionView! {
-        didSet {
-            setupCollectionView()
-        }
-    }
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 10
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 16, bottom: 16, right: 16)
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        collectionView.alwaysBounceVertical = true
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.contentInsetAdjustmentBehavior = .automatic
+        return collectionView
+    }()
     
     private(set) lazy var searchController: UISearchController = makeSearchController()
     
     // MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
-        
-        // Force searchController initialization early
-        _ = searchController
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupUI()
     }
     
     // MARK: - UI Setup
     private func setupUI() {
+        backgroundColor = .systemBackground
+        addSubview(collectionView)
+
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+
+        setupCollectionView()
         setupAccessibility()
     }
     
     private func setupCollectionView() {
-        guard let collectionView = collectionView else { return }
-        
         // Register cell
         let cellNib = UINib(
             nibName: CompanyCollectionViewCell.defaultReuseIdentifier, 
@@ -50,15 +70,16 @@ final class SearchView: CustomView {
             cellNib, 
             forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier
         )
+        collectionView.register(
+            PartnerSearchCollectionViewCell.self,
+            forCellWithReuseIdentifier: PartnerSearchCollectionViewCell.defaultReuseIdentifier
+        )
         
-        // Additional collection view setup
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.contentInsetAdjustmentBehavior = .automatic
     }
     
     private func setupAccessibility() {
         accessibilityLabel = "Search coffee shops view"
-        collectionView?.accessibilityLabel = "Search results collection"
+        collectionView.accessibilityLabel = "Search results collection"
     }
     
     // MARK: - Search Controller Factory
@@ -149,4 +170,3 @@ final class SearchView: CustomView {
         searchController.searchBar.resignFirstResponder()
     }
 }
-

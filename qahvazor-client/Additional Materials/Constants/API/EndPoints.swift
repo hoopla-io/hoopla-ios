@@ -16,6 +16,8 @@ enum EndPoints: String {
     
     // MARK: - Main
     case partners = "partners"
+    case partnersList = "partners/list"
+    case partnersShops = "partners/shops"
     case nearShops = "shops/near-shops"
     case partner = "partners/partner"
     case partnerShops = "shops/partner-shops"

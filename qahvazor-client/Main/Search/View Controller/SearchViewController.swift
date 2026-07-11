@@ -30,14 +30,11 @@ final class SearchViewController: UIViewController, ViewSpecificController, Aler
     
     // MARK: - Attributes
     private var shouldActivateKeyboard = true
-    private var totalItems = 0
-    private var totalPages = 1
-    private var currentPage = 1
-    private var searchTask: Task<Void, Never>?
+    private var isOpeningPartner = false
+    private var isUpdatingSearchText = false
     
     // MARK: - Deinitializer
     deinit {
-        searchTask?.cancel()
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -49,21 +46,20 @@ final class SearchViewController: UIViewController, ViewSpecificController, Aler
             return 
         }
         
-        currentPage = 1
+        isOpeningPartner = false
         viewModel.getList(name: query)
     }
     
-    @objc private func clear(_ searchBar: UISearchBar) {
-        dataProvider?.items.removeAll()
-        navigationItem.searchController?.isActive = false
-    }
-    
     @objc private func keyboardWillDisappear() {
-        guard let items = dataProvider?.items, items.isEmpty else { return }
+        guard dataProvider?.isEmpty == true else { return }
         navigationItem.searchController?.isActive = false
     }
     
     // MARK: - Life cycle
+    override func loadView() {
+        view = SearchView()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
@@ -103,22 +99,33 @@ final class SearchViewController: UIViewController, ViewSpecificController, Aler
 
 // MARK: - Networking
 extension SearchViewController: SearchViewModelProtocol {
-    func didFinishFetch(data: [Shop]?) {
+    func didFinishFetch(partners: [Company]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            
-            if let data = data {
-                self.dataProvider?.items = data
-                self.totalItems = data.count
-            } else {
-                self.dataProvider?.items.removeAll()
-                self.totalItems = 0
-            }
-            
-            self.view().collectionView.checkEmpty(
-                items: self.dataProvider?.items, 
-                type: .search
-            )
+            let query = self.view().searchController.searchBar.text?
+                .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            guard query.isEmpty, !self.isOpeningPartner else { return }
+            self.dataProvider?.showPartners(partners)
+            self.view().collectionView.checkEmpty(items: partners, type: .search)
+        }
+    }
+
+    func didFinishFetch(searchResults: [Shop]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let query = self.view().searchController.searchBar.text?
+                .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            guard query.count >= Constants.minimumSearchLength, !self.isOpeningPartner else { return }
+            self.dataProvider?.showShops(searchResults)
+            self.view().collectionView.checkEmpty(items: searchResults, type: .search)
+        }
+    }
+
+    func didFinishFetch(partnerShops: [Shop]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, self.isOpeningPartner else { return }
+            self.dataProvider?.showShops(partnerShops)
+            self.view().collectionView.checkEmpty(items: partnerShops, type: .search)
         }
     }
 }
@@ -129,8 +136,9 @@ extension SearchViewController {
         setupUI()
         setupDataProvider()
         setupSearchBar()
-        setupClearAction()
         setupViewModel()
+        setupKeyboardNotifications()
+        viewModel.getPartners()
     }
     
     private func setupUI() {
@@ -157,20 +165,6 @@ extension SearchViewController {
         view().searchController.definesPresentationContext = false
     }
     
-    private func setupClearAction() {
-        setupClearButton()
-        setupKeyboardNotifications()
-    }
-    
-    private func setupClearButton() {
-        guard let searchTextField = view().searchController.searchBar.value(forKey: "searchField") as? UITextField,
-              let clearButton = searchTextField.value(forKey: "_clearButton") as? UIButton else {
-            return
-        }
-        
-        clearButton.addTarget(self, action: #selector(clear), for: .touchUpInside)
-    }
-    
     private func setupKeyboardNotifications() {
         NotificationCenter.default.addObserver(
             self,
@@ -183,13 +177,33 @@ extension SearchViewController {
     private func setupViewModel() {
         viewModel.delegate = self
     }
+
+    func didSelectPartner(_ partner: Company) {
+        guard let partnerId = partner.id else { return }
+        isOpeningPartner = true
+        isUpdatingSearchText = true
+        view().searchController.searchBar.text = partner.name
+        isUpdatingSearchText = false
+        viewModel.getShops(partnerId: partnerId)
+    }
 }
 
 // MARK: - Delegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !isUpdatingSearchText else { return }
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(search), object: searchBar)
-        perform(#selector(search), with: searchBar, afterDelay: 0.5)
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        isOpeningPartner = false
+
+        if query.isEmpty {
+            viewModel.getPartners()
+        } else if query.count < Constants.minimumSearchLength {
+            dataProvider?.showShops([])
+            view().collectionView.restore()
+        } else {
+            perform(#selector(search), with: searchBar, afterDelay: Constants.searchDelay)
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -200,4 +214,3 @@ extension SearchViewController: UISearchBarDelegate {
         view.endEditing(true)
     }
 }
-
