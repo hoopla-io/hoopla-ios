@@ -168,19 +168,19 @@ final class MainCoordinator: Coordinator {
         navigationController.present(vc, animated: true)
     }
     
-    func presentStoryDetailVC(data: StoryDetail) {
-        let vc = MainStoryViewController(story: data)
-        if let sheet = vc.sheetPresentationController {
-            sheet.preferredCornerRadius = 16
-            sheet.prefersGrabberVisible = true
-            
-            let reviewId = UISheetPresentationController.Detent.Identifier("story")
-            let reviewDetent = UISheetPresentationController.Detent.custom(identifier: reviewId) { context in
-                return context.maximumDetentValue * 1
-            }
-            sheet.detents = [reviewDetent]
-            sheet.selectedDetentIdentifier = reviewId
-        }
+    func presentStoryDetailVC(
+        groups: [Stories],
+        selectedGroupIndex: Int,
+        initialGroup: Stories,
+        storyLoader: @escaping MainStoryLoader
+    ) {
+        let vc = MainStoryViewController(
+            groups: groups,
+            selectedGroupIndex: selectedGroupIndex,
+            initialGroup: initialGroup,
+            storyLoader: storyLoader
+        )
+        vc.modalPresentationStyle = .fullScreen
         navigationController.present(vc, animated: true)
     }
 }

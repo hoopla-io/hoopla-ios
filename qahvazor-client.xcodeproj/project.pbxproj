@@ -16,7 +16,7 @@
 		054A42412F49F8BD0030BA23 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054A42402F49F8BD0030BA23 /* Checkout.swift */; };
 		055B674F2FB8E09500DF350B /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B674E2FB8E09500DF350B /* Stories.swift */; };
 		055B67512FB8E0F900DF350B /* StoryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B67502FB8E0F900DF350B /* StoryDataProvider.swift */; };
-		055B67542FB8E13900DF350B /* StoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B67532FB8E13900DF350B /* StoryDetailViewController.swift */; };
+		055B67542FB8E13900DF350B /* MainStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B67532FB8E13900DF350B /* MainStoryViewController.swift */; };
 		055B67572FB8E3A800DF350B /* StoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B67562FB8E3A800DF350B /* StoryCollectionViewCell.swift */; };
 		056D1E002FF00784007EC0F1 /* ModifierGroupDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D1DFF2FF00784007EC0F1 /* ModifierGroupDataProvider.swift */; };
 		056D1E032FF02044007EC0F1 /* CheckoutViewDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D1E022FF02044007EC0F1 /* CheckoutViewDataProvider.swift */; };
@@ -301,7 +301,7 @@
 		054A42402F49F8BD0030BA23 /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
 		055B674E2FB8E09500DF350B /* Stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
 		055B67502FB8E0F900DF350B /* StoryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDataProvider.swift; sourceTree = "<group>"; };
-		055B67532FB8E13900DF350B /* StoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailViewController.swift; sourceTree = "<group>"; };
+		055B67532FB8E13900DF350B /* MainStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStoryViewController.swift; sourceTree = "<group>"; };
 		055B67562FB8E3A800DF350B /* StoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		056D1DFF2FF00784007EC0F1 /* ModifierGroupDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierGroupDataProvider.swift; sourceTree = "<group>"; };
 		056D1E022FF02044007EC0F1 /* CheckoutViewDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewDataProvider.swift; sourceTree = "<group>"; };
@@ -665,7 +665,7 @@
 		055B67522FB8E11200DF350B /* Story Detail */ = {
 			isa = PBXGroup;
 			children = (
-				055B67532FB8E13900DF350B /* StoryDetailViewController.swift */,
+				055B67532FB8E13900DF350B /* MainStoryViewController.swift */,
 			);
 			path = "Story Detail";
 			sourceTree = "<group>";
@@ -2575,7 +2575,7 @@
 				752330F62D197B210090997E /* CustomTextField.swift in Sources */,
 				528AD1EF2F73F4170050ABBF /* ReviewViewController.swift in Sources */,
 				752330F72D197B210090997E /* KAPinField.swift in Sources */,
-				055B67542FB8E13900DF350B /* StoryDetailViewController.swift in Sources */,
+				055B67542FB8E13900DF350B /* MainStoryViewController.swift in Sources */,
 				752330F82D197B210090997E /* BaseView.swift in Sources */,
 				528AD1ED2F73F3FF0050ABBF /* ReviewView.swift in Sources */,
 				75BB447E2D30F6EB0000C64A /* HistoryView.swift in Sources */,
@@ -2666,7 +2666,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.8;
+				MARKETING_VERSION = 1.2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2700,7 +2700,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.8;
+				MARKETING_VERSION = 1.2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

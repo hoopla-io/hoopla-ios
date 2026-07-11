@@ -74,26 +74,54 @@ final class MainViewModel {
         }
     }
     
-    func getStoryDetail(id: Int) {
+    func getStoryDetail(
+        id: Int,
+        showsActivityIndicator: Bool = true,
+        completion: ((Result<Stories>) -> Void)? = nil
+    ) {
         let url = "stories/show/\(id)"
-        delegate?.showActivityIndicator()
+        if showsActivityIndicator {
+            delegate?.showActivityIndicator()
+        }
         
         Task { [weak self] in
             await JSONDownloader.shared.jsonTask(url: url, requestMethod: .get, completionHandler: { [weak self]  (result) in
                 guard let self = self else { return }
+                defer {
+                    if showsActivityIndicator {
+                        self.delegate?.hideActivityIndicator()
+                    }
+                }
+
+                func deliver(_ result: Result<Stories>) {
+                    if let completion {
+                        completion(result)
+                        return
+                    }
+
+                    switch result {
+                    case .Success(let data):
+                        self.delegate?.didFinishFetch(data: data)
+                    case .Error(let error, let message):
+                        self.delegate?.showAlertClosure(error: (error, message))
+                    }
+                }
+
                 switch result {
                 case .Error(let error, let message):
-                    self.delegate?.showAlertClosure(error: (error,message))
+                    deliver(.Error(error, message))
                 case .Success(let json):
                     do {
                         let fetchedData = try CustomDecoder().decode(JSONData<Stories>.self, from: json)
-                        guard let data = fetchedData.data else { return }
-                        self.delegate?.didFinishFetch(data: data)
+                        guard let data = fetchedData.data else {
+                            deliver(.Error(.invalidData))
+                            return
+                        }
+                        deliver(.Success(data))
                     } catch {
-                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                        deliver(.Error(.invalidData))
                     }
                 }
-                self.delegate?.hideActivityIndicator()
             })
         }
     }
@@ -140,5 +168,4 @@ final class MainViewModel {
         }
     }
 }
-
 

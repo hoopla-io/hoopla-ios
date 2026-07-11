@@ -24,6 +24,7 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     var dataProvider: MainDataProvider?
     var categoryDataProvider: MainCategoryDataProvider?
     var storiesDataProvider: MainStoriesDataProvider?
+    var selectedStoryID: Int?
     let locationAccessContainerView = UIView()
     
     //MARK: - Actions
@@ -69,8 +70,34 @@ extension MainViewController: MainViewModelProtocol {
     }
     
     func didFinishFetch(data: Stories) {
-        guard let detail = data.items?.first else { return }
-        coordinator?.presentStoryDetailVC(data: detail)
+        let pendingStoryID = selectedStoryID
+        selectedStoryID = nil
+
+        guard let groups = storiesDataProvider?.items,
+              let selectedID = data.id ?? pendingStoryID,
+              let selectedGroupIndex = groups.firstIndex(where: { $0.id == selectedID }),
+              let stories = data.items,
+              !stories.isEmpty else {
+            addErrorAlertView(error: (.invalidData, nil), completion: nil)
+            return
+        }
+
+        coordinator?.presentStoryDetailVC(
+            groups: groups,
+            selectedGroupIndex: selectedGroupIndex,
+            initialGroup: data,
+            storyLoader: { [weak self] id, completion in
+                guard let self else {
+                    completion(.Error(.requestFailed))
+                    return
+                }
+                self.viewModel.getStoryDetail(
+                    id: id,
+                    showsActivityIndicator: false,
+                    completion: completion
+                )
+            }
+        )
     }
     
     func didFinishFetch(data: [Categories]) {
@@ -207,7 +234,9 @@ extension MainViewController: MainCategoryDataProviderDelegate {
 // MARK: - StoriesDataProviderDelegate
 extension MainViewController: MainStoriesDataProviderDelegate {
     func didSelectStory(_ story: Stories) {
-        guard let id = story.id else { return }
+        guard !isLoading, let id = story.id else { return }
+        isLoading = true
+        selectedStoryID = id
         viewModel.getStoryDetail(id: id)
     }
 }
