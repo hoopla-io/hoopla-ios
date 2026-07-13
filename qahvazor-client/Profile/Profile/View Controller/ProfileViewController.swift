@@ -140,6 +140,8 @@ extension ProfileViewController {
 
     private func configureNavigationBar() {
         navigationItem.title = "profile".localized
+        
+        guard UserDefaults.standard.isAuthed() else { return }
         let logoutImage = UIImage(systemName: "rectangle.portrait.and.arrow.right") ?? UIImage(systemName: "arrow.uturn.backward.circle")
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: logoutImage,

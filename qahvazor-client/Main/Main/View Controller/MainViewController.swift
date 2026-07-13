@@ -27,11 +27,11 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     var selectedStoryID: Int?
     let locationAccessContainerView = UIView()
     
-    //MARK: - Actions
-    @IBAction func scannerAction(_ sender: Any) {
-        coordinator?.pushToScannerVC(viewController: self)
-    }
     // MARK: - Life cycle
+    override func loadView() {
+        view = MainView()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
@@ -132,6 +132,7 @@ extension MainViewController {
         navigationItem.title = "home".localized
 
         setupNavigationBar()
+        view().cameraButton.addTarget(self, action: #selector(scannerAction), for: .touchUpInside)
         
         let storiesDataProvider = MainStoriesDataProvider()
         storiesDataProvider.collectionView = view().storiesCollectionView
@@ -152,6 +153,10 @@ extension MainViewController {
         view().scrollView.refreshControl = refershControl
         
         addObservers()
+    }
+
+    @objc private func scannerAction() {
+        coordinator?.pushToScannerVC(viewController: self)
     }
     
     func addObservers() {

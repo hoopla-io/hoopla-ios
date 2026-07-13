@@ -180,7 +180,6 @@
 		752331012D197B210090997E /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330BB2D197B210090997E /* Double.swift */; };
 		752331022D197B210090997E /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330B42D197B210090997E /* Formatter.swift */; };
 		752331032D197B210090997E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752330B72D197B210090997E /* UIImageView.swift */; };
-		752331042D197B210090997E /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 752330C32D197B210090997E /* MainView.xib */; };
 		752331312D19834B0090997E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331302D19834B0090997E /* TabBarController.swift */; };
 		752331332D198B930090997E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331322D198B930090997E /* MainCoordinator.swift */; };
 		752331352D198B9E0090997E /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752331342D198B9E0090997E /* HistoryCoordinator.swift */; };
@@ -469,7 +468,6 @@
 		752330BC2D197B210090997E /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		752330BD2D197B210090997E /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		752330C22D197B210090997E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		752330C32D197B210090997E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		752330C42D197B210090997E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		752331302D19834B0090997E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		752331322D198B930090997E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -1895,7 +1893,6 @@
 			isa = PBXGroup;
 			children = (
 				752330C42D197B210090997E /* MainView.swift */,
-				752330C32D197B210090997E /* MainView.xib */,
 			);
 			path = "Root View";
 			sourceTree = "<group>";
@@ -2411,7 +2408,6 @@
 				75DCE3612D1ABB33003A59CD /* LanguageView.xib in Resources */,
 				75705CE52D2FD9FB00DA3AA4 /* ShopDetailView.xib in Resources */,
 				7523319B2D1A90B30090997E /* LaunchScreenView.xib in Resources */,
-				752331042D197B210090997E /* MainView.xib in Resources */,
 				52787F112F67D7AC0032DC5B /* LICENSE in Resources */,
 				52787F122F67D7AC0032DC5B /* README.md in Resources */,
 				052E9AAD2EB7B242002A9F61 /* soon.json in Resources */,
