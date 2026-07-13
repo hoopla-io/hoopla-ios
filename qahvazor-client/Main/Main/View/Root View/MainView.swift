@@ -53,6 +53,26 @@ final class MainView: CustomView {
         return collectionView
     }()
 
+    let activeOrderCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.decelerationRate = .fast
+        collectionView.isHidden = true
+        collectionView.register(
+            ActiveOrderCollectionViewCell.self,
+            forCellWithReuseIdentifier: ActiveOrderCollectionViewCell.defaultReuseIdentifier
+        )
+        return collectionView
+    }()
+
     let shopCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 15
@@ -147,6 +167,7 @@ private extension MainView {
 
         let contentStackView = UIStackView(arrangedSubviews: [
             storiesCollectionView,
+            activeOrderCollectionView,
             categoryCollectionView,
             shopsTitleContainer,
             shopCollectionView
@@ -158,6 +179,13 @@ private extension MainView {
         addSubview(scrollView)
         addSubview(cameraButton)
         scrollView.addSubview(contentStackView)
+
+        let storiesHeightConstraint = storiesCollectionView.heightAnchor.constraint(equalToConstant: 86)
+        storiesHeightConstraint.priority = .defaultHigh
+        let activeOrderHeightConstraint = activeOrderCollectionView.heightAnchor.constraint(
+            equalToConstant: ActiveOrderCollectionViewCell.preferredHeight
+        )
+        activeOrderHeightConstraint.priority = .defaultHigh
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
@@ -171,7 +199,8 @@ private extension MainView {
             contentStackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             contentStackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
 
-            storiesCollectionView.heightAnchor.constraint(equalToConstant: 86),
+            storiesHeightConstraint,
+            activeOrderHeightConstraint,
             categoryCollectionView.heightAnchor.constraint(equalToConstant: 44),
             shopsTitleContainer.heightAnchor.constraint(equalToConstant: 24),
             shopsTitleLabel.leadingAnchor.constraint(equalTo: shopsTitleContainer.leadingAnchor, constant: 16),

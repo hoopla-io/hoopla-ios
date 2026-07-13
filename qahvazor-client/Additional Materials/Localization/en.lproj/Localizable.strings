@@ -102,6 +102,7 @@ created = "Created";
 preparing = "Preparing";
 cancelled = "Canceled";
 completed = "Completed";
+currentOrder = "Current order";
 
 // MARK: - QR
 history = "History";

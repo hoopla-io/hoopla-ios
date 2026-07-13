@@ -112,6 +112,7 @@ created = "Созданный";
 preparing = "Подготовка";
 cancelled = "Отменено";
 completed = "Завершено";
+currentOrder = "Текущий заказ";
 
 pending_payment = "Ожидается оплата";
 paid = "Оплачено";

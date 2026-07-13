@@ -12,6 +12,7 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: [Stories])
     func didFinishFetch(data: Stories)
     func didFinishFetch(data: [Categories])
+    func didFinishFetch(data: [OrderHistory])
     func didFinishFetch(feedback: OrderHistory)
 }
 
@@ -147,6 +148,29 @@ final class MainViewModel {
         }
     }
 
+    func getActiveOrders() {
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(
+                url: EndPoints.activeOrders.rawValue,
+                requestMethod: .get,
+                completionHandler: { [weak self] result in
+                    guard let self else { return }
+                    switch result {
+                    case .Error(let error, let message):
+                        self.delegate?.showAlertClosure(error: (error, message))
+                    case .Success(let json):
+                        do {
+                            let fetchedData = try CustomDecoder().decode(JSONData<[OrderHistory]>.self, from: json)
+                            self.delegate?.didFinishFetch(data: fetchedData.data ?? [])
+                        } catch {
+                            self.delegate?.showAlertClosure(error: (.invalidData, nil))
+                        }
+                    }
+                }
+            )
+        }
+    }
+
     func getPendingFeedback() {
         
         Task { [weak self] in
@@ -168,4 +192,3 @@ final class MainViewModel {
         }
     }
 }
-

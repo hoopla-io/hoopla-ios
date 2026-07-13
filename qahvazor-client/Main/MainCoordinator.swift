@@ -54,6 +54,14 @@ final class MainCoordinator: Coordinator {
 //        navigationController.hero.isEnabled = true
         navigationController.pushViewController(vc, animated: true)
     }
+
+    func pushToOrderDetail(_ item: OrderHistory) {
+        let vc = HistoryDetailViewController()
+        vc.coordinator = HistoryCoordinator(navigationController: navigationController)
+        vc.data = item
+        vc.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(vc, animated: true)
+    }
     
     func pushToConfirmOrderVC(viewController: UIViewController, data: Drinks, shop: Shop?) {
         let vc = ConfirmOrderViewController()

@@ -24,6 +24,7 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     var dataProvider: MainDataProvider?
     var categoryDataProvider: MainCategoryDataProvider?
     var storiesDataProvider: MainStoriesDataProvider?
+    var activeOrderDataProvider: ActiveOrderDataProvider?
     var selectedStoryID: Int?
     let locationAccessContainerView = UIView()
     
@@ -51,7 +52,10 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
         super.viewWillAppear(animated)
         locationManager.requestLocationPermission()
         if UserDefaults.standard.isAuthed() {
+            viewModel.getActiveOrders()
             profileViewModel.getMe()
+        } else {
+            activeOrderDataProvider?.items = []
         }
         
         guard Purchase.isPurchased else { return }
@@ -113,6 +117,10 @@ extension MainViewController: MainViewModelProtocol {
             ShopDataCache.shops = data
         }
     }
+
+    func didFinishFetch(data: [OrderHistory]) {
+        activeOrderDataProvider?.items = data
+    }
     
     func didFinishFetch(feedback: OrderHistory) {
         coordinator?.presentReviewVC(data: feedback)
@@ -138,6 +146,10 @@ extension MainViewController {
         storiesDataProvider.collectionView = view().storiesCollectionView
         storiesDataProvider.delegate = self
         self.storiesDataProvider = storiesDataProvider
+
+        let activeOrderDataProvider = ActiveOrderDataProvider(viewController: self)
+        activeOrderDataProvider.collectionView = view().activeOrderCollectionView
+        self.activeOrderDataProvider = activeOrderDataProvider
 
         let dataProvider = MainDataProvider(viewController: self)
         dataProvider.collectionView = view().shopCollectionView
@@ -173,6 +185,9 @@ extension MainViewController {
     
     @objc func refresh(sender: UIRefreshControl? = nil) {
         viewModel.getList()
+        if UserDefaults.standard.isAuthed() {
+            viewModel.getActiveOrders()
+        }
         locationManager.requestLocationPermission()
         
         DispatchQueue.main.async {

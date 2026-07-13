@@ -112,6 +112,7 @@ created = "Yaratilgan";
 preparing = "Tayyorlanmoqda";
 cancelled = "Bekor qilingan";
 completed = "Yakunlangan";
+currentOrder = "Joriy buyurtma";
 
 pending_payment = "To‘lov kutilmoqda";
 paid = "To‘landi";
