@@ -12,6 +12,7 @@ protocol MainViewModelProtocol: ViewModelProtocol {
     func didFinishFetch(data: [Stories])
     func didFinishFetch(data: Stories)
     func didFinishFetch(data: [Categories])
+    func didFinishFetch(data: [OrderHistory])
     func didFinishFetch(feedback: OrderHistory)
 }
 
@@ -74,26 +75,54 @@ final class MainViewModel {
         }
     }
     
-    func getStoryDetail(id: Int) {
+    func getStoryDetail(
+        id: Int,
+        showsActivityIndicator: Bool = true,
+        completion: ((Result<Stories>) -> Void)? = nil
+    ) {
         let url = "stories/show/\(id)"
-        delegate?.showActivityIndicator()
+        if showsActivityIndicator {
+            delegate?.showActivityIndicator()
+        }
         
         Task { [weak self] in
             await JSONDownloader.shared.jsonTask(url: url, requestMethod: .get, completionHandler: { [weak self]  (result) in
                 guard let self = self else { return }
+                defer {
+                    if showsActivityIndicator {
+                        self.delegate?.hideActivityIndicator()
+                    }
+                }
+
+                func deliver(_ result: Result<Stories>) {
+                    if let completion {
+                        completion(result)
+                        return
+                    }
+
+                    switch result {
+                    case .Success(let data):
+                        self.delegate?.didFinishFetch(data: data)
+                    case .Error(let error, let message):
+                        self.delegate?.showAlertClosure(error: (error, message))
+                    }
+                }
+
                 switch result {
                 case .Error(let error, let message):
-                    self.delegate?.showAlertClosure(error: (error,message))
+                    deliver(.Error(error, message))
                 case .Success(let json):
                     do {
                         let fetchedData = try CustomDecoder().decode(JSONData<Stories>.self, from: json)
-                        guard let data = fetchedData.data else { return }
-                        self.delegate?.didFinishFetch(data: data)
+                        guard let data = fetchedData.data else {
+                            deliver(.Error(.invalidData))
+                            return
+                        }
+                        deliver(.Success(data))
                     } catch {
-                        self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
+                        deliver(.Error(.invalidData))
                     }
                 }
-                self.delegate?.hideActivityIndicator()
             })
         }
     }
@@ -119,6 +148,29 @@ final class MainViewModel {
         }
     }
 
+    func getActiveOrders() {
+        Task { [weak self] in
+            await JSONDownloader.shared.jsonTask(
+                url: EndPoints.activeOrders.rawValue,
+                requestMethod: .get,
+                completionHandler: { [weak self] result in
+                    guard let self else { return }
+                    switch result {
+                    case .Error(let error, let message):
+                        self.delegate?.showAlertClosure(error: (error, message))
+                    case .Success(let json):
+                        do {
+                            let fetchedData = try CustomDecoder().decode(JSONData<[OrderHistory]>.self, from: json)
+                            self.delegate?.didFinishFetch(data: fetchedData.data ?? [])
+                        } catch {
+                            self.delegate?.showAlertClosure(error: (.invalidData, nil))
+                        }
+                    }
+                }
+            )
+        }
+    }
+
     func getPendingFeedback() {
         
         Task { [weak self] in
@@ -140,5 +192,3 @@ final class MainViewModel {
         }
     }
 }
-
-

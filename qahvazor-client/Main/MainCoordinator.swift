@@ -29,7 +29,19 @@ final class MainCoordinator: Coordinator {
     func startSearch() {
         let vc = SearchViewController()
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.pushViewController(vc, animated: true)
+    }
+
+    func pushToSearchShop(partner: Company) {
+        let vc = SearchShopViewController(partner: partner)
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+
+    func pushToSearchShop(partnerId: Int, partnerName: String? = nil) {
+        let vc = SearchShopViewController(partnerId: partnerId, partnerName: partnerName)
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func pushToShopDetail(id: Int, item: Shop?) {
@@ -40,6 +52,14 @@ final class MainCoordinator: Coordinator {
         vc.coordinator = self
 //        vc.hero.isEnabled = true
 //        navigationController.hero.isEnabled = true
+        navigationController.pushViewController(vc, animated: true)
+    }
+
+    func pushToOrderDetail(_ item: OrderHistory) {
+        let vc = HistoryDetailViewController()
+        vc.coordinator = HistoryCoordinator(navigationController: navigationController)
+        vc.data = item
+        vc.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -93,7 +113,8 @@ final class MainCoordinator: Coordinator {
         drinkData: Drinks?,
         totalPrice: Double,
         comment: String?,
-        modifiers: [Modification]
+        modifiers: [Modification],
+        cashbackPercent: Int?
     ) {
         let vc = CheckoutViewController()
         vc.coordinator = self
@@ -102,6 +123,7 @@ final class MainCoordinator: Coordinator {
         vc.totalPrice = totalPrice
         vc.comment = comment
         vc.selectedModifiers = modifiers
+        vc.cashbackPercent = cashbackPercent
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -128,6 +150,26 @@ final class MainCoordinator: Coordinator {
         }
         navigationController.present(vc, animated: true)
     }
+
+    func presentPromocodeVC(viewController: UIViewController, shopId: Int, drinkId: Int, modifiers: [Modification]) {
+        let vc = PromocodeViewController()
+        vc.shopId = shopId
+        vc.drinkId = drinkId
+        vc.modifiers = modifiers
+        if let viewController = viewController as? CheckoutViewController {
+            vc.delegate = viewController
+        }
+        if let sheet = vc.sheetPresentationController {
+            sheet.preferredCornerRadius = 24
+            sheet.prefersGrabberVisible = false
+
+            let promocodeId = UISheetPresentationController.Detent.Identifier("promocode")
+            sheet.detents = [.large()]
+            sheet.selectedDetentIdentifier = promocodeId
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+        }
+        navigationController.present(vc, animated: true)
+    }
     
     func presentReviewVC(data: OrderHistory) {
         let vc = ReviewViewController()
@@ -146,19 +188,35 @@ final class MainCoordinator: Coordinator {
         navigationController.present(vc, animated: true)
     }
     
-    func presentStoryDetailVC(data: StoryDetail) {
-        let vc = MainStoryViewController(story: data)
-        if let sheet = vc.sheetPresentationController {
-            sheet.preferredCornerRadius = 16
-            sheet.prefersGrabberVisible = true
-            
-            let reviewId = UISheetPresentationController.Detent.Identifier("story")
-            let reviewDetent = UISheetPresentationController.Detent.custom(identifier: reviewId) { context in
-                return context.maximumDetentValue * 1
+    func presentStoryDetailVC(
+        groups: [Stories],
+        selectedGroupIndex: Int,
+        initialGroup: Stories,
+        storyLoader: @escaping MainStoryLoader
+    ) {
+        let vc = MainStoryViewController(
+            groups: groups,
+            selectedGroupIndex: selectedGroupIndex,
+            initialGroup: initialGroup,
+            storyLoader: storyLoader
+        )
+        vc.onOpenAction = { [weak self, weak vc] action, storyTitle in
+            vc?.dismiss(animated: true) {
+                self?.handleStoryLinkAction(action, storyTitle: storyTitle)
             }
-            sheet.detents = [reviewDetent]
-            sheet.selectedDetentIdentifier = reviewId
         }
+        vc.modalPresentationStyle = .overFullScreen
         navigationController.present(vc, animated: true)
+    }
+
+    private func handleStoryLinkAction(_ action: StoryLinkAction, storyTitle: String?) {
+        switch action {
+        case .partner(let partnerId):
+            pushToSearchShop(partnerId: partnerId, partnerName: storyTitle)
+        case .url(let url):
+            navigationController.openViaSafariVC(url.absoluteString, from: navigationController)
+        case .shop(let shopId):
+            pushToShopDetail(id: shopId, item: nil)
+        }
     }
 }

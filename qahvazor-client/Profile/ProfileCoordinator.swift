@@ -70,6 +70,27 @@ final class ProfileCoordinator: Coordinator {
         vc.amount = amount
         navigationController.pushViewController(vc, animated: true)
     }
+
+    func presentGiftcardVC(viewController: UIViewController) {
+        let vc = GiftcardViewController()
+        if let viewController = viewController as? ProfileViewController {
+            vc.delegate = viewController
+        }
+
+        if let sheet = vc.sheetPresentationController {
+            sheet.preferredCornerRadius = 28
+            sheet.prefersGrabberVisible = false
+
+            let giftcardId = UISheetPresentationController.Detent.Identifier("giftcard")
+            let giftcardDetent = UISheetPresentationController.Detent.custom(identifier: giftcardId) { context in
+                context.maximumDetentValue * 0.75
+            }
+            sheet.detents = [giftcardDetent]
+            sheet.selectedDetentIdentifier = giftcardId
+        }
+
+        navigationController.present(vc, animated: true)
+    }
     
     func pushToBirthVC(viewController: UIViewController, date: Int) {
         let vc = BirthViewController()

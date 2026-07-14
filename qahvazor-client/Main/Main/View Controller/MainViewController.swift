@@ -24,13 +24,15 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
     var dataProvider: MainDataProvider?
     var categoryDataProvider: MainCategoryDataProvider?
     var storiesDataProvider: MainStoriesDataProvider?
+    var activeOrderDataProvider: ActiveOrderDataProvider?
+    var selectedStoryID: Int?
     let locationAccessContainerView = UIView()
     
-    //MARK: - Actions
-    @IBAction func scannerAction(_ sender: Any) {
-        coordinator?.pushToScannerVC(viewController: self)
-    }
     // MARK: - Life cycle
+    override func loadView() {
+        view = MainView()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
@@ -50,7 +52,10 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
         super.viewWillAppear(animated)
         locationManager.requestLocationPermission()
         if UserDefaults.standard.isAuthed() {
+            viewModel.getActiveOrders()
             profileViewModel.getMe()
+        } else {
+            activeOrderDataProvider?.items = []
         }
         
         guard Purchase.isPurchased else { return }
@@ -69,8 +74,34 @@ extension MainViewController: MainViewModelProtocol {
     }
     
     func didFinishFetch(data: Stories) {
-        guard let detail = data.items?.first else { return }
-        coordinator?.presentStoryDetailVC(data: detail)
+        let pendingStoryID = selectedStoryID
+        selectedStoryID = nil
+
+        guard let groups = storiesDataProvider?.items,
+              let selectedID = data.id ?? pendingStoryID,
+              let selectedGroupIndex = groups.firstIndex(where: { $0.id == selectedID }),
+              let stories = data.items,
+              !stories.isEmpty else {
+            addErrorAlertView(error: (.invalidData, nil), completion: nil)
+            return
+        }
+
+        coordinator?.presentStoryDetailVC(
+            groups: groups,
+            selectedGroupIndex: selectedGroupIndex,
+            initialGroup: data,
+            storyLoader: { [weak self] id, completion in
+                guard let self else {
+                    completion(.Error(.requestFailed))
+                    return
+                }
+                self.viewModel.getStoryDetail(
+                    id: id,
+                    showsActivityIndicator: false,
+                    completion: completion
+                )
+            }
+        )
     }
     
     func didFinishFetch(data: [Categories]) {
@@ -85,6 +116,10 @@ extension MainViewController: MainViewModelProtocol {
         if ShopDataCache.shops.isEmpty {
             ShopDataCache.shops = data
         }
+    }
+
+    func didFinishFetch(data: [OrderHistory]) {
+        activeOrderDataProvider?.items = data
     }
     
     func didFinishFetch(feedback: OrderHistory) {
@@ -104,13 +139,17 @@ extension MainViewController {
         profileViewModel.delegate = self
         navigationItem.title = "home".localized
 
-        setupSearchBar()
         setupNavigationBar()
+        view().cameraButton.addTarget(self, action: #selector(scannerAction), for: .touchUpInside)
         
         let storiesDataProvider = MainStoriesDataProvider()
         storiesDataProvider.collectionView = view().storiesCollectionView
         storiesDataProvider.delegate = self
         self.storiesDataProvider = storiesDataProvider
+
+        let activeOrderDataProvider = ActiveOrderDataProvider(viewController: self)
+        activeOrderDataProvider.collectionView = view().activeOrderCollectionView
+        self.activeOrderDataProvider = activeOrderDataProvider
 
         let dataProvider = MainDataProvider(viewController: self)
         dataProvider.collectionView = view().shopCollectionView
@@ -127,6 +166,10 @@ extension MainViewController {
         
         addObservers()
     }
+
+    @objc private func scannerAction() {
+        coordinator?.pushToScannerVC(viewController: self)
+    }
     
     func addObservers() {
         Notification.Name.universalLink.onPost { [weak self] notification in
@@ -142,6 +185,9 @@ extension MainViewController {
     
     @objc func refresh(sender: UIRefreshControl? = nil) {
         viewModel.getList()
+        if UserDefaults.standard.isAuthed() {
+            viewModel.getActiveOrders()
+        }
         locationManager.requestLocationPermission()
         
         DispatchQueue.main.async {
@@ -149,19 +195,15 @@ extension MainViewController {
         }
     }
     
-    private func setupSearchBar() {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.delegate = self
-        searchController.searchBar.searchTextField.backgroundColor = UIColor.appColor(.secondBackground)
-        searchController.searchBar.updateHeight(height: 44)
-        searchController.searchBar.placeholder = "placeholderSearch".localized
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
+    private func setupNavigationBar() {
+        view().searchButton.addTarget(self, action: #selector(searchAction), for: .touchUpInside)
+        view().notificationButton.addTarget(self, action: #selector(notifitcationAction), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: view().notificationButton), UIBarButtonItem(customView: view().searchButton)]
     }
     
-    private func setupNavigationBar() {
-        view().notificationButton.addTarget(self, action: #selector(notifitcationAction), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: view().notificationButton)
+    @objc func searchAction() {
+        coordinator?.startSearch()
     }
     
     @objc func notifitcationAction() {
@@ -207,15 +249,10 @@ extension MainViewController: MainCategoryDataProviderDelegate {
 // MARK: - StoriesDataProviderDelegate
 extension MainViewController: MainStoriesDataProviderDelegate {
     func didSelectStory(_ story: Stories) {
-        guard let id = story.id else { return }
+        guard !isLoading, let id = story.id else { return }
+        isLoading = true
+        selectedStoryID = id
         viewModel.getStoryDetail(id: id)
-    }
-}
-// MARK: - Delegate
-extension MainViewController: UISearchBarDelegate {
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        coordinator?.startSearch()
-        return true
     }
 }
 

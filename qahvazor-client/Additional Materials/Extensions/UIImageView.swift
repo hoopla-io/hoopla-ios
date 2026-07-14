@@ -21,9 +21,8 @@ extension UIImageView {
 
     func setImage(with url: String? = nil, placeholder: UIImage = UIImage()) {
         guard let url = url, url != "" else {
-            DispatchQueue.main.async {
-                self.image = placeholder
-            }
+            sd_cancelCurrentImageLoad()
+            image = placeholder
             return
         }
         
@@ -47,5 +46,4 @@ extension UIImageView {
         }
     }
 }
-
 

@@ -20,7 +20,6 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, @M
     let accountViewModel = AccountViewModel()
     
     // MARK: - Attributes
-    private var alphaStatusBar: CGFloat?
     var account: Account?
     var editAccount: Account?
     
@@ -47,24 +46,37 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, @M
         }
     }
     
-    @objc func subscriptionTapped() {
-        coordinator?.pushToSubscriptionVC()
-    }
-    
     @objc func paymentTapped() {
         coordinator?.pushToPaymentVC()
     }
+
+    @objc private func activateGiftcardTapped() {
+        coordinator?.presentGiftcardVC(viewController: self)
+    }
     
     @IBAction func logoutAction(_ sender: UIButton) {
+        showLogoutAlert()
+    }
+
+    @objc private func logoutBarButtonTapped() {
+        showLogoutAlert()
+    }
+
+    private func showLogoutAlert() {
         showAlertDestructive(message: "logoutAlert".localized, buttonTitle: "logout".localized) {
             self.viewModel.logOut()
         }
     }
+
     @IBAction func editAction(_ sender: UIButton) {
         coordinator?.pushToChangeInfoVC(name: editAccount?.name, gender: editAccount?.gender, dateOfBirth: editAccount?.dateOfBirthUnx)
     }
     
     // MARK: - Life cycle
+    override func loadView() {
+        view = ProfileView()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
@@ -72,28 +84,12 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, @M
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.clear()
+        configureNavigationBar()
         if UserDefaults.standard.isAuthed() {
             viewModel.getMe()
             accountViewModel.editMe()
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        handleStatusBar(alpha: alphaStatusBar)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        handleStatusBar()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.reset()
-    }
-    
 }
 // MARK: - Networking
 extension ProfileViewController: ProfileViewModelProtocol {
@@ -105,7 +101,6 @@ extension ProfileViewController: ProfileViewModelProtocol {
         view().nameLabel.text = data.name
         view().accounNumberLabel.text = data.phoneNumber?.displayPhone()
         view().balanceLabel.text = data.balanceInfo
-        view().subscription = data.subscription
         UserDefaults.standard.saveBalance(data.balance ?? 0)
         self.account = data
     }
@@ -127,19 +122,33 @@ extension ProfileViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
         accountViewModel.delegate = self
+        view().loginButton.addTarget(self, action: #selector(loginAction(_:)), for: .touchUpInside)
+        view().mainButtons.forEach {
+            $0.addTarget(self, action: #selector(mainButtonActions(_:)), for: .touchUpInside)
+        }
+        view().editButton.addTarget(self, action: #selector(editAction(_:)), for: .touchUpInside)
+        view().topUpButton.addTarget(self, action: #selector(paymentTapped), for: .touchUpInside)
+        view().activateButton.addTarget(self, action: #selector(activateGiftcardTapped), for: .touchUpInside)
         
         if let releaseVersionNumber = Bundle.main.releaseVersionNumber {
             view().versionLabel.text = "version".localized + Symbols.space.rawValue + releaseVersionNumber
         }
         checkAuth()
-        
-        let subscriptionTap = UITapGestureRecognizer(target: self, action: #selector(subscriptionTapped))
-        view().subscriptionButton.addGestureRecognizer(subscriptionTap)
-        
-        let paymentTap = UITapGestureRecognizer(target: self, action: #selector(paymentTapped))
-        view().paymentView.addGestureRecognizer(paymentTap)
-        
+
         setupApiDebugger()
+    }
+
+    private func configureNavigationBar() {
+        navigationItem.title = "profile".localized
+        
+        guard UserDefaults.standard.isAuthed() else { return }
+        let logoutImage = UIImage(systemName: "rectangle.portrait.and.arrow.right") ?? UIImage(systemName: "arrow.uturn.backward.circle")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: logoutImage,
+            style: .plain,
+            target: self,
+            action: #selector(logoutBarButtonTapped)
+        )
     }
     
     private func checkAuth() {
@@ -170,17 +179,23 @@ extension ProfileViewController {
     }
 }
 
-// MARK: - UIScrollViewDelegate
-extension ProfileViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        alphaStatusBar = handleStatusBar(scrollView: scrollView, topSpace: 50)
-    }
-}
-
 // MARK: - SettingsViewControllerDelegate
 extension ProfileViewController: LanguageViewControllerDelegate {
     func didSelectLanguage() {
         resetTabBar()
+    }
+}
+
+extension ProfileViewController: GiftcardViewControllerDelegate {
+    func giftcardViewController(_ viewController: GiftcardViewController, didRedeem data: GiftcardRedemption) {
+        view().balanceLabel.text = "\(data.balance.formattedWithSeparator) \(data.currency)"
+        UserDefaults.standard.saveBalance(data.balance)
+
+        let message = String(
+            format: "giftcardCredited".localized,
+            data.credited.formattedWithSeparator
+        )
+        showSuccessAlert(message: message)
     }
 }
 

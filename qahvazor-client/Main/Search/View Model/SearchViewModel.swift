@@ -8,34 +8,40 @@
 import UIKit
 
 protocol SearchViewModelProtocol: ViewModelProtocol {
-    func didFinishFetch(data: [Shop]?)
+    func didFinishFetch(partners: [Company])
 }
 
 final class SearchViewModel {
     // MARK: - Attributes
     weak var delegate: SearchViewModelProtocol?
-    
-    // MARK: - Network call
-    func getList(name: String? = nil) {
-        var param: [String : Any ] = [
-            Parameters.long.rawValue : Coordinate.longitude,
-            Parameters.lat.rawValue : Coordinate.latitude
-        ]
-        if let name {
-            param[Parameters.name.rawValue] = name
+
+    func getPartners() {
+        performRequest(
+            url: EndPoints.partnersList.rawValue,
+            parameters: nil,
+            type: Company.self
+        ) { [weak self] partners in
+            self?.delegate?.didFinishFetch(partners: partners)
         }
-        
+    }
+    
+    private func performRequest<T: Decodable>(
+        url: String,
+        parameters: [String: Any]?,
+        type: T.Type,
+        completion: @escaping ([T]) -> Void
+    ) {
         delegate?.showActivityIndicator()
         Task { [weak self] in
-            await JSONDownloader.shared.jsonTask(url: EndPoints.nearShops.rawValue, requestMethod: .get, parameters: param, completionHandler: { [weak self]  (result) in
+            await JSONDownloader.shared.jsonTask(url: url, requestMethod: .get, parameters: parameters, completionHandler: { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .Error(let error, let message):
                     self.delegate?.showAlertClosure(error: (error,message))
                 case .Success(let json):
                     do {
-                        let fetchedData = try CustomDecoder().decode(JSONData<[Shop]>.self, from: json)
-                        self.delegate?.didFinishFetch(data: fetchedData.data)
+                        let fetchedData = try CustomDecoder().decode(JSONData<[T]>.self, from: json)
+                        completion(fetchedData.data ?? [])
                     } catch {
                         self.delegate?.showAlertClosure(error: (APIError.invalidData, nil))
                     }
@@ -45,6 +51,3 @@ final class SearchViewModel {
         }
     }
 }
-
-
-

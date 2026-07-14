@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -354,10 +354,12 @@
                 <outlet property="secondCategoryListCollectionView" destination="GJ1-Jo-fiA" id="3JW-M0-KmZ"/>
                 <outlet property="showMoreButton" destination="6Gf-wO-y7v" id="r1I-zB-8wd"/>
                 <outlet property="socialListCollectionView" destination="eEz-H9-QBG" id="aTp-kZ-6op"/>
+                <outlet property="socialStackView" destination="Psq-Nn-czN" id="5pV-vF-UAd"/>
                 <outlet property="tableView" destination="2nz-2b-0kR" id="1JD-AR-dQH"/>
                 <outlet property="tableViewHeight" destination="765-Ej-Z1v" id="7o1-Qv-q0Y"/>
                 <outlet property="titleLabel" destination="2yr-NP-McC" id="30m-OS-9Yn"/>
                 <outlet property="topContainerView" destination="fyr-cL-L6t" id="voe-kF-mF1"/>
+                <outlet property="workTimeStackView" destination="ztj-Ud-fXF" id="Iw8-J0-mKq"/>
                 <outlet property="workingHoursButton" destination="xhq-VM-s0A" id="Q33-HE-SHc"/>
             </connections>
             <point key="canvasLocation" x="241.98473282442748" y="366.90140845070425"/>

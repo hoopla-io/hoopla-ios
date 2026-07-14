@@ -22,6 +22,7 @@ struct OrderHistory: Codable {
     let drinkImageUrl: String?
     let drinkImage: String?
     let checkoutUrl: String?
+    let hasFeedback: Bool?
     let items: [OrderHistoryItem]?
 }
 

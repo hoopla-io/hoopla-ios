@@ -43,6 +43,7 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
         }
     }
     var selectedModifiers = [Modification]()
+    var cashbackPercent: Int?
     
     //MARK: - Actions
     @IBAction func confirmOrderAction(_ sender: Any) {
@@ -56,7 +57,8 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
             drinkData: drinkData,
             totalPrice: productPrice,
             comment: view().textView.text,
-            modifiers: selectedModifiers
+            modifiers: selectedModifiers,
+            cashbackPercent: cashbackPercent
         )
     }
     
@@ -79,7 +81,7 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
 
 // MARK: - Networking
 extension ConfirmOrderViewController: ConfirmOrderViewModelProtocol {
-    func didFinishFetch(data: [ModifierGroups]?) {
+    func didFinishFetch(data: [ModifierGroups]?, cashbackPercent: Int?) {
         let groups = data?.filter { $0.options?.isEmpty == false } ?? []
         view().collectionView.isHidden = groups.isEmpty
         if groups.isEmpty {
@@ -88,6 +90,8 @@ extension ConfirmOrderViewController: ConfirmOrderViewModelProtocol {
 
         modifierGroupDataProvider?.groups = groups
         updateSelectedModifiers([])
+        
+        self.cashbackPercent = cashbackPercent
     }
 }
 // MARK: - Other funcs

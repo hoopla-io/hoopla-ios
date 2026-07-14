@@ -49,7 +49,7 @@ actor JSONDownloader {
         return Alamofire.Session(configuration: configuration)
     }()
     
-    func jsonTask(baseUrl: MainConstants = .host, api: MainConstants = .api , path: MainConstants = .path1, url: String, query: String? = nil, requestMethod: HTTPMethod, parameters: [String : Any]? = nil, completionHandler completion: @escaping JSONTaskCompletionHandler) {
+    func jsonTask(baseUrl: MainConstants = .host, api: MainConstants = .api , path: MainConstants = .path1, url: String, query: String? = nil, requestMethod: HTTPMethod, parameters: [String : Any]? = nil, completionHandler completion: @escaping JSONTaskCompletionHandler) async {
         
         // Set Components
         var components = URLComponents()
@@ -66,10 +66,15 @@ actor JSONDownloader {
         
         guard let URL = components.url else { return }
         
+        let deviceInfo = await ClientDeviceInfo.current
         var headers: HTTPHeaders = []
         // Set Headers
         headers.add(name: Headers.contentType.rawValue, value: Headers.applicationJson.rawValue)
         headers.add(name: Headers.AUTHORIZATION.rawValue, value: "Bearer " + (UserDefaults.standard.accessToken() ?? ""))
+        headers.add(name: Headers.deviceName.rawValue, value: deviceInfo.deviceName)
+        headers.add(name: Headers.platform.rawValue, value: deviceInfo.platform)
+        headers.add(name: Headers.deviceId.rawValue, value: deviceInfo.deviceId)
+        headers.add(name: Headers.appVersion.rawValue, value: deviceInfo.appVersion)
         
         let params: [String: Any]? = requestMethod == .get ? nil : parameters
         var encoding: ParameterEncoding
@@ -97,7 +102,7 @@ actor JSONDownloader {
             if self.isDebug {
                 print("\n--- Start debug ---")
                 print("URL: \(URL)")
-                //                    print("Headers: \(String(describing: headers.dictionary))")
+                print("Headers: \(String(describing: headers.dictionary))")
                 print("Parameters: \(String(describing: parameters))")
                 print("HTTPMethod: \(String(describing: requestMethod.rawValue))")
                 print("Status Code: \(httpResponse.statusCode)")

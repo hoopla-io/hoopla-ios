@@ -16,12 +16,16 @@ enum EndPoints: String {
     
     // MARK: - Main
     case partners = "partners"
+    case partnersList = "partners/list"
+    case partnersShops = "partners/shops"
     case nearShops = "shops/near-shops"
     case partner = "partners/partner"
     case partnerShops = "shops/partner-shops"
     case shop = "shops/shop"
     case drinks = "shops/drinks"
     case createOrder = "user/orders/create"
+    case activeOrders = "user/orders/active"
+    case checkPromocode = "user/orders/check-promocode"
     case validateOrder = "user/orders/validate-order"
     case notificationsList = "notifications/list"
     case notificationShow = "notifications/show"
@@ -45,4 +49,5 @@ enum EndPoints: String {
     case payServices = "user/pay/services"
     case topUp = "user/pay/top-up"
     case updateMe = "user/update-me"
+    case redeemGiftcard = "user/gift-cards/redeem"
 }
