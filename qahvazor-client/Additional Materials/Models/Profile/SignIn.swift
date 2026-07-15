@@ -22,4 +22,5 @@ struct Tokens: Codable {
 struct SignIn: Codable {
     let jwt: Tokens?
     let userId: Int?
+    let isNewUser: Bool?
 }

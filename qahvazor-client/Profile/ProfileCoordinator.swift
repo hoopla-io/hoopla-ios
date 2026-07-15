@@ -32,12 +32,13 @@ final class ProfileCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func pushToChangeInfoVC(name: String? = nil, gender: String? = nil, dateOfBirth: Int? = nil) {
+    func pushToChangeInfoVC(name: String? = nil, gender: String? = nil, dateOfBirth: Int? = nil, isNewUser: Bool = false) {
         let vc = ChangeInfoViewController()
         vc.coordinator = self
         vc.name = name
         vc.gender = gender
         vc.dateOfBirth = dateOfBirth
+        vc.isNewUser = isNewUser
         navigationController.pushViewController(vc, animated: true)
     }
     

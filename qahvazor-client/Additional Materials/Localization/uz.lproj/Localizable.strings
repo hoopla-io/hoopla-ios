@@ -14,6 +14,7 @@ russian = "Русский";
 english = "English";
 chooseLanguage = "Tilni tanlang";
 continue = "Davom etish";
+next = "Keyingi";
 skip = "O'tkazib yuborish";
 interestDetail = "Sizga qanday kofelar yoqadi?";
 start = "Boshlash";

@@ -14,6 +14,7 @@ russian = "Русский";
 english = "English";
 chooseLanguage = "Choose a language";
 continue = "Continue";
+next = "Next";
 skip = "Skip";
 interestDetail = "What kind of coffees do you like?";
 start = "Start";
