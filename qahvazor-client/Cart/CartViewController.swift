@@ -103,12 +103,12 @@ private extension CartViewController {
             return
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "clear".localized,
+            image: UIImage(systemName: "trash.fill"),
             style: .plain,
             target: self,
             action: #selector(clearCartTapped)
         )
-        navigationItem.rightBarButtonItem?.tintColor = .secondaryLabel
+        navigationItem.rightBarButtonItem?.tintColor = .systemRed
     }
 
     func updateItem(id: Int, quantity: Int) {

@@ -25,6 +25,7 @@ final class ConfirmOrderView: CustomView {
         label.font = .systemFont(ofSize: 22, weight: .medium)
         label.textColor = .label
         label.lineBreakMode = .byTruncatingTail
+        label.numberOfLines = 0
         return label
     }()
 

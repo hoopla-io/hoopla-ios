@@ -512,10 +512,10 @@ final class CartItemCardView: UIView {
         quantity = max(item.quantity ?? 1, 1)
         quantityLabel.text = String(quantity)
         decreaseButton.setImage(
-            UIImage(systemName: quantity == 1 ? "trash" : "minus"),
+            UIImage(systemName: "minus"),
             for: .normal
         )
-        decreaseButton.tintColor = quantity == 1 ? .systemRed : .secondaryLabel
+        decreaseButton.tintColor = .secondaryLabel
 
         let titleLabel = viewWithTag(101) as? UILabel
         let modifierLabel = viewWithTag(102) as? UILabel
@@ -552,6 +552,7 @@ private extension CartItemCardView {
         layer.shadowRadius = 5
 
         let titleLabel = makeLabel(font: .systemFont(ofSize: 18, weight: .semibold), tag: 101)
+        titleLabel.numberOfLines = 3
         let modifierLabel = makeLabel(font: .systemFont(ofSize: 14), color: .secondaryLabel, tag: 102)
         modifierLabel.numberOfLines = 0
         let unitPriceLabel = makeLabel(font: .systemFont(ofSize: 15), color: .secondaryLabel, tag: 103)
