@@ -26,7 +26,7 @@ class HistoryViewController: UIViewController, ViewSpecificController, @MainActo
 
     // MARK: - Actions
     @IBAction func authAction() {
-        tabBarController?.selectedIndex = 3
+        tabBarController?.selectTab(.profile)
     }
     
     // MARK: - Life cycle

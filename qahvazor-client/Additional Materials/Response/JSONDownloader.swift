@@ -15,8 +15,11 @@ enum VersionError: Error {
 
 enum StatusCode: Int {
     case success200 = 200
+    case success201 = 201
     case success202 = 202
+    case success204 = 204
     case notAuthorized = 401
+    case conflict = 409
     case serverError = 500
     case tokenError = 412
     case notEnoughBalance = 428
@@ -49,7 +52,18 @@ actor JSONDownloader {
         return Alamofire.Session(configuration: configuration)
     }()
     
-    func jsonTask(baseUrl: MainConstants = .host, api: MainConstants = .api , path: MainConstants = .path1, url: String, query: String? = nil, requestMethod: HTTPMethod, parameters: [String : Any]? = nil, completionHandler completion: @escaping JSONTaskCompletionHandler) async {
+    func jsonTask(
+        baseUrl: MainConstants = .host,
+        api: MainConstants = .api,
+        path: MainConstants = .path1,
+        url: String,
+        query: String? = nil,
+        requestMethod: HTTPMethod,
+        parameters: [String: Any]? = nil,
+        timeout: TimeInterval? = nil,
+        allowsRetry: Bool = true,
+        completionHandler completion: @escaping JSONTaskCompletionHandler
+    ) async {
         
         // Set Components
         var components = URLComponents()
@@ -84,7 +98,20 @@ actor JSONDownloader {
             encoding = JSONEncoding.default
         }
         
-        session.request(URL, method: requestMethod, parameters: params, encoding: encoding, headers: headers, interceptor: self).customValidate().responseData(queue: DispatchQueue.global(qos: .background)) { result in
+        let interceptor: RequestInterceptor? = allowsRetry ? self : nil
+        session.request(
+            URL,
+            method: requestMethod,
+            parameters: params,
+            encoding: encoding,
+            headers: headers,
+            interceptor: interceptor,
+            requestModifier: { request in
+                if let timeout {
+                    request.timeoutInterval = timeout
+                }
+            }
+        ).customValidate().responseData(queue: DispatchQueue.global(qos: .background)) { result in
             guard let httpResponse = result.response else {
                 DispatchQueue.main.async {
                     completion(.Error(.requestFailed))
@@ -109,19 +136,26 @@ actor JSONDownloader {
             }
             
             do {
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
+                let jsonResult = data.isEmpty
+                    ? nil
+                    : try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
                 if self.isDebug {
                     print("Result: \(String(describing: jsonResult))")
                 }
                 DispatchQueue.main.async {
                     switch httpResponse.statusCode {
-                    case StatusCode.success200.rawValue, StatusCode.success202.rawValue:
+                    case StatusCode.success200.rawValue,
+                         StatusCode.success201.rawValue,
+                         StatusCode.success202.rawValue,
+                         StatusCode.success204.rawValue:
                         completion(.Success(data))
                     case StatusCode.notAuthorized.rawValue:
                         UserDefaults.standard.removeAccount()
                         completion(.Error(.notAuthorized))
                     case StatusCode.notEnoughBalance.rawValue, StatusCode.needSubscription.rawValue:
                         completion(.Success(data))
+                    case StatusCode.conflict.rawValue:
+                        completion(.Error(.cartConflict, jsonResult?["message"] as? String))
                     case StatusCode.serverError.rawValue:
                         completion(.Error(.serverError, jsonResult?["message"] as? String))
                     default:

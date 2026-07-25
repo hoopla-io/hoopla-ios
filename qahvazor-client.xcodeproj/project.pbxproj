@@ -252,7 +252,6 @@
 		75B90F7B2E360ED30091A8BB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75B90F7A2E360ED30091A8BB /* FirebaseAnalytics */; };
 		75BB17282E095C8500376246 /* UniversalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB17272E095C8500376246 /* UniversalLink.swift */; };
 		75BB17592E0A893400376246 /* ConfirmOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB17582E0A893400376246 /* ConfirmOrderView.swift */; };
-		75BB175B2E0A893B00376246 /* ConfirmOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75BB175A2E0A893B00376246 /* ConfirmOrderView.xib */; };
 		75BB175D2E0A894300376246 /* ConfirmOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB175C2E0A894300376246 /* ConfirmOrderViewController.swift */; };
 		75BB44762D300AFE0000C64A /* WorkTimeDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */; };
 		75BB447C2D30F6DB0000C64A /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BB447B2D30F6DB0000C64A /* HistoryViewModel.swift */; };
@@ -293,6 +292,11 @@
 		75F6CFC82D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */; };
 		75F6CFC92D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */; };
 		75F6CFCC2D2BEBD200BDF947 /* CoffeeListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */; };
+		C4A700012F00000100000001 /* CartModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A701012F00000100000001 /* CartModels.swift */; };
+		C4A700022F00000100000001 /* CartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A701022F00000100000001 /* CartCoordinator.swift */; };
+		C4A700032F00000100000001 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A701032F00000100000001 /* CartViewModel.swift */; };
+		C4A700042F00000100000001 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A701042F00000100000001 /* CartView.swift */; };
+		C4A700052F00000100000001 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A701052F00000100000001 /* CartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -528,7 +532,6 @@
 		75BB17262E0955FB00376246 /* qahvazor-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "qahvazor-client.entitlements"; sourceTree = "<group>"; };
 		75BB17272E095C8500376246 /* UniversalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalLink.swift; sourceTree = "<group>"; };
 		75BB17582E0A893400376246 /* ConfirmOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrderView.swift; sourceTree = "<group>"; };
-		75BB175A2E0A893B00376246 /* ConfirmOrderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmOrderView.xib; sourceTree = "<group>"; };
 		75BB175C2E0A894300376246 /* ConfirmOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrderViewController.swift; sourceTree = "<group>"; };
 		75BB44752D300AFE0000C64A /* WorkTimeDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeDataProvider.swift; sourceTree = "<group>"; };
 		75BB447B2D30F6DB0000C64A /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
@@ -572,6 +575,11 @@
 		75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeCollectionViewCell.swift; sourceTree = "<group>"; };
 		75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoffeeCollectionViewCell.xib; sourceTree = "<group>"; };
 		75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeListDataProvider.swift; sourceTree = "<group>"; };
+		C4A701012F00000100000001 /* CartModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModels.swift; sourceTree = "<group>"; };
+		C4A701022F00000100000001 /* CartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCoordinator.swift; sourceTree = "<group>"; };
+		C4A701032F00000100000001 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		C4A701042F00000100000001 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		C4A701052F00000100000001 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -993,7 +1001,6 @@
 			isa = PBXGroup;
 			children = (
 				75BB17582E0A893400376246 /* ConfirmOrderView.swift */,
-				75BB175A2E0A893B00376246 /* ConfirmOrderView.xib */,
 			);
 			path = "Root View";
 			sourceTree = "<group>";
@@ -1416,6 +1423,7 @@
 				752330C12D197B210090997E /* TabBarController */,
 				752330C52D197B210090997E /* Main */,
 				05B84C3A2EAE2FE600AB66B2 /* Map */,
+				C4A702012F00000100000001 /* Cart */,
 				7523312E2D1983050090997E /* History */,
 				7523312F2D1983190090997E /* Profile */,
 				7523313B2D198D940090997E /* Resources */,
@@ -2312,6 +2320,18 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
+		C4A702012F00000100000001 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				C4A701012F00000100000001 /* CartModels.swift */,
+				C4A701022F00000100000001 /* CartCoordinator.swift */,
+				C4A701032F00000100000001 /* CartViewModel.swift */,
+				C4A701042F00000100000001 /* CartView.swift */,
+				C4A701052F00000100000001 /* CartViewController.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2417,7 +2437,6 @@
 				052E9A982EB7A754002A9F61 /* AccountView.xib in Resources */,
 				75BB44802D30F6F90000C64A /* HistoryView.xib in Resources */,
 				05FF55372F46345C00918E0C /* CashbeckView.xib in Resources */,
-				75BB175B2E0A893B00376246 /* ConfirmOrderView.xib in Resources */,
 				75DCE36A2D1ABBA3003A59CD /* LanguageCollectionViewCell.xib in Resources */,
 				75DCE3612D1ABB33003A59CD /* LanguageView.xib in Resources */,
 				75705CE52D2FD9FB00DA3AA4 /* ShopDetailView.xib in Resources */,
@@ -2456,6 +2475,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4A700012F00000100000001 /* CartModels.swift in Sources */,
+				C4A700022F00000100000001 /* CartCoordinator.swift in Sources */,
+				C4A700032F00000100000001 /* CartViewModel.swift in Sources */,
+				C4A700042F00000100000001 /* CartView.swift in Sources */,
+				C4A700052F00000100000001 /* CartViewController.swift in Sources */,
 				7523319D2D1A90B90090997E /* LaunchScreenViewController.swift in Sources */,
 				752330772D197AE80090997E /* AppDelegate.swift in Sources */,
 				75DCE38C2D1C2A97003A59CD /* SignIn.swift in Sources */,

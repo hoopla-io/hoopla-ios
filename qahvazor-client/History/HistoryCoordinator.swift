@@ -19,7 +19,7 @@ final class HistoryCoordinator: Coordinator {
     func start() {
         let vc = HistoryViewController()
         vc.tabBarItem = UITabBarItem(title: "orders".localized, image: UIImage(systemName: "clock.arrow.circlepath"), selectedImage: UIImage(systemName: "clock.arrow.circlepath"))
-        vc.tabBarItem.tag = 2
+        vc.tabBarItem.tag = AppTab.orders.rawValue
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

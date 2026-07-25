@@ -50,7 +50,7 @@ final class MapViewController: UIViewController {
         
         guard Purchase.isPurchased else { return }
         Purchase.isPurchased = false
-        tabBarController?.selectedIndex = 2
+        tabBarController?.selectTab(.orders)
     }
 
     private func requestLocation() {
