@@ -15,6 +15,7 @@ final class CartViewController: UIViewController, ViewSpecificController, @MainA
     private let viewModel = CartViewModel()
     private var cart: Cart?
     private var balance: Double = 0
+    private var cashbackAmount: Double = Cashbeck.balance
     private var updatingItemIDs = Set<Int>()
     private var pendingOrderID: Int?
     private var shouldCheckPayment = false
@@ -68,6 +69,16 @@ private extension CartViewController {
             guard let self, comment != self.cart?.comment else { return }
             self.viewModel.saveComment(comment)
         }
+        view().cashbackSwitch.addTarget(
+            self,
+            action: #selector(cashbeckAction(_:)),
+            for: .valueChanged
+        )
+        view().cashbackSelectButton.addTarget(
+            self,
+            action: #selector(pushToCashbeckVC),
+            for: .touchUpInside
+        )
         view().onCheckout = { [weak self] in
             self?.checkout()
         }
@@ -76,7 +87,12 @@ private extension CartViewController {
     func renderCart(_ cart: Cart?) {
         self.cart = cart
         updatingItemIDs.removeAll()
-        view().configure(cart: cart, balance: balance)
+        view().configure(
+            cart: cart,
+            balance: balance,
+            useCashback: view().cashbackSwitch.isOn,
+            cashbackAmount: cashbackAmount
+        )
         configureItemActions()
         updateClearButton()
     }
@@ -135,8 +151,27 @@ private extension CartViewController {
         view().commentTextView.delegate = view()
         viewModel.checkout(
             comment: comment,
-            useCashback: view().isUsingCashback,
-            cashbackAmount: view().currentCashbackAmount
+            useCashback: view().cashbackSwitch.isOn,
+            cashbackAmount: cashbackAmountForOrder
+        )
+    }
+
+    @objc func cashbeckAction(_ sender: UISwitch) {
+        guard sender.isOn else {
+            view().setCashback(amount: cashbackAmount, enabled: false)
+            return
+        }
+
+        pushToCashbeckVC()
+        view().setCashback(amount: cashbackAmount, enabled: false)
+    }
+
+    @objc func pushToCashbeckVC() {
+        guard balance > 0, subtotalAfterPromocode > 0 else { return }
+        coordinator?.pushToCashbeckVC(
+            viewController: self,
+            totalPrice: subtotalAfterPromocode,
+            cashbackAmount: cashbackAmount
         )
     }
 
@@ -154,6 +189,17 @@ private extension CartViewController {
     func finishCheckoutSubmission() {
         isCheckoutSubmitting = false
         view().checkoutButton.isEnabled = true
+    }
+
+    var subtotalAfterPromocode: Double {
+        let subtotal = max(cart?.subtotal ?? 0, 0)
+        let discount = max(cart?.promoDiscount ?? 0, 0)
+        return max(subtotal - discount, 0)
+    }
+
+    var cashbackAmountForOrder: Double {
+        guard view().cashbackSwitch.isOn else { return cashbackAmount }
+        return min(cashbackAmount, min(balance, subtotalAfterPromocode))
     }
 
     @objc func refreshCart(_ refreshControl: UIRefreshControl) {
@@ -187,11 +233,16 @@ extension CartViewController: CartViewModelProtocol {
 
     func didLoad(balance: Double) {
         self.balance = balance
+        if cashbackAmount == 0 {
+            cashbackAmount = balance
+        } else {
+            cashbackAmount = min(cashbackAmount, balance)
+        }
         view().configure(
             cart: cart,
             balance: balance,
             useCashback: view().cashbackSwitch.isOn,
-            cashbackAmount: view().currentCashbackAmount
+            cashbackAmount: cashbackAmount
         )
         configureItemActions()
     }
@@ -244,5 +295,12 @@ extension CartViewController: CartViewModelProtocol {
         default:
             showWarningAlert(message: status.localized)
         }
+    }
+}
+
+extension CartViewController: CashbeckViewProtocol {
+    func didFinishCashbeck(cashbek: Double) {
+        cashbackAmount = cashbek
+        view().setCashback(amount: cashbek, enabled: true)
     }
 }

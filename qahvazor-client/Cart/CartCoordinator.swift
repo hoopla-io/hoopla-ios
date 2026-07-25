@@ -45,6 +45,36 @@ final class CartCoordinator: Coordinator {
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
     }
+
+    func pushToCashbeckVC(
+        viewController: CartViewController,
+        totalPrice: Double,
+        cashbackAmount: Double
+    ) {
+        let cashbackViewController = CashbeckViewController()
+        cashbackViewController.totalPrice = totalPrice
+        cashbackViewController.selectedCashbekPrice = cashbackAmount
+        cashbackViewController.delegate = viewController
+        cashbackViewController.loadViewIfNeeded()
+        cashbackViewController.view.layoutIfNeeded()
+
+        if let sheet = cashbackViewController.sheetPresentationController {
+            sheet.preferredCornerRadius = 16
+            sheet.prefersGrabberVisible = true
+
+            let detentIdentifier = UISheetPresentationController.Detent.Identifier("current")
+            let detent = UISheetPresentationController.Detent.custom(
+                identifier: detentIdentifier
+            ) { context in
+                context.maximumDetentValue * 0.4
+            }
+            sheet.detents = [detent]
+            sheet.selectedDetentIdentifier = detentIdentifier
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+        }
+
+        navigationController.present(cashbackViewController, animated: true)
+    }
 }
 
 final class CartBadgeManager {
@@ -88,4 +118,3 @@ final class CartBadgeManager {
         )
     }
 }
-

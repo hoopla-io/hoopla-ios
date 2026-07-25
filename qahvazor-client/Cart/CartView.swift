@@ -7,13 +7,13 @@ import UIKit
 
 final class CartView: CustomView {
     var onPromoAction: ((String, Bool) -> Void)?
-    var onCashbackChanged: ((Bool, Double) -> Void)?
     var onCommentFinished: ((String?) -> Void)?
     var onCheckout: (() -> Void)?
 
     private(set) var cart: Cart?
     private(set) var balance: Double = 0
     private(set) var itemViews = [Int: CartItemCardView]()
+    private var cashbackAmount: Double = 0
 
     let scrollView = UIScrollView()
     let contentStackView = UIStackView()
@@ -48,19 +48,11 @@ final class CartView: CustomView {
 
     let cashbackSwitch = UISwitch()
     let cashbackBalanceLabel = UILabel()
-    let cashbackAmountTextField: UITextField = {
-        let textField = UITextField()
-        textField.keyboardType = .numberPad
-        textField.textAlignment = .right
-        textField.placeholder = "0"
-        textField.font = .systemFont(ofSize: 15, weight: .medium)
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.separator.withAlphaComponent(0.35).cgColor
-        textField.layer.cornerRadius = 10
-        textField.setLeftPaddingPoints(10)
-        textField.setRightPaddingPoints(10)
-        textField.isHidden = true
-        return textField
+    let cashbackSelectButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .clear
+        button.accessibilityLabel = "cashbeck".localized
+        return button
     }()
 
     let commentTextView: UITextView = {
@@ -149,7 +141,6 @@ final class CartView: CustomView {
         }
 
         cashbackBalanceLabel.text = "balance".localized + " " + self.balance.formattedWithCurrency
-        cashbackSwitch.isEnabled = self.balance > 0
         if self.balance == 0 {
             cashbackSwitch.isOn = false
         }
@@ -158,10 +149,17 @@ final class CartView: CustomView {
         }
 
         let maxAmount = maximumCashback
-        let selectedAmount = min(max(cashbackAmount ?? currentCashbackAmount, 0), maxAmount)
-        cashbackAmountTextField.text = selectedAmount.formattedWithSeparator
-        cashbackAmountTextField.isHidden = !cashbackSwitch.isOn
+        self.cashbackAmount = min(max(cashbackAmount ?? self.cashbackAmount, 0), maxAmount)
+        cashbackSwitch.isEnabled = self.balance > 0 && maxAmount > 0
+        cashbackSwitch.isOn = cashbackSwitch.isOn && self.cashbackAmount > 0
+        cashbackSelectButton.isEnabled = self.balance > 0 && maxAmount > 0
 
+        updateTotals()
+    }
+
+    func setCashback(amount: Double, enabled: Bool) {
+        cashbackAmount = min(max(amount, 0), maximumCashback)
+        cashbackSwitch.isOn = enabled && cashbackAmount > 0
         updateTotals()
     }
 
@@ -183,15 +181,8 @@ final class CartView: CustomView {
         return value.isEmpty ? nil : String(value.prefix(500))
     }
 
-    var isUsingCashback: Bool {
-        cashbackSwitch.isOn && currentCashbackAmount > 0
-    }
-
     var currentCashbackAmount: Double {
-        let digits = cashbackAmountTextField.text?
-            .components(separatedBy: CharacterSet.decimalDigits.inverted)
-            .joined() ?? ""
-        return min(Double(digits) ?? 0, maximumCashback)
+        min(cashbackAmount, maximumCashback)
     }
 
     private var maximumCashback: Double {
@@ -235,8 +226,17 @@ private extension CartView {
         cashbackHeader.axis = .horizontal
         cashbackHeader.alignment = .center
         cashbackCard.addArrangedSubview(cashbackHeader)
-        cashbackCard.addArrangedSubview(cashbackAmountTextField)
-        cashbackAmountTextField.heightAnchor.constraint(equalToConstant: 42).isActive = true
+        cashbackSelectButton.translatesAutoresizingMaskIntoConstraints = false
+        cashbackCard.addSubview(cashbackSelectButton)
+        NSLayoutConstraint.activate([
+            cashbackSelectButton.topAnchor.constraint(equalTo: cashbackCard.topAnchor),
+            cashbackSelectButton.leadingAnchor.constraint(equalTo: cashbackCard.leadingAnchor),
+            cashbackSelectButton.trailingAnchor.constraint(
+                equalTo: cashbackSwitch.leadingAnchor,
+                constant: -8
+            ),
+            cashbackSelectButton.bottomAnchor.constraint(equalTo: cashbackCard.bottomAnchor)
+        ])
 
         let noteCard = makeCard()
         noteCard.addArrangedSubview(makeTitle("cartNoteTitle".localized))
@@ -263,7 +263,7 @@ private extension CartView {
         configureValueLabel(discountValueLabel)
         configureValueLabel(cashbackValueLabel)
         configureValueLabel(totalValueLabel, bold: true)
-        totalsCard.addArrangedSubview(makeTotalRow(title: "cartSubtotal".localized, value: subtotalValueLabel))
+        totalsCard.addArrangedSubview(makeTotalRow(title: "price".localized, value: subtotalValueLabel))
         discountRow.addArrangedSubview(makeLabel("cartDiscount".localized))
         discountRow.addArrangedSubview(discountValueLabel)
         cashbackRow.addArrangedSubview(makeLabel("cartCashback".localized))
@@ -326,8 +326,6 @@ private extension CartView {
         ])
 
         promoButton.addTarget(self, action: #selector(promoTapped), for: .touchUpInside)
-        cashbackSwitch.addTarget(self, action: #selector(cashbackToggled), for: .valueChanged)
-        cashbackAmountTextField.addTarget(self, action: #selector(cashbackAmountChanged), for: .editingChanged)
         checkoutButton.addTarget(self, action: #selector(checkoutTapped), for: .touchUpInside)
         commentTextView.delegate = self
         promoTextField.delegate = self
@@ -389,7 +387,6 @@ private extension CartView {
             "cartCheckout".localized + " · " + finalTotal.formattedWithCurrency,
             for: .normal
         )
-        onCashbackChanged?(cashbackSwitch.isOn, cashback)
     }
 
     func updateCommentPlaceholder() {
@@ -401,22 +398,6 @@ private extension CartView {
         let code = promoTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         guard isRemoving || !code.isEmpty else { return }
         onPromoAction?(code, isRemoving)
-    }
-
-    @objc func cashbackToggled() {
-        cashbackAmountTextField.isHidden = !cashbackSwitch.isOn
-        if cashbackSwitch.isOn, currentCashbackAmount == 0 {
-            cashbackAmountTextField.text = maximumCashback.formattedWithSeparator
-        }
-        updateTotals()
-    }
-
-    @objc func cashbackAmountChanged() {
-        let amount = currentCashbackAmount
-        if (Double(cashbackAmountTextField.text ?? "") ?? 0) > maximumCashback {
-            cashbackAmountTextField.text = amount.formattedWithSeparator
-        }
-        updateTotals()
     }
 
     @objc func checkoutTapped() {
