@@ -30,8 +30,6 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, @M
     
     @IBAction func mainButtonActions(_ sender: UIButton) {
         switch sender.tag {
-        case 0:
-            coordinator?.pushToSubscriptionVC()
         case 1:
             coordinator?.pushToLanguageVC(viewController: self)
         case 2:

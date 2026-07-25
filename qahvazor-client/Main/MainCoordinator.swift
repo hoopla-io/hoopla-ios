@@ -72,13 +72,6 @@ final class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func pushToSubscriptionVC() {
-        let vc = SubscriptionViewController()
-        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
-        vc.coordinator = profileCoordinator
-        navigationController.pushViewController(vc, animated: true)
-    }
-    
     func pushToPaymentVC(amount: Double? = nil) {
         let vc = PaymentViewController()
         let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
