@@ -56,6 +56,7 @@ private extension CartViewController {
         navigationItem.title = "cartTitle".localized
         navigationItem.largeTitleDisplayMode = .never
         viewModel.delegate = self
+        view().showEmptyState(isAuthenticated: UserDefaults.standard.isAuthed())
 
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshCart(_:)), for: .valueChanged)
