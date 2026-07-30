@@ -40,6 +40,8 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, @M
             openURL(urlString: MainConstants.support.rawValue)
         case 5:
             coordinator?.pushToAccountVC(account: account)
+        case 6:
+            coordinator?.pushToSessionVC()
         default: break
         }
     }

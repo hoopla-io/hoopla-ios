@@ -281,6 +281,11 @@
 		75F6CFC82D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */; };
 		75F6CFC92D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */; };
 		75F6CFCC2D2BEBD200BDF947 /* CoffeeListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */; };
+		A11CE5503000000100000001 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11CE5513000000100000001 /* SessionViewController.swift */; };
+		A11CE5503000000100000002 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11CE5513000000100000002 /* SessionView.swift */; };
+		A11CE5503000000100000003 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11CE5513000000100000003 /* SessionViewModel.swift */; };
+		A11CE5503000000100000004 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11CE5513000000100000004 /* SessionTableViewCell.swift */; };
+		A11CE5503000000100000005 /* SessionDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11CE5513000000100000005 /* SessionDataProvider.swift */; };
 		C4A700012F00000100000001 /* CartModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A701012F00000100000001 /* CartModels.swift */; };
 		C4A700022F00000100000001 /* CartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A701022F00000100000001 /* CartCoordinator.swift */; };
 		C4A700032F00000100000001 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A701032F00000100000001 /* CartViewModel.swift */; };
@@ -553,6 +558,11 @@
 		75F6CFC62D2BEB2E00BDF947 /* CoffeeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeCollectionViewCell.swift; sourceTree = "<group>"; };
 		75F6CFC72D2BEB2E00BDF947 /* CoffeeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoffeeCollectionViewCell.xib; sourceTree = "<group>"; };
 		75F6CFCB2D2BEBD200BDF947 /* CoffeeListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeListDataProvider.swift; sourceTree = "<group>"; };
+		A11CE5513000000100000001 /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
+		A11CE5513000000100000002 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
+		A11CE5513000000100000003 /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		A11CE5513000000100000004 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		A11CE5513000000100000005 /* SessionDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDataProvider.swift; sourceTree = "<group>"; };
 		C4A701012F00000100000001 /* CartModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModels.swift; sourceTree = "<group>"; };
 		C4A701022F00000100000001 /* CartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCoordinator.swift; sourceTree = "<group>"; };
 		C4A701032F00000100000001 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
@@ -1119,6 +1129,58 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
+		1D82A956301BA0FB0003D6FE /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				1D82A95A301BA8800003D6FE /* Data Provider */,
+				1D82A957301BA1040003D6FE /* View Controller */,
+				1D82A958301BA10B0003D6FE /* View */,
+				1D82A959301BA10F0003D6FE /* View Model */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		1D82A957301BA1040003D6FE /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A11CE5513000000100000001 /* SessionViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		1D82A958301BA10B0003D6FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A11CE5513000000100000002 /* SessionView.swift */,
+				1D82A95B301BA88E0003D6FE /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1D82A959301BA10F0003D6FE /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				A11CE5513000000100000003 /* SessionViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		1D82A95A301BA8800003D6FE /* Data Provider */ = {
+			isa = PBXGroup;
+			children = (
+				A11CE5513000000100000005 /* SessionDataProvider.swift */,
+			);
+			path = "Data Provider";
+			sourceTree = "<group>";
+		};
+		1D82A95B301BA88E0003D6FE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A11CE5513000000100000004 /* SessionTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		521378B42F87B3AB00A4554E /* Header */ = {
 			isa = PBXGroup;
 			children = (
@@ -1596,6 +1658,7 @@
 				75DCE38D2D1C3105003A59CD /* Profile */,
 				05E0580F3002385F00D51C59 /* Giftcard */,
 				052E9A932EB7A754002A9F61 /* Account */,
+				1D82A956301BA0FB0003D6FE /* Session */,
 				75DCE38E2D1C3118003A59CD /* CodeConfirm */,
 				75CBFADC2D785B6E003E9102 /* Payment */,
 			);
@@ -2382,6 +2445,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A11CE5503000000100000001 /* SessionViewController.swift in Sources */,
+				A11CE5503000000100000002 /* SessionView.swift in Sources */,
+				A11CE5503000000100000003 /* SessionViewModel.swift in Sources */,
+				A11CE5503000000100000004 /* SessionTableViewCell.swift in Sources */,
+				A11CE5503000000100000005 /* SessionDataProvider.swift in Sources */,
 				C4A700012F00000100000001 /* CartModels.swift in Sources */,
 				C4A700022F00000100000001 /* CartCoordinator.swift in Sources */,
 				C4A700032F00000100000001 /* CartViewModel.swift in Sources */,
@@ -2648,7 +2716,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -2682,7 +2750,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";

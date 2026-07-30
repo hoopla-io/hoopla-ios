@@ -49,6 +49,7 @@ enum EndPoints: String {
     case editMe = "user/edit-me"
     case refreshToken = "user/refresh-token"
     case logout = "user/logout"
+    case devices = "user/devices"
     case subscriptions = "subscriptions"
     case subscriptionsBuy = "subscriptions/buy"
     case deleteUser = "user/deactivate"

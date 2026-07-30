@@ -66,6 +66,12 @@ final class ProfileCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
 
+    func pushToSessionVC() {
+        let vc = SessionViewController()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(vc, animated: true)
+    }
+
     func presentGiftcardVC(viewController: UIViewController) {
         let vc = GiftcardViewController()
         if let viewController = viewController as? ProfileViewController {

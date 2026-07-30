@@ -70,9 +70,12 @@ final class ProfileViewModel {
         }
     }
     func logOut() {
+        let query = UserDefaults.standard.refreshToken().map {
+            Parameters.refreshToken.rawValue + Symbols.equal.rawValue + $0
+        }
         delegate?.showActivityIndicator()
         Task { [weak self] in
-            await JSONDownloader.shared.jsonTask(url: EndPoints.logout.rawValue, requestMethod: .post, completionHandler: { [weak self]  (result) in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.logout.rawValue, query: query, requestMethod: .post, completionHandler: { [weak self]  (result) in
                 guard let self = self else { return }
                 switch result {
                 case .Error(let error, let message):
@@ -100,4 +103,3 @@ final class ProfileViewModel {
         }
     }
 }
-

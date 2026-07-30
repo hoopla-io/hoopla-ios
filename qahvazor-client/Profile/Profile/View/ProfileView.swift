@@ -149,11 +149,11 @@ final class ProfileView: CustomView {
         tag: 1
     )
 
-//    private let activeDevicesButton = ProfileView.makeMenuButton(
-//        titleKey: "activeDevices",
-//        image: UIImage(systemName: "macbook.and.iphone"),
-//        tag: 6
-//    )
+    private let activeDevicesButton = ProfileView.makeMenuButton(
+        titleKey: "activeDevices",
+        image: UIImage(systemName: "iphone.gen3.sizes"),
+        tag: 6
+    )
 
     private let supportButton = ProfileView.makeMenuButton(
         titleKey: "support",
@@ -411,7 +411,7 @@ private extension ProfileView {
     func makeMenuButtonsStack() -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: [
             languageButton,
-//            activeDevicesButton,
+            activeDevicesButton,
             supportButton,
             privacyButton,
             termsButton
@@ -422,7 +422,7 @@ private extension ProfileView {
 
         mainButtons = [
             languageButton,
-//            activeDevicesButton,
+            activeDevicesButton,
             supportButton,
             privacyButton,
             termsButton
