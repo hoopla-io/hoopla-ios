@@ -123,7 +123,7 @@ private extension TabBarController {
 
 extension UITabBar {
     func setup() {
-        tintColor = UIColor.label
+        tintColor = UIColor.appColor(.mainColor)
     }
 }
 

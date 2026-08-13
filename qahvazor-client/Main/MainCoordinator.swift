@@ -20,7 +20,12 @@ final class MainCoordinator: Coordinator {
     
     func start() {
         let vc = MainViewController()
-        vc.tabBarItem = UITabBarItem(title: "home".localized, image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        let tabIcon = UIImage(named: AssetsImage.tabHome.rawValue)
+        vc.tabBarItem = UITabBarItem(
+            title: "",
+            image: tabIcon,
+            selectedImage: tabIcon
+        )
         vc.tabBarItem.tag = AppTab.home.rawValue
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)

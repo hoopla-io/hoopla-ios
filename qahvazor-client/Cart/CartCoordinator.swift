@@ -29,10 +29,11 @@ final class CartCoordinator: Coordinator {
     func start() {
         let viewController = CartViewController()
         viewController.coordinator = self
+        let tabIcon = UIImage(named: AssetsImage.tabCart.rawValue)
         viewController.tabBarItem = UITabBarItem(
-            title: "cart".localized,
-            image: UIImage(systemName: "bag"),
-            selectedImage: UIImage(systemName: "bag.fill")
+            title: "",
+            image: tabIcon,
+            selectedImage: tabIcon
         )
         viewController.tabBarItem.tag = AppTab.cart.rawValue
         navigationController.pushViewController(viewController, animated: false)
