@@ -237,6 +237,7 @@ cartTitle = "Ваша корзина";
 cartPromoPlaceholder = "Введите код";
 cartNoteTitle = "Комментарий бариста";
 cartNotePlaceholder = "Добавить комментарий (необязательно)";
+cartDrinks = "Напитки";
 cartSubtotal = "Подытог";
 cartDiscount = "Скидка по промокоду";
 cartCashback = "Кешбэк";

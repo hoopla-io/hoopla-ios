@@ -68,6 +68,8 @@
 		05FF55352F46345700918E0C /* CashbeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55342F46345700918E0C /* CashbeckView.swift */; };
 		05FF55372F46345C00918E0C /* CashbeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FF55362F46345C00918E0C /* CashbeckView.xib */; };
 		05FF55392F46346600918E0C /* CashbeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55382F46346600918E0C /* CashbeckViewController.swift */; };
+		1DE4BD2830399F78005E9682 /* CartItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4BD2730399F78005E9682 /* CartItemCardView.swift */; };
+		1DE4BD2A30399FD0005E9682 /* CartConflictAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4BD2930399FD0005E9682 /* CartConflictAlertViewController.swift */; };
 		521378B32F87B0DB00A4554E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521378B22F87B0DB00A4554E /* Categories.swift */; };
 		521378B62F87B3C100A4554E /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521378B52F87B3C100A4554E /* SectionHeader.swift */; };
 		521378B92F87B75900A4554E /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521378B82F87B75900A4554E /* CategoryCollectionViewCell.swift */; };
@@ -355,6 +357,8 @@
 		05FF55342F46345700918E0C /* CashbeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckView.swift; sourceTree = "<group>"; };
 		05FF55362F46345C00918E0C /* CashbeckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashbeckView.xib; sourceTree = "<group>"; };
 		05FF55382F46346600918E0C /* CashbeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckViewController.swift; sourceTree = "<group>"; };
+		1DE4BD2730399F78005E9682 /* CartItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCardView.swift; sourceTree = "<group>"; };
+		1DE4BD2930399FD0005E9682 /* CartConflictAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartConflictAlertViewController.swift; sourceTree = "<group>"; };
 		521378B22F87B0DB00A4554E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		521378B52F87B3C100A4554E /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		521378B82F87B75900A4554E /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -2300,8 +2304,10 @@
 				C4A701012F00000100000001 /* CartModels.swift */,
 				C4A701022F00000100000001 /* CartCoordinator.swift */,
 				C4A701032F00000100000001 /* CartViewModel.swift */,
-				C4A701042F00000100000001 /* CartView.swift */,
 				C4A701052F00000100000001 /* CartViewController.swift */,
+				C4A701042F00000100000001 /* CartView.swift */,
+				1DE4BD2730399F78005E9682 /* CartItemCardView.swift */,
+				1DE4BD2930399FD0005E9682 /* CartConflictAlertViewController.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -2546,6 +2552,7 @@
 				752330E22D197B210090997E /* UINavigationBar.swift in Sources */,
 				0581327230054153009AAB10 /* ActiveOrderDataProvider.swift in Sources */,
 				752330E32D197B210090997E /* UIButton.swift in Sources */,
+				1DE4BD2A30399FD0005E9682 /* CartConflictAlertViewController.swift in Sources */,
 				752330E42D197B210090997E /* UINavigationController.swift in Sources */,
 				75BB17282E095C8500376246 /* UniversalLink.swift in Sources */,
 				752330E52D197B210090997E /* SKStoreReviewController.swift in Sources */,
@@ -2632,6 +2639,7 @@
 				752330F52D197B210090997E /* AppUtility.swift in Sources */,
 				059BA9C62EB664B5002A726F /* Modification.swift in Sources */,
 				05E058263002A08C00D51C59 /* SearchShopView.swift in Sources */,
+				1DE4BD2830399F78005E9682 /* CartItemCardView.swift in Sources */,
 				05E058283002A09300D51C59 /* SearchShopViewModel.swift in Sources */,
 				752331922D1A8E800090997E /* CircularProgressBar.swift in Sources */,
 				058CF6152FFEBB5100EAF16D /* PromocodeView.swift in Sources */,

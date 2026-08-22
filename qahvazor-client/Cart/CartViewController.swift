@@ -53,8 +53,18 @@ final class CartViewController: UIViewController, ViewSpecificController, @MainA
 
 private extension CartViewController {
     func configureUI() {
-        navigationItem.title = "cartTitle".localized
+        navigationItem.title = "cart".localized
         navigationItem.largeTitleDisplayMode = .never
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .appColor(.mainBackground)
+        appearance.shadowColor = .clear
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.label,
+            .font: UIFont.systemFont(ofSize: 18, weight: .semibold)
+        ]
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
         viewModel.delegate = self
         view().showEmptyState(isAuthenticated: UserDefaults.standard.isAuthed())
 
@@ -119,13 +129,23 @@ private extension CartViewController {
             navigationItem.rightBarButtonItem = nil
             return
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "trash.fill"),
-            style: .plain,
-            target: self,
-            action: #selector(clearCartTapped)
+        let button = UIButton(type: .system)
+        button.backgroundColor = .systemBackground
+        button.tintColor = .systemRed
+        button.setImage(
+            UIImage(
+                systemName: "trash",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 16, weight: .medium)
+            ),
+            for: .normal
         )
-        navigationItem.rightBarButtonItem?.tintColor = .systemRed
+        button.layer.cornerRadius = 20
+        button.layer.cornerCurve = .continuous
+        button.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        button.accessibilityLabel = "clear".localized
+        button.addTarget(self, action: #selector(clearCartTapped), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
     }
 
     func updateItem(id: Int, quantity: Int) {

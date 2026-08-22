@@ -237,6 +237,7 @@ cartTitle = "Your Cart";
 cartPromoPlaceholder = "Enter code";
 cartNoteTitle = "Note to barista";
 cartNotePlaceholder = "Add a note (optional)";
+cartDrinks = "Drinks";
 cartSubtotal = "Subtotal";
 cartDiscount = "Promo discount";
 cartCashback = "Cashback";

@@ -12,6 +12,8 @@ struct Cart: Decodable {
     let status: String?
     let promoCode: String?
     let comment: String?
+    let partnerName: String?
+    let shopName: String?
     let items: [CartItem]?
     let subtotal: Double?
     let promoDiscount: Double?
@@ -21,6 +23,14 @@ struct Cart: Decodable {
 
     var itemCount: Int {
         items?.reduce(0) { $0 + max($1.quantity ?? 0, 0) } ?? 0
+    }
+
+    var shopDisplayName: String? {
+        [partnerName, shopName]
+            .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+            .joined(separator: ", ")
+            .nilIfEmpty
     }
 }
 
@@ -32,6 +42,13 @@ struct CartItem: Decodable {
     let unitPrice: Double?
     let lineTotal: Double?
     let modifiers: [CartItemModifier]?
+    let pictureUrl: String?
+    let imageUrl: String?
+    let drinkImageUrl: String?
+
+    var displayImageUrl: String? {
+        pictureUrl ?? imageUrl ?? drinkImageUrl
+    }
 }
 
 struct CartItemModifier: Decodable {
@@ -58,3 +75,8 @@ struct CartCount: Decodable {
     let count: Int
 }
 
+private extension String {
+    var nilIfEmpty: String? {
+        isEmpty ? nil : self
+    }
+}

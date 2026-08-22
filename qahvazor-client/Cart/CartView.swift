@@ -23,15 +23,15 @@ final class CartView: CustomView {
         let textField = UITextField()
         textField.placeholder = "cartPromoPlaceholder".localized
         textField.font = .systemFont(ofSize: 16)
-        textField.backgroundColor = .systemBackground
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.separator.withAlphaComponent(0.35).cgColor
+        textField.backgroundColor = .secondarySystemBackground
         textField.layer.cornerRadius = 12
         textField.layer.cornerCurve = .continuous
         textField.autocapitalizationType = .allCharacters
         textField.autocorrectionType = .no
         textField.clearButtonMode = .whileEditing
+        textField.returnKeyType = .done
         textField.setLeftPaddingPoints(14)
+        textField.setRightPaddingPoints(10)
         return textField
     }()
 
@@ -46,7 +46,11 @@ final class CartView: CustomView {
         return button
     }()
 
-    let cashbackSwitch = UISwitch()
+    let cashbackSwitch: UISwitch = {
+        let toggle = UISwitch()
+        toggle.onTintColor = .appColor(.mainColor)
+        return toggle
+    }()
     let cashbackBalanceLabel = UILabel()
     let cashbackSelectButton: UIButton = {
         let button = UIButton(type: .system)
@@ -59,18 +63,19 @@ final class CartView: CustomView {
         let textView = UITextView()
         textView.font = .systemFont(ofSize: 16)
         textView.textColor = .label
-        textView.backgroundColor = .secondarySystemBackground
-        textView.layer.cornerRadius = 12
+        textView.backgroundColor = .systemBackground
+        textView.layer.cornerRadius = 20
         textView.layer.cornerCurve = .continuous
-        textView.textContainerInset = UIEdgeInsets(top: 12, left: 10, bottom: 12, right: 10)
+        textView.textContainerInset = UIEdgeInsets(top: 16, left: 12, bottom: 16, right: 12)
         return textView
     }()
 
     let commentPlaceholderLabel: UILabel = {
         let label = UILabel()
-        label.text = "cartNotePlaceholder".localized
-        label.textColor = .placeholderText
+        label.text = "addComment".localized
+        label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 16)
+        label.numberOfLines = 0
         return label
     }()
 
@@ -78,20 +83,25 @@ final class CartView: CustomView {
     let discountValueLabel = UILabel()
     let cashbackValueLabel = UILabel()
     let totalValueLabel = UILabel()
-    private let discountRow = UIStackView()
-    private let cashbackRow = UIStackView()
 
     let checkoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .appColor(.mainColor)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        button.layer.cornerRadius = 28
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        button.layer.cornerRadius = 14
         button.layer.cornerCurve = .continuous
+        button.setTitle("cartCheckout".localized, for: .normal)
         return button
     }()
 
+    private let shopNameLabel = UILabel()
+    private let promoTitleLabel = UILabel()
+    private let promoAccessoryImageView = UIImageView()
+    private let promoEntryRow = UIStackView()
     private let bottomContainer = UIView()
+    private let discountRow = UIStackView()
+    private let cashbackRow = UIStackView()
     private let emptyStackView = UIStackView()
     private let emptyTitleLabel = UILabel()
     private let emptySubtitleLabel = UILabel()
@@ -125,22 +135,35 @@ final class CartView: CustomView {
         emptyStackView.isHidden = true
         rebuildItems(cart.items ?? [])
 
+        shopNameLabel.text = cart.shopDisplayName
+        shopNameLabel.isHidden = cart.shopDisplayName == nil
+
         let promoIsApplied = cart.promoCode?.isEmpty == false
         if promoIsApplied {
             promoTextField.text = cart.promoCode
-        } else if !promoTextField.isFirstResponder {
-            promoTextField.text = nil
+            promoTitleLabel.text = ["promocode".localized, cart.promoCode]
+                .compactMap { $0 }
+                .joined(separator: " · ")
+            promoAccessoryImageView.image = UIImage(systemName: "xmark.circle.fill")
+            promoAccessoryImageView.tintColor = .systemRed
+            promoEntryRow.isHidden = true
+        } else {
+            if !promoTextField.isFirstResponder {
+                promoTextField.text = nil
+                promoEntryRow.isHidden = true
+            }
+            promoTitleLabel.text = "promocode".localized
+            promoAccessoryImageView.image = UIImage(systemName: "chevron.right")
+            promoAccessoryImageView.tintColor = .secondaryLabel
         }
         promoTextField.isEnabled = !promoIsApplied
-        promoButton.setTitle(promoIsApplied ? "remove".localized : "apply".localized, for: .normal)
-        promoButton.backgroundColor = promoIsApplied ? .systemRed : .appColor(.mainColor)
 
         if !commentTextView.isFirstResponder {
             commentTextView.text = cart.comment ?? ""
             updateCommentPlaceholder()
         }
 
-        cashbackBalanceLabel.text = "balance".localized + " " + self.balance.formattedWithCurrency
+        cashbackBalanceLabel.text = "available".localized + ": " + self.balance.formattedWithSeparator
         if self.balance == 0 {
             cashbackSwitch.isOn = false
         }
@@ -197,101 +220,30 @@ private extension CartView {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.keyboardDismissMode = .interactive
+        scrollView.alwaysBounceVertical = true
 
         contentStackView.axis = .vertical
         contentStackView.spacing = 16
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
 
+        shopNameLabel.font = .systemFont(ofSize: 18)
+        shopNameLabel.textColor = .secondaryLabel
+        shopNameLabel.numberOfLines = 2
+
         itemStackView.axis = .vertical
-        itemStackView.spacing = 14
+        itemStackView.spacing = 12
 
-        let promoCard = makeCard()
-        let promoTitle = makeTitle("promocode".localized)
-        let promoRow = UIStackView(arrangedSubviews: [promoTextField, promoButton])
-        promoRow.axis = .horizontal
-        promoRow.spacing = 10
-        promoButton.widthAnchor.constraint(equalToConstant: 92).isActive = true
-        promoTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        promoCard.addArrangedSubview(promoTitle)
-        promoCard.addArrangedSubview(promoRow)
+        let promoCard = makePromoCard()
+        let cashbackCard = makeCashbackCard()
+        let noteCard = makeNoteCard()
 
-        let cashbackCard = makeCard()
-        let cashbackTitle = makeTitle("useCashbeck".localized)
-        cashbackBalanceLabel.font = .systemFont(ofSize: 14)
-        cashbackBalanceLabel.textColor = .secondaryLabel
-        let cashbackLabels = UIStackView(arrangedSubviews: [cashbackTitle, cashbackBalanceLabel])
-        cashbackLabels.axis = .vertical
-        cashbackLabels.spacing = 3
-        let cashbackHeader = UIStackView(arrangedSubviews: [cashbackLabels, cashbackSwitch])
-        cashbackHeader.axis = .horizontal
-        cashbackHeader.alignment = .center
-        cashbackCard.addArrangedSubview(cashbackHeader)
-        cashbackSelectButton.translatesAutoresizingMaskIntoConstraints = false
-        cashbackCard.addSubview(cashbackSelectButton)
-        NSLayoutConstraint.activate([
-            cashbackSelectButton.topAnchor.constraint(equalTo: cashbackCard.topAnchor),
-            cashbackSelectButton.leadingAnchor.constraint(equalTo: cashbackCard.leadingAnchor),
-            cashbackSelectButton.trailingAnchor.constraint(
-                equalTo: cashbackSwitch.leadingAnchor,
-                constant: -8
-            ),
-            cashbackSelectButton.bottomAnchor.constraint(equalTo: cashbackCard.bottomAnchor)
-        ])
-
-        let noteCard = makeCard()
-        noteCard.addArrangedSubview(makeTitle("cartNoteTitle".localized))
-        let textContainer = UIView()
-        commentTextView.translatesAutoresizingMaskIntoConstraints = false
-        commentPlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        textContainer.addSubview(commentTextView)
-        textContainer.addSubview(commentPlaceholderLabel)
-        NSLayoutConstraint.activate([
-            commentTextView.leadingAnchor.constraint(equalTo: textContainer.leadingAnchor),
-            commentTextView.trailingAnchor.constraint(equalTo: textContainer.trailingAnchor),
-            commentTextView.topAnchor.constraint(equalTo: textContainer.topAnchor),
-            commentTextView.bottomAnchor.constraint(equalTo: textContainer.bottomAnchor),
-            commentTextView.heightAnchor.constraint(equalToConstant: 92),
-            commentPlaceholderLabel.leadingAnchor.constraint(equalTo: commentTextView.leadingAnchor, constant: 15),
-            commentPlaceholderLabel.topAnchor.constraint(equalTo: commentTextView.topAnchor, constant: 12),
-            commentPlaceholderLabel.trailingAnchor.constraint(lessThanOrEqualTo: commentTextView.trailingAnchor, constant: -12)
-        ])
-        noteCard.addArrangedSubview(textContainer)
-
-        let totalsCard = makeCard()
-        totalsCard.spacing = 10
-        configureValueLabel(subtotalValueLabel)
-        configureValueLabel(discountValueLabel)
-        configureValueLabel(cashbackValueLabel)
-        configureValueLabel(totalValueLabel, bold: true)
-        totalsCard.addArrangedSubview(makeTotalRow(title: "price".localized, value: subtotalValueLabel))
-        discountRow.addArrangedSubview(makeLabel("cartDiscount".localized))
-        discountRow.addArrangedSubview(discountValueLabel)
-        cashbackRow.addArrangedSubview(makeLabel("cartCashback".localized))
-        cashbackRow.addArrangedSubview(cashbackValueLabel)
-        [discountRow, cashbackRow].forEach {
-            $0.axis = .horizontal
-            $0.distribution = .fill
-            totalsCard.addArrangedSubview($0)
-        }
-        let divider = UIView()
-        divider.backgroundColor = .separator
-        divider.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
-        totalsCard.addArrangedSubview(divider)
-        totalsCard.addArrangedSubview(makeTotalRow(title: "total".localized, value: totalValueLabel, bold: true))
-
-        [itemStackView, promoCard, cashbackCard, noteCard, totalsCard].forEach {
+        [shopNameLabel, itemStackView, promoCard, cashbackCard, noteCard].forEach {
             contentStackView.addArrangedSubview($0)
         }
+        contentStackView.setCustomSpacing(22, after: shopNameLabel)
+        contentStackView.setCustomSpacing(20, after: itemStackView)
 
-        bottomContainer.translatesAutoresizingMaskIntoConstraints = false
-        bottomContainer.backgroundColor = .systemBackground
-        bottomContainer.layer.shadowColor = UIColor.black.cgColor
-        bottomContainer.layer.shadowOpacity = 0.08
-        bottomContainer.layer.shadowOffset = CGSize(width: 0, height: -4)
-        bottomContainer.layer.shadowRadius = 12
-        checkoutButton.translatesAutoresizingMaskIntoConstraints = false
-        bottomContainer.addSubview(checkoutButton)
-
+        setupBottomContainer()
         setupEmptyState()
         addSubview(scrollView)
         scrollView.addSubview(contentStackView)
@@ -305,19 +257,13 @@ private extension CartView {
             scrollView.bottomAnchor.constraint(equalTo: bottomContainer.topAnchor),
 
             contentStackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 16),
-            contentStackView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
-            contentStackView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
-            contentStackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -24),
+            contentStackView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 18),
+            contentStackView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -18),
+            contentStackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -28),
 
             bottomContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
             bottomContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomContainer.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-
-            checkoutButton.topAnchor.constraint(equalTo: bottomContainer.topAnchor, constant: 12),
-            checkoutButton.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor, constant: 16),
-            checkoutButton.trailingAnchor.constraint(equalTo: bottomContainer.trailingAnchor, constant: -16),
-            checkoutButton.bottomAnchor.constraint(equalTo: bottomContainer.bottomAnchor, constant: -12),
-            checkoutButton.heightAnchor.constraint(equalToConstant: 56),
 
             emptyStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             emptyStackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -40),
@@ -331,8 +277,169 @@ private extension CartView {
         promoTextField.delegate = self
     }
 
+    func makePromoCard() -> UIStackView {
+        let card = makeCard(padding: .zero)
+        card.spacing = 0
+
+        let icon = UIImageView(image: UIImage(systemName: "ticket"))
+        icon.tintColor = .secondaryLabel
+        icon.contentMode = .scaleAspectFit
+        icon.widthAnchor.constraint(equalToConstant: 24).isActive = true
+
+        promoTitleLabel.text = "promocode".localized
+        promoTitleLabel.font = .systemFont(ofSize: 17, weight: .medium)
+        promoTitleLabel.textColor = .secondaryLabel
+
+        promoAccessoryImageView.image = UIImage(systemName: "chevron.right")
+        promoAccessoryImageView.tintColor = .secondaryLabel
+        promoAccessoryImageView.contentMode = .scaleAspectFit
+        promoAccessoryImageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
+
+        let headerStack = UIStackView(arrangedSubviews: [icon, promoTitleLabel, promoAccessoryImageView])
+        headerStack.axis = .horizontal
+        headerStack.alignment = .center
+        headerStack.spacing = 12
+        headerStack.translatesAutoresizingMaskIntoConstraints = false
+
+        let header = UIView()
+        header.addSubview(headerStack)
+        NSLayoutConstraint.activate([
+            header.heightAnchor.constraint(equalToConstant: 64),
+            headerStack.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 16),
+            headerStack.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -16),
+            headerStack.centerYAnchor.constraint(equalTo: header.centerYAnchor)
+        ])
+
+        let headerButton = UIButton(type: .system)
+        headerButton.translatesAutoresizingMaskIntoConstraints = false
+        headerButton.accessibilityLabel = "promocode".localized
+        headerButton.addTarget(self, action: #selector(promoHeaderTapped), for: .touchUpInside)
+        header.addSubview(headerButton)
+        NSLayoutConstraint.activate([
+            headerButton.topAnchor.constraint(equalTo: header.topAnchor),
+            headerButton.leadingAnchor.constraint(equalTo: header.leadingAnchor),
+            headerButton.trailingAnchor.constraint(equalTo: header.trailingAnchor),
+            headerButton.bottomAnchor.constraint(equalTo: header.bottomAnchor)
+        ])
+
+        promoEntryRow.axis = .horizontal
+        promoEntryRow.spacing = 10
+        promoEntryRow.isLayoutMarginsRelativeArrangement = true
+        promoEntryRow.layoutMargins = UIEdgeInsets(top: 0, left: 12, bottom: 12, right: 12)
+        promoEntryRow.addArrangedSubview(promoTextField)
+        promoEntryRow.addArrangedSubview(promoButton)
+        promoEntryRow.isHidden = true
+        promoTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        promoButton.widthAnchor.constraint(equalToConstant: 88).isActive = true
+
+        card.addArrangedSubview(header)
+        card.addArrangedSubview(promoEntryRow)
+        return card
+    }
+
+    func makeCashbackCard() -> UIStackView {
+        let card = makeCard()
+
+        let icon = UIImageView(image: UIImage(systemName: "banknote"))
+        icon.tintColor = .secondaryLabel
+        icon.contentMode = .scaleAspectFit
+        icon.widthAnchor.constraint(equalToConstant: 24).isActive = true
+
+        let titleLabel = makeLabel(
+            "cashbeck".localized,
+            font: .systemFont(ofSize: 17, weight: .medium)
+        )
+        cashbackBalanceLabel.font = .systemFont(ofSize: 15)
+        cashbackBalanceLabel.textColor = .secondaryLabel
+        let labels = UIStackView(arrangedSubviews: [titleLabel, cashbackBalanceLabel])
+        labels.axis = .vertical
+        labels.spacing = 2
+
+        let row = UIStackView(arrangedSubviews: [icon, labels, cashbackSwitch])
+        row.axis = .horizontal
+        row.alignment = .center
+        row.spacing = 12
+        card.addArrangedSubview(row)
+
+        cashbackSelectButton.translatesAutoresizingMaskIntoConstraints = false
+        card.addSubview(cashbackSelectButton)
+        NSLayoutConstraint.activate([
+            cashbackSelectButton.topAnchor.constraint(equalTo: card.topAnchor),
+            cashbackSelectButton.leadingAnchor.constraint(equalTo: card.leadingAnchor),
+            cashbackSelectButton.trailingAnchor.constraint(equalTo: cashbackSwitch.leadingAnchor, constant: -8),
+            cashbackSelectButton.bottomAnchor.constraint(equalTo: card.bottomAnchor)
+        ])
+        return card
+    }
+
+    func makeNoteCard() -> UIView {
+        let container = UIView()
+        commentTextView.translatesAutoresizingMaskIntoConstraints = false
+        commentPlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(commentTextView)
+        container.addSubview(commentPlaceholderLabel)
+        NSLayoutConstraint.activate([
+            commentTextView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            commentTextView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            commentTextView.topAnchor.constraint(equalTo: container.topAnchor),
+            commentTextView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            commentTextView.heightAnchor.constraint(equalToConstant: 104),
+            commentPlaceholderLabel.leadingAnchor.constraint(equalTo: commentTextView.leadingAnchor, constant: 16),
+            commentPlaceholderLabel.topAnchor.constraint(equalTo: commentTextView.topAnchor, constant: 16),
+            commentPlaceholderLabel.trailingAnchor.constraint(lessThanOrEqualTo: commentTextView.trailingAnchor, constant: -16)
+        ])
+        return container
+    }
+
+    func setupBottomContainer() {
+        bottomContainer.translatesAutoresizingMaskIntoConstraints = false
+        bottomContainer.backgroundColor = .systemBackground
+        bottomContainer.layer.borderWidth = 0.5
+        bottomContainer.layer.borderColor = UIColor.separator.withAlphaComponent(0.35).cgColor
+        bottomContainer.layer.shadowColor = UIColor.black.cgColor
+        bottomContainer.layer.shadowOpacity = 0.04
+        bottomContainer.layer.shadowOffset = CGSize(width: 0, height: -4)
+        bottomContainer.layer.shadowRadius = 12
+
+        configureValueLabel(subtotalValueLabel)
+        configureValueLabel(discountValueLabel)
+        configureValueLabel(cashbackValueLabel)
+        configureValueLabel(totalValueLabel, bold: true)
+
+        let totals = UIStackView()
+        totals.axis = .vertical
+        totals.spacing = 7
+        totals.addArrangedSubview(makeTotalRow(title: "cartDrinks".localized, value: subtotalValueLabel, muted: true))
+
+        discountRow.addArrangedSubview(makeLabel("cartDiscount".localized + ":", color: .secondaryLabel))
+        discountRow.addArrangedSubview(discountValueLabel)
+        discountRow.axis = .horizontal
+        discountRow.isHidden = true
+        totals.addArrangedSubview(discountRow)
+
+        cashbackRow.addArrangedSubview(makeLabel("cartCashback".localized + ":", color: .secondaryLabel))
+        cashbackRow.addArrangedSubview(cashbackValueLabel)
+        cashbackRow.axis = .horizontal
+        totals.addArrangedSubview(cashbackRow)
+
+        totals.addArrangedSubview(makeTotalRow(title: "total".localized, value: totalValueLabel, bold: true))
+
+        checkoutButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
+        let stack = UIStackView(arrangedSubviews: [totals, checkoutButton])
+        stack.axis = .vertical
+        stack.spacing = 14
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        bottomContainer.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: bottomContainer.topAnchor, constant: 16),
+            stack.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor, constant: 18),
+            stack.trailingAnchor.constraint(equalTo: bottomContainer.trailingAnchor, constant: -18),
+            stack.bottomAnchor.constraint(equalTo: bottomContainer.bottomAnchor, constant: -16)
+        ])
+    }
+
     func setupEmptyState() {
-        let imageView = UIImageView(image: UIImage(systemName: "bag"))
+        let imageView = UIImageView(image: UIImage(systemName: "cart"))
         imageView.tintColor = .tertiaryLabel
         imageView.contentMode = .scaleAspectFit
         imageView.heightAnchor.constraint(equalToConstant: 72).isActive = true
@@ -376,21 +483,43 @@ private extension CartView {
         let discount = max(cart.promoDiscount ?? 0, 0)
         let cashback = cashbackSwitch.isOn ? currentCashbackAmount : 0
         let finalTotal = max(subtotal - discount - cashback, 0)
+        let hasDeduction = discount + cashback > 0
 
-        subtotalValueLabel.text = subtotal.formattedWithCurrency
+        if hasDeduction {
+            subtotalValueLabel.attributedText = NSAttributedString(
+                string: subtotal.formattedWithCurrency,
+                attributes: [
+                    .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                    .foregroundColor: UIColor.secondaryLabel
+                ]
+            )
+        } else {
+            subtotalValueLabel.attributedText = nil
+            subtotalValueLabel.text = subtotal.formattedWithCurrency
+        }
         discountValueLabel.text = "-\(discount.formattedWithCurrency)"
         cashbackValueLabel.text = "-\(cashback.formattedWithCurrency)"
-        totalValueLabel.text = finalTotal.formattedWithCurrency
+        totalValueLabel.text = "+\(finalTotal.formattedWithCurrency)"
         discountRow.isHidden = discount == 0
-        cashbackRow.isHidden = cashback == 0
-        checkoutButton.setTitle(
-            "cartCheckout".localized + " · " + finalTotal.formattedWithCurrency,
-            for: .normal
-        )
     }
 
     func updateCommentPlaceholder() {
         commentPlaceholderLabel.isHidden = !commentTextView.text.isEmpty
+    }
+
+    @objc func promoHeaderTapped() {
+        if cart?.promoCode?.isEmpty == false {
+            promoTapped()
+            return
+        }
+
+        promoEntryRow.isHidden.toggle()
+        promoAccessoryImageView.image = UIImage(
+            systemName: promoEntryRow.isHidden ? "chevron.right" : "chevron.up"
+        )
+        if !promoEntryRow.isHidden {
+            promoTextField.becomeFirstResponder()
+        }
     }
 
     @objc func promoTapped() {
@@ -404,44 +533,49 @@ private extension CartView {
         onCheckout?()
     }
 
-    func makeCard() -> UIStackView {
+    func makeCard(padding: UIEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 12
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 18, left: 16, bottom: 18, right: 16)
+        stackView.layoutMargins = padding
         stackView.backgroundColor = .systemBackground
-        stackView.layer.cornerRadius = 16
+        stackView.layer.cornerRadius = 20
         stackView.layer.cornerCurve = .continuous
-        stackView.layer.shadowColor = UIColor.black.cgColor
-        stackView.layer.shadowOpacity = 0.04
-        stackView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        stackView.layer.shadowRadius = 5
         return stackView
     }
 
-    func makeTitle(_ text: String) -> UILabel {
-        makeLabel(text, font: .systemFont(ofSize: 17, weight: .semibold))
-    }
-
-    func makeLabel(_ text: String, font: UIFont = .systemFont(ofSize: 15)) -> UILabel {
+    func makeLabel(
+        _ text: String,
+        font: UIFont = .systemFont(ofSize: 15),
+        color: UIColor = .label
+    ) -> UILabel {
         let label = UILabel()
         label.text = text
         label.font = font
+        label.textColor = color
         return label
     }
 
     func configureValueLabel(_ label: UILabel, bold: Bool = false) {
-        label.font = .systemFont(ofSize: bold ? 17 : 15, weight: bold ? .bold : .regular)
+        label.font = .systemFont(ofSize: bold ? 19 : 15, weight: bold ? .bold : .regular)
+        label.textColor = bold ? .label : .secondaryLabel
         label.textAlignment = .right
         label.setContentHuggingPriority(.required, for: .horizontal)
     }
 
-    func makeTotalRow(title: String, value: UILabel, bold: Bool = false) -> UIStackView {
-        let row = UIStackView(arrangedSubviews: [
-            makeLabel(title, font: .systemFont(ofSize: bold ? 17 : 15, weight: bold ? .bold : .regular)),
-            value
-        ])
+    func makeTotalRow(
+        title: String,
+        value: UILabel,
+        bold: Bool = false,
+        muted: Bool = false
+    ) -> UIStackView {
+        let titleLabel = makeLabel(
+            title + ":",
+            font: .systemFont(ofSize: bold ? 19 : 15, weight: bold ? .medium : .regular),
+            color: muted ? .tertiaryLabel : (bold ? .label : .secondaryLabel)
+        )
+        let row = UIStackView(arrangedSubviews: [titleLabel, value])
         row.axis = .horizontal
         return row
     }
@@ -465,213 +599,5 @@ extension CartView: UITextViewDelegate, UITextFieldDelegate {
             promoTapped()
         }
         return true
-    }
-}
-
-final class CartItemCardView: UIView {
-    var onDecrease: (() -> Void)?
-    var onIncrease: (() -> Void)?
-    var onRemove: (() -> Void)?
-
-    private let decreaseButton = UIButton(type: .system)
-    private let quantityLabel = UILabel()
-    private let increaseButton = UIButton(type: .system)
-    private let activityIndicator = UIActivityIndicatorView(style: .medium)
-    private var quantity = 1
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupUI()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupUI()
-    }
-
-    func configure(with item: CartItem) {
-        quantity = max(item.quantity ?? 1, 1)
-        quantityLabel.text = String(quantity)
-        decreaseButton.setImage(
-            UIImage(systemName: "minus"),
-            for: .normal
-        )
-        decreaseButton.tintColor = .secondaryLabel
-
-        let titleLabel = viewWithTag(101) as? UILabel
-        let modifierLabel = viewWithTag(102) as? UILabel
-        let unitPriceLabel = viewWithTag(103) as? UILabel
-        let lineTotalLabel = viewWithTag(104) as? UILabel
-
-        titleLabel?.text = item.name
-        let modifierNames = item.modifiers?
-            .compactMap(\.name)
-            .filter { !$0.isEmpty }
-            .joined(separator: ", ")
-        modifierLabel?.text = modifierNames
-        modifierLabel?.isHidden = modifierNames?.isEmpty != false
-        unitPriceLabel?.text = (item.unitPrice ?? 0).formattedWithCurrency + " " + "cartEach".localized
-        lineTotalLabel?.text = (item.lineTotal ?? 0).formattedWithCurrency
-    }
-
-    func setLoading(_ loading: Bool) {
-        decreaseButton.isEnabled = !loading
-        increaseButton.isEnabled = !loading
-        activityIndicator.isHidden = !loading
-        loading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
-    }
-}
-
-private extension CartItemCardView {
-    func setupUI() {
-        backgroundColor = .systemBackground
-        layer.cornerRadius = 16
-        layer.cornerCurve = .continuous
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.04
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowRadius = 5
-
-        let titleLabel = makeLabel(font: .systemFont(ofSize: 18, weight: .semibold), tag: 101)
-        titleLabel.numberOfLines = 3
-        let modifierLabel = makeLabel(font: .systemFont(ofSize: 14), color: .secondaryLabel, tag: 102)
-        modifierLabel.numberOfLines = 0
-        let unitPriceLabel = makeLabel(font: .systemFont(ofSize: 15), color: .secondaryLabel, tag: 103)
-        let lineTotalLabel = makeLabel(font: .systemFont(ofSize: 18, weight: .bold), tag: 104)
-        lineTotalLabel.textAlignment = .right
-        lineTotalLabel.setContentHuggingPriority(.required, for: .horizontal)
-
-        let topRow = UIStackView(arrangedSubviews: [titleLabel, lineTotalLabel])
-        topRow.axis = .horizontal
-        topRow.alignment = .top
-        topRow.spacing = 12
-
-        let labels = UIStackView(arrangedSubviews: [topRow, modifierLabel, unitPriceLabel])
-        labels.axis = .vertical
-        labels.spacing = 5
-
-        [decreaseButton, increaseButton].forEach {
-            $0.backgroundColor = .secondarySystemBackground
-            $0.layer.cornerRadius = 22
-            $0.widthAnchor.constraint(equalToConstant: 44).isActive = true
-            $0.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        }
-        increaseButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        increaseButton.tintColor = .secondaryLabel
-        quantityLabel.font = .systemFont(ofSize: 17, weight: .semibold)
-        quantityLabel.textAlignment = .center
-        quantityLabel.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        activityIndicator.isHidden = true
-
-        let spacer = UIView()
-        let controls = UIStackView(arrangedSubviews: [spacer, activityIndicator, decreaseButton, quantityLabel, increaseButton])
-        controls.axis = .horizontal
-        controls.alignment = .center
-        controls.spacing = 6
-
-        let stack = UIStackView(arrangedSubviews: [labels, controls])
-        stack.axis = .vertical
-        stack.spacing = 16
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(stack)
-
-        NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: topAnchor, constant: 18),
-            stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18)
-        ])
-
-        decreaseButton.addTarget(self, action: #selector(decreaseTapped), for: .touchUpInside)
-        increaseButton.addTarget(self, action: #selector(increaseTapped), for: .touchUpInside)
-    }
-
-    func makeLabel(font: UIFont, color: UIColor = .label, tag: Int) -> UILabel {
-        let label = UILabel()
-        label.font = font
-        label.textColor = color
-        label.tag = tag
-        return label
-    }
-
-    @objc func decreaseTapped() {
-        quantity == 1 ? onRemove?() : onDecrease?()
-    }
-
-    @objc func increaseTapped() {
-        onIncrease?()
-    }
-}
-
-final class CartConflictAlertViewController: UIViewController {
-    var onClearAndAdd: (() -> Void)?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        modalPresentationStyle = .overFullScreen
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.72)
-
-        let card = UIStackView()
-        card.axis = .vertical
-        card.spacing = 12
-        card.isLayoutMarginsRelativeArrangement = true
-        card.layoutMargins = UIEdgeInsets(top: 28, left: 24, bottom: 24, right: 24)
-        card.backgroundColor = .systemBackground
-        card.layer.cornerRadius = 18
-        card.layer.cornerCurve = .continuous
-        card.translatesAutoresizingMaskIntoConstraints = false
-
-        let titleLabel = UILabel()
-        titleLabel.text = "cartConflictTitle".localized
-        titleLabel.font = .systemFont(ofSize: 21, weight: .bold)
-        titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 0
-
-        let messageLabel = UILabel()
-        messageLabel.text = "cartConflictMessage".localized
-        messageLabel.font = .systemFont(ofSize: 16)
-        messageLabel.textColor = .secondaryLabel
-        messageLabel.textAlignment = .center
-        messageLabel.numberOfLines = 0
-
-        let clearButton = UIButton(type: .system)
-        clearButton.setTitle("cartClearAndAdd".localized, for: .normal)
-        clearButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        clearButton.setTitleColor(.white, for: .normal)
-        clearButton.backgroundColor = .systemRed
-        clearButton.layer.cornerRadius = 12
-        clearButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
-
-        let backButton = UIButton(type: .system)
-        backButton.setTitle("cartGoBack".localized, for: .normal)
-        backButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-        backButton.setTitleColor(.label, for: .normal)
-        backButton.layer.borderWidth = 1
-        backButton.layer.borderColor = UIColor.separator.cgColor
-        backButton.layer.cornerRadius = 12
-        backButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
-
-        [titleLabel, messageLabel, clearButton, backButton].forEach { card.addArrangedSubview($0) }
-        card.setCustomSpacing(20, after: messageLabel)
-        view.addSubview(card)
-
-        NSLayoutConstraint.activate([
-            card.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
-            card.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
-            card.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-
-        clearButton.addTarget(self, action: #selector(clearTapped), for: .touchUpInside)
-        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
-    }
-
-    @objc private func clearTapped() {
-        dismiss(animated: true) { [weak self] in
-            self?.onClearAndAdd?()
-        }
-    }
-
-    @objc private func backTapped() {
-        dismiss(animated: true)
     }
 }

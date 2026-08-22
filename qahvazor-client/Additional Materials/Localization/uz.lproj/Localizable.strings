@@ -237,6 +237,7 @@ cartTitle = "Savatingiz";
 cartPromoPlaceholder = "Kodni kiriting";
 cartNoteTitle = "Barista uchun izoh";
 cartNotePlaceholder = "Izoh qo'shing (ixtiyoriy)";
+cartDrinks = "Ichimliklar";
 cartDiscount = "Promokod chegirmasi";
 cartCashback = "Keshbek";
 cartCheckout = "Rasmiylashtirish";
