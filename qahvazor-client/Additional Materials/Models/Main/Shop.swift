@@ -20,6 +20,7 @@ struct Shop: Codable {
     let urls: [SocialMedia]?
     let drinks: [Drinks]?
     let canAcceptOrders: Bool?
+    let open: Bool?
     let categories: [Categories]?
     let logoUrl: String?
 }

@@ -95,8 +95,11 @@ extension CodeConfirmViewController: CodeConfirmViewModelProtocol {
     func didFinishFetch(data: SignIn) {
         if let tokens = data.jwt {
             UserDefaults.standard.saveTokens(data: tokens)
-            resetTabBar()
         }
+        guard let isNewUser = data.isNewUser, isNewUser else {
+            return resetTabBar()
+        }
+        coordinator?.pushToChangeInfoVC(isNewUser: true)
     }
     
     func didFinishFetchResend(data: Auth) {
@@ -164,4 +167,3 @@ extension CodeConfirmViewController: KAPinFieldDelegate {
         nextSms(code: code)
     }
 }
-

@@ -20,4 +20,5 @@ enum APIError: Error {
     case notAuthorized
     case fromMessage
     case notEnoughBalance
+    case cartConflict
 }

@@ -20,8 +20,13 @@ final class MainCoordinator: Coordinator {
     
     func start() {
         let vc = MainViewController()
-        vc.tabBarItem = UITabBarItem(title: "home".localized, image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
-        vc.tabBarItem.tag = 0
+        let tabIcon = UIImage(named: AssetsImage.tabHome.rawValue)
+        vc.tabBarItem = UITabBarItem(
+            title: "",
+            image: tabIcon,
+            selectedImage: tabIcon
+        )
+        vc.tabBarItem.tag = AppTab.home.rawValue
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
@@ -69,13 +74,6 @@ final class MainCoordinator: Coordinator {
         vc.shopData = shop
         vc.coordinator = self
         vc.hidesBottomBarWhenPushed = true
-        navigationController.pushViewController(vc, animated: true)
-    }
-    
-    func pushToSubscriptionVC() {
-        let vc = SubscriptionViewController()
-        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
-        vc.coordinator = profileCoordinator
         navigationController.pushViewController(vc, animated: true)
     }
     

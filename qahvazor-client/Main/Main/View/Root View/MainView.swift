@@ -87,7 +87,7 @@ final class MainView: CustomView {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isSkeletonable = true
         collectionView.register(
-            UINib(nibName: CompanyCollectionViewCell.defaultReuseIdentifier, bundle: nil),
+            CompanyCollectionViewCell.self,
             forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier
         )
         return collectionView

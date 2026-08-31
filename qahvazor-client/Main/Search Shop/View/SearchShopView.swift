@@ -44,7 +44,7 @@ final class SearchShopView: CustomView {
         ])
 
         collectionView.register(
-            UINib(nibName: CompanyCollectionViewCell.defaultReuseIdentifier, bundle: nil),
+            CompanyCollectionViewCell.self,
             forCellWithReuseIdentifier: CompanyCollectionViewCell.defaultReuseIdentifier
         )
     }

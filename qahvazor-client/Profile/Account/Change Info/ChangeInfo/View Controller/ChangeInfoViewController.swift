@@ -21,6 +21,7 @@ class ChangeInfoViewController: UIViewController, ViewSpecificController, AlertV
     internal var isLoading = false
     internal var coordinator: ProfileCoordinator?
     private let viewModel = ChangeInfoViewModel()
+    var isNewUser = false
     
     // MARK: - Attributes
     var name: String? {
@@ -54,7 +55,12 @@ class ChangeInfoViewController: UIViewController, ViewSpecificController, AlertV
     
     // MARK: - Actions
     @objc func nameDoneButtonClicked(_ sender: Any) {
-        guard let text = view().nameTextField.text, name != text else { return }
+        guard !isNewUser, let text = view().nameTextField.text, name != text else { return }
+        update()
+    }
+    @IBAction func nextAction(_ sender: UIButton) {
+        guard isNameValid else { return }
+        view().endEditing(true)
         update()
     }
     @IBAction func genderAction(_ sender: UIButton) {
@@ -74,6 +80,12 @@ class ChangeInfoViewController: UIViewController, ViewSpecificController, AlertV
         navigationController?.navigationBar.clear()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view().nextButton.isHidden = !isNewUser
+        updateNextButtonState()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.reset()
@@ -83,7 +95,9 @@ class ChangeInfoViewController: UIViewController, ViewSpecificController, AlertV
 // MARK: - Networking
 extension ChangeInfoViewController: ChangeInfoViewModelProtocol {
     func didFinishFetch() {
-//        guard let name = view().nameTextField.text else { return }
+        guard !isNewUser else {
+            return resetTabBar()
+        }
         showSuccessAlert(message: "successRedactSaveAlert".localized)
     }
 }
@@ -95,18 +109,36 @@ extension ChangeInfoViewController {
         
         view().nameTextField.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(nameDoneButtonClicked))
         view().nameTextField.addTarget(self, action: #selector(nameDoneButtonClicked), for: .editingDidEndOnExit)
+        view().nameTextField.addTarget(self, action: #selector(nameDidChange), for: .editingChanged)
 
         setupGender()
     }
     
     func update() {
-        guard let name = view().nameTextField.text else { return }
+        guard let name = normalizedName, !name.isEmpty else { return }
         viewModel.updateMe(name: name, gender: gender, dateOfBirth: dateOfBirth)
+    }
+
+    @objc private func nameDidChange() {
+        updateNextButtonState()
+    }
+
+    private var normalizedName: String? {
+        view().nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private var isNameValid: Bool {
+        !(normalizedName?.isEmpty ?? true)
+    }
+
+    private func updateNextButtonState() {
+        view().setNextButtonEnabled(isNewUser && isNameValid)
     }
     
     private func setupGender() {
         view().genderButton.setMenuItems(items: [Gender.male, Gender.female]) { [weak self] gender in
             self?.gender = gender
+            guard self?.isNewUser == false else { return }
             self?.update()
         }
     }
@@ -116,6 +148,7 @@ extension ChangeInfoViewController {
 extension ChangeInfoViewController: BirthViewControllerDelegate {
     func didSelect(date: Int) {
         dateOfBirth = date
+        guard !isNewUser else { return }
         update()
     }
 }

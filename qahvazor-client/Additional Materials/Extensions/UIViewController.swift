@@ -47,10 +47,12 @@ extension UIViewController {
             
             let tabBar = TabBarController()
             
-            if let currentTabIndex = self.tabBarController?.selectedIndex {
-                tabBar.selectedIndex = currentTabIndex
-            } else if let index = index {
-                tabBar.selectedIndex = index
+            if let selectedController = self.tabBarController?.selectedViewController,
+               let currentTab = AppTab(rawValue: selectedController.tabBarItem.tag) {
+                tabBar.selectTab(currentTab)
+            } else if let index,
+                      let requestedTab = AppTab(rawValue: index) {
+                tabBar.selectTab(requestedTab)
             }
             
             window.rootViewController = tabBar

@@ -60,7 +60,7 @@ class MainViewController: UIViewController, ViewSpecificController, @MainActor A
         
         guard Purchase.isPurchased else { return }
         Purchase.isPurchased = false
-        tabBarController?.selectedIndex = 2
+        tabBarController?.selectTab(.orders)
     }
     
     deinit {

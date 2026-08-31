@@ -30,8 +30,6 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, @M
     
     @IBAction func mainButtonActions(_ sender: UIButton) {
         switch sender.tag {
-        case 0:
-            coordinator?.pushToSubscriptionVC()
         case 1:
             coordinator?.pushToLanguageVC(viewController: self)
         case 2:
@@ -42,6 +40,8 @@ class ProfileViewController: TextFieldViewController, ViewSpecificController, @M
             openURL(urlString: MainConstants.support.rawValue)
         case 5:
             coordinator?.pushToAccountVC(account: account)
+        case 6:
+            coordinator?.pushToSessionVC()
         default: break
         }
     }

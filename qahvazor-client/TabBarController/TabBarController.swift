@@ -17,6 +17,7 @@ final class TabBarController: UITabBarController {
     // MARK: - Attributes
     private let mainCoordinator = MainCoordinator(navigationController: UINavigationController())
     private let mapCoordinator = MapCoordinator(navigationController: UINavigationController())
+    private let cartCoordinator = CartCoordinator(navigationController: UINavigationController())
     private let historyCoordinator  = HistoryCoordinator(navigationController: UINavigationController())
     private let profileCoordinator = ProfileCoordinator(navigationController: UINavigationController())
     var lastViewController: UIViewController?
@@ -39,8 +40,18 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(cartCountDidUpdate(_:)),
+            name: .cartCountDidUpdate,
+            object: nil
+        )
+        CartBadgeManager.shared.refresh()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 // MARK: - Setup
@@ -53,14 +64,20 @@ private extension TabBarController {
         
         mainCoordinator.start()
         mapCoordinator.start()
+        cartCoordinator.start()
         historyCoordinator.start()
         profileCoordinator.start()
         
         let homeNav     = mainCoordinator.navigationController
         let mapNav      = mapCoordinator.navigationController
+        let cartNav     = cartCoordinator.navigationController
         let historyNav  = historyCoordinator.navigationController
         let profileNav  = profileCoordinator.navigationController
-        viewControllers = [homeNav, mapNav, historyNav, profileNav]
+        if UserDefaults.standard.isAuthed() {
+            viewControllers = [homeNav, mapNav, cartNav, historyNav, profileNav]
+        } else {
+            viewControllers = [homeNav, mapNav, historyNav, profileNav]
+        }
     }
     
     private func appearanceSettings() {
@@ -96,10 +113,25 @@ private extension TabBarController {
         animator.startAnimation()
         Haptic.selection.generate()
     }
+
+    @objc func cartCountDidUpdate(_ notification: Notification) {
+        let count = notification.userInfo?["count"] as? Int ?? 0
+        cartCoordinator.navigationController.tabBarItem.badgeValue = count > 0 ? String(count) : nil
+        cartCoordinator.navigationController.tabBarItem.badgeColor = .systemRed
+    }
 }
 
 extension UITabBar {
     func setup() {
-        tintColor = UIColor.label
+        tintColor = UIColor.appColor(.mainColor)
+    }
+}
+
+extension UITabBarController {
+    func selectTab(_ tab: AppTab) {
+        guard let index = viewControllers?.firstIndex(where: {
+            $0.tabBarItem.tag == tab.rawValue
+        }) else { return }
+        selectedIndex = index
     }
 }

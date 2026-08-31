@@ -19,8 +19,13 @@ final class ProfileCoordinator: Coordinator {
     
     func start() {
         let vc = ProfileViewController()
-        vc.tabBarItem = UITabBarItem(title: "profile".localized, image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
-        vc.tabBarItem.tag = 3
+        let tabIcon = UIImage(named: AssetsImage.tabProfile.rawValue)
+        vc.tabBarItem = UITabBarItem(
+            title: "",
+            image: tabIcon,
+            selectedImage: tabIcon
+        )
+        vc.tabBarItem.tag = AppTab.profile.rawValue
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
@@ -32,12 +37,13 @@ final class ProfileCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func pushToChangeInfoVC(name: String? = nil, gender: String? = nil, dateOfBirth: Int? = nil) {
+    func pushToChangeInfoVC(name: String? = nil, gender: String? = nil, dateOfBirth: Int? = nil, isNewUser: Bool = false) {
         let vc = ChangeInfoViewController()
         vc.coordinator = self
         vc.name = name
         vc.gender = gender
         vc.dateOfBirth = dateOfBirth
+        vc.isNewUser = isNewUser
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -58,16 +64,16 @@ final class ProfileCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func pushToSubscriptionVC() {
-        let vc = SubscriptionViewController()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
-    }
-    
     func pushToPaymentVC(amount: Double? = nil) {
         let vc = PaymentViewController()
         vc.coordinator = self
         vc.amount = amount
+        navigationController.pushViewController(vc, animated: true)
+    }
+
+    func pushToSessionVC() {
+        let vc = SessionViewController()
+        vc.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(vc, animated: true)
     }
 

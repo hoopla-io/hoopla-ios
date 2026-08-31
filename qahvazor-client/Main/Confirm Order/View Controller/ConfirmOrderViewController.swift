@@ -27,12 +27,17 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
             if let imageUrl = drinkData?.pictureUrl {
                 view().imageView.setImage(with: imageUrl)
             }
-            productPrice = drinkData?.productPrice ?? 0.0
+            baseProductPrice = drinkData?.productPrice ?? 0.0
+            refreshPrice()
         }
     }
+    private var baseProductPrice: Double = 0
+    private var quantity = 1
     var productPrice: Double = 0.0 {
         didSet {
-            view().orderButton.setTitle(productPrice.formattedWithCurrency, for: .normal)
+            view().setOrderButtonTitle(
+                "addToCart".localized + " · " + productPrice.formattedWithCurrency
+            )
         }
     }
     var shopData: Shop? {
@@ -45,21 +50,24 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
     var selectedModifiers = [Modification]()
     var cashbackPercent: Int?
     
-    //MARK: - Actions
-    @IBAction func confirmOrderAction(_ sender: Any) {
+    // MARK: - Life cycles
+    override func loadView() {
+        view = ConfirmOrderView()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        appearanceSettings()
+    }
+
+    // MARK: - Actions
+    private func confirmOrderAction() {
         if let validationMessage = modifierGroupDataProvider?.validationMessage() {
             showWarningAlert(message: validationMessage)
             return
         }
 
-        coordinator?.pushToCheckoutVC(
-            shopData: shopData,
-            drinkData: drinkData,
-            totalPrice: productPrice,
-            comment: view().textView.text,
-            modifiers: selectedModifiers,
-            cashbackPercent: cashbackPercent
-        )
+        addToCart()
     }
     
     func changePricingAction() {
@@ -68,21 +76,21 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
         let modifiersPrice = selectedModifiers.reduce(0.0) {
             $0 + ($1.modificationPrice ?? 0.0)
         }
-        productPrice = basePrice + modifiersPrice
+        productPrice = (basePrice + modifiersPrice) * Double(quantity)
     }
-    
-    // MARK: - Life cycles
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        appearanceSettings()
-    }
-    
 }
 
 // MARK: - Networking
 extension ConfirmOrderViewController: ConfirmOrderViewModelProtocol {
     func didFinishFetch(data: [ModifierGroups]?, cashbackPercent: Int?) {
         let groups = data?.filter { $0.options?.isEmpty == false } ?? []
+//        let hasRequiredModifiers = groups.contains { ($0.minSelect ?? 0) > 0 }
+//
+//        if !hasRequiredModifiers {
+//            addToCart()
+//            return
+//        }
+
         view().collectionView.isHidden = groups.isEmpty
         if groups.isEmpty {
             view().collectionViewHeightConstraint.constant = 0
@@ -93,6 +101,24 @@ extension ConfirmOrderViewController: ConfirmOrderViewModelProtocol {
         
         self.cashbackPercent = cashbackPercent
     }
+
+    func didAddToCart(cart: Cart) {
+        showSuccessAlert(message: "cartAdded".localized)
+        navigationController?.popViewController(animated: true)
+    }
+
+    func didEncounterCartConflict() {
+        let alert = CartConflictAlertViewController()
+        alert.modalPresentationStyle = .overFullScreen
+        alert.modalTransitionStyle = .crossDissolve
+        alert.onClearAndAdd = { [weak self] in
+            guard let self else { return }
+            self.viewModel.clearCart { [weak self] in
+                self?.addToCart()
+            }
+        }
+        present(alert, animated: true)
+    }
 }
 // MARK: - Other funcs
 extension ConfirmOrderViewController {
@@ -100,6 +126,20 @@ extension ConfirmOrderViewController {
         navigationItem.largeTitleDisplayMode = .never
         viewModel.delegate = self
         navigationItem.title = "orderSummary".localized
+        view().textView.isHidden = true
+        view().onConfirmOrder = { [weak self] in
+            self?.confirmOrderAction()
+        }
+        view().onDecreaseQuantity = { [weak self] in
+            guard let self, self.quantity > 1 else { return }
+            self.quantity -= 1
+            self.refreshPrice()
+        }
+        view().onIncreaseQuantity = { [weak self] in
+            guard let self, self.quantity < 99 else { return }
+            self.quantity += 1
+            self.refreshPrice()
+        }
 
         let modifierGroupDataProvider = ModifierGroupDataProvider(viewController: self)
         modifierGroupDataProvider.collectionView = view().collectionView
@@ -113,5 +153,21 @@ extension ConfirmOrderViewController {
     func updateSelectedModifiers(_ modifiers: [Modification]) {
         selectedModifiers = modifiers
         changePricingAction()
+    }
+
+    private func refreshPrice() {
+        view().setQuantity(quantity)
+        changePricingAction()
+    }
+
+    private func addToCart() {
+        guard let shopId = shopData?.id ?? shopData?.shopId,
+              let drinkId = drinkData?.id else { return }
+        viewModel.addToCart(
+            drinkId: drinkId,
+            shopId: shopId,
+            quantity: quantity,
+            modifiers: selectedModifiers
+        )
     }
 }

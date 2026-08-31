@@ -26,4 +26,11 @@ enum AssetsImage: String {
     case closeCircle
     case placeholder
     case empty
+
+    // MARK: - Tab Bar
+    case tabHome
+    case tabMap
+    case tabCart
+    case tabOrders
+    case tabProfile
 }
