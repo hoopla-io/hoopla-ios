@@ -153,6 +153,7 @@ yes = "Yes";
 successBoughtSubscriptionAlert = "You have successfully purchased a subscription!";
 incorrect = "Incorrect";
 cantOrder = "The cafe shop is temporarily not accepting orders";
+notAcceptingOrders = "Not accepting orders";
 
 //MARK: - Others
 som = "sum";

@@ -153,6 +153,7 @@ yes = "Да";
 successBoughtSubscriptionAlert = "Вы успешно приобрели подписку!";
 incorrect = "Неправильный";
 cantOrder = "Кофейня временно не принимает заказы";
+notAcceptingOrders = "Заказы не принимаются";
 
 //MARK: - Others
 som = "сум";

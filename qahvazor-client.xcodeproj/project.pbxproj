@@ -68,6 +68,7 @@
 		05FF55352F46345700918E0C /* CashbeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55342F46345700918E0C /* CashbeckView.swift */; };
 		05FF55372F46345C00918E0C /* CashbeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05FF55362F46345C00918E0C /* CashbeckView.xib */; };
 		05FF55392F46346600918E0C /* CashbeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FF55382F46346600918E0C /* CashbeckViewController.swift */; };
+		1D0B689B30458CE1007AEB1A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0B689A30458CE1007AEB1A /* MapView.swift */; };
 		1DE4BD2830399F78005E9682 /* CartItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4BD2730399F78005E9682 /* CartItemCardView.swift */; };
 		1DE4BD2A30399FD0005E9682 /* CartConflictAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4BD2930399FD0005E9682 /* CartConflictAlertViewController.swift */; };
 		521378B32F87B0DB00A4554E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521378B22F87B0DB00A4554E /* Categories.swift */; };
@@ -357,6 +358,7 @@
 		05FF55342F46345700918E0C /* CashbeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckView.swift; sourceTree = "<group>"; };
 		05FF55362F46345C00918E0C /* CashbeckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashbeckView.xib; sourceTree = "<group>"; };
 		05FF55382F46346600918E0C /* CashbeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashbeckViewController.swift; sourceTree = "<group>"; };
+		1D0B689A30458CE1007AEB1A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1DE4BD2730399F78005E9682 /* CartItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCardView.swift; sourceTree = "<group>"; };
 		1DE4BD2930399FD0005E9682 /* CartConflictAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartConflictAlertViewController.swift; sourceTree = "<group>"; };
 		521378B22F87B0DB00A4554E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
@@ -959,6 +961,7 @@
 			children = (
 				05CDA6752EAFC209000562F0 /* MapCoordinator.swift */,
 				05B84C3D2EAE2FF900AB66B2 /* View Controller */,
+				1D0B689930458CD5007AEB1A /* View */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1131,6 +1134,14 @@
 				05FF55382F46346600918E0C /* CashbeckViewController.swift */,
 			);
 			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		1D0B689930458CD5007AEB1A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D0B689A30458CE1007AEB1A /* MapView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1D82A956301BA0FB0003D6FE /* Session */ = {
@@ -2528,6 +2539,7 @@
 				052E9AA22EB7A754002A9F61 /* AccountViewController.swift in Sources */,
 				52AD94FB2F6139B400F9021E /* HistoryDetailViewController.swift in Sources */,
 				052E9AA62EB7A754002A9F61 /* AccountViewModel.swift in Sources */,
+				1D0B689B30458CE1007AEB1A /* MapView.swift in Sources */,
 				056ECCBD2EAFBB3400FC4A4F /* MapViewController.swift in Sources */,
 				05E0581A30023AE700D51C59 /* Giftcard.swift in Sources */,
 				752330D52D197B210090997E /* URLComponents.swift in Sources */,
@@ -2724,7 +2736,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -2738,7 +2750,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2758,7 +2770,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "qahvazor-client/qahvazor-client.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7HCQ68YM6S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "qahvazor-client/Info.plist";
@@ -2772,7 +2784,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "alphazet.qahvazor-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

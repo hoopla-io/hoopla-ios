@@ -13,8 +13,11 @@ import SDWebImage
 final class MapViewController: UIViewController {
     var coordinator: MapCoordinator?
     private let mapView = MKMapView()
+    private let shopPreviewView = ShopPreviewView()
     private let locationManager = CLLocationManager()
     private let regionMeters: CLLocationDistance = 1_000
+    private var selectedShop: Shop?
+    private var selectedShopAnnotation: ShopAnnotation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,8 @@ final class MapViewController: UIViewController {
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+
+        setupShopPreview()
 
         mapView.delegate = self
         mapView.showsCompass = true
@@ -75,6 +80,88 @@ final class MapViewController: UIViewController {
         }
     }
 
+    private func setupShopPreview() {
+        shopPreviewView.translatesAutoresizingMaskIntoConstraints = false
+        shopPreviewView.isHidden = true
+        shopPreviewView.alpha = 0
+        view.addSubview(shopPreviewView)
+
+        NSLayoutConstraint.activate([
+            shopPreviewView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            shopPreviewView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            shopPreviewView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
+        ])
+
+        shopPreviewView.onClose = { [weak self] in
+            self?.dismissShopPreview()
+        }
+        shopPreviewView.onOrder = { [weak self] in
+            guard let self, let shop = self.selectedShop else { return }
+            self.coordinator?.pushToShopDetail(
+                id: shop.shopId ?? 0,
+                name: shop.name,
+                distance: shop.distance
+            )
+        }
+    }
+
+    private func presentShopPreview(for shop: Shop) {
+        selectedShop = shop
+        shopPreviewView.configure(with: shop)
+
+        if shopPreviewView.isHidden {
+            shopPreviewView.isHidden = false
+            shopPreviewView.transform = CGAffineTransform(translationX: 0, y: 24)
+        }
+
+        UIView.animate(
+            withDuration: 0.28,
+            delay: 0,
+            usingSpringWithDamping: 0.88,
+            initialSpringVelocity: 0.4,
+            options: [.curveEaseOut, .beginFromCurrentState]
+        ) {
+            self.shopPreviewView.alpha = 1
+            self.shopPreviewView.transform = .identity
+        }
+    }
+
+    private func dismissShopPreview(deselectAnnotation: Bool = true) {
+        updateMarkerSelection(selectedView: nil)
+        selectedShop = nil
+        selectedShopAnnotation = nil
+
+        if deselectAnnotation, let annotation = mapView.selectedAnnotations.first {
+            mapView.deselectAnnotation(annotation, animated: true)
+        }
+
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0,
+            options: [.curveEaseIn, .beginFromCurrentState]
+        ) {
+            self.shopPreviewView.alpha = 0
+            self.shopPreviewView.transform = CGAffineTransform(translationX: 0, y: 18)
+        } completion: { _ in
+            guard self.shopPreviewView.alpha == 0 else { return }
+            self.shopPreviewView.isHidden = true
+        }
+    }
+
+    private func updateMarkerSelection(selectedView: ShopAnnotationView?) {
+        mapView.annotations.forEach { annotation in
+            guard let markerView = mapView.view(for: annotation) as? ShopAnnotationView else { return }
+            markerView.setSelectionAppearance(
+                isSelected: markerView === selectedView,
+                animated: true
+            )
+        }
+
+        if let selectedView {
+            selectedView.superview?.bringSubviewToFront(selectedView)
+        }
+    }
+
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -106,126 +193,30 @@ extension MapViewController: MKMapViewDelegate {
         }
 
         let view = mapView.dequeueReusableAnnotationView(withIdentifier: ShopAnnotationView.reuseIdentifier, for: annotation) as! ShopAnnotationView
-        view.canShowCallout = true
+        view.canShowCallout = false
         view.clusteringIdentifier = "place"
-        view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        let isSelected = selectedShopAnnotation === annotation
+        view.setSelectionAppearance(
+            isSelected: isSelected,
+            animated: false
+        )
         return view
     }
 
-    // Tap on callout → route in Apple Maps
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let item = (view.annotation as? ShopAnnotation)?.shop else { return }
-        coordinator?.pushToShopDetail(id: item.shopId ?? 0, name: item.name, distance: item.distance)
-    }
-}
-
-private final class ShopAnnotation: NSObject, MKAnnotation {
-    let shop: Shop
-    let coordinate: CLLocationCoordinate2D
-
-    var title: String? {
-        shop.name
-    }
-
-    var subtitle: String? {
-        shop.distance?.formatDistance()
-    }
-
-    init(shop: Shop) {
-        self.shop = shop
-        self.coordinate = CLLocationCoordinate2D(latitude: shop.location?.lat ?? 0, longitude: shop.location?.lng ?? 0)
-        super.init()
-    }
-}
-
-private final class ShopAnnotationView: MKAnnotationView {
-    static let reuseIdentifier = "ShopAnnotationView"
-
-    private enum Layout {
-        static let viewSize = CGSize(width: 44, height: 52)
-        static let logoSize = CGSize(width: 36, height: 36)
-        static let pointerSize = CGSize(width: 14, height: 14)
-        static let logoInset: CGFloat = 4
-    }
-
-    private let containerView = UIView()
-    private let pointerView = UIView()
-    private let imageView = UIImageView()
-
-    private static let placeholderImage = UIImage(named: "placeHolder") ?? UIImage(named: "placeholder") ?? UIImage()
-
-    override var annotation: MKAnnotation? {
-        didSet {
-            configure()
-        }
-    }
-
-    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
-        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        setupView()
-        configure()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
-        configure()
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        imageView.sd_cancelCurrentImageLoad()
-        imageView.image = Self.placeholderImage
-    }
-
-    private func setupView() {
-        bounds = CGRect(origin: .zero, size: Layout.viewSize)
-        centerOffset = CGPoint(x: 0, y: -Layout.viewSize.height / 2)
-        calloutOffset = CGPoint(x: 0, y: -4)
-
-        pointerView.frame = CGRect(
-            x: (Layout.viewSize.width - Layout.pointerSize.width) / 2,
-            y: Layout.viewSize.height - Layout.pointerSize.height - 5,
-            width: Layout.pointerSize.width,
-            height: Layout.pointerSize.height
-        )
-        pointerView.backgroundColor = .systemBackground
-        pointerView.transform = CGAffineTransform(rotationAngle: .pi / 4)
-
-        containerView.frame = CGRect(x: 0, y: 0, width: Layout.viewSize.width, height: Layout.viewSize.width)
-        containerView.backgroundColor = .systemBackground
-        containerView.layer.cornerRadius = Layout.viewSize.width / 2
-        containerView.layer.borderWidth = 2
-        containerView.layer.borderColor = UIColor.systemBackground.cgColor
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOpacity = 0.18
-        containerView.layer.shadowRadius = 5
-        containerView.layer.shadowOffset = CGSize(width: 0, height: 2)
-
-        imageView.frame = CGRect(
-            x: Layout.logoInset,
-            y: Layout.logoInset,
-            width: Layout.logoSize.width,
-            height: Layout.logoSize.height
-        )
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = Layout.logoSize.width / 2
-        imageView.image = Self.placeholderImage
-
-        containerView.addSubview(imageView)
-        addSubview(pointerView)
-        addSubview(containerView)
-    }
-
-    private func configure() {
-        guard let shop = (annotation as? ShopAnnotation)?.shop else { return }
-
-        guard let logoUrl = shop.logoUrl, let url = URL(string: logoUrl) else {
-            imageView.image = Self.placeholderImage
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? ShopAnnotation else {
+            dismissShopPreview(deselectAnnotation: false)
             return
         }
+        selectedShopAnnotation = annotation
+        updateMarkerSelection(selectedView: view as? ShopAnnotationView)
+        mapView.setCenter(annotation.coordinate, animated: true)
+        presentShopPreview(for: annotation.shop)
+    }
 
-        imageView.sd_setImage(with: url, placeholderImage: Self.placeholderImage)
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? ShopAnnotation,
+              selectedShopAnnotation === annotation else { return }
+        dismissShopPreview(deselectAnnotation: false)
     }
 }

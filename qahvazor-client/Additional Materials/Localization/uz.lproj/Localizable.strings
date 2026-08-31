@@ -153,6 +153,7 @@ yes = "Ha";
 successBoughtSubscriptionAlert = "Siz obunani muvaffaqiyatli sotib oldingiz!";
 incorrect = "Noto'g'ri";
 cantOrder = "Vaqtincha buyurtma berib bo'lmaydi";
+notAcceptingOrders = "Buyurtma qabul qilinmayapti";
 
 //MARK: - Others
 som = "so'm";
