@@ -54,8 +54,7 @@ actor JSONDownloader {
     
     func jsonTask(
         baseUrl: MainConstants = .host,
-        api: MainConstants = .api,
-        path: MainConstants = .path1,
+        path: MainConstants = .path2,
         url: String,
         query: String? = nil,
         requestMethod: HTTPMethod,
@@ -69,7 +68,7 @@ actor JSONDownloader {
         var components = URLComponents()
         components.scheme = MainConstants.scheme.rawValue
         components.host   = baseUrl.rawValue
-        components.path   = api.rawValue + path.rawValue + url
+        components.path   = path.rawValue + url
         if let query {
             components.query = query
         }
@@ -89,6 +88,7 @@ actor JSONDownloader {
         headers.add(name: Headers.platform.rawValue, value: deviceInfo.platform)
         headers.add(name: Headers.deviceId.rawValue, value: deviceInfo.deviceId)
         headers.add(name: Headers.appVersion.rawValue, value: deviceInfo.appVersion)
+        headers.add(name: Headers.language.rawValue, value: UserDefaults.standard.getLocalization())
         
         let params: [String: Any]? = requestMethod == .get ? nil : parameters
         var encoding: ParameterEncoding
@@ -264,7 +264,7 @@ extension JSONDownloader: @preconcurrency RequestRetrier, @preconcurrency Reques
         var components = URLComponents()
         components.scheme = MainConstants.scheme.rawValue
         components.host   = MainConstants.host.rawValue
-        components.path   = MainConstants.api.rawValue + MainConstants.path1.rawValue + url
+        components.path   = MainConstants.path2.rawValue + url
         components.query = query
         
         guard let URL = components.url else { return }

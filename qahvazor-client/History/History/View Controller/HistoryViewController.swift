@@ -59,7 +59,7 @@ extension HistoryViewController: HistoryViewModelProtocol {
 extension HistoryViewController {
     private func appearanceSettings() {
         viewModel.delegate = self
-        navigationItem.title = "history".localized
+        navigationItem.title = "transactions".localized
         navigationController?.navigationBar.prefersLargeTitles = false
         
         let dataProvider = HistoryDataProvider(viewController: self)

@@ -31,7 +31,7 @@ final class HistoryViewModel {
         ]
         
         Task { [weak self] in
-            await JSONDownloader.shared.jsonTask(url: EndPoints.ordersList.rawValue, requestMethod: .get, parameters: params, completionHandler: { [weak self]  (result) in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.ordersHistory.rawValue, requestMethod: .get, parameters: params, completionHandler: { [weak self]  (result) in
                 guard let self = self else { return }
                 switch result {
                 case .Error(let error, let message):
@@ -94,5 +94,4 @@ final class HistoryViewModel {
     }
     
 }
-
 

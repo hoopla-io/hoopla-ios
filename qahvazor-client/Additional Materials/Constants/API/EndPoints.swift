@@ -12,7 +12,7 @@ enum EndPoints: String {
     // MARK: - Login
     case signIn = "auth/login"
     case resendSms = "auth/resend-sms"
-    case confirmSms = "auth/confirm-sms"
+    case confirm = "auth/confirm"
     
     // MARK: - Main
     case partners = "partners"
@@ -22,7 +22,7 @@ enum EndPoints: String {
     case partner = "partners/partner"
     case partnerShops = "shops/partner-shops"
     case shop = "shops/shop"
-    case drinks = "shops/drinks"
+    case products = "shops/products"
     case createOrder = "user/orders/create"
     case activeOrders = "user/orders/active"
     case checkPromocode = "user/orders/check-promocode"
@@ -39,7 +39,7 @@ enum EndPoints: String {
     case storiesList = "stories/list"
     
     // MARK: - History
-    case ordersList = "user/orders/orders-list"
+    case ordersHistory = "user/orders/history"
     case orders = "user/orders"
     case feedbacks = "orders/feedbacks"
     case pending = "orders/feedbacks/pending"

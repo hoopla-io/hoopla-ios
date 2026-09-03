@@ -27,7 +27,8 @@ final class ProfileViewModel {
     func numberSignIn(number: String) {
         
         let params: [String : String] = [
-            Parameters.phoneNumber.rawValue : number
+            Parameters.phoneNumber.rawValue : number,
+            Parameters.channel.rawValue : Parameters.sms.rawValue
         ]
         
         delegate?.showActivityIndicator()

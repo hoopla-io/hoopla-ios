@@ -27,6 +27,9 @@ enum AssetsImage: String {
     case placeholder
     case empty
 
+    // MARK: - History
+    case drinkPlaceholder
+
     // MARK: - Tab Bar
     case tabHome
     case tabMap

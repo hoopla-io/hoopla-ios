@@ -11,7 +11,7 @@ enum MainConstants: String {
     case scheme = "https"
     case host = "api.hoopla.uz"
     case api  = "/api"
-    case path1 = "/v1/"
+    case path2 = "/v2/"
     case jsonDownloader = "com.hoopla.JSONDownloader"
     
     case termsOfUse = "https://hoopla.uz/uz/terms-of-use"

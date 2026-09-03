@@ -68,7 +68,7 @@ final class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func pushToConfirmOrderVC(viewController: UIViewController, data: Drinks, shop: Shop?) {
+    func pushToConfirmOrderVC(viewController: UIViewController, data: Products, shop: Shop?) {
         let vc = ConfirmOrderViewController()
         vc.drinkData = data
         vc.shopData = shop
@@ -108,7 +108,7 @@ final class MainCoordinator: Coordinator {
     
     func pushToCheckoutVC(
         shopData: Shop?,
-        drinkData: Drinks?,
+        drinkData: Products?,
         totalPrice: Double,
         comment: String?,
         modifiers: [Modification],

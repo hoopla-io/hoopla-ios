@@ -18,32 +18,10 @@ class HistoryDetailViewController: UIViewController, ViewSpecificController, @Ma
     let viewModel = HistoryViewModel()
     
     // MARK: - Attributes
-    var totalPrice: Double = 0.0 {
-        didSet {
-            view().totalPriceLabel.text = totalPrice.formattedWithCurrency
-        }
-    }
-    var cashbackUsed: Double? {
-        didSet {
-            view().cashbackUsedLabel.text = ("- " + (cashbackUsed?.formattedWithCurrency ?? "0"))
-        }
-    }
-    var cashbackEarned: Double? {
-        didSet {
-            view().cashbackEarnedLabel.text = ("+ " + (cashbackEarned?.formattedWithCurrency ?? "0"))
-        }
-    }
     var data: OrderHistory? {
         didSet {
-            view().shopLabel.text = data?.shopName
-            view().drinkTitleLabel.text = data?.drinkName
-            view().idLabel.text = String(data?.id ?? 0)
-            totalPrice = data?.productPrice ?? 0.0
-            cashbackEarned = data?.cashbackEarned
-            cashbackUsed = data?.cashbackUsed
-            navigationItem.title = DateFormatter.string(timestamp: data?.purchasedAtUnix, formatter: .fullDate)
-            view().statusLabel.text = data?.orderStatus?.localized
-            setStatusColor(data?.orderStatus)
+            guard isViewLoaded, let data else { return }
+            configure(with: data)
         }
     }
     
@@ -70,9 +48,15 @@ class HistoryDetailViewController: UIViewController, ViewSpecificController, @Ma
     }
     
     // MARK: - Life cycles
+    override func loadView() {
+        view = HistoryDetailView()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         appearanceSettings()
+        setupActions()
+        if let data { configure(with: data) }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,25 +69,8 @@ class HistoryDetailViewController: UIViewController, ViewSpecificController, @Ma
 // MARK: - Networking
 extension HistoryDetailViewController: HistoryViewModelProtocol {
     func didFinishFetch(data: OrderHistory?) {
+        guard let data else { return }
         self.data = data
-        if let drinkImageUrl = data?.drinkImageUrl {
-            view().imageView.setImage(with: drinkImageUrl)
-        }
-        view().getButton.isHidden = data?.fiscalLink == nil
-        
-        let orderStatus = OrderStatus(rawValue: data?.orderStatus ?? OrderStatus.cancelled.rawValue)
-        view().completedButtonInfo.isHidden = !(orderStatus == .completed)
-        view().cancelledButtonInfo.isHidden = !(orderStatus == .cancelled)
-        view().cancelledButton.isHidden = !(orderStatus == .pending_payment)
-        view().continuePaymentButton.isHidden = !(orderStatus == .pending_payment)
-        view().getOrderButton.isHidden = (orderStatus == .cancelled)
-        
-        guard let items = data?.items else { return }
-        for i in items.enumerated() {
-            view().stackViews[i.offset].isHidden = false
-            view().titles[i.offset].text = i.element.name
-            view().prices[i.offset].text = ("+" + (i.element.price?.formattedWithCurrency ?? "0"))
-        }
     }
     
     func didFinishFetchCancel() {
@@ -117,24 +84,21 @@ extension HistoryDetailViewController {
         viewModel.delegate = self
         navigationController?.navigationBar.prefersLargeTitles = false
     }
-    
-    func setStatusColor(_ type: String?) {
-        guard let type = type, let colorType = OrderStatus(rawValue: type) else {
-            view().statusLabel.textColor = .appColor(.green)
-            return
+
+    private func setupActions() {
+        view().getOrderButton.addTarget(self, action: #selector(getOrderAction(_:)), for: .touchUpInside)
+        view().getButton.addTarget(self, action: #selector(getCheckAction(_:)), for: .touchUpInside)
+        view().continuePaymentButton.addTarget(self, action: #selector(checkoutAction(_:)), for: .touchUpInside)
+        view().cancelledButton.addTarget(self, action: #selector(cancelAction(_:)), for: .touchUpInside)
+        view().onRate = { [weak self] in
+            guard let self, let data else { return }
+            (coordinator as? HistoryCoordinator)?.presentReviewVC(data: data)
         }
-        switch colorType {
-        case .pending, .preparing, .pending_payment:
-            view().statusLabel.textColor = .appColor(.orange)
-        case .cancelled:
-            view().statusLabel.textColor = .appColor(.red)
-        case .created:
-            view().statusLabel.textColor = .lightGray
-        case .completed:
-            view().statusLabel.textColor = .appColor(.green)
-        default:
-            view().statusLabel.textColor = .lightGray
-        }
+    }
+
+    private func configure(with data: OrderHistory) {
+        navigationItem.title = data.shopName ?? data.partnerName
+        view().configure(with: data)
     }
     
     func showAlertCancel(_ buttonAction: (() -> Void)? = nil) {

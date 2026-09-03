@@ -37,6 +37,8 @@ enum Parameters: String {
     
     // MARK: - Profile
     case phoneNumber = "phoneNumber"
+    case channel = "channel"
+    case sms = "sms"
     case sessionId = "sessionId"
     case code = "code"
     case refreshToken = "refreshToken"

@@ -23,14 +23,14 @@ final class CodeConfirmViewModel {
             let deviceInfo = await ClientDeviceInfo.current
             let params: [String : Any] = [
                 Parameters.sessionId.rawValue : sessionId,
-                Parameters.code.rawValue : Int(code) ?? 0,
+                Parameters.code.rawValue : code,
                 "deviceName": deviceInfo.deviceName,
                 "platform": deviceInfo.platform,
                 "deviceId": deviceInfo.deviceId,
                 "appVersion": deviceInfo.appVersion
             ]
             
-            await JSONDownloader.shared.jsonTask(url: EndPoints.confirmSms.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.confirm.rawValue, requestMethod: .post, parameters: params, completionHandler: { [weak self]  (result) in
                 guard let self = self else { return }
                 switch result {
                 case .Error(let error, let message):

@@ -35,4 +35,5 @@ enum Headers: String {
     case platform = "X-Platform"
     case deviceId = "X-Device-Id"
     case appVersion = "X-App-Version"
+    case language = "X-App-Language"
 }

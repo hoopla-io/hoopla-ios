@@ -53,4 +53,21 @@ final class HistoryCoordinator: Coordinator {
         }
         navigationController.present(vc, animated: true)
     }
+
+    func presentReviewVC(data: OrderHistory) {
+        let viewController = ReviewViewController()
+        viewController.data = data
+        if let sheet = viewController.sheetPresentationController {
+            sheet.preferredCornerRadius = 16
+            sheet.prefersGrabberVisible = true
+
+            let reviewIdentifier = UISheetPresentationController.Detent.Identifier("historyReview")
+            let reviewDetent = UISheetPresentationController.Detent.custom(identifier: reviewIdentifier) { context in
+                context.maximumDetentValue * 0.75
+            }
+            sheet.detents = [reviewDetent, .large()]
+            sheet.selectedDetentIdentifier = reviewIdentifier
+        }
+        navigationController.present(viewController, animated: true)
+    }
 }

@@ -18,7 +18,7 @@ class CheckoutViewController: UIViewController, ViewSpecificController, @MainAct
     let viewModel = CheckoutViewModel()
 
     // MARK: - Attributes
-    var drinkData: Drinks? {
+    var drinkData: Products? {
         didSet {
             view().drinkLabel.text = "\(drinkData?.name ?? "")"
             view().drinkTitleLabel.text = "\(drinkData?.name ?? "")"

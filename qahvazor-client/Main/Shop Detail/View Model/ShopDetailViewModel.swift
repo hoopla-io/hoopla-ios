@@ -47,7 +47,7 @@ final class ShopDetailViewModel {
         ]
         
         Task { [weak self] in
-            await JSONDownloader.shared.jsonTask(url: EndPoints.drinks.rawValue, requestMethod: .get, parameters: params, completionHandler: { [weak self]  (result) in
+            await JSONDownloader.shared.jsonTask(url: EndPoints.products.rawValue, requestMethod: .get, parameters: params, completionHandler: { [weak self]  (result) in
                 guard let self = self else { return }
                 switch result {
                 case .Error(let error, let message):

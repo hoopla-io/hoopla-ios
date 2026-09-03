@@ -40,14 +40,14 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items[section].drinks?.count ?? 0
+        return items[section].products?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoffeeCollectionViewCell.defaultReuseIdentifier, for: indexPath) as? CoffeeCollectionViewCell else { return UICollectionViewCell() }
-        cell.titleLabel.text = items[indexPath.section].drinks?[indexPath.row].name
-        cell.priceLabel.text = items[indexPath.section].drinks?[indexPath.row].productPrice?.formattedWithCurrency
-        if let imageURL = items[indexPath.section].drinks?[indexPath.row].pictureUrl {
+        cell.titleLabel.text = items[indexPath.section].products?[indexPath.row].name
+        cell.priceLabel.text = items[indexPath.section].products?[indexPath.row].productPrice?.formattedWithCurrency
+        if let imageURL = items[indexPath.section].products?[indexPath.row].pictureUrl {
             cell.imageView.setImage(with: imageURL, placeholder: .appImage(.placeholder))
         }
         return cell
@@ -72,7 +72,7 @@ final class CoffeeListDataProvider: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = items[indexPath.section].drinks?[indexPath.row]
+        let item = items[indexPath.section].products?[indexPath.row]
         guard let vc = viewController as? ShopDetailViewController, let item else { return }
         vc.nextAction(item: item)
     }

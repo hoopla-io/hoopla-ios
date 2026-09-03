@@ -21,7 +21,7 @@ class ConfirmOrderViewController: UIViewController, ViewSpecificController, Aler
     var modifierGroupDataProvider: ModifierGroupDataProvider?
     
     // MARK: - Attributes
-    var drinkData: Drinks? {
+    var drinkData: Products? {
         didSet {
             view().drinkLabel.text = "\(drinkData?.name ?? "")"
             if let imageUrl = drinkData?.pictureUrl {

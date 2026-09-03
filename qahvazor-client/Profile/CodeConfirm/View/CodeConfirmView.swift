@@ -15,7 +15,7 @@ final class CodeConfirmView: CustomView {
             codeTextField.textContentType = .oneTimeCode
             codeTextField.keyboardType = .numberPad
             codeTextField.updateProperties { properties in
-                properties.numberOfCharacters = 5
+                properties.numberOfCharacters = 6
             }
             codeTextField.updateAppearence { appearance in
                 appearance.tokenColor = UIColor.clear

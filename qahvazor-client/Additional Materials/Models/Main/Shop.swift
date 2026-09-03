@@ -11,6 +11,7 @@ struct Shop: Codable {
     let id: Int?
     let shopId: Int?
     let name: String?
+    let shareUrl: String?
     let distance: Double?
     let location: Location?
     let phoneNumbers: [PhoneNumber]?
@@ -18,7 +19,7 @@ struct Shop: Codable {
     let pictures: [Pictures]?
     let workingHours: [WorkHour]?
     let urls: [SocialMedia]?
-    let drinks: [Drinks]?
+    let drinks: [Products]?
     let canAcceptOrders: Bool?
     let open: Bool?
     let categories: [Categories]?

@@ -68,6 +68,13 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
             }
         }
     }
+
+    @objc private func shareButtonTapped() {
+        guard let shareUrl = data?.shareUrl?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !shareUrl.isEmpty else { return }
+        share(text: shareUrl)
+    }
+
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +91,7 @@ class ShopDetailViewController: UIViewController, ViewSpecificController, AlertV
 extension ShopDetailViewController: ShopDetailViewModelProtocol {
     func didFinishFetch(data: Shop) {
         self.data = data
+        configureShareButton(with: data.shareUrl)
         
         view().titleLabel.text = data.name
         if let pictures = data.pictures {
@@ -159,6 +167,7 @@ extension ShopDetailViewController {
     
     private func prepareForTransition() {
         guard let item = data, let shopId = item.shopId else { return }
+        configureShareButton(with: item.shareUrl)
         if let posterUrl = item.pictureUrl {
             view().imageView.sd_setImage(with: URL(string: posterUrl), placeholderImage: view().imageView.image)
         }
@@ -168,8 +177,60 @@ extension ShopDetailViewController {
         view().hero.id = HeroType.view.rawValue + String(shopId)
         view().hero.modifiers = [.fade]
     }
+
+    private func configureShareButton(with shareUrl: String?) {
+        guard let shareUrl = shareUrl?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !shareUrl.isEmpty else {
+            navigationItem.rightBarButtonItem = nil
+            return
+        }
+
+        let button = UIButton(type: .custom)
+        button.setImage(makeShareIcon(), for: .normal)
+        button.accessibilityLabel = "Share"
+        button.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+    }
+
+    private func makeShareIcon() -> UIImage {
+        let size = CGSize(width: 24, height: 24)
+        let renderer = UIGraphicsImageRenderer(size: size)
+
+        return renderer.image { _ in
+            let iconColor = UIColor.label
+            let centers = [
+                CGPoint(x: 6, y: 12),
+                CGPoint(x: 17, y: 5.5),
+                CGPoint(x: 17, y: 18.5)
+            ]
+
+            let connections = UIBezierPath()
+            connections.move(to: centers[0])
+            connections.addLine(to: centers[1])
+            connections.move(to: centers[0])
+            connections.addLine(to: centers[2])
+            connections.lineWidth = 2
+            connections.lineCapStyle = .round
+            iconColor.setStroke()
+            connections.stroke()
+
+            centers.forEach { center in
+                let node = UIBezierPath(
+                    ovalIn: CGRect(x: center.x - 2.5, y: center.y - 2.5, width: 5, height: 5)
+                )
+                UIColor.white.setFill()
+                iconColor.setStroke()
+                node.lineWidth = 2
+                node.fill()
+                node.stroke()
+            }
+        }
+    }
     
-    func nextAction(item: Drinks) {
+    func nextAction(item: Products) {
         guard isOpen else {
             showErrorAlert(message: "closed".localized)
             return
